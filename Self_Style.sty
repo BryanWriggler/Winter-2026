@@ -1,0 +1,189 @@
+%%Order:
+%1. packages
+%2. basic geometry of the template
+%3. define specific colors used
+%4. define theorem boxes
+%5. combine color boxes with theorem boxes
+%6. Common commands I use
+
+%% Collect needed packages for most files
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs} %required for generating tables
+\usepackage{diagbox} %use for generating diagonal boxes in tables
+\usepackage{caption}
+\usepackage{subcaption} %for genrating captions for images
+\usepackage[most]{tcolorbox} %for creating environments
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics} %specifically for braket notation
+\usepackage{verbatim} %for special environment (for instance the comment environment)
+\usepackage[utf8]{inputenc} %for japanese? I forgot
+\usepackage[dvipsnames]{xcolor} %for importing multiple colors
+\usepackage{hyperref} %for creating links to different sections
+\usepackage{tikz-cd} %for commutative diagrams
+\usepackage{tikz} %for drawing regular diagrams
+
+%% Set geometry of the margin and line spread
+\usepackage[margin = 2.54cm]{geometry} % set margin to traditional doc
+\linespread{1.2} %controlling line spread
+%setup hyperlink within pdf
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
+
+%%define colors i like
+\definecolor{myTeal}{RGB}{0,128,128}
+\definecolor{myGreen}{RGB}{34,170,34}
+\definecolor{mySapphire}{RGB}{15,82,186}
+\definecolor{myEmerald}{RGB}{50.4, 130, 90}
+
+%%create math environments, can add [section] or [subsection] to add index counter based on sections/subsections
+\newtheorem{defn}{Definition}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ques}{Question}
+\newtheorem{lem}{Lemma}
+\newtheorem{exm}{Example}
+\newtheorem{cor}{Corollary}
+
+%%setup colored box environment for each math env above
+\tcolorboxenvironment{defn}{
+    enhanced, colframe=myTeal!50!teal, colback=myTeal!10,
+    arc=5mm, lower separated=false, fonttitle=\bfseries, breakable
+}
+\tcolorboxenvironment{prop}{
+    enhanced, colframe=myGreen!50!black, colback=myGreen!15,
+    arc=5mm, lower separated=false, fonttitle=\bfseries, breakable
+}
+\tcolorboxenvironment{thm}{
+    enhanced, colframe=mySapphire!50!mySapphire, colback=mySapphire!15,
+    arc=5mm, lower separated=false, fonttitle=\bfseries, breakable
+}
+\tcolorboxenvironment{cor}{
+    enhanced, colframe=mySapphire!50!mySapphire, colback=mySapphire!15,
+    arc=5mm, lower separated=false, fonttitle=\bfseries, breakable
+}
+\tcolorboxenvironment{ques}{
+    enhanced, colframe=blue!50!black, colback=blue!10,
+    arc=5mm, lower separated=false, fonttitle=\bfseries, breakable
+}
+\tcolorboxenvironment{lem}{
+    enhanced, colframe=myEmerald!50!myEmerald, colback=myEmerald!10,
+    arc=5mm, lower separated=false, fonttitle=\bfseries, breakable
+}
+\tcolorboxenvironment{exm}{
+    enhanced, colframe=blue!50!black, colback=blue!10,
+    arc=5mm, lower separated=false, fonttitle=\bfseries, breakable
+}
+
+
+%%common commands (add to template)
+%general
+\newcommand{\FF}{\mathbb{F}} %field F
+\newcommand{\NN}{\mathbb{N}} %natural number
+\newcommand{\ZZ}{\mathbb{Z}} %integer
+\newcommand{\QQ}{\mathbb{Q}} %rational field
+\newcommand{\RR}{\mathbb{R}} %real field
+\newcommand{\CC}{\mathbb{C}} %complex field
+\newcommand{\KK}{\mathbb{K}} %field K
+
+\newcommand{\id}{\mathrm{id}} %identity
+\newcommand{\lcm}{\mathrm{lcm}} %least common multiple
+
+%paired command
+%\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} %absolute value
+%\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+%\DeclarePairedDelimiter{\paran}{(}{)}%paranthesis
+\DeclarePairedDelimiter{\brac}{\langle}{\rangle} %bracket (used for cyclic group, generated group, etc.)
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor} %floor function
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil} %ceiling function
+
+%algebra
+\newcommand{\Gal}{\mathrm{Gal}} %galois extension
+\newcommand{\Aut}{\mathrm{Aut}} %automorphism
+\newcommand{\End}{\mathrm{End}} %endomorphism
+\newcommand{\Hom}{\mathrm{Hom}} %set of morphism
+\newcommand{\Mor}{\mathrm{Mor}} %set of morphisms (in general category, lang)
+\newcommand{\Nil}{\mathrm{Nil}} %nilradical in commutatitive ring
+\newcommand{\Ann}{\mathrm{Ann}} %annihilator (as ideal in commutative ring)
+\newcommand{\Char}{\mathrm{char}} %characteristic
+\newcommand{\coker}{\mathrm{coker}} %coker
+%\let\im\undefined
+\newcommand{\im}{\mathrm{im}} %image
+\newcommand{\Spec}{\mathrm{Spec}} %spectrum (used in either operator theory, or spectrum as Zariski Topology)
+\newcommand{\coim}{\mathrm{coim}} %coimage in homological algebra
+%\newcommand{\span}{\mathrm{span}} %span in linear algebra
+\newcommand{\Orb}{\mathrm{Orb}}%orbit in group theory
+
+%category theory
+\newcommand{\cat}[1]{\mathsf{#1}} %general category font command
+\newcommand{\Grp}{\mathsf{Grp}} %cat of group
+\newcommand{\Ab}{\mathsf{Ab}} %cat of abel group
+\newcommand{\Ring}{\mathsf{Ring}} %cat of ring
+\newcommand{\Fld}{\mathsf{Fld}} %cat of field
+\newcommand{\RMod}{\mathsf{R-Mod}} %cat of R-Mod
+\newcommand{\RAlg}{\mathsf{R-Alg}} %cat of R-Alg
+\newcommand{\Vect}[1]{\mathsf{Vect}_\mathsf{#1}} %cat of vector spaces
+\newcommand{\Top}{\mathsf{Top}} %cat of topological spaces
+\newcommand{\hTop}{\mathsf{hTop}} %cat of topological spaces with homotopic classes of continuous maps
+\newcommand{\Sets}{\mathsf{Set}} %cat of sets
+\newcommand{\Ch}[1]{\mathsf{Ch(#1)}} %cat of chain complex / cochain complex over an abelian category
+\newcommand{\D}[1]{\mathsf{D(#1)}} %derived category
+\newcommand{\Met}{\mathsf{Met}} %cat of metric spaces
+
+%Lie Group / Lie Algebra
+\newcommand{\GL}{\mathrm{GL}} %general linear
+\newcommand{\SL}{\mathrm{SL}} %special linear
+\newcommand{\U}{\mathrm{U}} %unitary
+\newcommand{\SO}{\mathrm{SO}} %special orthogonal
+\newcommand{\SU}{\mathrm{SU}} %special unitary
+\newcommand{\gl}{\mathfrak{gl}}
+\let\sl\undefined
+\newcommand{\sl}{\mathfrak{sl}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+
+%analysis
+\newcommand{\Vol}{\mathrm{Vol}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\Supp}{\mathrm{Supp}} %used for support, but can be in a lot of other use, like support in a spectrum of a commutative ring
+
+%complex
+\newcommand{\Real}{\mathrm{Re}} %real part
+\newcommand{\Imag}{\mathrm{Im}} %imaginary part
+%\newcommand{\Res}{\mathrm{Res}} %residue
+\newcommand{\Holo}{\mathcal{O}} %represent holomorphic / analytic function
+\newcommand{\Mero}{\mathcal{M}} %represent meromorphic function
+
+
+%physics
+\newcommand{\br}{\mathbf{r}} %position
+\newcommand{\bv}{\mathbf{v}} %velocity
+\newcommand{\ba}{\mathbf{a}} %acceleration
+\newcommand{\bF}{\mathbf{F}} %force
+\newcommand{\bP}{\mathbf{P}} %momentum
+\newcommand{\bL}{\mathbf{L}} %angular momentum
+\newcommand{\bN}{\mathbf{N}} %torque
+\newcommand{\bw}{\mathbf{w}} %angular velocity
+\newcommand{\bzero}{\mathbf{0}} %zero vector
+
+%Probability
+\newcommand{\PP}{\mathbb{P}} %probability function
+\newcommand{\EE}{\mathbb{E}} %expectation value
+\newcommand{\Var}{\mathrm{Var}} %use for variance
+\newcommand{\Bin}{\mathrm{Bin}} %binomial distribution
+\newcommand{\Ber}{\mathrm{Ber}} %bernoulli distribution
+\newcommand{\Poi}{\mathrm{Poi}} %poisson distribution
+\newcommand{\Unif}{\mathrm{Unif}} %uniform distribution
+\newcommand{\Exp}{\mathrm{Exp}} %exponential distribution
+\newcommand{\Cov}{\mathrm{Cov}} %covariance
+\newcommand{\Corr}{\mathrm{Corr}} %correlation
+\newcommand{\Beta}{\mathrm{Beta}} %beta distribution
+\newcommand{\GammaD}{\mathrm{Gamma}} %gamma distribution
