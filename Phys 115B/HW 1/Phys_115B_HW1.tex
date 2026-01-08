@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{../../Self_Style}
+
+\title{Latex Template}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1}
+
+\begin{ques}\label{q1}
+\textbf{You just know the answer}
+
+A common problem in QM is ``find the energies of the following Hamiltonian.'' The idea
+is to do as little math as possible but to build intuition. Describe the lowest several
+eigenenergies of the following Hamiltonians. It is up to you to decide what value of ``several''
+best illustrates what is going on. Answers are short.
+
+\textbf{Example:} What are the energies of the two separate simple harmonic oscillators, each
+with frequency $\omega$?
+
+\textbf{Answer:} The oscillators have energies
+\[
+E_1 = \hbar\omega(1/2 + n_1), \quad n_1 = [0,1,2,3,\ldots]
+\]
+\[
+E_2 = \hbar\omega(1/2 + n_2), \quad n_2 = [0,1,2,3,\ldots]
+\]
+so the combined oscillators have energy
+\[
+E = E_1 + E_2 = \hbar\omega(1 + n_1 + n_2)
+= \hbar\omega[1,2,2,3,3,3,4,4,4,4,\ldots]
+\]
+
+\begin{enumerate}
+\item Particle of mass $m$ in one dimensional box of width $a$.
+\item Particle of mass $m$ in two dimensional box of width $a$ and length $b$.
+\item Two disconnected particles, each of mass $m$, one in a 1D box of width $a$ and the
+other in a 1D box of width $b$.
+\item Particle of mass $m$ confined to a circular ring of circumference $a$.
+\item Particle of mass $m$ in a one dimensional potential $V = \frac{1}{2}m\omega^2 x^2$.
+\item Paricle of mass $m$ in a two dimensional potential
+$V = \frac{1}{2}m\omega^2(x^2 + y^2)$.
+\end{enumerate}
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\section*{2}
+
+\begin{ques}\label{q2}
+\textbf{Two-body to one-body} (Griffiths 5.1 in both editions)
+
+Given my history, I will not transcribe these anymore unless I add something to it, but feel
+free to email if you need me to.
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\section*{3}
+
+\begin{ques}\label{q3}
+\textbf{SHO in 3D} (Modified Griffiths 3rd ed.\ 4.46, or 2nd ed.\ 4.39)
+
+Consider a particle of mass $m$ for which the potential is
+\[
+V(r) = \frac{1}{2} m\omega^2 r^2
+\]
+
+\begin{enumerate}
+\item[(a)] Using separation of variables in Cartesian coordinates, show that this factorizes into
+a sum of three 1D harmonic oscillators, and use your knowledge of 1D SHO to
+determine the allowed energies.
+\item[(b)] Determine the degeneracy $d(n)$ (i.e.\ the number of states with the same energy as
+the $n$th energy eigenvale $E_n$.
+\item[(c)] As you hopefully found in part (b), the ground state $\psi_0(x,y,z)$ is non-degenerate.
+However the first excited energy eigenvalue $E_1$ is threefold degenerate, with eigen-
+states:
+\[
+\psi_{1,0,0}(x,y,z) = \tilde{\psi}_1(x)\tilde{\psi}_0(y)\tilde{\psi}_0(z)
+\]
+\[
+\psi_{0,1,0}(x,y,z) = \tilde{\psi}_0(x)\tilde{\psi}_1(y)\tilde{\psi}_0(z)
+\]
+\[
+\psi_{0,0,1}(x,y,z) = \tilde{\psi}_0(x)\tilde{\psi}_0(y)\tilde{\psi}_1(z)
+\]
+where $\tilde{\psi}_i$ denotes an eigenstate of the 1D harmonic oscillator. Are any of the linear
+combinations
+\[
+\frac{1}{\sqrt{3}}(\psi_{1,0,0} + \psi_{0,1,0} + \psi_{0,0,1}),
+\quad
+\frac{1}{\sqrt{2}}(\psi_{1,0,0} + \psi_{0,1,0}),
+\quad
+\frac{1}{\sqrt{2}}(\psi_{1,0,0} + i\psi_{0,0,1})
+\]
+also energy eigenstates? In each case, why or why not?
+\end{enumerate}
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\section*{4}
+
+\begin{ques}\label{q4}
+\textbf{1D to 3D} (Griffiths 4.1, same in both editions)
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\section*{5}
+
+\begin{ques}\label{q5}
+\textbf{Cubical well} (Griffiths 4.2, same in both editions)
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\section*{6}
+
+\begin{ques}\label{q6}
+\textbf{Practice with Spherical Harmonics} (Griffiths 4.4 in 3rd edition, 4.3 in 2nd edition)
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\end{document}
