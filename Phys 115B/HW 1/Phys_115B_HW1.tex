@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{../../Self_Style}
 
-\title{Latex Template}
+\title{Phys 115B HW 1}
 \author{Zih-Yu Hsieh}
 \date{\today}
 
@@ -56,8 +56,12 @@ $V = \frac{1}{2}m\omega^2(x^2 + y^2)$.
 \begin{ques}\label{q2}
 \textbf{Two-body to one-body} (Griffiths 5.1 in both editions)
 
-Given my history, I will not transcribe these anymore unless I add something to it, but feel
-free to email if you need me to.
+Typically, the interaction potential depends onlly on the vector $\br:= \br_1-\br_2$ separating the two particles. In that case the Schr\"odinger equation separates, if we change variables from $\br_1,\br_2$ to $\br$, $\bR:=(m_1\br_1+m_2\br_2)/(m_1+m_2)$ (the center of mass).
+\begin{itemize}
+    \item[(a)] Show that $\br_1=\bR+(\mu/m_1)\br$, $\br_2=\bR-(\mu/m_2)\br$, and $\nabla_1 = (\mu/m_2)\nabla_R + \nabla_r$, $\nabla_2 = (\mu/m_1)\nabla_R - \nabla_r$, where 
+    $$\mu:= \frac{m_1m_2}{m_1+m_2}$$
+    is the \textbf{reduced mass} of the system
+\end{itemize}
 \end{ques}
 
 \begin{proof}
@@ -65,7 +69,7 @@ free to email if you need me to.
 
 \newpage
 
-\section*{3}
+\section*{3 (ND)}
 
 \begin{ques}\label{q3}
 \textbf{SHO in 3D} (Modified Griffiths 3rd ed.\ 4.46, or 2nd ed.\ 4.39)
@@ -115,31 +119,120 @@ also energy eigenstates? In each case, why or why not?
 
 \begin{ques}\label{q4}
 \textbf{1D to 3D} (Griffiths 4.1, same in both editions)
+
+\begin{itemize}
+    \item[(a)] Work out all of the \textbf{canonical commutation relations} for components of the operators $\br$ and $\bp$: $[\hat{x},\hat{y}], [\hat{x},\hat{p}_y], [\hat{x},\hat{p}_x], [\hat{p}_y,\hat{p}_z]$, and so on.
+    \item[(b)] Confirm the three-dimensional version of \textbf{Ehrenfest's Theorem},
+    $$\frac{d}{dt}\left<\br\right> = \frac{1}{m}\left<\bp\right>,\quad \frac{d}{dt}\left<\bp\right> = \left<-\nabla V\right>$$
+    \item[(c)] Formulate \textbf{Heisenberg's Uncertainty Principle} in three dimensions.
+\end{itemize}
 \end{ques}
 
 \begin{proof}
+    
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given $j,k \in \{x,y,z\}$, the action of $[\hat{j},\hat{k}]$ on the states in position basis are as follow:
+        \begin{align}
+            [\hat{j},\hat{k}]\ket{\psi}&= (\hat{j}\hat{k}-\hat{k}\hat{j})\int_{\RR^3}\psi(\hat{r})\ket{\bar{r}}dr^3 = (\hat{jk}\int_{\RR^3}k\psi(\bar{r})\ket{\bar{r}}dr^3 - \hat{k}\int_{\RR^3}j\psi(\bar{r})\ket{\bar{r}}dr^3)\\
+            &= \int_{\RR^3}jk\psi(\bar{r})\ket{\bar{r}}dr^3 - \int_{\RR^3}kj\psi(\bar{r})\ket{\bar{r}}dr^3 = 0
+        \end{align}
+
+        Similarly, the action of $[\hat{p}_j, \hat{p}_k]$ on the states as follow:
+        \begin{align}
+            [\hat{p}_j,\hat{p}_k]\ket{\psi} &= -\hbar^2\left(\frac{\partial}{\partial j}\frac{\partial}{\partial k}-\frac{\partial}{\partial k}\frac{\partial}{\partial j}\right)\int_{\RR^3}\psi(\bar{r})\ket{\bar{r}}dr^3\\
+            &= -\hbar^2\left(\frac{\partial}{\partial j}\int_{\RR^3}\frac{\partial \psi}{\partial k}\ket{\bar{r}}dr^3 - \frac{\partial}{\partial k}\int_{\RR^3}\frac{\partial \psi}{\partial j}\ket{\bar{r}}dr^3\right)\\
+            &= -\hbar^2\left(\int_{\RR^3}\frac{\partial}{\partial j}\left(\frac{\partial \psi}{\partial k}\right)\ket{\bar{r}}dr^3 - \int_{\RR^3}\frac{\partial}{\partial k}\left(\frac{\partial \psi}{\partial j}\right)\ket{\bar{r}}dr^3\right) = 0
+        \end{align}
+        Which, it's due to the fact that the mixed partial derivatives are equal if the function is smooth / at least twice continuously differentiable.
+
+        Now, the action of $[\hat{j}, \hat{p}_k]$ is as follow:
+        \begin{align}
+            [\hat{j},\hat{p}_k]\ket{\psi} &= -i\hbar\left(\hat{j}\frac{\partial}{\partial k}-\frac{\partial}{\partial k}\hat{j}\right)\int_{\RR^3}\psi(\bar{r})\ket{\bar{r}}dr^3\\
+            &= -i\hbar\left(\hat{j}\int_{\RR^3}\frac{\partial\psi}{\partial k}\ket{\bar{r}}dr^3 - \frac{\partial}{\partial k}\int_{\RR^3}j\psi(\bar{r})\ket{\bar{r}}dr^3\right)\\
+            &= -i\hbar\left(\int_{\RR^3}j\frac{\partial\psi}{\partial k}\ket{\bar{r}}dr^3 - \int_{\RR^3}\left(\frac{\partial j}{\partial k}\psi(\bar{r}) + j \frac{\partial \psi}{\partial k}\right)\ket{\bar{r}}dr^3\right)\\
+            &= -i\hbar\left(\int_{\RR^3}j\frac{\partial\psi}{\partial k}\ket{\bar{r}}dr^3  - \delta_{j k}\int_{\RR^3}\psi(\bar{r})\ket{\bar{r}}dr^3 - \int_{\RR^3}j\frac{\partial\psi}{\partial k}\ket{\bar{r}}dr^3\right)\\
+            &= i\hbar \delta_{j k}\ket{\psi}
+        \end{align}
+        So, as a result, we get:
+        \begin{align}
+            [\hat{x},\hat{y}] = 0,\quad [\hat{x},\hat{p}_y] = 0,\quad [\hat{x},\hat{p}_x] = i\hbar,\quad [\hat{p}_y,\hat{p}_z] = 0
+        \end{align}
+
+        \hfil
+
+        \item[(b)] If limit to one dimension (pick $j\in\{x,y,z\}$), then Ehrenfest's theorem in one dimension guarantees that $\frac{d}{dt}\left<j\right> = \frac{1}{m}\left<p_j\right>$ and $\frac{d}{dt}\left<p_j\right> = \left<-\frac{\partial V}{\partial j}\right>$. Hence, the three-dimensional version follows, since now if $\bp$ and $\br$ are $(\hat{p}_x,\hat{p}_y,\hat{p}_z)$ and $(\hat{x},\hat{y},\hat{z})$ respectively, one has:
+        \begin{align}
+            \frac{d}{dt}\left<\br\right> &= \frac{d}{dt}(\left<x\right>,\left<y\right>,\left<z\right>) = \frac{1}{m}(\left<p_x\right>,\left<p_y\right>,\left<p_z\right>) = \frac{1}{m}\left<\bp\right>
+        \end{align}
+        \begin{align}
+            \frac{d}{dt}\left<\bp\right> &= \frac{d}{dt}(\left<p_x\right>,\left<p_y\right>,\left<p_z\right>) = \left(\left<-\frac{\partial V}{\partial x}\right>, \left<-\frac{\partial V}{\partial y}\right>, \left<-\frac{\partial V}{\partial z}\right>\right) = \left<-\nabla V\right>
+        \end{align}
+        Since $-\nabla V = \left(-\frac{\partial V}{\partial x},-\frac{\partial V}{\partial y},-\frac{\partial V}{\partial z}\right)$.
+
+        \hfil
+    
+        \item[(c)] Given $j,k \in \{x,y,z\}$, since $[\hat{j},\hat{p}_k] = i\hbar \delta_{j k}$ (verified in part (a)), then by the generalized uncertainty principle, one has:
+        \begin{align}
+            \sigma_j \sigma_{p_k} \geq \frac{1}{2}\left|[\hat{j},\hat{p}_k]\right| = \frac{\hbar}{2}\delta_{j k}
+        \end{align}
+        Hence, if $j=k$, then $\sigma_j \sigma_(p_j)\geq \frac{\hbar}{2}$, yet if $j\neq k$, one has $\sigma_j\sigma_{p_k}\geq 0$, which imposes no restriction.
+    \end{itemize}
 \end{proof}
 
 \newpage
 
-\section*{5}
+\section*{5 (ND)}
 
 \begin{ques}\label{q5}
 \textbf{Cubical well} (Griffiths 4.2, same in both editions)
+
+Use separation of variables in cartesian coordinates to solve the infinite cubical well (or ``particle in a box''):
+$$V(x,y,z) = \begin{cases}
+    0 & x,y,z \in [0,a]\\
+    \infty & \text{otherwise}
+\end{cases}$$
+\begin{itemize}
+    \item[(a)] Find the stationary states, and the corresponding energies.
+    \item[(b)] Call the distinct energies $E_1,E_2,E_3,...$ in order of increasing energy. Find $E_1,E_2,E_3,E_4,E_5,$ and $E_6$.  Determine their degeneracies (that is, the number of different states that share the same energy).
+    \item[(c)] What is the degeneracy of $E_{14}$, and why is this case interesting?
+\end{itemize}
 \end{ques}
 
 \begin{proof}
+    Suppose 
 \end{proof}
 
 \newpage
 
-\section*{6}
+\section*{6 (check if the normalization claim is correct)}
 
 \begin{ques}\label{q6}
 \textbf{Practice with Spherical Harmonics} (Griffiths 4.4 in 3rd edition, 4.3 in 2nd edition)
+
+Show that 
+$$\Theta(\theta) = A \ln[\tan(\theta/2)]$$
+satisfies the $\Theta$ equation for $\ell=m=0$. This is the unacceptable "second solution" - what's wrong with it?
+
+Note: the equation is of the form 
+$$\sin(\theta)\frac{d}{d\theta}\left(\sin(\theta)\frac{d\Theta}{d\theta}\right)+[\ell(\ell+1)\sin^2(\theta)-m^2]\Theta = 0$$
 \end{ques}
 
 \begin{proof}
+    Given $\ell=m=0$, the given equation reduces to:
+    \begin{align}
+        \sin(\theta)\frac{d}{d\theta}\left(\sin(\theta)\frac{d\Theta}{d\theta}\right)=0
+    \end{align}
+    Hence, one gets $\sin(\theta)\frac{d\Theta}{d\theta} = A_1$ for some constant $A_1 \in \CC$.
+
+    Now, since this implies $\frac{d\Theta}{d\theta} = \frac{A_1}{\sin(\theta)} = A_1 \csc(\theta)$, then one gets the following:
+    \begin{align}
+        \Theta &= \int A_1 \csc(\theta) d\theta = -A_1 \ln\left|\tan\left(\frac{\theta}{2}\right)\right|+A_2
+    \end{align}
+    Which, for $\theta\in (0,\pi)$, $\tan(\theta/2)>0$, hence $\Theta = A \ln[\tan(\theta/2)]+B$ for some $A,B \in \CC$.
+
+    However, this is not an acceptable solution, since the integration of $|\Theta|^2$ over $\theta\in (0,\pi)$ in fact diverges, showing that $\Theta$ is not normalizable.
 \end{proof}
 
 \end{document}
