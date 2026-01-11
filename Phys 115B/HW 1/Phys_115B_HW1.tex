@@ -71,16 +71,91 @@ Typically, the interaction potential depends onlly on the vector $\br:= \br_1-\b
 \begin{itemize}
     \item[(a)] Show that $\br_1=\bR+(\mu/m_1)\br$, $\br_2=\bR-(\mu/m_2)\br$, and $\nabla_1 = (\mu/m_2)\nabla_R + \nabla_r$, $\nabla_2 = (\mu/m_1)\nabla_R - \nabla_r$, where 
     $$\mu:= \frac{m_1m_2}{m_1+m_2}$$
-    is the \textbf{reduced mass} of the system
+    is the \textbf{reduced mass} of the system.
+    \item[(b)] Show that the (time-independent) Schr\"odinger equation becomes 
+    $$-\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2\psi - \frac{\hbar^2}{2\mu}\nabla_r^2\psi + V(\br)\psi = E\psi$$
+    Note: the original equation is:
+    $$-\frac{\hbar^2}{2m_1}\nabla_1^2\psi-\frac{\hbar^2}{2m_2}\nabla_2^2\psi + V\psi = E\psi$$
+    \item[(c)] Separate the variables, letting $\psi(\bR,\br) = \psi_R(\bR)\psi_r(\br)$. Note that $\psi_R$ satisfies the one-particle Schr\"odiger equation, with the \emph{total} mass $(m_1+m_2)$ in place of $m$, potential zero, and energy $E_R$, while $\psi_r$ satisfies the one-particle Schr\"odinger equation with the \emph{reduced} mass in place of $m$, potential $V(\br)$, and energy $E_r$. The total energy is the sum: $E=E_R+E_r$. What this tells us is that the center of mass moves like a free particle, and the \emph{relative motion} (that is, the motion of particle $2$ with respect to particle $1$) is the same as if we had a \emph{single} particle with the \emph{reduced} mass, subject to the potential $V$. Exactly the same decomposition occurs in \emph{classical mechanics}; it reduces the two-body problem to an equivalent one-body problem.
 \end{itemize}
 \end{ques}
 
 \begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] First, about $\br_1,\br_2$, one has the following:
+        \begin{align}
+            &\bR+\frac{\mu}{m_1}\br = \frac{m_1\br_1+m_2\br_2}{m_1+m_2} + \frac{m_2}{m_1+m_2}(\br_1-\br_2) = \frac{(m_1+m_2)\br_1}{m_1+m_2}=\br_1\\
+            &\bR-\frac{\mu}{m_2}\br = \frac{m_1\br_1+m_2\br_2}{m_1+m_2}-\frac{m_1}{m_1+m_2}(\br_1-\br_2) = \frac{(m_1+m_2)\br_2}{m_1+m_2} = \br_2
+        \end{align}
+        Now, let $\{x_1,y_1,z_1\}$ and $\{x_2,y_2,z_2\}$ denote the coordinates of $\br_1$ and $\br_2$ respectively. Then, $\br$ has coordinates $\{x_1-x_2,y_1-y_2,z_1-z_2\}$, while $\bR$ has coordinates $\{X,Y,Z\}= \{\frac{m_1x_1+m_2x_2}{m_1+m_2},\frac{m_1y_1+m_2y_2}{m_1+m_2},\frac{m_1z_1+m_2z_2}{m_1+m_2}\}$.
+
+        So, given $u \in \{x,y,z\}$, the transformation $(u_1,u_2)=f(U,u)$ can be written as follow:
+        \begin{align}
+            \begin{pmatrix}
+                u_1\\u_2
+            \end{pmatrix} &= \begin{pmatrix}
+                U+\frac{\mu}{m_1}u\\U - \frac{\mu}{m_2}u
+            \end{pmatrix} = \begin{pmatrix}
+                1&\frac{\mu}{m_1}\\1&-\frac{\mu}{m_2}
+            \end{pmatrix}\begin{pmatrix}
+                U\\u
+            \end{pmatrix}
+        \end{align}
+        As a result, the differential operators with respect to $U,u$ are given as follow:
+        \begin{align}
+            &\frac{\partial}{\partial U} = \frac{\partial u_1}{\partial U}\frac{\partial}{\partial u_1} + \frac{\partial u_2}{\partial U}\frac{\partial}{\partial u_2} = \frac{\partial}{\partial u_1}+\frac{\partial}{\partial u_2}\\
+            &\frac{\partial}{\partial u} = \frac{\partial u_1}{\partial u}\frac{\partial}{\partial u_1} + \frac{\partial u_2}{\partial u}\frac{\partial}{\partial u_2} = \frac{\mu}{m_1}\frac{\partial}{\partial u_1}-\frac{\mu}{m_2}\frac{\partial}{\partial u_2}
+        \end{align}
+        So, the square differential operators become:
+        \begin{align}
+            \frac{\partial^2}{\partial U^2} &= \frac{\partial^2}{\partial u_1^2}+\frac{\partial^2}{\partial u_2^2} + 2\frac{\partial^2}{\partial u_1\partial u_2}\\
+            \frac{\partial^2}{\partial u^2} &= \frac{\mu^2}{m_1^2}\frac{\partial^2}{\partial u_1^2} + \frac{\mu^2}{m_2^2}\frac{\partial^2}{\partial u_2^2} - \frac{2\mu^2}{m_1m_2}\frac{\partial^2}{\partial u_1\partial u_2}\\
+            &= \frac{1}{(m_1+m_2)^2}\left(m_2^2\frac{\partial^2}{\partial u_1^2} + m_1^2\frac{\partial^2}{\partial u_2^2}-2m_1m_2\frac{\partial^2}{\partial u_1\partial u_2}\right)
+        \end{align}
+        Which, the given 
+        
+        \begin{comment}
+        $f(u_1,u_2) = (U,u)$ (where $u$ is the coordinate of $\br$, $U$ is the coordinate of $\bR$) is given as follow:
+        \begin{align}
+            \begin{pmatrix}
+                U\\u
+            \end{pmatrix} = \begin{pmatrix}
+                \frac{m_1u_1+m_2u_2}{m_1+m_2}\\u_1-u_2
+            \end{pmatrix} = \begin{pmatrix}
+                \frac{m_1}{m_1+m_2} & \frac{m_2}{m_1+m_2}\\ 1&-1
+            \end{pmatrix}\begin{pmatrix}
+                u_1\\u_2
+            \end{pmatrix}
+        \end{align}
+        Then, the differential operators are given as follow:
+        \begin{align}
+            &\frac{\partial}{\partial u_1}=\frac{\partial U}{\partial u_1}\frac{\partial}{\partial U}+\frac{\partial u}{\partial u_1}\frac{\partial}{\partial u} = \frac{m_1}{m_1+m_2}\frac{\partial}{\partial U}+\frac{\partial}{\partial u}\\
+            &\frac{\partial}{\partial u_2}=\frac{\partial U}{\partial u_2}\frac{\partial}{\partial U}+\frac{\partial u}{\partial u_2}\frac{\partial}{\partial u} = \frac{m_2}{m_1+m_2}\frac{\partial}{\partial U}-\frac{\partial}{\partial u}
+        \end{align}
+        So, the square of the differential operators become:
+        \begin{align}
+            &\frac{\partial^2}{\partial u_1^2} = \frac{m_1^2}{(m_1+m_2)^2}\frac{\partial^2}{\partial U^2} + \frac{\partial^2}{\partial u^2} + \frac{2m_1}{m_1+m_2}\frac{\partial^2}{\partial U\partial u}\\
+            &\frac{\partial^2}{\partial u_2^2} = \frac{m_2^2}{(m_1+m_2)^2}\frac{\partial^2}{\partial U^2} + \frac{\partial^2}{\partial u^2} - \frac{2m_2}{m_1+m_2}\frac{\partial^2}{\partial U\partial u}
+        \end{align}
+        Hence, the Laplacian in the Schr\"odinger equation becomes the following:
+        \begin{align}
+            -\frac{\hbar^2}{2m_1}\nabla_1^2 -\frac{\hbar^2}{2m_2}\nabla_2^2 =& -\frac{\hbar^2}{2m_1}\sum_{u\in\{x,y,z\}}\left(\frac{m_1^2}{(m_1+m_2)^2}\frac{\partial^2}{\partial U^2}+\frac{\partial^2}{\partial u^2}+\frac{2m_1}{m_1+m_2}\frac{\partial^2}{\partial U\partial u}\right)\\
+            &-\frac{\hbar^2}{2m_2}\sum_{u\in\{x,y,z\}}\left(\frac{m_2^2}{(m_1+m_2)^2}\frac{\partial^2}{\partial U^2}+\frac{\partial^2}{\partial u^2}-\frac{2m_2}{m_1+m_2}\frac{\partial^2}{\partial U\partial u}\right)\\
+            =&\sum_{u\in\{x,y,z\}}\left(-\frac{\hbar^2}{2(m_1+m_2)}\frac{\partial^2}{\partial U^2} - \left(\frac{\hbar^2}{2m_1}+\frac{\hbar^2}{2m_2}\right)\frac{\partial^2}{\partial u^2}\right)\\
+            =& -\frac{\hbar^2}{2(m_1+m_2)}\left(\sum_{u\in\{x,y,z\}}\frac{\partial^2}{\partial U^2}\right) - \frac{\hbar^2(m_1+m_2)}{2m_1m_2}\left(\sum_{u\in\{x,y,z\}}\frac{\partial^2}{\partial u^2}\right)\\
+            =& - \frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2 - \frac{\hbar^2}{2\mu}\nabla_r^2
+        \end{align}
+        So, the Sch\r
+        \end{comment}
+    \end{itemize}
 \end{proof}
 
 \newpage
 
-\section*{3 (ND)}
+\section*{3}
 
 \begin{ques}\label{q3}
 \textbf{SHO in 3D} (Modified Griffiths 3rd ed.\ 4.46, or 2nd ed.\ 4.39)
@@ -122,6 +197,40 @@ also energy eigenstates? In each case, why or why not?
 \end{ques}
 
 \begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Suppose $\psi(\br) = \psi_x(x)\psi_y(y)\psi_z(z)$, then plugin to the Time-independent Schr\"odinger's Equation, we get:
+        \begin{align}
+            E\psi_x\psi_y\psi_z&= -\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}\right)\psi_x\psi_y\psi_z + \frac{1}{2}mw^2(x^2+y^2+z^2)\psi_x\psi_y\psi_z\\
+            &= -\frac{\hbar^2}{2m}\left(\psi_y\psi_z\frac{\partial^2\psi_x}{\partial x^2}+\psi_x\psi_z\frac{\partial^2\psi_y}{\partial y^2}+\psi_x\psi_y\frac{\partial^2\psi_z}{\partial z^2}\right)+ \frac{1}{2}mw^2(x^2+y^2+z^2)\psi_x\psi_y\psi_z
+        \end{align}
+        On some open subset of $\RR^3$ (since $\psi\neq 0$ and it's continuous), then after dividing everything by $\psi$, one gets:
+        \begin{align}
+            E = \left(-\frac{\hbar^2}{2m\psi_x}\frac{\partial^2\psi_x}{\partial x^2} + \frac{1}{2}mw^2x^2\right)+\left(-\frac{\hbar^2}{2m\psi_y}\frac{\partial^2\psi_y}{\partial y^2} + \frac{1}{2}mw^2y^2\right)+\left(-\frac{\hbar^2}{2m\psi_z}\frac{\partial^2\psi_z}{\partial z^2} + \frac{1}{2}mw^2z^2\right)
+        \end{align} 
+        Which, each of the term is ony dependent of $x$,$y$, or $z$ (but not the other two variables). Hence, in case for the equation to hold, all three terms in the paranthesis must necessarily be constant. Hence, for each $u \in \{x,y,z\}$, one has some $E_u\in\RR$ that satisfies the following:
+        \begin{align}
+            \left(-\frac{\hbar^2}{2m\psi_u}\frac{\partial^2\psi_u}{\partial u^2} + \frac{1}{2}mw^2u^2\right) = E_u \implies E_u \psi_u = -\frac{\hbar^2}{2m}\frac{\partial^2\psi_u}{\partial u^2}+\frac{1}{2}mw^2u^2\psi_u
+        \end{align}
+        Hence, each $\psi_u$ not only satisfies the one-dimensional harmonic oscillator Hamiltonian, and it's also normalizable (based on the fact that $\psi$ is normalizable). 
+
+        Finally, since $\psi_x,\psi_y,\psi_z$ are all one-dimensional harmonic oscillators' solution (together with $E = E_x+E_y+E_z$ based on the above equation), then each $E_u =\hbar w\left(\frac{1}{2}+n_u\right)$ for some $n_u \in\NN$. Hence, one has $E = \hbar w\left(\frac{3}{2}+n_x+n_y+n_z\right)$ for $n_x,n_y,n_z\in\NN$, showing the allowed energies are $E = \hbar w\left(\frac{3}{2}+n\right)$ for all $n\in\NN$.
+
+        \hfil
+
+        \item[(b)] The degerneracy $d(n)$ for the $n$th energy eigenvalue $E_n = \hbar w\left(\frac{3}{2}+n\right)$, is given by the number of distinct $3$-tuples $(n_x,n_y,n_z)\in\NN^3$, such that $n = n_x+n_y+n_z$.
+        
+        First, there are $(n+1)$ ways of fixing $n_x$ (since $n_x \in\{0,1,...,n\}$). Then, for each $k\in\{0,1,...,n\}$, fixing $n_x = k$, the remaining $(n-k)$ can be partitianed in $(n-k+1)$ ways into $2$ nonnegative integers (since for all $l\in\{0,1,...,n-k\}$, $(n-k) = l + (n-k-l)$). So, the degeneracy is the sum of all such possible partitian, which is given as follow:
+        \begin{align}
+            d(n) = \sum_{k=0}^n (n-k+1) = (n+1)^2 - \frac{n(n+1)}{2} = \frac{(n+1)(n+2)}{2}
+        \end{align}
+
+        \hfil
+
+        \item[(c)]All the given linear combinations of the energy eigenstates of energy eigenvalue $E_1$ is also an energy eigenstate, since they're all inside the same eigenspace corresponding to $E_1$, hence any linear combination still lies in the same space. 
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -231,7 +340,7 @@ $$V(x,y,z) = \begin{cases}
 
 \newpage
 
-\section*{6 (check if the normalization claim is correct)}
+\section*{6}
 
 \begin{ques}\label{q6}
 \textbf{Practice with Spherical Harmonics} (Griffiths 4.4 in 3rd edition, 4.3 in 2nd edition)

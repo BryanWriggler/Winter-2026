@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  9 JAN 2026 22:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  10 JAN 2026 19:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -795,7 +795,12 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 10.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] (./Phys_115B_HW1.aux)
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (14.28406pt too wide) in paragraph at lines 92--94
+\OT1/cmr/m/n/10 di-nates $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[]; y[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y[]; z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 z[]\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 , while $\OT1/cmr/bx/n/10 R$ \OT1/cmr/m/n/10 has co-or-di-nates $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X; Y; Z\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f[]\OML/cmm/m/it/10 ; []; []\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 . 
+ []
+
+[3] [4] [5] [6] [7] [8] [9] [10] (./Phys_115B_HW1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -804,18 +809,18 @@ Package rerunfilecheck Info: File `Phys_115B_HW1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 31644 strings out of 474116
- 638024 string characters out of 5743681
- 1956187 words of memory out of 5000000
- 53447 multiletter control sequences out of 15000+600000
+ 31663 strings out of 474116
+ 638322 string characters out of 5743681
+ 1957187 words of memory out of 5000000
+ 53451 multiletter control sequences out of 15000+600000
  567647 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,12n,113p,755b,1004s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,14n,113p,941b,1004s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Phys_115B_HW1.pdf (8 pages, 224303 bytes).
+Output written on Phys_115B_HW1.pdf (10 pages, 236699 bytes).
 PDF statistics:
- 223 PDF objects out of 1000 (max. 8388607)
- 153 compressed objects within 2 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 247 PDF objects out of 1000 (max. 8388607)
+ 175 compressed objects within 2 object streams
+ 68 named destinations out of 1000 (max. 500000)
  157 words of extra memory for PDF output out of 10000 (max. 10000000)
 
