@@ -303,7 +303,7 @@ also energy eigenstates? In each case, why or why not?
 
 \newpage
 
-\section*{5 (ND)}
+\section*{5}
 
 \begin{ques}\label{q5}
 \textbf{Cubical well} (Griffiths 4.2, same in both editions)
@@ -330,11 +330,54 @@ $$V(x,y,z) = \begin{cases}
         E\psi_x(x)\psi_y(y)\psi_z(z) &= -\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right)\psi_x(x)\psi_y(y)\psi_z(z)\\
         &= -\frac{\hbar^2}{2m}\left(\psi_y\psi_z\frac{d^2\psi_x}{dx^2}+\psi_x\psi_z\frac{d^2\psi_y}{dy^2}+\psi_x\psi_y\frac{d^2\psi_z}{dz^2}\right)
     \end{align}
-    In particular, on the subset where all three functions are nonzero, one gets the following differential equation:
+    In particular, on the open subset of the box $[0,a]^3$ where all three functions are nonzero, one gets the following differential equation (by dividing $\psi$ for all the equations):
     \begin{align}
-        &\frac{\hbar^2}{2m}\psi_y\psi_z\frac{d^2\psi_x}{dx^2}+\left(E\psi_y\psi_z + \frac{\hbar^2}{2m}\left(\psi_z\frac{d^2\psi_y}{dy^2}+\psi_y\frac{d^2\psi_z}{dz^2}\right)\right)\psi_x(x)=0\\
-        &\implies \frac{d^2\psi_x}{dx^2}+\left(\frac{2mE}{\hbar^2} + \left(\frac{1}{\psi_y}\frac{d^2\psi_y}{dy^2}+\frac{1}{\psi_z}\frac{d^2\psi_z}{dz^2}\right)\right)\psi_x=0
+        E =-\frac{\hbar^2}{2m}\left(\frac{1}{\psi_x}\frac{\partial^2\psi_x}{\partial x^2}+\frac{1}{\psi_y}\frac{\partial^2\psi_y}{\partial y^2}+\frac{1}{\psi_z}\frac{\partial^2\psi_z}{\partial z^2}\right)
     \end{align}
+    Notice that each of the term $\frac{1}{\psi_u}\frac{\partial^2\psi_u}{\partial u^2}$ is only dependent on $u$, so for the sum of three such terms to be a constant (each dependent only on one distinct variable), each term must be a constant. Hence, there exists $E_u\in\RR$, such that $E_u = -\frac{\hbar^2}{2m\psi_u}\frac{\partial^2\psi_u}{\partial u^2}$ (and as a result, $E=E_x+E_y+E_z$).
+
+    Which, this implies $E_u \psi_u=-\frac{\hbar^2}{2m}\frac{\partial^2\psi_u}{\partial u^2}$ on the interval $u\in [0,a]$, showing that each $\psi_u$ satisfies the one-dimensional infinite square well Hamiltonian. 
+    
+    Therefore, given any $n_x,n_y,n_z\in\NN\setminus\{0\}$, one has the stationary state $\psi_{n_x,n_y,n_z} = \left(\frac{2}{a}\right)^\frac{3}{2}\sin\left(\frac{n_x \pi}{a}x\right)\sin\left(\frac{n_y \pi}{a}y\right)\sin\left(\frac{n_z \pi}{a}z\right)$, with energy $E_{n_x,n_y,n_z} = E_{n_x}+E_{n_y}+E_{n_z} = \frac{(n_x^2+n_y^2+n_z^2)\pi^2\hbar^2}{2ma^2}$.
+
+    \hfil
+
+    \item[(b)] As seen in part (a), the energy of the stationary state must be the $n$th infinite square well energy, with $n$ being sum of three positive integer squares. Which, the first 14 such positive integers are given as below:
+    \begin{itemize}
+        \item $3=1+1+1$.
+        \item $6=1+1+2^2$.
+        \item $9 = 1+2^2+2^2$.
+        \item $11 = 1+1+3^2$.
+        \item $12 = 2^2+2^2+2^2$.
+        \item $14 = 1+2^2+3^2$.
+        \item $17 = 4^2+4^2+9^2$
+        \item $18 = 1+1+4^2$
+        \item $19 = 1+3^2+3^2$.
+        \item $21 = 1+2^2+4^2$.
+        \item $22 = 2^2+3^2+3^2$.
+        \item $24 = 2^2+2^2+4^2$.
+        \item $26 = 1+3^2+4^2$.
+        \item $27 = 1+1+5^2 = 3^2+3^2+3^2$.
+    \end{itemize}
+    Which, consider the degeneracies (which are the distinct $3$-tuples with the three positive integers mentioned), one has the first 6 energies (and their degeneracies) as follow:
+    \begin{itemize}
+        \item $E_1 = \frac{3\pi^2\hbar^2}{2ma^2}$, with $d(1) = 1$ (ground state energy).
+        \item $E_2 = \frac{6\pi^2\hbar^2}{2ma^2}$, with $d(2) = \begin{pmatrix}
+            3\\1
+        \end{pmatrix} = 3$ (need to choose which coordinate does $2$ correspond to).
+        \item $E_3 = \frac{9\pi^2\hbar^2}{2ma^2}$, with $d(3) = \begin{pmatrix}
+            3\\1
+        \end{pmatrix} = 3$ (need to choose which coordinate does $1$ correspond to).
+        \item $E_4 = \frac{11\pi^2\hbar^2}{2ma^2}$, with $d(4) = 3$ (again, choosing which coordinate does $3$ correspond to).
+        \item $E_5 = \frac{12\pi^2\hbar^2}{2ma^2}$, with $d(5)=1$ (since all three coordinates correspond to $2$).
+        \item $E_6 = \frac{14\pi^2\hbar^2}{2ma^2}$, with $d(6) = 6$ (since it's all the possible permutation of $3$ distinct positive integers).
+    \end{itemize}
+
+    \hfil
+
+    \item[(c)] From the list above, one can see the $14$th sum of three positive integer square, is $27 = 1+1+5^2=3^2+3^2+3^2$. So one can see there are more than one way of expressing it as sum of three positive integer squares. Then, the degeneracy is in fact $d(14) = \begin{pmatrix}
+        3\\1
+    \end{pmatrix} + 1 = 4$ (one corresponds to $1+1+5^2$, the other corresponds to $3^2+3^2+3^2$).
     \end{itemize}
 \end{proof}
 
