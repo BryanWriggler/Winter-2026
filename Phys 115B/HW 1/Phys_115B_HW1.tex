@@ -62,7 +62,7 @@ $V = \frac{1}{2}m\omega^2(x^2 + y^2)$.
 
 \newpage
 
-\section*{2 (ND)}
+\section*{2}
 
 \begin{ques}\label{q2}
 \textbf{Two-body to one-body} (Griffiths 5.1 in both editions)
@@ -75,7 +75,7 @@ Typically, the interaction potential depends onlly on the vector $\br:= \br_1-\b
     \item[(b)] Show that the (time-independent) Schr\"odinger equation becomes 
     $$-\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2\psi - \frac{\hbar^2}{2\mu}\nabla_r^2\psi + V(\br)\psi = E\psi$$
     Note: the original equation is:
-    $$-\frac{\hbar^2}{2m_1}\nabla_1^2\psi-\frac{\hbar^2}{2m_2}\nabla_2^2\psi + V\psi = E\psi$$
+    $$-\frac{\hbar^2}{2m_1}\nabla_1^2\psi-\frac{\hbar^2}{2m_2}\nabla_2^2\psi + V(\br)\psi = E\psi$$
     \item[(c)] Separate the variables, letting $\psi(\bR,\br) = \psi_R(\bR)\psi_r(\br)$. Note that $\psi_R$ satisfies the one-particle Schr\"odiger equation, with the \emph{total} mass $(m_1+m_2)$ in place of $m$, potential zero, and energy $E_R$, while $\psi_r$ satisfies the one-particle Schr\"odinger equation with the \emph{reduced} mass in place of $m$, potential $V(\br)$, and energy $E_r$. The total energy is the sum: $E=E_R+E_r$. What this tells us is that the center of mass moves like a free particle, and the \emph{relative motion} (that is, the motion of particle $2$ with respect to particle $1$) is the same as if we had a \emph{single} particle with the \emph{reduced} mass, subject to the potential $V$. Exactly the same decomposition occurs in \emph{classical mechanics}; it reduces the two-body problem to an equivalent one-body problem.
 \end{itemize}
 \end{ques}
@@ -109,33 +109,25 @@ Typically, the interaction potential depends onlly on the vector $\br:= \br_1-\b
             &\frac{\partial}{\partial U} = \frac{\partial u_1}{\partial U}\frac{\partial}{\partial u_1} + \frac{\partial u_2}{\partial U}\frac{\partial}{\partial u_2} = \frac{\partial}{\partial u_1}+\frac{\partial}{\partial u_2}\\
             &\frac{\partial}{\partial u} = \frac{\partial u_1}{\partial u}\frac{\partial}{\partial u_1} + \frac{\partial u_2}{\partial u}\frac{\partial}{\partial u_2} = \frac{\mu}{m_1}\frac{\partial}{\partial u_1}-\frac{\mu}{m_2}\frac{\partial}{\partial u_2}
         \end{align}
-        So, the square differential operators become:
+        This give rises to the following terms of $\nabla_r,\nabla_R$:
         \begin{align}
-            \frac{\partial^2}{\partial U^2} &= \frac{\partial^2}{\partial u_1^2}+\frac{\partial^2}{\partial u_2^2} + 2\frac{\partial^2}{\partial u_1\partial u_2}\\
-            \frac{\partial^2}{\partial u^2} &= \frac{\mu^2}{m_1^2}\frac{\partial^2}{\partial u_1^2} + \frac{\mu^2}{m_2^2}\frac{\partial^2}{\partial u_2^2} - \frac{2\mu^2}{m_1m_2}\frac{\partial^2}{\partial u_1\partial u_2}\\
-            &= \frac{1}{(m_1+m_2)^2}\left(m_2^2\frac{\partial^2}{\partial u_1^2} + m_1^2\frac{\partial^2}{\partial u_2^2}-2m_1m_2\frac{\partial^2}{\partial u_1\partial u_2}\right)
+            &\nabla_R = \sum_{u\in\{x,y,z\} }\hat{u}\frac{\partial}{\partial U} = \sum_{u\in\{x,y,z\} }\hat{u}\left(\frac{\partial}{\partial u_1}+\frac{\partial}{\partial u_2}\right) = \nabla_1+\nabla_2\\
+            &\nabla_r = \sum_{u\in\{x,y,z\}}\hat{u}\frac{\partial}{\partial u}=\sum_{u\in\{x,y,z\}}\hat{u}\left(\frac{\mu}{m_1}\frac{\partial}{\partial u_1}-\frac{\mu}{m_2}\frac{\partial}{\partial u_2}\right) = \frac{\mu}{m_1}\nabla_1 - \frac{\mu}{m_2}\nabla_2
         \end{align}
-        Which, the given 
+        So, one has the following for $\nabla_1,\nabla_2$:
+        \begin{align}
+            \nabla_1 &= \left(\frac{m_1}{m_1+m_2}+\frac{m_2}{m_1+m_2}\right)\nabla_1 = \frac{\mu}{m_2}\nabla_1 + \frac{\mu}{m_1}\nabla_1\\
+            &= \frac{\mu}{m_2}\left(\nabla_1+\nabla_2\right) + \left(-\frac{\mu}{m_2}\nabla_2 + \frac{\mu}{m_1}\nabla_1\right) = \frac{\mu}{m_2}\nabla_R + \nabla_r
+        \end{align}
+         \begin{align}
+            \nabla_2 &= \left(\frac{m_2}{m_1+m_2}+\frac{m_1}{m_1+m_2}\right)\nabla_2 = \frac{\mu}{m_1}\nabla_2 + \frac{\mu}{m_2}\nabla_2\\
+            &= \frac{\mu}{m_1}\left(\nabla_2+\nabla_1\right) + \left(-\frac{\mu}{m_1}\nabla_1 + \frac{\mu}{m_2}\nabla_2\right) = \frac{\mu}{m_2}\nabla_R - \nabla_r
+        \end{align}
+
+        \hfil
         
-        \begin{comment}
-        $f(u_1,u_2) = (U,u)$ (where $u$ is the coordinate of $\br$, $U$ is the coordinate of $\bR$) is given as follow:
-        \begin{align}
-            \begin{pmatrix}
-                U\\u
-            \end{pmatrix} = \begin{pmatrix}
-                \frac{m_1u_1+m_2u_2}{m_1+m_2}\\u_1-u_2
-            \end{pmatrix} = \begin{pmatrix}
-                \frac{m_1}{m_1+m_2} & \frac{m_2}{m_1+m_2}\\ 1&-1
-            \end{pmatrix}\begin{pmatrix}
-                u_1\\u_2
-            \end{pmatrix}
-        \end{align}
-        Then, the differential operators are given as follow:
-        \begin{align}
-            &\frac{\partial}{\partial u_1}=\frac{\partial U}{\partial u_1}\frac{\partial}{\partial U}+\frac{\partial u}{\partial u_1}\frac{\partial}{\partial u} = \frac{m_1}{m_1+m_2}\frac{\partial}{\partial U}+\frac{\partial}{\partial u}\\
-            &\frac{\partial}{\partial u_2}=\frac{\partial U}{\partial u_2}\frac{\partial}{\partial U}+\frac{\partial u}{\partial u_2}\frac{\partial}{\partial u} = \frac{m_2}{m_1+m_2}\frac{\partial}{\partial U}-\frac{\partial}{\partial u}
-        \end{align}
-        So, the square of the differential operators become:
+        \item[(b)]
+        Given the differential operators (all $\frac{\partial}{\partial u}$ in part (a)), the square of the differential operators become:
         \begin{align}
             &\frac{\partial^2}{\partial u_1^2} = \frac{m_1^2}{(m_1+m_2)^2}\frac{\partial^2}{\partial U^2} + \frac{\partial^2}{\partial u^2} + \frac{2m_1}{m_1+m_2}\frac{\partial^2}{\partial U\partial u}\\
             &\frac{\partial^2}{\partial u_2^2} = \frac{m_2^2}{(m_1+m_2)^2}\frac{\partial^2}{\partial U^2} + \frac{\partial^2}{\partial u^2} - \frac{2m_2}{m_1+m_2}\frac{\partial^2}{\partial U\partial u}
@@ -148,8 +140,32 @@ Typically, the interaction potential depends onlly on the vector $\br:= \br_1-\b
             =& -\frac{\hbar^2}{2(m_1+m_2)}\left(\sum_{u\in\{x,y,z\}}\frac{\partial^2}{\partial U^2}\right) - \frac{\hbar^2(m_1+m_2)}{2m_1m_2}\left(\sum_{u\in\{x,y,z\}}\frac{\partial^2}{\partial u^2}\right)\\
             =& - \frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2 - \frac{\hbar^2}{2\mu}\nabla_r^2
         \end{align}
-        So, the Sch\r
-        \end{comment}
+        Hence, the Schr\"odinger equation becomes:
+        \begin{align}
+            &E\psi = -\frac{\hbar^2}{2m_1}\nabla_1^2\psi - \frac{\hbar^2}{2m_2}\nabla_2^2\psi + V(\br)\psi\\
+            &\implies E\psi = -\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2\psi - \frac{\hbar^2}{2\mu}\nabla_r^2\psi + V(\br)\psi
+        \end{align}
+
+        \hfil
+
+        \item[(c)] Given $\psi(\bR,\br) =\psi_R(\bR)\psi_r(\br)$, plug into the equation derived in part (b), we get:
+        \begin{align}
+            E\psi_R \psi_r &= -\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2(\psi_R\psi_r) - \frac{\hbar^2}{2\mu}\nabla_r^2(\psi_R\psi_r) + V(\br)\psi_R\psi_r\\
+            &= -\frac{\hbar^2}{2(m_1+m_2)}\psi_r (\nabla^2\psi_R) - \frac{\hbar^2}{2\mu}\psi_R(\nabla_r^2\psi_r) + V(\br)\psi_R\psi_r
+        \end{align}
+        Which implies the following after dividing by $\psi$ (on some open subset where $\psi\neq 0$, implying both $\psi_R,\psi_r\neq 0$. This is due to the fact that for normalizable state, $\psi\neq 0$ and is generally assumed to be continuous).
+        \begin{align}
+            E = \left(-\frac{\hbar^2}{2(m_1+m_2)}\frac{1}{\psi_R}(\nabla_R^2\psi_R)\right) + \left(-\frac{\hbar^2}{2\mu}\frac{1}{\psi_r}(\nabla_r^2\psi_r) + V(\br)\right)
+        \end{align}
+        The first paranthesis is only dependent on $\bR$, while the second paranthesis is only dependent on $\br$, showing both must be constant in case for the equation to hold.
+
+        Hence, one has the following three equations, for some $E_r,E_R\in\RR$:
+        \begin{align}
+            &E_R = -\frac{\hbar^2}{2(m_1+m_2)}\frac{1}{\psi_R}(\nabla^2_R\psi_R) \implies E_R\psi_R = -\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2\psi_R\\
+            &E_r = -\frac{\hbar^2}{2\mu}\frac{1}{\psi_r}(\nabla_r^2\psi_r) + V(\br)\psi_r \implies E_r\psi_r = -\frac{\hbar^2}{2\mu}\nabla_r^2\psi_r + V(\br)\psi_r\\
+            & E = E_R+E_r
+        \end{align}
+        Hence, the center of mass $\bR$'s equation satisfies a Hamiltonian with potential $V_R=0$, while the relative position $\br$'s equation satisfies a Hamiltonian with potential $V = V(\br)$.
     \end{itemize}
 \end{proof}
 
