@@ -133,6 +133,8 @@
     Finally, to prove the above statement, suppose $alpha, beta, gamma in R_+$ satisfies $alpha = beta+gamma$. Then, 
 ]
 
+#pagebreak()
+
 = ND//3
 #problem[
   Etingof Problem Set 7.8:
@@ -153,7 +155,7 @@
 
 #pagebreak()
 
-= ND//4
+= D//4
 #problem[
   Etingof Problem Set 7.12:
 
@@ -163,8 +165,22 @@
 
   \ 
 
-  Let $Pi={alpha_1,...,alpha_n}$ be the set of simple roots of $R_1$ under a chosen polarization. Due to the irreducibility of $R_1$, for any $i!=j$, one has $(alpha_1,alpha_2)<0$ (since such inner product $<=0$ by the property of simple roots, while none of the simple roots can be orthogonal by irreducibility).d 
+  Let $Pi={alpha_1,...,alpha_n}$ be the set of simple roots of $R_1$ under a chosen polarization. Due to the irreducibility of $R_1$, for any $i!=j$, one has $(alpha_1,alpha_2)<0$ (since such inner product $<=0$ by the property of simple roots, while none of the simple roots can be orthogonal by irreducibility).
+
+  \
+
+  Now, since $phi$ is an isomorphism of vector spaces, each $phi(alpha_i)!=0$, and $(phi(alpha_i),phi(alpha_i))>0$. Let us define the value $c_i := ((phi(alpha_i),phi(alpha_i)))/((alpha_i,alpha_i))>0$ for each index $i$. Then, since $phi$ preserves each $n_(beta alpha)$ for all $alpha, beta in R$, for each indices $i!=j$, one has the following:
+  $ (2(alpha_i,alpha_j))/((alpha_i,alpha_i)) = n_(alpha_j alpha_i) = n_(phi(alpha_j)phi(alpha_i)) = (2(phi(alpha_i),phi(alpha_j)))/((phi(alpha_i),phi(alpha_i))) = (2(phi(alpha_i),phi(alpha_j)))/(c_i (alpha_i,alpha_i)) $
+  So, one gets the following equality:
+  $ c_i (alpha_i,alpha_j) = (phi(alpha_i),phi(alpha_j)) $
+  Which, since $i,j$ are arbitrary, switching the two indices, one gets $c_j (alpha_i,alpha_j) = (phi(alpha_i),phi(alpha_j))$ also (since over $RR$-inner product space, inner product is symmetric). Then, because $(alpha_i,alpha_j)<0$ for $i!=j$, $c_i (alpha_i,alpha_j)=(phi(alpha_i),phi(alpha_j)) = c_j (alpha_i,alpha_j)$ implies $c_i=c_j$. Hence, one can say $c := c_1=...=c_n > 0$.
+
+  \ 
+
+  Finally, the above equality implies $c(alpha_i, alpha_j)= (phi(alpha_i),phi(alpha_j))$ for $i!=j$, while by definition $c = c_i = ((phi(alpha_i),phi(alpha_i)))/((alpha_i,alpha_i))$, so $c (alpha_i,alpha_i) = (phi(alpha_i),phi(alpha_i))$ for all $i$ also. Hence, the relation $(phi(u),phi(v)) = c dot (u,v)$ is true for all $u,v in Pi subset E_1$, which is also true on the whole vector space $E_1$ since $Pi$ forms a basis, and this completes the proof.
 ]
+
+#pagebreak()
 
 = ND//5
 #problem[
@@ -172,5 +188,5 @@
 
   Let $R subset E$ be an irreducible root system. Show that then $E$ is an irreducible representation of the Weyl group $W$.
 ][
-  Suppose the contrary that $E$ is not an irreducible representation, which implies some nonzero proper subspace $U subset E$ is invariant under the Weyl group $W$'s action. Take $R' = R sect U$, while $R'' = R sect U^perp$
+  Suppose the contrary that $E$ is not an irreducible representation, which implies some nonzero proper subspace $U subset E$ is invariant under the Weyl group $W$'s action. Take 
 ]
