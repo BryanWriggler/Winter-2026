@@ -155,7 +155,7 @@
 
 #pagebreak()
 
-= D//4
+= HD (Need to show more complicated relations, but the general approach is right)//4
 #problem[
   Etingof Problem Set 7.12:
 
@@ -182,11 +182,25 @@
 
 #pagebreak()
 
-= ND//5
+= D//5
 #problem[
   Etingof Prolem Set 7.15:
 
   Let $R subset E$ be an irreducible root system. Show that then $E$ is an irreducible representation of the Weyl group $W$.
 ][
-  Suppose the contrary that $E$ is not an irreducible representation, which implies some nonzero proper subspace $U subset E$ is invariant under the Weyl group $W$'s action. Take 
+  Suppose the contrary that $E$ is not an irreducible representation of the Weyl group $W$, which implies some nonzero proper subspace $U subset.neq E$ is invariant under the Weyl group $W$'s action. On the other hand, after picking some polarization, let $Pi = {alpha_1,...,alpha_n}$ be the set of simple roots.
+
+  \ 
+
+  First, pick any nonzero $x in U$, there must exist $alpha_i in Pi$, such that $(alpha_i,x)!=0$. Since if all $(alpha_i,x)=0$, one has $x in (span Pi)^perp = E^perp = 0$, which is a contradiction (since $Pi$ spans the whole space, while $x$ is assumed to be nonzero). WLOG, say $alpha_i$ is $alpha_1$ up to some reordering.
+
+  Then, since $x$ is invariant under the Weyl group action, one has $s_(alpha_1) (x) = x - (2(alpha_1,x))/((alpha_1,alpha_1))alpha_1 in U$, showing that $(2(alpha_1,x))/((alpha_1,alpha_1))alpha_1 = x - s_(alpha_1)(x) in U$. With $(alpha_1,x)!=0$, one has $alpha_1 in U$.
+
+  \ 
+
+  Now, let $alpha_1,...,alpha_i in Pi$ be all the simple roots, such that there exists nonzero $x_l in U$ satisfying $(alpha_l,x_l)!=0$ (for all index $1<=l<=i$). The above process implies that each $alpha_l in U$, hence one has $span{alpha_1,...,alpha_i} subset.eq U subset.neq E$, so by linear independence of the $alpha_l$'s, $i<n$ (since it must necessarily have a smaller dimension). 
+
+  However, for all index $i<k<=n$, since $alpha_j$ is not in the given list, it implies for all nonzero $x in U$, it must have $(alpha_k,x)=0$. In particular, all index $1<=l<=i$ satisfies $(alpha_k, alpha_l)=0$. So, take the set $Pi_1 = {alpha_1,...,alpha_i}$ and $Pi_2 = {alpha_(i+1),...,alpha_n}$, these two (nonempty) proper subsets of $Pi$ are mutually orthogonal by the above claim. Yet, this contradicts the irreducibility of $R$.
+
+  Hence, the assumption must be false, $E$ must be an irreducible representation of the Weyl group $W$.
 ]
