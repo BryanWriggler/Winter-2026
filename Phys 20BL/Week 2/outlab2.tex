@@ -265,7 +265,61 @@ The weighted average based on the above data, is given as follow:
 
 Given the equation $S=\frac{e}{m}=\frac{2V}{R^2B^2}$, if consider the chart with horizontal axis $R^2B^2$, while vertical axis $2V$, then the linear fit of the data points would produce a slop;e of $\frac{e}{m}$. Which, here is the formed charts:
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=100mm]{scatter_plot.png}
+\end{figure}
 
+\newpage
 
+\hfil
+
+\subsection{Exercise 26}
+
+First, if consider the scales of $\frac{\delta S}{S}$ (given that $S:= \frac{e}{m}$), one has the maximum being $0.06245$, while the minimum being $0.06086$. Hence, the uncertainty is within $6.086\%$ to $6.245\%$ in comparison to the derived constant.
+
+This implies the data is neither poor nor excellent (since for poor data, the uncertainty is $>20\%$, while excellent data has $<1\%$ uncertainty).
+
+\hfil
+
+Now, if consider the weighted charge-to-mass ratio, one has $\left<\frac{e}{m}\right> \approx 2.937 \cdot 10^{11}$ C/kg. Going on to the National Institute of Science and Technology's website about Fundamental Physical Constants, the generally accepted value is $\approx 1.759 \cdot 10^{11}$ C/kg.
+
+Which, the discrepency (or percent error) is about $66.970\%$, which is a lot greater than the maximum uncertainty within the data.
+
+(Source citation: 
+
+``The NIST Reference on Constants, Units, and Uncertainty.'' 2022, 
+
+https://physics.nist.gov/cuu/Constants/bibliography.html ).
+
+\hfil
+
+To talk about some potential sources of error, here are some possibilities:
+\begin{itemize}
+    \item During the start of the derivation, there is an equation $eV = \frac{1}{2}mv^2$, and such equation is based on the assumption that initially, the electrons before bing shot out (and before the anode was provided any potential) have no energy at all. However, there's no measurement one can do in this experiment to verify that, and there's a possibility that the initial electrons in fact held some nonzero energy, and causing the experimental value to differentiate from the expected values.
+\end{itemize}
+Statistical wise, the largest uncertainty should be the fact that there's fewer measurements regarding all quantities. In this experiment (as a single person group), I spent the majority of time on constructing the equipments and wiring them, which left with only less than an hour to collect all the required data. This unfortunately provides little to no time to repeat the experiments for multiple trials regarding every variables, so the only estimated uncertainty is done on the coil current, and everything else (for instance, the voltage) has uncertainty being the limitation the devices had, instead of actually being estimated. 
+
+This would provide extra uncertainties within the data (since there are fewer data set to do comparison with), and is a likely source of error. Hence, in the future to decrease such uncertainty, being more efficient during the initial preparation and leave more time for data collection is necessary.
+
+\hfil
+
+\section{Conclusion (Exercise 27)}
+
+Through this week's experiment, with the collected data on the anode voltage (which corresponds to the electrons' kinetic energy), the Helmholtz coil's current (which corresponds to the magnetic field strength), and the cross-bar distance (which corresponds to the radius of the electrons' trajectory), the data were used to calculate the electron Charge-to-Mass ratio. 
+
+\hfil
+
+Here, the collected data derived a weighted average of the ratio to be $\left<\frac{e}{m}\right> = 2.937\cdot 10^{11}$ C/kg, together with all the uncertainties to be in the range of $6.086\%$ to $6.245\%$, showing the data is neither excellent nor poor.
+
+However, in comparison to the generaly accepted value of $1.759\cdot 10^{11}$ C/kg, the weighted average provides a percent error of $66.970\%$, which is a lot larger in comparison to the uncertainty derived in this experiment.
+
+\hfil
+
+Talking about the sources of error:
+
+First, the initial assumption that the free electrons carry no energy leads to the equation $e V=\frac{1}{2}mv^2$ used in all the derivations, which may be a false assumption. Yet, it's not possible to verify such claim, at least not within the experimental setup.
+
+Second, because of the time constraint there is less time for the data collection, which the experiment can't be performed with multiple trials regarding each independent variables. This could bring extra statistical uncertainties to the data, and causing the huge difference between the experimental result with the generally accepted values. To fix this problem, being more efficient in the initial setup and preserve more time for data collection is necessary.
 
 \end{document}
