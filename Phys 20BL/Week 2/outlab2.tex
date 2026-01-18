@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{Self_Style}
+\usepackage{../../Self_Style}
 
 \title{Phys 20BL Week 2 Out of Lab: Electron Charge to Mass Ratio}
 \author{Zih-Yu Hsieh}
@@ -8,13 +8,256 @@
 \begin{document}
 \maketitle
 
-\section*{1}
-\begin{ques}\label{q1}
-\end{ques}
-
-\begin{proof}
-\end{proof}
+\tableofcontents
 
 \newpage
+
+\section{Electron Energy}
+\subsection{Exercise 11}
+The kinetic energy of the electron that's emerging from the slit in the anode is given by the following:
+\begin{equation}
+    \frac{1}{2}mv^2 = e V
+\end{equation}
+In this case, $m$ represents the mass of the electron, $v$ represents the speed of the electron, $e$ represents the charge of the electron, and $V$ represents the electric potential of the environment (i.e. the electric potential within the anode in this case).
+
+\hfil
+
+\subsection{Exercise 12}
+
+This equation does make sense to myself. Before the electrons were shot out from the anode (or, before the anode is provided any potential), one can assume the electrons on has nearly no energy (since there's no provided electric potential, so no potential energy; on the other hand, one can also assume the initial electrons are having low enough kinetic energy).
+
+Which, after the anode is provided with some electric potential $V$, the electron's total energy is (about the same) as the potential energy $E = U = e V$; however, once the electron is shot out (no longer in the anode), one has $V_f = 0$ (the environmental potential can be treated as $0$), so $U_f = e V_f = 0$, showing that the total energy should nearly all transferred to kinetic energy. 
+
+Hence, this resulted in $\frac{1}{2}mv^2 = E = e V$, where $V$ is the potential energy of the anode, $m$ is the mass of the electron, while $v$ is the speed of the electron after being shot out.
+
+\hfil
+
+\subsection{Exercise 13}
+
+To get the charge-to-mass ratio $\frac{e}{m}$, the initial equation implies the following:
+\begin{align}
+    e V = \frac{1}{2}mv^2 \implies \frac{e}{m} = \frac{v^2}{2V}
+\end{align}
+
+\hfil
+
+\subsection{Exercise 14}
+
+Given the equation derived in \textbf{Exercise 13}, given $\frac{e}{m} = \frac{v^2}{2V}$, we have:
+\begin{itemize}
+    \item The variable $V$ can be measured directly. Since this represents the anode potential, it is measured using the anode power supply, which is a 2-Channel DC Power Supply in this lab.
+    \item The variable $v$ (which is the electron speed) must be deduced using other measurements.
+\end{itemize}
+
+\newpage
+
+\section{Magnetic Field Strength}
+\subsection{Exercise 15}
+Here is the expression of the magnectic field strength:
+\begin{equation}
+    B = \frac{8}{\sqrt{125}}\frac{\mu_0 N}{a}I
+\end{equation}
+Which, the given lab apparatus has $\mu_0 = 4\pi \cdot 10^{-7}$ T$\cdot$m/A (permeability of free space),$N = 62\pm 0.1$ (as the number' of turns in the coil), and $a = 33\pm 1$ cm (the radius of the coil). And, $I$ is the curent flowing in the coil.
+
+\hfil
+
+To calculate the propogation of uncertainty in $B$, first it needs the right unit: instead of in cm, take $a = 0.33 \pm 0.01$ m will be the right unit to express $B$ in unit of T.
+
+Then, consider the variables with uncertainty, one has the following partial derivatives:
+\begin{align}
+    & \frac{\partial B}{\partial N} = \frac{8}{\sqrt{125}}\frac{\mu_0}{a}I,\quad\quad \frac{\partial B}{\partial a} = -\frac{8}{\sqrt{125}}\frac{\mu_0 N}{a^2}I,\quad\quad \frac{\partial B}{\partial I}  = \frac{8}{\sqrt{125}}\frac{\mu_0 N}{a}
+\end{align}
+Which, let $\delta N,\ \delta a,\ \delta I$ be the uncertainty of number of coil turns, coil radius, and the current, one has the following propogation of uncertainty:
+\begin{align}
+    \delta B &= \sqrt{\left(\frac{\partial B}{\partial N}\cdot \delta N\right)^2+\left(\frac{\partial B}{\partial a}\cdot \delta a\right)^2+\left(\frac{\partial B}{\partial I}\cdot \delta I\right)^2}\\
+    &= \sqrt{\left(\frac{8\mu_0}{\sqrt{125}}\cdot \frac{I}{a}\cdot \delta N\right)^2 + \left(\frac{8\mu_0}{\sqrt{125}}\cdot\frac{NI}{a^2}\cdot\delta a\right)^2 + \left(\frac{8\mu_0}{\sqrt{125}}\cdot\frac{N}{a}\cdot\delta I\right)^2}
+\end{align}
+
+\hfil
+
+\subsection{Exercise 16}
+
+Given that $\mu_0 = 4\pi\cdot 10^{-7}$ T$\cdot$m/A, $a = 0.33 \pm 0.01$ m, and $N = 62\pm 0.1$; this shows that $\delta a = 0.01$ m, and $\delta N = 0.1$. On the other hand, the coil has its current provided by the Single Channel DC Power Supply, which has output current $I \in [0,5]$ (unit: A), and uncertainty $\delta I = \in [0.006,0.011]$ A (this is what is measured).
+
+Then, plugin to the three values for $\delta B$, namely $\frac{8\mu_0}{\sqrt{125}}\cdot\frac{I}{a}\cdot \delta N$, $\frac{8\mu_0}{\sqrt{125}}\cdot\frac{N I}{a}\cdot\delta a$, and $\frac{8\mu_0}{\sqrt{125}}\cdot\frac{N}{a}\cdot\delta I$, one has the following:
+\begin{align}
+    0\leq \frac{8\mu_0}{\sqrt{125}}\cdot \frac{I}{a}\cdot \delta N \leq \frac{8\cdot 4\pi\cdot 10^{-7}}{\sqrt{125}}\cdot\frac{5}{0.33}\cdot 0.1 \approx 1.362\cdot 10^{-6}
+\end{align}
+\begin{align}
+    0\leq \frac{8\mu_0}{\sqrt{125}}\cdot\frac{N I}{a^2}\cdot \delta a \leq \frac{8\cdot 4\pi\cdot 10^{-7}}{\sqrt{125}}\cdot\frac{62\cdot 5}{(0.33)^2}\cdot 0.01 \approx 2.560 \cdot 10^{-5}
+\end{align}
+\begin{align}
+    \frac{8\mu_0}{\sqrt{125}}\cdot\frac{N}{a}\cdot \delta I = \frac{8\cdot 4\pi\cdot 10^{-7}}{\sqrt{125}}\cdot\frac{62}{0.33}\cdot 0.005 \approx 8.447\cdot 10^{-7}
+\end{align}
+Unfortunately, the first two rely on the exact value of the current $I$, so it can only be provided with the inequality. But, if consider the maximum of all of them, one has:
+\begin{itemize}
+    \item The largest term being $\frac{8\mu_0}{\sqrt{125}}\cdot\frac{N I}{a^2}\cdot \delta a $.
+    \item The smallest term being $\frac{8\mu_0}{\sqrt{125}}\cdot\frac{N}{a}\cdot \delta I$.
+    \item If consider the precision up to 3 decimal places, this implies the difference between the scale must be within $100$. Since for the above three terms, the scale difference is only up to $10^2 = 100$, there isn't any term that's really negligible.
+    
+    (Note: unless the current $I$ is small enough, but within the tested currents, they're all above $1$ A, so this is also not something needed to be considered).
+\end{itemize}
+
+\hfil
+
+\section{Circular Motion}
+\subsection{Exercise 17}
+
+Given the magnetic force magnitude as follow:
+\begin{equation}
+    F = evB
+\end{equation}
+The value $F$ is the magnetic force magnitude, $e$ again represents the electron charge, $v$ also again represents the electron speed after being shot out, while $B$ is the magnetic field strength.
+
+\hfil
+
+\subsection{Exercise 18}
+
+Given the the electrons are going in circular motion (since it can be approximated with uniform speed, and the magnetic field can also be approximated with uniform strength and direction in the setup), then the force on the electron is also the centripetal force. Which, it's given as the follow:
+\begin{equation}
+    F = \frac{mv^2}{R}
+\end{equation}
+Here, the value $F$ is the centripetal force magnitude, $m$ is again the electron mass, $v$ also again represents the electron speed after being shot out, while $R$ is the radius of the circular trajectory of the electrons.
+
+\newpage
+
+\section{Model}
+
+\subsection{Exercise 19}
+
+If given that thetwo equations in \textbf{Exercise 17} and \textbf{18} are equal according to the setup, one gets the following:
+\begin{align}
+    evB = \frac{mv^2}{R}\implies v = RB \frac{e}{m}\implies v^2 = R^2B^2 \left(\frac{e}{m}\right)^2
+\end{align}
+
+\hfil
+
+\subsection{Exercise 20}
+
+Recall that initially one had derived the equation $\frac{e}{m} = \frac{v^2}{2V}$ (given $V$ as the electric potential of the anode). Which, given that $v^2 = R^2B^2\left(\frac{e}{m}\right)^2$ derived in \textbf{Exercise 19}, one has the following for $\frac{e}{m}$:
+\begin{align}
+    \frac{e}{m} = \frac{v^2}{2V} = \frac{R^2B^2}{2V}\left(\frac{e}{m}\right)^2 \implies \frac{e}{m} = \frac{2V}{R^2B^2}
+\end{align}
+
+\hfil
+
+\subsection{Exercise 21}
+Given the charge to mass ratio $S := \frac{e}{m} = \frac{2V}{R^2B^2}$, since $V,R,B$ are all variables, then they have the corresponding partial derivatives:
+\begin{align}
+    \frac{\partial S}{\partial V} = \frac{2}{R^2B^2},\quad \quad \frac{\partial S}{\partial R} = -\frac{4V}{R^3B^2},\quad \quad \frac{\partial S}{\partial B} = -\frac{4V}{R^2B^3}
+\end{align}
+Hence, let $\delta V,\delta R,\delta B$ represent the uncertainty in anode electric potential, electron trajectory radius, and magnetic field strength, the propogation of uncertainty of $S=\frac{e}{m}$ is given as:
+\begin{align}
+    \delta S &= \sqrt{\left(\frac{\partial S}{\partial V}\cdot \delta V\right)^2+\left(\frac{\partial S}{\partial R}\cdot \delta R\right)^2+\left(\frac{\partial S}{\partial B}\cdot \delta B\right)^2}\\
+    &= \sqrt{\left(\frac{2}{R^2B^2}\cdot\delta V\right)^2+\left(\frac{4V}{R^3B^2}\cdot \delta R\right)^2+\left(\frac{4V}{R^2B^3}\cdot\delta B\right)^2}
+\end{align}
+In particular, one has $\delta V = 0.05$ V (due to limitation of devices' display up to $10$th decimal places), and $\delta R = 0.5$ mm (the measurement of the distance of the cross-bars are in integer multiples of milimeters, which didn't cover the rational part).
+
+\newpage
+
+\section{Analysis}
+
+\subsection{Exercise 22}
+Here is the table for experimental data (where $V$ is the accelerating voltage, $D$ is the cross-bar position / distance, $I$ is the average Helmholtz coil current, $R$ is the beam path radius, and $B$ is the magnetic field strength of the coil):
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{cccccccccc}
+\toprule
+$V$ (V) & $\delta V$ (V) & $D$ (m) & $\delta D$ (m) & $I$ (A) & $\delta I$ (A) & $R$ (m) & $\delta R$ (m) & $B$ (T) & $\delta B$ (T) \\
+\midrule
+25.0 & 0.05 & 0.064 & 0.0005 & 2.390 & 0.006 & 0.032 & 0.00025 & $4.038\times10^{-4}$ & $1.229\times10^{-5}$ \\
+     &      & 0.078 &        & 2.000 & 0.006 & 0.039 &          & $3.379\times10^{-4}$ & $1.030\times10^{-5}$ \\
+     &      & 0.090 &        & 1.710 & 0.010 & 0.045 &          & $2.889\times10^{-4}$ & $8.928\times10^{-6}$ \\
+     &      & 0.104 &        & 1.520 & 0.006 & 0.052 &          & $2.568\times10^{-4}$ & $7.858\times10^{-6}$ \\
+     &      & 0.114 &        & 1.370 & 0.010 & 0.057 &          & $2.314\times10^{-4}$ & $7.224\times10^{-6}$ \\
+\midrule
+30.1 & 0.05 & 0.064 & 0.0005 & 2.600 & 0.010 & 0.032 & 0.00025 & $4.392\times10^{-4}$ & $1.344\times10^{-5}$ \\
+     &      & 0.078 &        & 2.170 & 0.006 & 0.039 &          & $3.666\times10^{-4}$ & $1.117\times10^{-5}$ \\
+     &      & 0.090 &        & 1.870 & 0.011 & 0.045 &          & $3.159\times10^{-4}$ & $9.765\times10^{-6}$ \\
+     &      & 0.104 &        & 1.620 & 0.011 & 0.052 &          & $2.737\times10^{-4}$ & $8.510\times10^{-6}$ \\
+     &      & 0.114 &        & 1.440 & 0.006 & 0.057 &          & $2.433\times10^{-4}$ & $7.451\times10^{-6}$ \\
+\midrule
+35.0 & 0.05 & 0.064 & 0.0005 & 2.830 & 0.006 & 0.032 & 0.00025 & $4.781\times10^{-4}$ & $1.454\times10^{-5}$ \\
+     &      & 0.078 &        & 2.360 & 0.006 & 0.039 &          & $3.987\times10^{-4}$ & $1.214\times10^{-5}$ \\
+     &      & 0.090 &        & 2.020 & 0.010 & 0.045 &          & $3.413\times10^{-4}$ & $1.049\times10^{-5}$ \\
+     &      & 0.104 &        & 1.770 & 0.006 & 0.052 &          & $2.990\times10^{-4}$ & $9.130\times10^{-6}$ \\
+     &      & 0.114 &        & 1.580 & 0.011 & 0.057 &          & $2.669\times10^{-4}$ & $8.310\times10^{-6}$ \\
+\midrule
+40.0 & 0.05 & 0.064 & 0.0005 & 3.020 & 0.011 & 0.032 & 0.00025 & $5.102\times10^{-4}$ & $1.559\times10^{-5}$ \\
+     &      & 0.078 &        & 2.540 & 0.006 & 0.039 &          & $4.291\times10^{-4}$ & $1.306\times10^{-5}$ \\
+     &      & 0.090 &        & 2.170 & 0.006 & 0.045 &          & $3.666\times10^{-4}$ & $1.117\times10^{-5}$ \\
+     &      & 0.104 &        & 1.900 & 0.010 & 0.052 &          & $3.210\times10^{-4}$ & $9.886\times10^{-6}$ \\
+     &      & 0.114 &        & 1.700 & 0.006 & 0.057 &          & $2.872\times10^{-4}$ & $8.774\times10^{-6}$ \\
+\midrule
+45.0 & 0.05 & 0.064 & 0.0005 & 3.230 & 0.010 & 0.032 & 0.00025 & $5.457\times10^{-4}$ & $1.664\times10^{-5}$ \\
+     &      & 0.078 &        & 2.690 & 0.011 & 0.039 &          & $4.544\times10^{-4}$ & $1.391\times10^{-5}$ \\
+     &      & 0.090 &        & 2.330 & 0.011 & 0.045 &          & $3.936\times10^{-4}$ & $1.209\times10^{-5}$ \\
+     &      & 0.104 &        & 2.030 & 0.006 & 0.052 &          & $3.429\times10^{-4}$ & $1.046\times10^{-5}$ \\
+     &      & 0.114 &        & 1.800 & 0.010 & 0.057 &          & $3.041\times10^{-4}$ & $9.381\times10^{-6}$ \\
+\bottomrule
+\end{tabular}
+\caption{The Rate Data of the Lab}
+\end{table}
+
+Here, since the radius $R = \frac{D}{2}$ (since the cross-bar position is the distance between the anode - where the electrons started at, and the cross-bar - where the circular path touches, which represents the diameter of the given circular path). Hence, this implies that $\delta R = \sqrt{\left(\frac{\partial R}{\partial D}\cdot \delta D\right)^2} = \frac{\delta D}{2}$.
+
+\hfil
+
+\subsection{Exercise 23}
+
+Because of the size of the document, the columns for $D$ and $\delta D$ will be removed here. If including $S = \frac{e}{m}$ and $\delta S$ calculated in each case, here is the table:
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{c|c||c|c||c|c||c|c||c|c}
+\toprule
+$V$ (V) & $\delta V$ (V)  & $I$ (A) & $\delta I$ (A) &
+$R$ (m) & $\delta R$ (m) & $B$ (T) & $\delta B$ (T) & $S$ (C/kg) & $\delta S$ (C/kg) \\
+\midrule
+\midrule
+25.0 & 0.05 & 2.390 & 0.006 & 0.032 & 0.00025 & $4.038\times10^{-4}$ & $1.229\times10^{-5}$ & $2.995\times10^{11}$ & $1.825\times10^{10}$ \\
+     &      & 2.000 & 0.006 & 0.039 &          & $3.379\times10^{-4}$ & $1.030\times10^{-5}$ & $2.880\times10^{11}$ & $1.757\times10^{10}$ \\
+     &      & 1.710 & 0.010 & 0.045 &          & $2.889\times10^{-4}$ & $8.928\times10^{-6}$ & $2.959\times10^{11}$ & $1.830\times10^{10}$ \\
+     &      & 1.520 & 0.006 & 0.052 &          & $2.568\times10^{-4}$ & $7.858\times10^{-6}$ & $2.804\times10^{11}$ & $1.717\times10^{10}$ \\
+     &      & 1.370 & 0.010 & 0.057 &          & $2.314\times10^{-4}$ & $7.224\times10^{-6}$ & $2.873\times10^{11}$ & $1.794\times10^{10}$ \\
+\midrule
+30.1 & 0.05 & 2.600 & 0.010 & 0.032 & 0.00025 & $4.392\times10^{-4}$ & $1.344\times10^{-5}$ & $3.047\times10^{11}$ & $1.865\times10^{10}$ \\
+     &      & 2.170 & 0.006 & 0.039 &          & $3.666\times10^{-4}$ & $1.117\times10^{-5}$ & $2.945\times10^{11}$ & $1.796\times10^{10}$ \\
+     &      & 1.870 & 0.011 & 0.045 &          & $3.159\times10^{-4}$ & $9.765\times10^{-6}$ & $2.979\times10^{11}$ & $1.842\times10^{10}$ \\
+     &      & 1.620 & 0.011 & 0.052 &          & $2.737\times10^{-4}$ & $8.510\times10^{-6}$ & $2.972\times10^{11}$ & $1.849\times10^{10}$ \\
+     &      & 1.440 & 0.006 & 0.057 &          & $2.433\times10^{-4}$ & $7.451\times10^{-6}$ & $3.131\times10^{11}$ & $1.919\times10^{10}$ \\
+\midrule
+35.0 & 0.05 & 2.830 & 0.006 & 0.032 & 0.00025 & $4.781\times10^{-4}$ & $1.454\times10^{-5}$ & $2.991\times10^{11}$ & $1.820\times10^{10}$ \\
+     &      & 2.360 & 0.006 & 0.039 &          & $3.987\times10^{-4}$ & $1.214\times10^{-5}$ & $2.895\times10^{11}$ & $1.764\times10^{10}$ \\
+     &      & 2.020 & 0.010 & 0.045 &          & $3.413\times10^{-4}$ & $1.049\times10^{-5}$ & $2.968\times10^{11}$ & $1.826\times10^{10}$ \\
+     &      & 1.770 & 0.006 & 0.052 &          & $2.990\times10^{-4}$ & $9.130\times10^{-6}$ & $2.895\times10^{11}$ & $1.769\times10^{10}$ \\
+     &      & 1.580 & 0.011 & 0.057 &          & $2.669\times10^{-4}$ & $8.310\times10^{-6}$ & $3.024\times10^{11}$ & $1.884\times10^{10}$ \\
+\midrule
+40.0 & 0.05 & 3.020 & 0.011 & 0.032 & 0.00025 & $5.102\times10^{-4}$ & $1.559\times10^{-5}$ & $3.001\times10^{11}$ & $1.835\times10^{10}$ \\
+     &      & 2.540 & 0.006 & 0.039 &          & $4.291\times10^{-4}$ & $1.306\times10^{-5}$ & $2.857\times10^{11}$ & $1.739\times10^{10}$ \\
+     &      & 2.170 & 0.006 & 0.045 &          & $3.666\times10^{-4}$ & $1.117\times10^{-5}$ & $2.940\times10^{11}$ & $1.792\times10^{10}$ \\
+     &      & 1.900 & 0.010 & 0.052 &          & $3.210\times10^{-4}$ & $9.886\times10^{-6}$ & $2.872\times10^{11}$ & $1.769\times10^{10}$ \\
+     &      & 1.700 & 0.006 & 0.057 &          & $2.872\times10^{-4}$ & $8.774\times10^{-6}$ & $2.985\times10^{11}$ & $1.824\times10^{10}$ \\
+\midrule
+45.0 & 0.05 & 3.230 & 0.010 & 0.032 & 0.00025 & $5.457\times10^{-4}$ & $1.664\times10^{-5}$ & $2.952\times10^{11}$ & $1.801\times10^{10}$ \\
+     &      & 2.690 & 0.011 & 0.039 &          & $4.544\times10^{-4}$ & $1.391\times10^{-5}$ & $2.865\times10^{11}$ & $1.755\times10^{10}$ \\
+     &      & 2.330 & 0.011 & 0.045 &          & $3.936\times10^{-4}$ & $1.209\times10^{-5}$ & $2.869\times10^{11}$ & $1.762\times10^{10}$ \\
+     &      & 2.030 & 0.006 & 0.052 &          & $3.429\times10^{-4}$ & $1.046\times10^{-5}$ & $2.830\times10^{11}$ & $1.726\times10^{10}$ \\
+     &      & 1.800 & 0.010 & 0.057 &          & $3.041\times10^{-4}$ & $9.381\times10^{-6}$ & $2.996\times10^{11}$ & $1.849\times10^{10}$ \\
+\bottomrule
+\end{tabular}
+\caption{Tables including Charge to Mass Ratio of the Elecron}
+\end{table}
+
+\hfil
+
+\subsection{Exercise 24}
+
+The weighted average based on the above data, is given as follow:
+\begin{align}
+    \left<\frac{e}{m}\right> = \frac{\sum_{i}\frac{(e/m)_i}{\sigma^2_i}}{\sum_{i}\frac{1}{\sigma^2_i}}= 2.937\cdot 10^{11} \text{ C/kg}
+\end{align}
+
 
 \end{document}
