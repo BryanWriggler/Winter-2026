@@ -28,7 +28,7 @@
 
 #set enum(numbering: "(1)")
 
-= ND//1
+= D//1
 #problem[
   Etingof Problem Set 7.1:
 
@@ -40,37 +40,49 @@
 
   \ 
 
-  Now, given any $alpha, beta in R$ (WLOG, say they're positive components in $R$ by factoring out the $-1$), we want to show the property $(2(alpha,beta))/((alpha,alpha)) in ZZ$. Here are some cases:
+  Now, given any $alpha, beta in R$ (WLOG, say they're positive components in $R$ by factoring out the $-1$, wo we'll test it for the $e_i$'s, $2 e_i$'s, and $e_i pm e_j$'s), we want to show the property $(2(alpha,beta))/((alpha,alpha)) in ZZ$. Here are some cases:
   \ 
-  - If $alpha = e_i$ and $beta = e_j$, one has $(2(e_i,e_j))/((e_i,e_i)) = 2 delta_(i j) in ZZ$.
-  \
-  - If $alpha = 2e_i$ and $beta = e_j$, one has $(2(2e_i, e_j))/((2e_i,2e_i)) = (4 delta_(i j))/4 = delta_(i j) in ZZ$.
-  \
-  - If $alpha = 2e_i$ and $beta = 2e_j$, one has $(2(2e_i,2e_j))/((2e_i,2e_i)) = (8 delta_(i j))/4 = 2 delta_(i j) in ZZ$.
-  \
-  - If $alpha = e_i$ and $beta = e_j pm e_k$, one has $(2(e_i, e_j pm e_k))/((e_i,e_i)) = (2 delta_(i j) pm 2 delta(i k)) in ZZ$.
-  \
-  - If $alpha = 2e_i$ and $beta = e_j pm e_k$, one has $(2(2e_i, e_j pm e_k))/((2e_i,2e_i)) = (4 delta_(i j)+delta_(i k))/4 = delta_(i j)pm delta_(i k) in ZZ$.
+  - If both are $e_i, e_j$, one has $(2(e_j,e_i))/((e_i,e_i)) = 2 delta_(i j) in ZZ$.
   \ 
-  - If $alpha = e_i+e_j$ and $beta = e_k + e_l$, one has $(2(e_i+e_j, e_k+e_l))/((e_i+e_j,e_i+e_j)) = (2(delta_(i k)+delta_(i l)+ delta_(j k)+delta_(j l)))/2 = delta_(i k)+delta_(i l)+ delta_(j k)+delta_(j l) in ZZ$.
-
-  So, the above list verifies that any $alpha, beta in R$, one has $(2(alpha,beta))/((alpha,alpha)) in ZZ$.
+  - If one is $e_i$ while the other is $2e_j$, one has $(2(e_i, 2e_j))/((e_i,e_i)) = 4 delta_(i j) in ZZ$; for the other order, one also has $(2(2e_j, e_i))/((2e_j,2e_j)) = (4 delta_(i j))/4 = delta_(i j) in ZZ$.
+  \ 
+  - If one is $e_i$ and the other is $e_j pm e_k$, one has $(2(e_i, e_j pm e_k))/((e_i,e_i)) = 2(delta_(i j) pm delta_(i k)) in ZZ$; for the other order, one also has $(2(e_j pm e_k, e_i))/((e_j pm e_k, e_j pm e_k)) = (2(delta_(i j) pm delta_(i k))/2) = delta_(i j)pm delta_(i k) in ZZ$.
+  \ 
+  - If both are $2e_i, 2e_j$, one has $(2(2e_i,2e_j))/((2e_i,2e_i)) = (8 delta_(i j))/4 = 2 delta_(i j) in ZZ$.
+  \ 
+  - If one is $2e_i$ while the other is $e_j pm e_k$, one has $(2(2e_i, e_j pm e_k))/((2e_i,2e_i)) = (4(delta_(i j)pm delta_(i k)))/4 = delta_(i j) pm delta_(i k) in ZZ$; for the other order, one also has $(2(e_j pm e_k, 2e_i))/((e_j pm e_k, e_j pm e_k)) = (4(delta_(i j) pm delta_(i k)))/2 = 2(delta_(i j) pm delta_(i k)) in ZZ$.
+  \ 
+  - Finally, if both are $e_i pm_(i j) e_j$, $e_k pm_(k l) e_l$, one has $(2(e_i pm_(i j) e_j,e_k pm_(k l)e_l))/((e_i pm e_j, e_i pm e_j)) = (2(delta_(i k) pm_(i j)delta_(j k) pm_(k l)delta_(i l) + (pm_(i j)1)(pm_(k l)1)delta_(j l)))/2 = (delta_(i k) pm_(i j)delta_(j k) pm_(k l)delta_(i l) + (pm_(i j)1)(pm_(k l)1)delta_(j l)) in ZZ$.
 
   \ 
 
-  Finally, based on the value $n_(beta alpha) = n_(alpha beta)$ derived above for all $alpha, beta in R$, one has the following for reflections:
-  - If $alpha = e_i$ and $beta = e_j$, $s_alpha (beta) = e_j - 2 delta_(i j)e_i$. If $i=j$, then $s_alpha (beta) = -e_i in R$; else if $i!=j$, then $s_alpha (beta) = e_j in R$ also.
-  \
-  - If $alpha = 2e_i$ and $beta = e_j$, one has $s_alpha (beta) = e_j - delta_(i j)2 e_i$. If $i=j$, $s_alpha (beta) = -e_i in R$; else if $i!=j$, $s_alpha (beta) = e_j in R$. 
-
-    Similarly , $s_beta (alpha) = 2e_i - delta_(i j)e_j$. If $i=j$, $s_beta (alpha) = e_i in R$; else if $i!=j$, $s_beta (alpha) = 2e_i in R$ also.
+  Then, the last condition is regarding the reflections (which the coefficients will be coming from the above calculation):
+  - Given $s_(e_i)(e_j) = e_j - 2 delta_(i j)e_i$, if $i!=j$ this is $e_j in R$; else if $i=j$ this is $-e_i in R$.
   \ 
-  - 
+  - Given $s_(e_i)(2e_j) = 2e_j - 4 delta_(i j) e_i$, if $i!=j$ this is $2e_j in R$; else if $i=j$ this is $-2e_i in R$. 
+  
+    When reversing the order, $s_(2e_j)(e_i) = e_i - delta_(i j)2e_j$, if $i!=j$ this is $e_i in R$; else if $i=j$ this is $-e_i in R$.
+  \ 
+  - Given $s_(e_i)(e_j pm e_k) = (e_j pm e_k) - 2(delta_(i j)pm delta_(i k))e_i$, for $i=j$ (which $i!=k$) this becomes $-e_i pm e_k in R$; for $i=k$ (which $i!=j$) this becomes $e_j mp e_i in R$; else if $i!=j$ and $i!=k$, it's just $e_j pm e_k in R$.
+
+    When reversing the order, $s_(e_j pm e_k)(e_i) = e_i - (delta_(i j)pm delta_(i k))(e_j pm e_k)$, for $i=j$ (which $i!=k$) this is $mp e_k in R$; if $i=k$ (which $i!=j$) this is $mp e_j in R$; else if $i!=j$ and $i!=k$, this is $e_i in R$.
+  \ 
+  - Given $s_(2e_i)(2e_j) = 2e_j - 2 delta_(i j)(2e_i)$, if $i!=j$ this is $2e_j in R$; else if $i=j$ this is $-2e_i in R$.
+  \ 
+  - Given $s_(2e_i)(e_j pm e_k) = (e_j pm e_k) - (delta_(i j)pm delta_(i k))2e_i$, if $i=j$ (which $i!=k$) this is $-e_i pm e_k in R$; if $i=k$ (which $i!=j$) this is $e_j in R$; else if $i!=j$ and $i!=k$ this is $e_j pm e_k in R$.
+
+    When reversing the order, $s_(e_j pm e_k)(2e_i) = 2e_i - 2(delta_(i j)pm delta_(i k))(e_j pm e_k)$, if $i=j$ (which $i!=k$) this is $mp 2e_k in R$; if $i=k$ (which $i!=j$) this is $mp 2e_j in R$; else if $i!=j$ and $i!=k$ this is $2e_i in R$.
+  \ 
+  - Given $s_(e_i pm_(i j) e_j)(e_k pm_(k l)e_l) = (e_k pm_(k l)e_l) - (delta_(i k) pm_(i j)delta_(j k) pm_(k l)delta_(i l) + (pm_(i j)1)(pm_(k l)1)delta_(j l))(e_i pm_(i j)e_j)$ (yep this term is diabolical...). If ${i,j,k,l}$ are four distinct indices, this reduces to $e_k pm_(k l)e_l in R$; if they form only three distinct indices (say $i=k$ up to some reordering and $pm$ sign) then $i!=j$, $j!=k$ and $i,j!=l$, so the term reduces to $pm_(k l)e_l mp_(i j)e_j in R$; finally, if they form only two distinct indices (say $i=k$, $j=l$ up to reordering and $pm$ signs), if $pm_(i j)$ and $pm_(k l)$ have the same sign, the term reduces to $-e_i mp e_j in R$, else if $pm_(i j)$ and $pm_(k l)$ have different signs, this reduces to $e_k pm_(k l)e_l in R$.
+
+  So, all possible reflection combinations of the roots (up to signs and reorderings) are still in $R$, showing it satisfies the root system axioms.
+
+  Then, since $e_i in R$ satisfies $2 e_i in R$, this shows that the root system is non-reduced.
 ]
 
 #pagebreak()
 
-= ND part (2)//2
+= D//2
 #problem[
   Etingof Problem Set 7.2:
 
@@ -121,16 +133,24 @@
 
     \
 
-    Now, instead of proving simple roots coresponds to simple coroots, we'll prove non-simple roots corresponds to non-simple coroots.
+    Now, suppose the contrary that $Pi^or$ is not all the simple roots of the coroot system, then there exists $alpha_i^or$ that's not a simple roots.
+
+    Let $S = {r_1^or,...,r_n^or}$ be the set of simple roots for $R^or$ (where each $r_i in R_+$ since we have the same polarization), this implies that $alpha_i^or = sum_(j in J)n_j r_j^or$ for some positive integer $n_j$ (Note: Here we eliminate all the zero coefficients of the $r_i^or$'s).
+
+    Hence, based on the isomorphism between $E$ and $E^*$, one gets the following:
+    $ 2alpha_i/((alpha_i,alpha_i)) = sum_(j in J)n_j dot 2r_j/((r_j,r_j)) ==> alpha_i = sum_(j in J)(n_j (alpha_i,alpha_i))/((r_j,r_j))r_j $
+    Which, each $((alpha_i,alpha_i))/((r_j,r_j))>0$ because of the positive definiteness of the inner product, together with $0 in.not R$.
+
+    Then, since each $r_j in R_+$, one can write $r_j = sum_(k=1)^n n^j_k alpha_k$ where each $n^j_k$ is a nonnegative integer (since $Pi={alpha_1,...,alpha_n}$ is the set if simple roots in $R_+$). Then, we get the following:
+    $ alpha_i = sum_(j in J)(n_j (alpha_i,alpha_i))/((r_j,r_j))r_j = sum_(k=1)^n sum_(j in J)(n_j (alpha_i,alpha_i))/((r_j,r_j))n^j_k alpha_k $
+    So, with the linear independence of $Pi={alpha_1,...,alpha_n}$, this implies that for $k in {1,...,n}$, one has $sum_(j in J)(n_j (alpha_i,alpha_i))/((r_j,r_j))n^j_k = delta_(i k)$. 
     
-    Since the set of simple roots form a basis, while $E tilde.equiv E^*$ (since both being finite-dimensional), so the number of simple roots in $R$ (and simple coroots in $R^or$) must be the same. 
-    
-    Which, because the map $R -> R^or$ by $alpha mapsto alpha^or$ is a bijection, if proving non-simple roots map to non-simple coroots, one has $("# non-simple roots")<= ("# non-simple coroots")$, while the equality on the number of simple roots and coroots (together with the finiteness of $R,R^or$) enforces this to be an equality. 
+    And, with each $(n_j (alpha_i,alpha_i))/((r_j,r_j))$ being positive, and each $n^j_k$ being nonnegative, for $k!=j$, $sum_(j in J)(n_j (alpha_i,alpha_i))/((r_j,r_j))n^j_k = 0$ implies each $n^j_k = 0$. So, each $r_j = sum_(k=1)^n n^j_k alpha_k = n^j_i alpha_i$, with $n^j_i$ being some nonnegative integer.
 
+    Finally, recall that $alpha in R$ satisfies $c alpha in R$ iff $c=pm 1$, so the equality $r_j = n^j_i alpha_i$ enforces $n^j_i = pm 1$; yet, since $r_j in R_+$, this further implies $n^j_i = 1$, or each $r_j = alpha_i$. But, this implies $alpha_i^or = r_j^or in S$ (the set of simple roots of $R^or$), which contradicts the assumption that $alpha_i^or$ is not a simple roots.
 
-    \ 
+    Hence, our assumption is false, the set $Pi^or = {alpha_1^or,...,alpha_n^or}$ must be the set of simple roots of $R^or$, under this polarization.
 
-    Finally, to prove the above statement, suppose $alpha, beta, gamma in R_+$ satisfies $alpha = beta+gamma$. Then, 
 ]
 
 #pagebreak()
@@ -150,12 +170,24 @@
 
     \ 
 
-  + Given 
+  + Given $L_alpha$ being a root hyperplane separating $C_+$ and $w^(-1)(C_+)$ (and assume that $alpha in R_+$), this implies that for any $v in overline(C_+)$, one has $(v,alpha)>=0$, and $w^(-1)(v) in w^(-1)(overline(C_+)) = overline(w^(-1)(C_+))$ satisfies $(w^(-1)(v),alpha)<=0$ (Note: for finite dimensional $RR$-Euclidean spaces, any linear map is continuous, hence linear isomorphism is a homeomorphism, which preserves closure).
+
+    As a result, since $lambda in overline(C_+) sect w^(-1)(overline(C_+))$, one has $(lambda, alpha)>=0$ by the first inequality, while $(lambda, alpha)<=0$ by the second inequality, so $(lambda, alpha)=0$, showing $lambda in L_alpha$.
+
+    \ 
+
+  + We'll use induction on the length of $w$, $ell(w)$ (which represents the minimal number of simple reflections needed to generate $w$).
+
+    For $ell(w)=1$ (namely $w = s_(alpha_i)$ for some $alpha_i$), then since $w(alpha_i) = - alpha_i$ (also $w = w^(-1)$ since it's a reflection), then $L_(alpha_i)$ is a hyperplane separating $overline(C_+)$ and $w^(-1)(overline(C_+))$, showing that $lambda in L_(alpha_i)$, hence $(lambda, alpha_i)=0$. This implies that $w(lambda) = lambda - (2(lambda, alpha_i))/((alpha_i,alpha_i))alpha_i = lambda$.
+
+    Now, suppose for $ell(w)=k-1$, one has $w(lambda) = lambda$. Then, now given $ell(w) = k$, say $w = s_(alpha_(i_1)) compose ... compose s_(alpha_(i_k))$, notice that $alpha_(i_k)$ is a simple root that gets send to a negative root: 
+
+    Notice that each simple reflection only sends one positive root to negative root (namely $S_(alpha_i)$ has $alpha_i mapsto -alpha_i$, while other positive roots are mapped to positive roots, since for all positive root $alpha = sum_(j=1)^n n_j alpha_j$ where $n_j>=0$, one has $s_(alpha_i)(alpha) = alpha - sum_(i=1)^k n_j n_(alpha_j alpha_i) alpha_i$ with each $n_(alpha_j alpha_i<=0$ by the property of simple roots, hence $s_(alpha_i)(alpha)$ is again nonnegative integral sum of $alpha_j$'s, which is still a positive root).
 ]
 
 #pagebreak()
 
-= HD (Need to show more complicated relations, but the general approach is right)//4
+= D//4
 #problem[
   Etingof Problem Set 7.12:
 
@@ -165,19 +197,31 @@
 
   \ 
 
-  Let $Pi={alpha_1,...,alpha_n}$ be the set of simple roots of $R_1$ under a chosen polarization. Due to the irreducibility of $R_1$, for any $i!=j$, one has $(alpha_1,alpha_2)<0$ (since such inner product $<=0$ by the property of simple roots, while none of the simple roots can be orthogonal by irreducibility).
+  Let $Pi={alpha_1,...,alpha_n}$ be the set of simple roots of $R_1$ under a chosen polarization. Due to the irreducibility of $R_1$, there doesn't exist nontrivial proper subset $Pi_1, Pi_2$ or $Pi$, such that $Pi_1 union.sq Pi_2 = Pi$ and $Pi_1 perp Pi_2$.
 
   \
 
-  Now, since $phi$ is an isomorphism of vector spaces, each $phi(alpha_i)!=0$, and $(phi(alpha_i),phi(alpha_i))>0$. Let us define the value $c_i := ((phi(alpha_i),phi(alpha_i)))/((alpha_i,alpha_i))>0$ for each index $i$. Then, since $phi$ preserves each $n_(beta alpha)$ for all $alpha, beta in R$, for each indices $i!=j$, one has the following:
+  Now, since $phi$ is an isomorphism of vector spaces, each $phi(alpha_i)!=0$, and $(phi(alpha_i),phi(alpha_i))>0$. Let us define the value $c_i := ((phi(alpha_i),phi(alpha_i)))/((alpha_i,alpha_i))>0$ for each index $i$. Then, since $phi$ preserves each $n_(beta alpha)$ for all $alpha, beta in R$, for each indices $i,j$, one has the following:
   $ (2(alpha_i,alpha_j))/((alpha_i,alpha_i)) = n_(alpha_j alpha_i) = n_(phi(alpha_j)phi(alpha_i)) = (2(phi(alpha_i),phi(alpha_j)))/((phi(alpha_i),phi(alpha_i))) = (2(phi(alpha_i),phi(alpha_j)))/(c_i (alpha_i,alpha_i)) $
   So, one gets the following equality:
   $ c_i (alpha_i,alpha_j) = (phi(alpha_i),phi(alpha_j)) $
-  Which, since $i,j$ are arbitrary, switching the two indices, one gets $c_j (alpha_i,alpha_j) = (phi(alpha_i),phi(alpha_j))$ also (since over $RR$-inner product space, inner product is symmetric). Then, because $(alpha_i,alpha_j)<0$ for $i!=j$, $c_i (alpha_i,alpha_j)=(phi(alpha_i),phi(alpha_j)) = c_j (alpha_i,alpha_j)$ implies $c_i=c_j$. Hence, one can say $c := c_1=...=c_n > 0$.
+  Which, since $i,j$ are arbitrary, switching the two indices, one gets $c_j (alpha_i,alpha_j) = (phi(alpha_i),phi(alpha_j))$ also (since over $RR$-inner product space, inner product is symmetric). Hence, one gets $c_i (alpha_i,alpha_j)=(phi(alpha_i),phi(alpha_j)) = c_j (alpha_i,alpha_j)$.
 
   \ 
 
-  Finally, the above equality implies $c(alpha_i, alpha_j)= (phi(alpha_i),phi(alpha_j))$ for $i!=j$, while by definition $c = c_i = ((phi(alpha_i),phi(alpha_i)))/((alpha_i,alpha_i))$, so $c (alpha_i,alpha_i) = (phi(alpha_i),phi(alpha_i))$ for all $i$ also. Hence, the relation $(phi(u),phi(v)) = c dot (u,v)$ is true for all $u,v in Pi subset E_1$, which is also true on the whole vector space $E_1$ since $Pi$ forms a basis, and this completes the proof.
+  Then, we claim that the colection of $c_i$'s only has one value (i.e. all $c_i$'s are the same).
+  
+  Suppose the contrary that the $c_i$'s have more than 1 value, then partition $Pi$ using the values of $c_i$: Let $Pi_1$ denotes all simple roots with $c_i = c_1$, $Pi_2$ denotes all simple roots wit $c_j != c_1$. Then, up to reordering, one can say $Pi_1 = {alpha_1,...,alpha_i}$ and $Pi_2={alpha_(i+1),...,alpha_n}$ (which, the assumption provides that both $Pi_1,Pi_2 != emptyset$).
+
+  For any index $1<=k<=i$ and $i+1<=l<=n$, one has the following:
+  $ c_1 (alpha_k,alpha_l) = c_k (alpha_k,alpha_l) = c_l (alpha_k,alpha_l) ==> (c_1-c_l)(alpha_k,alpha_l)=0 $
+  Since $alpha_l in Pi_2$, one has $c_l != c_1$, so $(c_1-c_l)!=0$, then the above equality enforces $(alpha_k,alpha_l)=0$, or the two vectors are orthogonal. Yet, with $1<=k<=i$ and $i+1<=l<=n$ being arbitrary, this implies $Pi_1 perp Pi_2$, which contradicts the fact that $R_1$ is irreducible. 
+
+  Therefore, all $c_i$'s must be the same, denote as $c:= c_i$ for all $i$.
+
+  \ 
+
+  Finally, the above equality $c_i (alpha_i,alpha_j) = (phi(alpha_i),phi(alpha_j))$ implies $c(alpha_i, alpha_j)= (phi(alpha_i),phi(alpha_j))$ for all indices $i,j$, then $phi$ is a composition of isometry and scalar operator on the simple roots $Pi$, hence on the whole vector space $R_1$, and this completes the proof.
 ]
 
 #pagebreak()
