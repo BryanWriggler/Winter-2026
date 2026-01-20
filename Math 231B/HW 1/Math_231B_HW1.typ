@@ -155,16 +155,14 @@
 
 #pagebreak()
 
-= ND//3
+= D//3
 #problem[
   Etingof Problem Set 7.8:
 
   Let $overline(C_+)$ be the closure of the positive Weyl chamber, and $lambda in overline(C_+)$, $w in W$ be such that $w(lambda) in overline(C_+)$.
   + Show that $lambda in overline(C_+) sect w^(-1)(overline(C_+))$.
   + Let $L_alpha subset E$ be a root hyperplane which separates $C_+$ and $w^(-1)(C_+)$. Show that then $lambda in L_alpha$.
-  + Show that $w(lambda) = lambda$.
-
-  Deduce from this that every $W$-orbit in $E$ contains a unique element from $overline(C_+)$.
+  + Show that $w(lambda) = lambda$. Deduce from this that every $W$-orbit in $E$ contains a unique element from $overline(C_+)$.
 ][
   + Given that $w(lambda) in overline(C_+)$, it's clear that $lambda in w^(-1)(overline(C_+))$. So by definition $lambda in overline(C_+) sect w^(-1)(overline(C_+))$.
 
@@ -176,16 +174,35 @@
 
     \ 
 
-  + We'll use induction on the length of $w$, $ell(w)$ (which represents the minimal number of simple reflections needed to generate $w$).
+  + Here we'll pursue by contradiction. Suppose $w(lambda) != lambda$, let $l = ell(w)$ (which is the reduced length), here $l > 0$ can be assumed (since for $l=0$, or $w = id_E$, the condition $w(lambda) = lambda$ is trivial). Then, let $w = s_(alpha_(i_1)) compose ... compose s_(alpha_(i_l))$ be a reduced decomposition into simple roots. 
+
+    Now, if $l=1$ (or $w = s_(alpha_(i_1))$), then $alpha_(i_1)$ is a positive root that gets mapped to negative root, showing that $L_(alpha_(i_1))$ separates $overline(C_+)$ and $w^(-1)(overline(C_+))$, showing $lambda in L_(alpha_(i_1))$, or $s_(alpha_(i_1))(lambda) = lambda - (2(alpha_(i_1),lambda))/((alpha_(i_1),alpha_(i_1)))alpha_(i_1) = lambda$ (since $(alpha_(i_1),lambda)=0$). So, this is another case one needs to eliminate.
+
+    Else, if $l>1$, then there exists positive root $beta$ that gets mapped to negative root by $w$, but not by $s_(alpha_(i_1)) compose w$. For instance, choose $beta = s_(alpha_(i_l)) compose ... compose s_(alpha_(i_2))(alpha_(i_1))$ does the job, since one has the following:
+    $ &w(beta) = s_(alpha_(i_1)) compose ... compose s_(alpha_(i_l))(s_(alpha_(i_l)) compose ... compose s_(alpha_(i_2))(alpha_(i_1))) = s_(alpha_(i_1))(alpha_(i_1)) = -alpha_(i_1)\ 
+    &s_(alpha_(i_1)) compose w(beta) = s_(alpha_(i_1))(-alpha_(i_1)) = alpha_(i_1) $
+    Then, since $lambda, w(lambda) in overline(C_+)$, one has $(lambda, beta)>=0$ (because $beta$ is a positive root), while $(w(lambda),w(beta))<=0$ (because $w(beta)$ is a negative root). Yet, since $w$ is an isometry, one has $(lambda, beta) = (w(lambda),w(beta))$, which the two inequalities enforce $(lambda, beta)=0$. This shows that $s_(beta)(lambda) = lambda$.
+
+    However, it reaches the following equality:
+    $ w(lambda) &= s_(alpha_(i_1)) compose ... compose s_(alpha_(i_l))(lambda) = s_(alpha_(i_1)) compose ... compose s_(alpha_(i_l)) compose s_beta (lambda)\ 
+    &= (s_(alpha_(i_1)) compose ... compose s_(alpha_(i_l))) compose ((s_(alpha_(i_l)) compose ... compose s_(alpha_(i_2)))compose s_(alpha_(i_1)) compose (s_(alpha_(i_2))compose ... compose s_(alpha_(i_l))))(lambda)\ 
+    &= s_(alpha_(i_2)) compose ... compose s_(alpha_(i_l))(lambda) $
+    Notice that such equality can be used on any possible $lambda in overline(C_+)$ with such property, which in some sense reduces the the expression of $w$ down to a shorter representative in terms of simple reflections, which contradicts the assumption that $l$ is the reduced length of $w$.
+
+    So, one must have $w(lambda) = lambda$. This also means that all $W$-orbit in $E$ has a unique element in $overline(C_+)$, since if $lambda in overline(C_+)$ and $w in W$ satisfies $w(lambda) in overline(C_+)$, the above shows that $w(lambda)=lambda$. So, it must be unique.
+  
+  /*
+  We'll use induction on the length of $w$, $ell(w)$ (which represents the minimal number of simple reflections needed to generate $w$).
 
     For $ell(w)=1$ (namely $w = s_(alpha_i)$ for some $alpha_i$), then since $w(alpha_i) = - alpha_i$ (also $w = w^(-1)$ since it's a reflection), then $L_(alpha_i)$ is a hyperplane separating $overline(C_+)$ and $w^(-1)(overline(C_+))$, showing that $lambda in L_(alpha_i)$, hence $(lambda, alpha_i)=0$. This implies that $w(lambda) = lambda - (2(lambda, alpha_i))/((alpha_i,alpha_i))alpha_i = lambda$.
 
     Now, suppose for $ell(w)=k-1$, one has $w(lambda) = lambda$. Then, now given $ell(w) = k$, say $w = s_(alpha_(i_1)) compose ... compose s_(alpha_(i_k))$, notice that $alpha_(i_k)$ is a simple root that gets send to a negative root: 
 
-    Notice that each simple reflection only sends one positive root to negative root (namely $S_(alpha_i)$ has $alpha_i mapsto -alpha_i$, while other positive roots are mapped to positive roots, since for all positive root $alpha = sum_(j=1)^n n_j alpha_j$ where $n_j>=0$, one has $s_(alpha_i)(alpha) = alpha - sum_(i=1)^k n_j n_(alpha_j alpha_i) alpha_i$ with each $n_(alpha_j alpha_i<=0$ by the property of simple roots, hence $s_(alpha_i)(alpha)$ is again nonnegative integral sum of $alpha_j$'s, which is still a positive root).
+    Notice that each simple reflection only sends one positive root to negative root (namely $S_(alpha_i)$ has $alpha_i mapsto -alpha_i$, while other positive roots are mapped to positive roots, since for all positive root $alpha = sum_(j=1)^n n_j alpha_j$ where $n_j>=0$, one has $s_(alpha_i)(alpha) = alpha - sum_(i=1)^k n_j n_(alpha_j alpha_i) alpha_i$ with each $n_(alpha_j alpha_i<=0$ by the property of simple roots, hence $s_(alpha_i)(alpha)$ is again nonnegative integral sum of $alpha_j$'s, which is still a positive root). Then, this implies that 
+  */
 ]
 
-#pagebreak()
+\ 
 
 = D//4
 #problem[
@@ -224,7 +241,7 @@
   Finally, the above equality $c_i (alpha_i,alpha_j) = (phi(alpha_i),phi(alpha_j))$ implies $c(alpha_i, alpha_j)= (phi(alpha_i),phi(alpha_j))$ for all indices $i,j$, then $phi$ is a composition of isometry and scalar operator on the simple roots $Pi$, hence on the whole vector space $R_1$, and this completes the proof.
 ]
 
-#pagebreak()
+\ 
 
 = D//5
 #problem[
