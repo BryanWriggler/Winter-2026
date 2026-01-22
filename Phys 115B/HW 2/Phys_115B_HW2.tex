@@ -55,7 +55,7 @@ $r$-dependent wave function and a linear combination of spherical harmonics.
         \end{align}
         \begin{align}
             \ell=1,\ m=-1\ &\implies\ P_1^{-1}(z) = \sqrt{1-z^2}\frac{d}{dz}\left(\frac{1}{2}\frac{d}{dz}(z^2-1)\right) = \sqrt{1-z^2}\\
-            &\implies\ Y_1^{-1} = -\sqrt{\frac{3}{8\pi}}e^{-i\phi}\sqrt{1-\cos^2(\theta)}-\sqrt{\frac{3}{8\pi}}e^{-i\phi}\sin(\theta)
+            &\implies\ Y_1^{-1} = -\sqrt{\frac{3}{8\pi}}e^{-i\phi}\sqrt{1-\cos^2(\theta)}=-\sqrt{\frac{3}{8\pi}}e^{-i\phi}\sin(\theta)
         \end{align}
         Then, using the cartesian coordinates $x = r\sin(\theta)\cos(\phi)$, $y=r\sin(\theta)\sin(\phi)$, $z=r\cos(\theta)$, and $r = \sqrt{x^2+y^2+z^2}$, the above becomes the following:
         \begin{align}
@@ -89,18 +89,18 @@ $r$-dependent wave function and a linear combination of spherical harmonics.
 
 \newpage
 
-\section*{2 ND}
+\section*{2 D}
 \begin{ques}\label{q2}
 Radial Momentum
 
 In lecture, we defined an operator corresponding to the momentum in the radial direction,
 \[
-p_r \equiv \frac{1}{2}(\hat{r}\cdot p + p\cdot \hat{r})
-= -\frac{i\hbar}{2}\left(\frac{1}{r}\, r\cdot\nabla + \nabla\cdot\frac{r}{r}\right).
+p_r \equiv \frac{1}{2}(\hat{\br}\cdot \bp + \bp\cdot \hat{\br})
+= -\frac{i\hbar}{2}\left(\frac{1}{r}\, \br\cdot\nabla + \nabla\cdot\frac{\br}{r}\right).
 \]
 
 \begin{itemize}
-\item[(a)] Show that $\hat{r}\cdot p$ is not Hermitian, and hence cannot itself be identified with
+\item[(a)] Show that $\hat{\br}\cdot \bp$ is not Hermitian, and hence cannot itself be identified with
 momentum in the radial direction.
 
 \item[(b)] Using the definition of $p_r$ above, show that
@@ -114,9 +114,58 @@ p_r^2 = -\hbar^2 \frac{1}{r^2}\frac{\partial}{\partial r}
 \begin{proof}
     First, recall the definition of these operators:
     \begin{align}
-        &\hat{r} = \frac{x}{r}\hat{x}+\frac{y}{r}\hat{y}+\frac{z}{r}\hat{z}\\
-        &\bar{p} = \hat{x}\left(-i\hbar\frac{\partial}{\partial x}\right)+\hat{y}\left(-i\hbar\frac{\partial}{\partial y}\right)+\hat{z}\left(-i\hbar\frac{\partial}{\partial z}\right)
+        &\hat{\br} = \frac{x}{r}\hat{x}+\frac{y}{r}\hat{y}+\frac{z}{r}\hat{z},\quad \bp = p_x\hat{x}+p_y\hat{y}+p_z\hat{z}
     \end{align}
+    (Note: Here for $u=x,y,z$ the expression $\hat{x}$ is representing coordinates, rather than operators; the $x,y,z$ and the partials are the operators).
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given $\hat{\br}\cdot \bp$, it is given as follow:
+        \begin{align}
+            \hat{\br}\cdot \bp = \left(\frac{x}{r}\hat{x}+\frac{y}{r}\hat{y}+\frac{z}{r}\hat{z}\right)\cdot \left(p_x\hat{x}+p_y\hat{y}+p_z\hat{z}\right) = \frac{1}{r}(x p_x+y p_y+z p_z)
+        \end{align}
+        Which, the Hermitian conjugate (adjoint) of this is given as follow:
+        \begin{align}
+            (\hat{\br}\cdot\bp)^\dagger = \frac{1}{r}(x p_x+yp_y+zp_z)^\dagger = \frac{1}{r}(p_x x+p_y y + p_z z)
+        \end{align}
+        And, given thee commutation relation $[u,p_u] = -i\hbar$, one has $p_u u = u p_u + i\hbar$. This simplifies to the following:
+        \begin{align}
+            (\hat{\br}\cdot \bp)^\dagger = \frac{1}{r}(p_x x+p_y y+p_z z) = \frac{1}{r}(x p_x+yp_y+zp_z) + \frac{3i\hbar}{r} = \hat{\br}\cdot \bp+ \frac{3i\hbar}{r}
+        \end{align}
+        This shows that $\hat{\br}\cdot \bp$ is not Hermitian (self-adjoint).
+
+        \hfil
+
+        \item[(b)] First, do the calculation of $\bp\cdot\hat{\br}$, one yields the following:
+        \begin{align}
+            \bp\cdot\hat{\br} &= \left(p_x\hat{x}+p_y\hat{y}+p_z\hat{z}\right)\cdot \left(\frac{x}{r}\hat{x}+\frac{y}{r}\hat{y}+\frac{z}{r}\hat{z}\right)\\
+            &= -i\hbar\left(\frac{\partial}{\partial x}\left(\frac{x}{r}\right)+\frac{\partial}{\partial y}\left(\frac{y}{r}\right)+\frac{\partial}{\partial z}\left(\frac{z}{r}\right)\right)\\
+            &= -i\hbar\left(\frac{3}{r}-\frac{x^2+y^2+z^2}{r^3} + \frac{1}{r}\left(x\frac{\partial}{\partial x}+y\frac{\partial}{\partial y}+z\frac{\partial}{\partial z}\right)\right)\\
+            &= -\frac{2i\hbar}{r}-\frac{i\hbar}{r}\left(x\frac{\partial}{\partial x}+y\frac{\partial}{\partial y}+z\frac{\partial}{\partial z}\right)\\
+            &= -\frac{2i\hbar}{r}+\frac{1}{r}(xp_x+yp_y+zp_z)
+        \end{align}
+        Also, notice that given the definition $r:=\sqrt{x^2+y^2+z^2}$, one has the following regarding the partial derivatives:
+        \begin{align}
+            u=x,y,z,\quad \frac{\partial}{\partial u} = \frac{\partial r}{\partial u}\frac{\partial }{\partial r}=\frac{u}{\sqrt{x^2+y^2+z^2}}\frac{\partial}{\partial r}=\frac{u}{r}\frac{\partial}{\partial r}
+        \end{align}
+        Hence, regarding the full definition, one has the following:
+        \begin{align}
+            p_r &= \frac{1}{2}(\hat{\br}\cdot\bp+\bp\cdot\hat{\br})\\
+            &= \frac{1}{2}\left(\frac{1}{r}(xp_x+yp_y+zp_z) - \frac{2i\hbar}{r}+\frac{1}{r}(xp_x+yp_y+zp_z)\right)\\
+            &= \frac{1}{2}\left(-\frac{2i\hbar}{r}\left(x\frac{\partial}{\partial x}+y\frac{\partial}{\partial y}+z\frac{\partial}{\partial z}\right)-\frac{2i\hbar}{r}\right)\\
+            &= \frac{1}{2}\left(-\frac{2i\hbar}{r}\cdot\frac{x^2+y^2+z^2}{r}\frac{\partial}{\partial r}-\frac{2i\hbar}{r}\right)\\
+            &= -i\hbar\left(\frac{\partial}{\partial r}+\frac{1}{r}\right)
+        \end{align}
+        Hence, the operator $p_r^2$ provides the following:
+        \begin{align}
+            p_r^2 &= -\hbar^2\left(\frac{\partial}{\partial r}+\frac{1}{r}\right)^2\\
+            &= -\hbar^2\left(\frac{\partial^2}{\partial r^2}-\frac{1}{r^2}+\frac{1}{r}\frac{\partial}{\partial r}+\frac{1}{r}\frac{\partial }{\partial r}+\frac{1}{r^2}\right)\\
+            &= -\hbar^2\left(\frac{\partial^2}{\partial r^2}+\frac{2}{r}\frac{\partial}{\partial r}\right)\\
+            &= -\frac{\hbar^2}{r^2}\left(r^2\frac{\partial^2}{\partial r^2}+2r\frac{\partial}{\partial r}\right)\\
+            &= -\frac{\hbar^2}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right)
+        \end{align}
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -126,14 +175,14 @@ p_r^2 = -\hbar^2 \frac{1}{r^2}\frac{\partial}{\partial r}
 The Size of Hydrogen (Griffiths 4.15, modified, 4.13 in second edition, still modified). Do parts (a)--(c) from the Griffiths problem.
 
 \begin{itemize}
-\item[(a)] Find $\left<r\right>$ and $\left<r^2\right>$ for an electron in the ground state of hydrogen. Express your answers in terms of te Bohr radius.
+\item[(a)] Find $\left<r\right>$ and $\left<r^2\right>$ for an electron in the ground state of hydrogen. Express your answers in terms of the Bohr radius.
 \item[(b)] Find $\left<x\right>$ and $\left<x^2\right>$ for an electron in the ground state of hydrogen. 
 
 (\emph{Hint}: This requires no new integration - note that $r^2=x^2+y^2+z^2$, and exploit the symmetry of the ground state).
 
 \item[(c)] Find $\left<x^2\right>$ in the state $n=2,\ell=1,m=1$. 
 
-(\emph{Hint:} this staet is \emph{not} symmetrical in $x,y,z$. Use $x=r\sin(\theta)\cos(\phi)$. 
+(\emph{Hint:} this state is \emph{not} symmetrical in $x,y,z$. Use $x=r\sin(\theta)\cos(\phi)$. 
 
 \item[(d)] Find $\langle r\rangle$ and $\langle r^2\rangle$ for an electron in a circular orbit of hydrogen with arbitrary principal quantum number $n$ (corresponds to $l=n-1$ and any allowed $m$).
 
@@ -147,6 +196,75 @@ in terms of $r$ for the electron in part (d). Note that the fractional spread in
 
 \begin{proof}
     
+    Recall that the ground state of hydrogen has the following wavefunction:
+    \begin{align}
+        \psi_{100} = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}
+    \end{align}
+    Where $a$ represents the Bohr radius.
+
+    \begin{itemize}
+        \item[(a)] To calculate the expectation values, one has the following:
+        \begin{align}
+        \left<r\right> &= \int_{\RR^3}r|\psi|^2 dV = \int_{r=0}^{\infty}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{r}{\pi a^3}e^{-2r/a}r^2\sin(\theta)d\phi\ d\theta\ dr\\
+        &=\frac{2\pi}{\pi a^3}\left(\int_{0}^{\infty}r^3e^{-2r/a}dr\right)\left(\int_{0}^{\pi}\sin(\theta)d\theta\right)\\
+        &= -\frac{4}{a^3}\left(\frac{a}{2}r^3 + \frac{3a^2}{4}r^2+\frac{3a^3}{4}r+\frac{3a^4}{8}\right)e^{-2r/a}\bigg|_{0}^{\infty}\\
+        &= \frac{4}{a^3}\cdot \frac{3a^4}{8} = \frac{3a}{2}
+    \end{align}
+    \begin{align}
+        \left<r^2\right> &= \int_{\RR^3}r^2|\psi|^2dV = \int_{r=0}^{\infty}\int_{\theta=0}^\pi\int_{\phi=0}^{2\pi}\frac{r^2}{\pi a^3}e^{-2r/a}r^2\sin(\theta)d\phi\ d\theta\ dr\\
+        &= \frac{2\pi}{\pi a^3}\left(\int_{0}^{\infty}r^4e^{-2r/a}dr\right)\left(\int_{0}^{\pi}\sin(\theta)d\theta\right)\\
+        &= -\frac{4}{a^3}\left(\frac{a}{2}r^4+a^2r^3+\frac{3a^3}{2}r^2+\frac{3a^4}{2}r+\frac{3a^5}{4}\right)e^{-2r/a}\bigg|_{0}^{\infty}\\
+        &= \frac{4}{a^3}\cdot\frac{3a^5}{4} = 3a^2
+    \end{align}
+
+    \hfil
+
+    \item[(b)] First, for $\left<x^2\right>$, since $\psi$ is under spherical symmetry, this implies that the expectation value of $x^2,y^2,z^2$ will all be the same; furthermore, since $r^2=x^2+y^2+z^2$, one has $\left<r^2\right> = \left<x^2\right>+\left<y^2\right>+\left<z^2\right> = 3\left<x^2\right>$ based on the symmetry claim. Hence, with $\left<r^2\right>=3a^2$, one has $\left<x^2\right>=a^2$.
+    
+    Now, to calculate $\left<x\right>$, notice that based on the spherical symmetry, one has $\psi(x,y,z) = \psi(-x,y,z)$. Hence, when fixing $y,z$, one has $\psi$ being an even function with respect to $x$ (and so is $|\psi|^2$). Doing the expectation value, one has the following:
+    \begin{align}
+        \left<x\right> &= \int_{\RR^3}x|\psi|^2dV =  \int_{-\infty}^{\infty}\left(\int_{-\infty}^{\infty}\left(\int_{-\infty}^{\infty}x|\psi|^2 dx\right)dy\right)dz = 0
+    \end{align}
+    And, the reason is because $\int_{-\infty}^{\infty}x|\psi|^2dx = 0$ due to the parity of the function.
+    \begin{comment}
+    notice that based on the spherical symmetry again, it's the same as $\left<z\right>$. With $z = r\cos(\theta)$, its actual expectation value becomes the following:
+    \begin{align}
+        \left<x\right>&=\left<z\right>=\int_{\RR^3}z|\psi|^2dV = \int_{r=0}^{\infty}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{r\cos(\theta)}{\pi a^3}e^{-2r/a}r^2\sin(\theta)d\phi\ d\theta\ dr\\
+        &= \frac{2}{a^3}\left(\int_{0}^{\infty}r^3e^{-2r/a}dr\right)\left(\int_{0}^{\pi}\sin(\theta)\cos(\theta)d\theta\right)\\
+        &= \frac{2}{a^3}\left(\int_{0}^{\infty}r^3e^{-2r/a}dr\right)\left(\frac{1}{2}\int_{0}^{\pi}\sin(2\theta)d\theta\right)
+    \end{align}
+    \end{comment}
+
+    \hfil
+
+    \item[(c)] Given $n=2,\ell=1,m=1$ (where $\ell=n-1$), one has the wavefunction $\psi = R_{n,n-1}Y_1^1$. 
+    
+    Using the lecture notes (together with the calculation in \textbf{Problem 1} n this HW), we get $R_{2,1} = \frac{1}{\sqrt{4!}}\frac{1}{a_0^{3/2}}\frac{r}{a_0}e^{-r/(2a_0)}$, and $Y_1^1 = \sqrt{\frac{3}{8\pi}}e^{i\phi}\sin(\theta)$. Then, the expectation value of $x$ becomes the following:
+    \begin{align}
+        \left<x^2\right> &= \int_{\RR^3}x^2|\psi|^2dV = \int_{r=0}^{\infty}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}r^2\sin^2(\theta)\cos^2(\phi)\cdot \frac{r^2}{24a_0^5}e^{-r/(a_0)}\cdot \frac{3}{8\pi}\sin^2(\theta)\cdot r^2\sin(\theta)d\phi\ d\theta\ dr\\
+        &= \frac{1}{64\pi a_0^5}\left(\int_{r=0}^{\infty}r^6e^{-r/(a_0)}dr\right)\left(\int_{0}^{2\pi}\cos^2(\phi)d\phi\right)\left(\int_{0}^{\pi}\sin^5(\theta)d\theta\right)
+    \end{align}
+    Which, doing individual calculation, one yields:
+    \begin{align}
+        &\int_{0}^{2\pi}\cos^2(\phi)d\phi = \int_{0}^{2\pi}\frac{1+\cos(2\phi)}{2}d\phi = \pi
+    \end{align}
+    \begin{align}
+        \int_{0}^{\pi}\sin^5(\theta)d\theta &= -\int_{0}^{\pi}(1-2\cos^2(\theta)+\cos^4(\theta))(-\sin(\theta))d\theta\\
+        &= \int_{-1}^{1}(1-2u^2+u^4)du = \left(u-\frac{2}{3}u^3+\frac{1}{5}u^5\right)\bigg|_{-1}^{1}\\
+        &= \frac{16}{15}
+    \end{align}
+    \begin{align}
+        \int_{0}^{\infty}r^6e^{-r/(a_0)}dr &= \int_{0}^{\infty}a_0^7u^6e^{-u}du = a_0^7 \Gamma(7) = a_0^7\cdot 6!
+    \end{align}
+    Combine the values, one gets:
+    \begin{align}
+        \left<x^2\right> &= \frac{1}{64\pi a_0^5}\cdot a_0^7\cdot 6! \cdot \pi \cdot \frac{16}{15} = 12a_0^2
+    \end{align}
+
+    \hfil
+
+    \item[(d)] Given arbitrary $n$, $\ell=n-1$, and any allowed $m$ (which $-\ell \leq m\leq \ell$). Since the spherical harmonics 
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -161,17 +279,27 @@ between $r$ and $r+dr$.
 \end{ques}
 
 \begin{proof}
-    Given the ground state of hydrogen atom as the following:
+    First, the ground state wavefunction of hydrogen atom is given as follow:
     \begin{align}
         \psi_{100} = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}
     \end{align}
-    Then, under this position basis, the expectation value of radius is given as follow:
+    First, given any $R\geq 0$, the probability that the electron is at most radius $R$, one has the following:
     \begin{align}
-        \left<r\right> &= \int_{\RR^3}r|\psi|^2 dV = \int_{r=0}^{\infty}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{r}{\pi a^3}e^{-2r/a}r^2\sin(\theta)d\phi\ d\theta\ dr\\
-        &=\frac{2\pi}{\pi a^3}\left(\int_{0}^{\infty}r^3e^{-2r/a}dr\right)\left(\int_{0}^{\pi}\sin(\theta)d\theta\right)\\
-        &= -\frac{4}{a^3}\left(\frac{a}{2}r^3 + \frac{3a^2}{4}r^2+\frac{3a^3}{4}r+\frac{3a^4}{8}\right)e^{-2r/a}\bigg|_{0}^{\infty}\\
-        &= \frac{4}{a^3}\cdot \frac{3a^4}{8} = \frac{3a}{2}
+        \PP(R) &= \int_{r=0}^{R}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{1}{\pi a^3}e^{-2r/a}r^2\sin(\theta)d\phi\ d\theta\ dr\\
+        &= \frac{2\pi}{\pi a^3}\left(\int_{r=0}^{R}r^2e^{-2r/a}dr\right)\left(\int_{0}^{\pi}\sin(\theta)d\theta\right)\\
+        &= \frac{4}{a^3}\left(\int_{r=0}^{R}r^2e^{-2r/a}dr\right)
     \end{align}
+    Since this represents a cummulative probability function for $R\geq 0$, then the corresponding probability density with respect to radius $R$ is:
+    \begin{align}
+        p(R) = \frac{d\PP(R)}{d R} = \frac{4}{a^3}\frac{d}{dR}\left(\int_{r=0}^{R}r^2e^{-2r/a}dr\right) = \frac{4}{a^3}R^2e^{-2R/a}
+    \end{align}
+    Then, the most probable value of $r$ is precisely the global maximum of $p(R)$ on $[0,\infty)$. Take the derivative's evaluation to be $0$, one has the following:
+    \begin{align}
+        \frac{d p(R)}{dR} &= \frac{4}{a^3}\left(2Re^{-2R/a} - \frac{2}{a}R^2e^{-2R/a}\right) = \frac{8}{a^4}R\left(a-R\right)e^{-2R/a}=0
+    \end{align}
+    Which, this is true iff $R = 0$ or $R=a$.
+
+    However, since $p(0) = 0$, the only possible maximum must be at $R=a$. Hence, it's most probable to have radius $r=a$, the Bohr radius.
 \end{proof}
 
 \newpage
