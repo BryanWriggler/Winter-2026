@@ -8,7 +8,7 @@
 \begin{document}
 \maketitle
 
-\section*{1}
+\section*{1 D}
 
 \begin{ques}\label{q1}
 More Practice with Spherical Harmonics
@@ -31,10 +31,65 @@ $r$-dependent wave function and a linear combination of spherical harmonics.
 \end{ques}
 
 \begin{proof}
+    First, recall that the spherical harmonics are given as follow:
+    \begin{align}
+        Y_\ell^m &= \epsilon\sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-|m|)!}{(\ell+|m|)!}}e^{im\phi}P_\ell^m(\cos(\theta)),\quad \epsilon=\begin{cases}
+            (-1)^m & m\leq 0\\
+            1 & m>0
+        \end{cases}\\
+        &P_\ell^m(z) = (1-z^2)^{|m|/2}\left(\frac{d}{dz}\right)^{|m|}\left(\frac{1}{2^\ell \ell!}\left(\frac{d}{dz}\right)^\ell(z^2-1)^\ell\right)
+    \end{align}
+    Where $P_\ell^m$ is the associated Legendre's Polynomial.
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given $\ell=1$ and $m = 0,\pm 1$, the associated spherical harmonics (in spherical coordinates) are as follow:
+        \begin{align}
+            \ell=1,\ m = 0 \ &\implies\  P_1^0 (z) = \frac{1}{2}\frac{d}{dz}(z^2-1) = z\\
+            &\implies \ Y_1^0 = \sqrt{\frac{3}{4\pi}}\cos(\theta)
+        \end{align}
+        \begin{align}
+            \ell=1,\ m=1\ &\implies\ P_1^1(z) = \sqrt{1-z^2}\frac{d}{dz}\left(\frac{1}{2}\frac{d}{dz}(z^2-1)\right) = \sqrt{1-z^2}\\
+            &\implies \ Y_1^1 = \sqrt{\frac{3}{8\pi}}e^{i\phi}\sqrt{1-\cos^2(\theta)} = \sqrt{\frac{3}{8\pi}}e^{i\phi}\sin(\theta)
+        \end{align}
+        \begin{align}
+            \ell=1,\ m=-1\ &\implies\ P_1^{-1}(z) = \sqrt{1-z^2}\frac{d}{dz}\left(\frac{1}{2}\frac{d}{dz}(z^2-1)\right) = \sqrt{1-z^2}\\
+            &\implies\ Y_1^{-1} = -\sqrt{\frac{3}{8\pi}}e^{-i\phi}\sqrt{1-\cos^2(\theta)}-\sqrt{\frac{3}{8\pi}}e^{-i\phi}\sin(\theta)
+        \end{align}
+        Then, using the cartesian coordinates $x = r\sin(\theta)\cos(\phi)$, $y=r\sin(\theta)\sin(\phi)$, $z=r\cos(\theta)$, and $r = \sqrt{x^2+y^2+z^2}$, the above becomes the following:
+        \begin{align}
+            &Y^0_1 = \sqrt{\frac{3}{4\pi}}\cos(\theta) = \sqrt{\frac{3}{4\pi}}\frac{z}{r}\\
+            &Y_1^1 = \sqrt{\frac{3}{8\pi}}(\cos(\phi)+i\sin(\phi))\sin(\theta) = \sqrt{\frac{3}{8\pi}}\frac{x+iy}{r}\\
+            &Y_1^{-1} = -\sqrt{\frac{3}{8\pi}}(\cos(\phi)-i\sin(\phi))\sin(\theta) = \sqrt{\frac{3}{8\pi}}\frac{-x+iy}{r}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Using the equations (9),(10),(11) from part (a), the linear combinations of $Y_1^{\pm 1}$ provides the following:
+        \begin{align}
+            &Y_1^1 + Y_1^{-1} = \sqrt{\frac{3}{8\pi}}\frac{2iy}{r}\ \implies\ y = -ir\sqrt{\frac{2\pi}{3}}\left(Y_1^1+Y_1^{-1}\right)\\
+            &Y^1_1 - Y_1^{-1} = \sqrt{\frac{3}{8\pi}}\frac{2x}{r}\ \implies \ x = r\sqrt{\frac{2\pi}{3}}\left(Y_1^1-Y_1^{-1}\right)\\
+            &Y_1^0 = \sqrt{\frac{3}{4\pi}}\frac{z}{r}\ \implies\ z = \sqrt{2}r\sqrt{\frac{2\pi}{3}}Y_0^1
+        \end{align}
+        Hence, the term $x+y+2z$ can be rewritten as:
+        \begin{align}
+            x+y+2z &= r\sqrt{\frac{2\pi}{3}}(Y_1^1-Y_1^{-1})-ir\sqrt{\frac{2\pi}{3}}(Y_1^1+Y_1^{-1}) + \sqrt{2}r\sqrt{\frac{2\pi}{3}}Y_1^0\\
+            &= r\sqrt{\frac{2\pi}{3}}((Y_1^1-T_1^{-1})-i(Y_1^1+Y_1^{-1})+\sqrt{2}Y_1^0)\\
+            &= r\sqrt{\frac{2\pi}{3}}((1-i)Y_1^1 - (1+i)Y_1^{-1} + \sqrt{2}Y_1^0)
+        \end{align}
+        So, the proposed $\psi$ can be given as follow:
+        \begin{align}
+            \psi &= A(x+y+2z)e^{-\alpha r}\\
+            &= A\sqrt{\frac{2\pi}{3}}((1-i)Y_1^1 - (1+i)Y_1^{-1}+\sqrt{2}Y_1^0)\cdot re^{-\alpha r}
+        \end{align}
+        Which, this is a product of purely radial-dependent function ($re^{-\alpha r}$), together with linear combinations of the spherical harmonics ($(1-i)Y_1^1 - (1+i)Y_1^{-1}+\sqrt{2}Y_1^0$), up to some scalars.
+    \end{itemize}
 \end{proof}
 
 \newpage
 
+\section*{2 ND}
 \begin{ques}\label{q2}
 Radial Momentum
 
@@ -57,10 +112,16 @@ p_r^2 = -\hbar^2 \frac{1}{r^2}\frac{\partial}{\partial r}
 \end{ques}
 
 \begin{proof}
+    First, recall the definition of these operators:
+    \begin{align}
+        &\hat{r} = \frac{x}{r}\hat{x}+\frac{y}{r}\hat{y}+\frac{z}{r}\hat{z}\\
+        &\bar{p} = \hat{x}\left(-i\hbar\frac{\partial}{\partial x}\right)+\hat{y}\left(-i\hbar\frac{\partial}{\partial y}\right)+\hat{z}\left(-i\hbar\frac{\partial}{\partial z}\right)
+    \end{align}
 \end{proof}
 
 \newpage
 
+\section*{3 ND}
 \begin{ques}\label{q3}
 The Size of Hydrogen (Griffiths 4.15, modified, 4.13 in second edition, still modified). Do parts (a)--(c) from the Griffiths problem.
 
@@ -72,7 +133,7 @@ The Size of Hydrogen (Griffiths 4.15, modified, 4.13 in second edition, still mo
 
 \item[(c)] Find $\left<x^2\right>$ in the state $n=2,\ell=1,m=1$. 
 
-(\emph{Hint:} this staet is \emph{not} symmetrical in $x,y,z$. Use $x=r\sin(\theta)\cos(\phi)$.
+(\emph{Hint:} this staet is \emph{not} symmetrical in $x,y,z$. Use $x=r\sin(\theta)\cos(\phi)$. 
 
 \item[(d)] Find $\langle r\rangle$ and $\langle r^2\rangle$ for an electron in a circular orbit of hydrogen with arbitrary principal quantum number $n$ (corresponds to $l=n-1$ and any allowed $m$).
 
@@ -85,10 +146,12 @@ in terms of $r$ for the electron in part (d). Note that the fractional spread in
 \end{ques}
 
 \begin{proof}
+    
 \end{proof}
 
 \newpage
 
+\section*{4 D}
 \begin{ques}\label{q4}
 The Size of Hydrogen continued (Griffiths 4.16, 4.14 in the second edition)
 
@@ -98,10 +161,22 @@ between $r$ and $r+dr$.
 \end{ques}
 
 \begin{proof}
+    Given the ground state of hydrogen atom as the following:
+    \begin{align}
+        \psi_{100} = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}
+    \end{align}
+    Then, under this position basis, the expectation value of radius is given as follow:
+    \begin{align}
+        \left<r\right> &= \int_{\RR^3}r|\psi|^2 dV = \int_{r=0}^{\infty}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{r}{\pi a^3}e^{-2r/a}r^2\sin(\theta)d\phi\ d\theta\ dr\\
+        &=\frac{2\pi}{\pi a^3}\left(\int_{0}^{\infty}r^3e^{-2r/a}dr\right)\left(\int_{0}^{\pi}\sin(\theta)d\theta\right)\\
+        &= -\frac{4}{a^3}\left(\frac{a}{2}r^3 + \frac{3a^2}{4}r^2+\frac{3a^3}{4}r+\frac{3a^4}{8}\right)e^{-2r/a}\bigg|_{0}^{\infty}\\
+        &= \frac{4}{a^3}\cdot \frac{3a^4}{8} = \frac{3a}{2}
+    \end{align}
 \end{proof}
 
 \newpage
 
+\section*{5 D}
 \begin{ques}\label{q5}
 Where is the Electron (Griffiths 4.54, 4.45 in the second edition)
 
@@ -110,14 +185,60 @@ What is the probability that an electron in the ground state of hydrogen will be
     \item[(a)] First calculate the \emph{exact answer}, assuming the wave function is correct all the way down to $r=0$. Let $b$ be the radius of the nucleus.
     
     Here is the wave function:
-    $$\psi_{1,0,0}(r,\theta,\phi) = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}$$ 
+    $$\psi_{100}(r,\theta,\phi) = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}$$ 
     \item[(b)] Expand your result as a power series in the small number $\epsilon := \frac{2b}{a}$, and show that the lowest-order term is the cubic: $p \approx \frac{4}{3}\left(\frac{b}{a}\right)^3$. This should be a suitable approximation, provided that $b\ll a$ (which it is).
-    \item[(c)] Alternatively, we mmight assume that $\psi(r)$ is essentially constant over the (tiny) volume of the nucleus, so that $P\approx \frac{4}{3}\pi b^3|\psi(0)|^2$. Check that you get the same answer this way.
+    \item[(c)] Alternatively, we might assume that $\psi(r)$ is essentially constant over the (tiny) volume of the nucleus, so that $P\approx \frac{4}{3}\pi b^3|\psi(0)|^2$. Check that you get the same answer this way.
     \item[(d)] Use $b\approx 10^{-15}$ m and $a\approx 0.5\cdot 10^{-10}$ m to get a numerical estimate for $P$. Roughly speaking, this represents the ``fraction of its time that the electron spends inside the nucleus''.   
 \end{itemize}
 \end{ques}
 
 \begin{proof}
+    
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] To calculate the probability $P$ that an electron will be found inside the nucleus (given it's in ground state) is given as follow (assuming the nucleus is of a solid ball with radius $b$):
+        \begin{align}
+            P &= \int_{\|\bar{r}\|\leq b}|\psi_{100}|^2 dV = \int_{r=0}^{b}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{1}{\pi a^3}e^{-2r/a}r^2\sin(\theta)d\phi d\theta dr\\
+            &= \frac{2\pi}{\pi a^3}\left(\int_{0}^{b}r^2e^{-2r/a}dr\right)\left(\int_{0}^{\pi}\sin(\theta)d\theta\right) = \frac{4}{a^3}\left(-\frac{a}{2}r^2-\frac{a^2}{2}r - \frac{a^3}{4}\right)e^{-2r/a}\bigg|_{0}^{b}\\
+            &= 1-\left(\frac{2b^2}{a^2}+\frac{2b}{a}+1\right)e^{-2b/a}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Define $\epsilon:=\frac{2b}{a}$, then under the case $b\ll a$, one has $\epsilon\approx 0$. So, using the power series expansion, $e^{-2b/a} = e^{-\epsilon}$ has the form $e^{-\epsilon}=\sum_{n=0}^\infty\frac{(-1)^n}{n!}\epsilon^n$.
+        
+        Plugin to the value derived in part (a), one yields the following:
+        \begin{align}
+            P &= 1-\left(\frac{1}{2}\left(\frac{2b}{a}\right)^2+\frac{2b}{a}+1\right)e^{-2b/a} = 1-\left(\frac{\epsilon^2}{2}+\epsilon+1\right)e^{-\epsilon}\\
+            &= 1-\left(\frac{\epsilon^2}{2}+\epsilon+1\right)\sum_{n=0}^\infty\frac{(-1)^n}{n!}\epsilon^n\\ 
+            &=1-\left(\sum_{n=0}^\infty\frac{(-1)^n}{2(n!)}\epsilon^{n+2}+\sum_{n=0}^\infty\frac{(-1)^n}{n!}\epsilon^{n+1}+\sum_{n=0}^\infty\frac{(-1)^n}{n!}\epsilon^n\right)\\
+            &= 1-\left(\sum_{n=2}^\infty\frac{(-1)^{n-2}}{2((n-2)!)}\epsilon^n + \sum_{n=1}^\infty\frac{(-1)^{n-1}}{(n-1)!}\epsilon^n + \sum_{n=0}^\infty\frac{(-1)^n}{n!}\epsilon^n\right)\\
+            &= 1-\left(\sum_{n=2}^\infty(-1)^n\left(\frac{1}{2\cdot (n-2)!}-\frac{1}{(n-1)!}+\frac{1}{n!}\right)\epsilon^n + \epsilon -\epsilon +1\right)\\
+            &= \sum_{n=2}^\infty (-1)^{n+1}\left(\frac{1}{2\cdot (n-2)!}-\frac{1}{(n-1)!}+\frac{1}{n!}\right)\epsilon^n
+        \end{align}
+        Which, for $n=2$, the coefficient is $\frac{1}{2\cdot 0!}-\frac{1}{1!}+\frac{1}{2!} = \frac{1}{2}-1+\frac{1}{2}=0$; nonetheless, for $n=3$, the coefficient is $\frac{1}{2\cdot 1!}-\frac{1}{2!}+\frac{1}{3!} = \frac{1}{6}$. This shows that the loest degree term of the power series $P(\epsilon)$ is the cubic.
+
+        Finally, plugin the definition $\epsilon:= \frac{2b}{a}$, the cubic term becomes:
+        \begin{align}
+            \frac{1}{6}\epsilon^3 =\frac{8}{6}\frac{b^3}{a^3} = \frac{4}{3}\left(\frac{b}{a}\right)^3
+        \end{align}
+
+        \hfil
+
+        \item[(c)] Given that $\psi(0) = \frac{1}{\sqrt{\pi a^3}}$, one has the proposed estimate being as follow:
+        \begin{align}
+            P \approx \frac{4}{3}\pi b^3|\psi(0)|^2 = \frac{4}{3}\pi b^3 \frac{1}{\pi a^3} = \frac{4}{3}\left(\frac{b}{a}\right)^3
+        \end{align}
+        Which is exactly as what is proposed in part (b).
+
+        \hfil
+
+        \item[(d)] Given $b\approx 10^{-15}$ m and $a\approx \frac{1}{2}\cdot 10^{-10}$ m, then one has $\frac{b}{a} \approx 2\cdot 10^{-5}$. So, one has the following approximation of $P$:
+        \begin{align}
+            P\approx \frac{4}{3}\left(\frac{b}{a}\right)^3 \approx \frac{32}{3}\cdot 10^{-15}\approx 1.067\cdot 10^{-16}
+        \end{align}
+    \end{itemize}
 \end{proof}
 
 \end{document}
