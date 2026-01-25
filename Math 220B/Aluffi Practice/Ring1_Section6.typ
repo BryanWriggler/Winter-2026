@@ -21,7 +21,7 @@
 
 //start document
 #maketitle(
-  title: "Aluffie Ring 1st Chapter Section 6",
+  title: "Aluffi Ring 1st Chapter Section 6 Exercises (half)",
   authors: ("Zih-Yu Hsieh",),
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
