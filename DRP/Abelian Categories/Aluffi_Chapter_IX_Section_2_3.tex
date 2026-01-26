@@ -14,7 +14,7 @@ The goal is to define a good notion of ``elements'' and ``sets'' for objects in 
 
 Consider any set $A,B$ together with a set map $\phi:A \rightarrow B$. Notice that every element $a \in A$ can be characterized as a set map $\hat{a}:\{*\}\rightarrow A$, by $\hat{a}(*):= a$. And, the corresponding $\phi(a) \in B$ has the corresponding set map $\hat{\phi(a)}:\{*\}\rightarrow B$ by $\hat{\phi(a)}(*) := \phi(a) = \phi \circ \hat{a}(*)$. So, one gets the following diagram:
 
-\begin{center}[scale=1.5]
+\begin{center}
     \begin{tikzcd}
         \{*\} \ar[d,"\hat{a}"'] \ar[rd,"\hat{\phi(a)}\ =\ \phi \circ \hat{a}"]\\
         A\ar[r,"\phi"'] & B
@@ -54,12 +54,12 @@ It's because the only group homomorphism $\ZZ/2\ZZ\rightarrow \ZZ$ is the zero m
 
 Since the goal is to generate element-like properties over an abelian category (while not losing much information), one needs a subcategory of sets that has certain notion of ``exactness'':
 \begin{defn}
-    The \textbf{Category of Pointed Sets}, denoted as $\Sets^*$, consists of objects with pairs $(A,0_A)$, where $A$ is a set, and $0_A\in A$ a chosen element (also called ``zero object'').
+    The \textbf{Category of Pointed Sets}, denoted as $\Sets^*$, consists of objects with pairs $(A,0_A)$, where $A$ is a set, and $0_A\in A$ a chosen element (also called ``zero element'').
 
     The morphisms $f:(A,0_A)\rightarrow (B,0_B)$ is a set map $f:A\rightarrow B$ such that $f(0_A)=0_B$.
 \end{defn}
 
-Since identity preserves every element in the set (together with the zero object), hence all endomorphism contains identity. Also, composition holds in this category (by set function composition, and both maps preserve zero object implies the composition also preserves it).
+Since identity preserves every element in the set (together with the zero element), hence all endomorphism contains identity. Also, composition holds in this category (by set function composition, and both maps preserve zero element implies the composition also preserves it).
 
 \hfil
 
@@ -68,7 +68,7 @@ Here are some properties of $\Sets^*$:
 \begin{enumerate}
     \item \textbf{Existence of Zero Object:} 
     
-    Take the singleton $\{0\}$, it's clear that all object $(A,0_A)\in \Sets^*$ has a unique morphism to $\{0\}$ (the constant map, which satisfies the condition). Also, the condition of the category restricts the only map $f:\{0\}\rightarrow (A,0_A)$ to be $f(0)= 0_A$.
+    Take the singleton $\{0\}$, it's clear that all object $(A,0_A)\in \Sets^*$ has a unique morphism to $\{0\}$ (the constant map, which satisfies the condition). Also, the condition of the category restricts the only map $f:\{0\}\rightarrow (A,0_A)$ to be $f(0)= 0_A$. So, it's both initial and final
     
     \hfil
 
@@ -93,13 +93,13 @@ Here are some properties of $\Sets^*$:
     
     Given $(S,0_S)\xrightarrow{f} (T,0_T)$ that's injective, it's clear that $\{0\}\rightarrow (S,0_S)\xrightarrow{f} (T,0_T)$ is exact (since $f^{-1}(0_T) = {0_S}$ is the image of the unique morphism $\{0\}\rightarrow (S,0_S)$).
 
-    However, the converse is not true: Given $\{0\}\rightarrow (S,0_S)\xrightarrow{f} (T,0_T)$ is exact, $f$ need not be injective. For instance, take $S=T = \{0,1,2\}$ with zero object $0$, and take $f:(S,0_S)\rightarrow (T,0_T)$ by $f(0)=0$ and $f(1)=f(2)=1$. Then, $f$ is not injective, while $f^{-1}(0)=\{0\}$, showing the sequence is exact.
+    However, the converse is not true: Given $\{0\}\rightarrow (S,0_S)\xrightarrow{f} (T,0_T)$ is exact, $f$ need not be injective. For instance, take $S=T = \{0,1,2\}$ with zero element $0$, and take $f:(S,0_S)\rightarrow (T,0_T)$ by $f(0)=0$ and $f(1)=f(2)=1$. Then, $f$ is not injective, while $f^{-1}(0)=\{0\}$, showing the sequence is exact.
 
     \hfil
 
-    \item \textbf{Equivalence of Surjectivity, Epimorphism, and Exatness:}
+    \item \textbf{Equivalence of Surjectivity, Epimorphism, and Exactness:}
     
-    It's true that Epimorphism $\iff$ Surjective $\iff$ $(S,0_S)\xrightarrow{f}(T,0_T)\rightarrow \{0\}$ is exact.
+    It's true that $(1)$ Epimorphism $\iff$ $(2)$ Surjective $\iff$ $(3)$ $(S,0_S)\xrightarrow{f}(T,0_T)\rightarrow \{0\}$ is exact.
 
     \begin{itemize}
         \item[$(1)\implies (2)$:] Here's a contrapositive: If $f$ is not surjective, take $t\notin f(S)$ (which $t\neq 0_T$). Take $\id, g:(T,0_T)\rightarrow (T,0_T)$ where $\id$ is identity, $g$ is identity on everything except $g(t)=0_T$. Then, one has $g\neq \id$, yet $\id\circ f=g\circ f$, because for all $x\in S$, $f(x)\neq t$, so $\id \circ f(x)=f(x)=g\circ f(x)$. This violates the epimorphic property.
@@ -112,11 +112,315 @@ Here are some properties of $\Sets^*$:
 
 \hfil
 
-\section{Generalized Element Construction}
-The goal is to generate a functor $\cat{F}:\cal{A}\rightarrow \Sets^*$, that preserves the ``zero objects'' and ``exactness'', while mapping epimorphisms to surjective maps, and monomorphisms to injective maps.
+\section{Construction of Generalized Elements}
+Assume $\cal{A}$ is a small abelian category (so the collection of object forms a set). The goal is to generate a functor $\cat{F}:\cal{A}\rightarrow \Sets^*$, that preserves the ``zero elements'' and ``exactness'', while mapping epimorphisms to surjective maps, and monomorphisms to injective maps.
 
-\newpage
+\hfil
 
-\section{Appendix}
+First, let's define another category $\cal{A}_{\twoheadleftarrow}$ denote the category, with objects inherited from $\cal{A}$, but the homsets $\Hom_{\cal{A}_\twoheadleftarrow}(Z,W):= \{\phi:W\twoheadrightarrow Z\ |\ \phi \text{ is epimorphism}\}$. This is a well-defined subcategory of $\cal{A}^\text{op}$, since one has identity being an epimorphism, and composition of epimorphisms are again epimorphisms.
+
+\hfil
+
+\textbf{Remark:} $\cal{A}^\text{op}$ is an abelian category, yet $\cal{A}_\twoheadleftarrow$ is not (not even additive), since addition of epimorphisms is not guaranteed to be an epimorphisms (ex: $\id - \id = 0$ over nonzero object, is not epimorphic).
+
+\hfil
+
+Then, fixing an object $A\in \cal{A}$, define a functor $H_A:\cal{A}_\twoheadleftarrow\rightarrow \Sets^*$ by $H_A(Z) := \Hom_{\cal{A}}(Z,A)$ for all $Z\in\cal{A}$ (with $0\in Hom_{\cal{A}}(Z,A)$ be the zero element), and given any $\phi \in \Hom_{\cal{A}_\twoheadleftarrow}(Z,W)$ (which is an epimorphism $\phi:W\twoheadrightarrow Z$), define the morphism $H_A \phi:H_A(Z)\rightarrow H_A(W)$ by $H_A \phi(z) = z \circ \phi$ for all $z\in H_A(Z)$. Diagramatically, one gets:
+\begin{center}
+    \begin{tikzcd}
+        W \ar[rr,two heads, "\phi"] \ar[rd,"H_A \phi(z)\ =\ z\circ \phi"']&& Z \ar[dl,"\forall z"]\\
+        & A
+    \end{tikzcd}
+\end{center}
+This is a functor, hence one can try and construct its colimit: $\hat{A}:= \colim H_A$.
+
+\hfil
+
+\subsection{Structure of $\hat{A}=\colim H_A$}
+An explicit construction can be done as follow: 
+
+Take the quotient of the disjoint union set $\hat{A}:=\bigsqcup_{Z\in \cal{A}}H_A(Z) / \sim$, where given any two objects $Z_1,Z_2\in \cal{A}$, and morphisms $(z_1:Z_1\rightarrow A) \in H_A(Z_1)$, $(z_2:Z_2\rightarrow A)\in H_A(Z_2)$, we have $z_1\sim z_2$ iff there exists an object $W\in\cal{A}$, together with epimorphisms $w_1:W\twoheadrightarrow Z_1$, $w_2:W\twoheadrightarrow Z_2$ such that $z_1\circ w_1 = z_2\circ w_2$. 
+
+Diagramatically, one gets the following:
+\begin{center}
+    \begin{tikzcd}
+        & Z_1 \ar[dr,"z_1"]\\
+        W\ar[ru, two heads, "w_1"]\ar[rd, two heads, "w_2"'] && A\\
+        & Z_2 \ar[ru,"z_2"']
+    \end{tikzcd}
+\end{center}
+There are some clarifications need to be done about this set: First, is $\hat{A}$ a well-defined set? Second, does $\hat{A}$ have a natural zero element (or $\hat{A}\in \Sets^*$)? Third, is $\hat{A}$ the desired colimit? Here are the answers:
+\begin{lem}
+    $\sim$ is an Equivalence Relation on $\bigsqcup_{Z\in\cal{A}}H_A(Z)$, hence $\hat{A}$ is a well-defined set.
+\end{lem}
+\begin{proof}
+    First, given any morphism $z$, one can choose $W = Z$ and $w_1=w_2=\id_Z$ to achieve the following:
+    \begin{center}
+        \begin{tikzcd}
+            & Z \ar[dr,"z"]\\
+            Z\ar[ru, two heads, "\id_Z"]\ar[rd, two heads, "\id_Z"'] && A\\
+            & Z \ar[ru,"z"']
+        \end{tikzcd}
+    \end{center}
+    Hence, any morphism $z:Z\rightarrow A$ has $z\sim z$, showing reflexive property.
+
+    \hfil
+
+    Then, given two morphisms $z_1\sim z_2$, by the diagram one gets two epimorphisms $w_1:W\twoheadrightarrow Z_1$ and $w_2:W\twoheadrightarrow Z_2$ such that $z_1 \circ w_1=z_2\circ w_2$, which reversing the order of equality gives $z_2\sim z_1$, showing the symmetric property.
+
+    \hfil
+
+    Finally, transitivity is a bit nontrivial, which requires the fact that within fibre product, pullback of epimorphisms is an epimorphism when working in abelian categories.
+
+    Given morphisms $z_1:Z_1\rightarrow A$, $z_2:Z_2\rightarrow A$, $z_3:Z_3\rightarrow A$ such that $z_1\sim z_2$ and $z_2\sim z_3$, there exists objects $W,T\in \cal{A}$, together with epimorphisms $w_1:W\twoheadrightarrow Z_1$, $w_2:W\twoheadrightarrow Z_2$, $t_2:T\twoheadrightarrow Z_2$, $t_3:T\twoheadrightarrow Z_3$, such that the following diagram commutes:
+    \begin{center}
+        \begin{tikzcd}
+            W\ar[r, two heads, "w_1"]\ar[rd, two heads, "w_2"'] & Z_1\ar[dr,"z_1"] \\
+            & Z_2 \ar[r,"z_2"] & A\\
+            T \ar[ru, two heads, "t_2"]\ar[r, two heads, "t_3"'] & Z_3 \ar[ru, "z_3"'] \\
+        \end{tikzcd}
+    \end{center}
+    Then, take the fibre product $W\times_{Z_2}T$ (together with morphisms $t_2':W\times_{Z_2}T\rightarrow W$ and $w_2':W\times_{Z_2}T\rightarrow T$), these two are in fact epimorphisms (recall that pullback of epimorphisms are epimorphisms in Abelian Category). Hence, one gets:
+    \begin{center}
+        \begin{tikzcd}
+            &W\ar[r, two heads, "w_1"]\ar[rd, two heads, "w_2"'] & Z_1\ar[dr,"z_1"] \\
+            W\times_{Z_2}T \ar[ru,two heads, "t_2'"] \ar[rd, two heads, "w_2'"] && Z_2 \ar[r,"z_2"] & A\\
+            &T \ar[ru, two heads, "t_2"]\ar[r, two heads, "t_3"'] & Z_3 \ar[ru, "z_3"'] \\
+        \end{tikzcd}
+    \end{center}
+    Hence, one gets the following equality:
+    $$z_1 \circ (w_1\circ t_2') = z_2 \circ (t_2\circ w_2') = z_3\circ (t_3\circ w_2')$$
+    Where, the first equality is by fibre product property $w_2\circ t_2' = t_2\circ w_2'$, the second equality is by the equivalence relation $z_2\circ t_2=z_3\circ t_3$. 
+
+    Since $w_1,t_2',w_2',t_3$ are all epimorphisms, so are $w_1\circ t_2'$ and $t_3\circ w_2'$, which the equality implies $z_1\circ z_3$, showing transitivity.
+\end{proof}
+
+\hfil
+
+\begin{lem}
+    Any morphism $z\in H_Z(A) = Hom_{\cal{A}}(Z,A)$ satisfies $z\sim 0$ $\iff$ $z=0$, hence there is a well-defined zero-element $\overline{0}\in \hat{A}$ (the image of any zero morphism in $\hat{A}$), and $\hat{A}\in \Sets^*$.
+\end{lem}
+\begin{proof}
+    Given morphisms $z:Z\rightarrow A$ and a zero morphism $0:Z'\rightarrow A$, one has $z\sim 0$ iff there exists object $W$ with epimorphisms $w:W\twoheadrightarrow Z$ and $w':W\twoheadrightarrow Z'$, with the following diagram commutes:
+    \begin{center}
+    \begin{tikzcd}
+        & Z \ar[dr,"z"]\\
+        W\ar[ru, two heads, "w"]\ar[rd, two heads, "w'"'] && A\\
+        & Z \ar[ru,"0"']
+    \end{tikzcd}
+    \end{center}
+    Which, one has $z\circ w = 0\circ w' = 0$. But, since $w$ is an epimorphisms, so $z\circ w=0$ iff $z=0$. Hence, this proves the equivalence.
+\end{proof}
+
+In particular, if consider the ``canonical inclusion'' $\iota_Z: H_A(Z)\rightarrow \hat{A}$ (by composing the inclusion $H_A(Z)\hookrightarrow \bigsqcup_{Z\in\cal{A}}H_A(Z)$ and the quotient map $\bigsqcup_{Z\in\cal{A}}H_A(Z)\twoheadrightarrow \hat{A}$), one has $0\in H_A(Z)$ maps to $\overline{0}\in \hat{A}$, which $\iota_Z$ becomes a natural morphism from $H_A(Z)$ to $\hat{A}$, for all $Z\in\cal{A}$.
+
+\hfil
+
+\begin{lem}
+    $(\hat{A},\overline{0})$ with the canonical inclusions $\{\iota_Z:H_A(Z)\rightarrow\hat{A}\}_{Z\in\cal{A}_{\twoheadleftarrow}}$ forms a colimit of $H_A$ (i.e. an initial cocone of $H_A$).
+\end{lem}
+\begin{proof}
+    Suppose $(S,0_S)$ together with morphisms $\{s_Z:H_A(Z)\rightarrow S\}_{Z\in\cal{A}}$ forms a cocone of the functor $H_A$, given any two morphisms $z_1:Z_1\rightarrow A$ and $z_2:Z_2\rightarrow A$ such that $z_1\sim z_2$, there exists object $W\in\cal{A}$ together with epimorphisms $w_1:W\twoheadrightarrow Z_1$ and $w_2:W\twoheadrightarrow Z_2$, such that $z_1\circ w_1=z_2\circ w_2$. 
+
+    \hfil
+
+    Using the functor notation, given $w_1\in \Hom_{\cal{A}_\twoheadleftarrow}(Z_1,W)$ and $w_2\in \Hom_{\cal{A}_{\twoheadleftarrow}}(Z_2,W)$, the above indicates that $H_A w_1 (z_1)=H_A w_2 (z_2)$. Now, notice that the cocone condition provides the following commutative diagrams:
+    \begin{center}
+        \begin{tikzcd}
+            H_A(Z_1) \ar[dr,"s_{Z_1}"'] \ar[r,"H_A w_1"] & H_A(W) \ar[d,"s_{W}"] & H_A(Z_2) \ar[l,"H_A w_2"'] \ar[ld,"s_{Z_2}"]\\
+            & S
+        \end{tikzcd}
+    \end{center}
+    Hence, one has $s_{Z_1}(z_1) = s_W\circ H_A w_1(z_1)=s_W\circ H_A w_2(z_2)=s_{Z_2}(z_2)$, showing their image in $S$ are the same.
+
+    \hfil
+
+    Hence, if there is a morphism between cocones $\phi:\hat{A}\rightarrow S$ (which satisfies $s_{Z} = \phi\circ \iota_Z$ for all $Z\in\cal{A}$), it's clear that it must be unique (as $z_1\sim z_2$ implies their image in $S$ are the same, hence limit the equivalence class $\overline{z_1}\in \hat{A}$ to a unique image). 
+
+    Finally, $\phi$ as a set map is well-defined, which for it to be a morphism, it suffices to check if it's a morphism within $\Sets^*$; yet, this has no worries, as given any zero morphism $0\in H_A(Z)=\Hom_{\cal{A}}(Z,A)$, one has $s_Z(0) = 0_S\in S$, so $\phi(\overline(0)) = 0_S$ (since $\overline{0}$ represents the equivalence classes of zero morphisms in $\hat{A}$). Which, $\phi$ is a morphism of $\Sets^*$. This shows that $\hat{A}$ with the canonical inclusions indeed form a colimit of $H_A$.
+
+    \begin{center}
+        \begin{tikzcd}
+            H_A(Z) \ar[r,"\iota_Z"]\ar[rd,"s_Z"] & \hat{A} \ar[d, dashed, "\exists ! \phi"]\\
+            & S
+        \end{tikzcd}
+    \end{center}
+\end{proof}
+
+\hfil
+
+\subsection{Functor $\cat{F}:\cal{A}\rightarrow \Sets^*$}
+Given any morphism $\phi:A\rightarrow B$ within $\cal{A}$, notice that every $Z\in \cal{A}$ this induces a map $\phi \circ \_:H_A(Z)\rightarrow H_B(Z)$, which all morphisms $(z:Z\rightarrow A)\in H_A(Z)$ has $(\phi\circ z:Z\rightarrow B)\in H_B(Z)$. Hence, it induces a map $\tilde{\phi}:\bigsqcup_{Z\in\cal{A}}H_A(Z)\rightarrow \bigsqcup_{Z\in\cal{A}}H_B(Z)$.
+
+Also, given any $z_1:Z_1\rightarrow A$ and $z_2:Z_2\rightarrow A$ such that $z_1\sim z_2$, since there exists object $W\in\cal{A}$ with epimorphisms $w_1:W\twoheadrightarrow Z_1$ and $w_2:W\twoheadrightarrow Z_2$, such that $z_1\circ w_1=z_2\circ w_2$, then $\phi \circ z_1:Z_1\rightarrow B$ and $\phi\circ z_2:Z_2\rightarrow B$ satisfies $(\phi\circ z_1)\circ w_1=(\phi\circ z_2)\circ w_2$, hence $\phi\circ z_1\sim \phi\circ z_2$.
+
+Hence, $\tilde{\phi}$ preserves the defined equivalence relation, which naturally descends to a map on quotients $\hat{\phi}:\hat{A}\rightarrow \hat{B}$, by $\hat{\phi}(\overline{z}) = \overline{\phi\circ z}$ (equivalence class of $z$, maps to equivalence class of $\phi\circ z$). Also, notice that any $0\in H_A(Z)$ satisfies $\phi\circ 0 = 0\in H_B(Z)$, hence when descends to the quotient, one has $\hat{\phi}(\overline{0})=\overline{0}\in \hat{B}$, showing it's also a morphism in $\Sets^*$.
+
+\hfil
+
+With these machineries, the functor $\cat{F}:\cal{A}\rightarrow\Sets^*$ can be defined as $\cat{F}(A)=\hat{A}$, and $\cat{F} \phi = \hat{\phi}$ for all objects $A,B\in \cal{A}$, and morphism $\phi:A\rightarrow B$. (Which, with respect to composition and mapping identities to identities can be verified).
+
+\hfil
+
+\subsection{Properties of $\cat{F}$}
+
+Finally, we wants to expand on properties of $\cat{F}$: For instance, does it preserve ``zero maps'' and monomorphisms / epimorphisms? And, does it preserve exact sequences?
+
+\hfil
+
+\begin{lem}
+    Given any morphism $\phi:A\rightarrow B$ in $\cal{A}$, one has $\phi=0$ $\iff$ $\hat{\phi}=c_0$ (constant map of $0$), namely $\hat{\phi}:\hat{A}\rightarrow\hat{B}$ satisfies $\hat{\phi}(\overline{z})=\overline{0}$ for all $\overline{z}\in\hat{A}$.
+\end{lem}
+\begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[$\implies$:] Suppose $\phi=0$, it's clear that for all morphism $z:Z\rightarrow A$, one has $\phi\circ z=0:Z\rightarrow B$. Hence, the map $\hat{\phi}:\hat{A}\rightarrow \hat{B}$ has $\hat{\phi}(\overline{z})=\overline{\phi\circ z}=\overline{0}$. So, $\hat{\phi}=0$.
+        \item[$\impliedby$:] Suppose $\hat{\phi}(\overline{z})=\overline{0}$ for all $\overline{z}\in A$, then one has all $z:Z\rightarrow A$ satisfies $\phi\circ z\sim 0$, or $\phi\circ z=0$. Specifically, pick $Z=A$ and $z=\id_A$, this implies $\phi=\phi\circ \id_A = 0$. 
+    \end{itemize}
+\end{proof}
+
+Hence, $\cat{F}$ preserves ``zero maps''.
+
+\hfil
+
+\begin{lem}
+    Given any morphism $\phi:A\rightarrow B$ in$\cal{A}$, one has:
+    \begin{itemize}
+        \item $\phi$ is a monomorphism $\iff$ $\hat{\phi}$ is injective;
+        \item $\phi$ is an epimorphism $\iff$ $\hat{\phi}$ is surjective.
+    \end{itemize}
+\end{lem}
+\begin{proof}
+    \textbf{Case of Injectivity:}
+
+    \begin{itemize}
+        \item[$\implies$:] Suppose $\phi$ is a monomorphism, suppose $z_1:Z_1\rightarrow A$ and $z_2:Z_2\rightarrow A$ satisfies $\hat{\phi}(\overline{z_1})=\hat{\phi}(\overline{z_2})$, one has $\phi\circ z_1\sim \phi\circ z_2$.
+        
+        Hence, there exists object $W\in\cal{A}$ with epimorphisms $w_1:W\twoheadrightarrow Z_1$ and $w_2:W\twoheadrightarrow Z_2$, such that $(\phi\circ z_1)\circ w_1=(\phi\circ z_2)\circ w_2$. Which, since $\phi$ is monic, $z_1\circ w_1=z_2\circ w_2$, showing $z_1\sim z_2$, or $\overline{z_1}=\overline{z_2}$. This shows the injectivity of $\hat{\phi}$.
+        \item[$\impliedby$:] Suppose $\hat{\phi}$ is injective, let $z:Z\rightarrow A$ satisfies $\phi\circ z=0$, the goal is showing $z=0$: Since $\hat{\phi}(\overline{z}) = \overline{\phi\circ z}=\overline{0}$, by injectivity of $\hat{\phi}$, one has $\overline{z}=\overline{0}$, hence $z\sim 0$.
+        
+        Yet, one of the lemmas state $z\sim 0$ iff $z=0$. This shows $\phi$ is a monomorphism.
+    \end{itemize}
+
+    \hfil
+
+    \textbf{Case of Surjectivity:}
+    \begin{itemize}
+        \item[$\implies$:] Suppose $\phi$ is an epimorphism. To prove that $\hat{\phi}$ is surjective, it suffices to show all morphisms $z:Z\rightarrow B$ has some morphism $z':Z'\rightarrow A$, such that $\phi\circ z'\sim z$ (or $\hat{\phi}(\overline{z'}) = \overline{\phi\circ z'}=\overline{z}$, showing surjectivity).
+        
+        For this, our beloved fibre product will do the job: Given $\phi:A\twoheadrightarrow B$ (epimorphism) and $z':Z\rightarrow B$, take the fibre product $A\times_B Z$ and morphisms $\phi':A\times_B Z\twoheadrightarrow Z$ (also epimorphism, since it's pullback of $\phi$) and $z':A\times_B Z\rightarrow A$, that satisfies the following diagram:
+        \begin{center}
+            \begin{tikzcd}
+                & A\ar[rd,two heads,"\phi"]\\
+                A\times_B Z \ar[ru,"z'"]\ar[rd,two heads, "\phi'"'] && B\\
+                & Z \ar[ru,"z"']
+            \end{tikzcd}
+        \end{center}
+        Whic, one has $(\phi\circ z')\circ \id = z\circ \phi'$, with $\id$ (of $A\times_B Z$) and $\phi'$ being epimorphisms, hence showing $\phi\circ z'\sim z$, finishing the proof that $\hat{\phi}$ is surjective.
+
+        \item[$\impliedby$:] Suppose $\hat{\phi}$ is surjective, then in particular given identity $\id_B:B\rightarrow B$, there exists morphism $z:Z\rightarrow A$, such that $\hat{\phi}(\overline{z}) = \overline{\phi\circ z}=\overline{\id_B}$, or $\phi\circ z\sim \id_B$.
+        
+        Therefore, there exists object $W\in\cal{A}$, together with epimorphisms $w:W\twoheadrightarrow Z$ and $w':W\twoheadrightarrow B$, such that $(\phi\circ z)\circ w=\id_B\circ w'$, or the following commutes:
+        \begin{center}
+            \begin{tikzcd}
+                Z\ar[r,"z"] & A \ar[rd,"\phi"]\\
+                W\ar[u,two heads, "w"]\ar[rd, two heads, "w'"'] && B\\
+                & B\ar[ru,"\id_B"']
+            \end{tikzcd}
+        \end{center}
+        Which, $\phi \circ (z\circ w)=w'$ (with $w'$ being an epimorphism) implies $\phi$ is also an epimorphism, finishing the proof.
+    \end{itemize}
+\end{proof}
+
+So, $\cat{F}$ preserves monomorphisms and epimorphisms.
+
+\hfil
+
+\begin{lem}
+    Given any morphism $\phi:A\rightarrow B$ in $\cal{A}$, choose its kernel and image $\ker(\phi):K\hookrightarrow A$ and $\im(\phi):I\hookrightarrow B$, they generate corresponding morphisms $\hat{\phi}:\hat{A}\rightarrow\hat{B}$, $\hat{\ker(\phi)}:\hat{K}\hookrightarrow\hat{A}$, and $\hat{\im(\phi)}:\hat{I}\hookrightarrow\hat{B}$ (both $\hat{\ker(\phi)},\hat{\im(\phi)}$ are injective, by previous lemma). Which:
+    \begin{itemize}
+        \item $\hat{K} \cong \hat{\phi}^{-1}(\overline{0}) \subseteq \hat{A}$ via $\hat{\ker(\phi)}$;
+        \item $\hat{I}\cong \hat{\phi}(\hat{A})\subseteq \hat{B}$ via $\hat{\im(\phi)}$.
+    \end{itemize}
+\end{lem}
+\begin{proof}
+    \textbf{Kernel:}
+
+    \begin{itemize}
+        \item[$\subseteq$:] First, $\hat{\phi}^{-1}(\hat{A})$ is contained in $\hat{K}$, since given any morphism $z:Z\rightarrow A$ such that $\overline{z}\in \hat{\phi}^{-1}(\overline{0})$, one has $\hat{\phi}(\overline{z})=\overline{\phi\circ z}=\overline{0}$, so $\phi\circ z \sim 0$, or $\phi\circ z=0$.
+        
+        Then, by the universality of kernel, there exists a unique morphism $z':Z\rightarrow K$, such that $ker(\phi)\circ z' = z$. Or, the following digram commutes:
+        \begin{center}
+            \begin{tikzcd}
+                K \ar[r, hook, "\ker(\phi)"] & A \ar[r,"\phi"] & B\\
+                Z \ar[u, dashed, "\exists ! z'"] \ar[ru, "z"'] \ar[rru, bend right = 20, "0"']
+            \end{tikzcd}
+        \end{center}
+        Hence, one has $\hat{\ker(\phi)}(\overline{z'}) = \overline{\ker(\phi)\circ z'}=\overline{z}$, showing $\overline{z}$ is contained in image of $\hat{K}$ under $\hat{\ker(\phi)}$.
+
+        \item[$\supseteq$:] Given any $z:Z\rightarrow A$ such that $\overline{z}$ is contained in the image of $\hat{K}$ under $\hat{\ker(\phi)}$, one desires to show $\phi\circ z=0$:
+        
+        Since there exists $z':Z'\rightarrow K$, such that $\overline{z'}\in\hat{K}$ satisfies $\hat{\ker(\phi)}(\overline{z'})=\overline{z}$ (or $\ker(\phi)\circ z'\sim z$), one can find object $W\in\cal{A}$, together with epimorphisms $w:W\twoheadrightarrow Z$ and $w':W\twoheadrightarrow Z'$, such that the following commutes:
+        \begin{center}
+            \begin{tikzcd}
+                Z' \ar[r,"z'"] & K\ar[r,"\ker(\phi)"] & A\\
+                W \ar[u,two heads,"w'"] \ar[rr, two heads, "w"] && Z\ar[u,"z"']
+            \end{tikzcd}
+        \end{center}
+        In particular, the composition with $\phi$ satisfies the following:
+        $$\phi\circ (z\circ w) = \phi \circ (\ker(\phi)\circ z'\circ w') = 0\ \implies\ \phi\circ z=0$$
+        The first equality is due to the fact $\phi\circ\ker(\phi)=0$, and the second relation is because $w$ is an epimorphism.
+
+        This concludes that $\hat{\phi}(\overline{z})= \overline{\phi\circ z}=\overline{0}$, showing $\overline{z} \in \hat{\phi}^{-1}(\overline{0})$. Hence, image of $\hat{K}$ under $\hat{\ker(\phi)}$ is contained in $\hat{\phi}^{-1}(\overline{0})$.
+    \end{itemize}
+
+    With the injectivity of $\hat{\ker(\phi)}$, this concludes that $\hat{K}$ and $\hat{\phi}^{-1}(\overline{0})$ are isomorphic in $\Sets^*$.
+
+    \hfil
+
+    \textbf{Image:}
+    
+    First, recall that in an abelian category, one can perform a canonical decomposition, in particular choosing morphism $\im(\phi):I\hookrightarrow B$, there exists an epimorphism $\tilde{\phi}:A\twoheadrightarrow I$, such that $\phi = \im(\phi)\circ \tilde{\phi}$:
+    \begin{center}
+        \begin{tikzcd}
+            A \ar[r, two heads, "\tilde{\phi}"'] \ar[rr, bend left = 20, "\phi"] & I \ar[r,hook, "\im(\phi)"'] & B
+        \end{tikzcd}
+    \end{center}
+    \begin{itemize}
+        \item[$\subseteq$:] Given any morphism $z:Z\rightarrow I$ (which $\overline{\im(\phi)\circ z} = \hat{\im(\phi)}(\overline{z})$ is within the image of $\hat{I}$ under $\hat{\im(\phi)}$). Then, one can consider the fibre product $A\times_I Z$ as follow:
+        \begin{center}
+            \begin{tikzcd}
+                & A\ar[rr,"\phi"] \ar[rd,two heads,"\tilde{\phi}"] && B\\
+                A\times_I Z \ar[rd, two heads, "\tilde{\phi}'"']\ar[ru,"z'"] && I\ar[ru,hook, "\im(\phi)"'] \\
+                & Z \ar[ru, "z"']
+            \end{tikzcd}
+        \end{center}
+        Since the property of fibre product in abelian category guarantees the pullback $\tilde{\phi}':A\times_I Z\twoheadrightarrow Z$ of $\tilde{\phi}:A\twoheadrightarrow I$ is an epimorphism. Hence, one has $(\phi\circ z')\circ \id = (\im(\phi)\circ z)\circ \tilde{\phi}'$, with $\id$ (of $A\times_I Z$) and $\tilde{\phi}'$ being epimorphisms.
+
+        This shows $\phi\circ z'\sim \im(\phi)\circ z$, or $\hat{\phi}(\overline{z'}) = \hat{\im(\phi)}(\overline{z'})$. Hence, $\hat{I}$ has its image in $\hat{B}$ be contained in $\hat{\phi}(\hat{A})$.
+
+        \item[$\supseteq$:] Given any morphism $z:Z\rightarrow B$ such that $\overline{z}\in\hat{\phi}(\hat{A})$, WLOG there exists a morphism $z':Z\rightarrow A$, such that $\phi\circ z' = z$ (for more generality, one needs to use the equivalence relation to extend the morphism before concluding this).
+        
+        Recall that $\im(\phi)$ is defined as $\ker(\coker(\phi))$ (say $\coker(\phi):B\twoheadrightarrow C$ is a cokernel). Then, one has $\coker(\phi)\circ z = (\coker(\phi)\circ \phi)\circ z' = 0$. So, $z$ uniquely factors through $\im(\phi)$, as follow:
+        \begin{center}
+            \begin{tikzcd}
+                A\ar[r,"\phi"] & B\ar[r,two heads, "\coker(\phi)"] & C\\
+                Z \ar[u,"z'"] \ar[ur, "z"] \ar[r,dashed, "\exists ! \tilde{z}"'] & I \ar[u, hook, "\im(\phi)"']
+            \end{tikzcd}
+        \end{center}
+        Hence, $z = \im(\phi)\circ \tilde{z}$, showing $\overline{z} = \hat{\im(\phi)}(\overline{\tilde{z}})$, which it lies in the image of $\hat{I}$ (under $\hat{\im(\phi)}$). So, $\hat{\phi}(\hat{A})$ is contained in the image of $\hat{I}$.
+    \end{itemize}
+    Again, with the injectivity of $\hat{\im(\phi)}$, one concludes that $\hat{I}$ and $\hat{\phi}(\hat{A})$ are isomorphic in $\Sets^*$.
+\end{proof}
+
+\hfil
+
+With all the machineries above, it is concluded that $\cat{F}$ preserves exactness: 
+
+Given a chain $A\xrightarrow{f} B\xrightarrow{g} C$ in $\cal{A}$, and its corresponding chain $\hat{A}\xrightarrow{\hat{f}}\hat{B}\xrightarrow{\hat{g}}\hat{C}$ in $\Sets^*$, one has the first sequence being exact $\iff$ $\im(f)=\ker(g):K\hookrightarrow B$ as morphisms in $\cal{A}$.
+
+Which, the above lemma suggests that $\hat{\im(f)}$ generates an isomorphism between $\hat{f}(\hat{A})$ and $\hat{K}$, while $\hat{\ker(g)}$ generates an isomorphism between $\hat{g}^{-1}(\overline{0})$ and $\hat{K}$. Hence, $\hat{\im(f)}=\hat{\ker(g)}$ provides $\hat{f}(\hat{A})=\hat{g}^{-1}(\overline{0})$ (which the two exactness are equivalent).
 
 \end{document}
