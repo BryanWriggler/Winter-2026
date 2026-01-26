@@ -1,0 +1,122 @@
+\documentclass{article}
+\usepackage{../../Self_Style}
+
+\title{Elements in Small Abelian Categories}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+The goal is to define a good notion of ``elements'' and ``sets'' for objects in a general (small) abelian category. (Notations and proofs mainly collected from Aluffi, \textit{Algebra: Chapter 0})
+
+\section{Representing Element using Morphisms in $\Sets$}
+
+Consider any set $A,B$ together with a set map $\phi:A \rightarrow B$. Notice that every element $a \in A$ can be characterized as a set map $\hat{a}:\{*\}\rightarrow A$, by $\hat{a}(*):= a$. And, the corresponding $\phi(a) \in B$ has the corresponding set map $\hat{\phi(a)}:\{*\}\rightarrow B$ by $\hat{\phi(a)}(*) := \phi(a) = \phi \circ \hat{a}(*)$. So, one gets the following diagram:
+
+\begin{center}[scale=1.5]
+    \begin{tikzcd}
+        \{*\} \ar[d,"\hat{a}"'] \ar[rd,"\hat{\phi(a)}\ =\ \phi \circ \hat{a}"]\\
+        A\ar[r,"\phi"'] & B
+    \end{tikzcd}
+\end{center}
+
+So, the set map $\phi:A\rightarrow B$ can be realized as maps between homsets $\phi\circ \_:\Hom_\Sets(\{*\}, A)\rightarrow\Hom_\Sets(\{*\},B)$.
+
+However, such generalization directly to Abelian Categories is not as useful, since final objects and initial objects coincide. Another problem arises from the non-equivalence of epimorphism and surjectivity:
+\begin{exm}
+    Let $\cal{A}$ be the abelian category, tak $Z,A,B \in \cal{A}$, and morphism $\phi:A\rightarrow B$.
+
+    The corresponding map $\phi\circ\_:\Hom_{\cal{A}}(Z,A)\rightarrow\Hom_{\cal{A}}(Z,B)$ is an epimorphism $\iff$ surjective (since Homsets are now in $\Ab$). So, it's an epimorphism $\iff$ every morphism $z':Z\rightarrow B$ has a morphism $z:Z\rightarrow A$, such that $z' = \phi \circ z$. Or, the following commutes:
+    \begin{center}
+    \begin{tikzcd}
+        Z \ar[d,"z"'] \ar[rd,"z'"]\\
+        A\ar[r,"\phi"'] & B
+    \end{tikzcd}
+    \end{center}
+
+    However, even if $\phi$ is an epimorphism in $\cal{A}$, it's not guaranteed that $\phi \circ \_$ is surjective:
+
+    For instance, take $\cal{A}=\Ab$, take $Z=\ZZ$, and $A,B=\ZZ/2\ZZ$. Take $\phi:\ZZ\rightarrow\ZZ/2\ZZ$ be the corresponding projection, and $z' = \id:\ZZ/2\ZZ\rightarrow \ZZ/2\ZZ$ as identity. Then, the above diagram fails:
+    \begin{center}
+    \begin{tikzcd}
+        \ZZ/2\ZZ \ar[d,dashed, "\not\exists z"'] \ar[rd,"z\ =\ \id'"]\\
+        \ZZ\ar[r,"\phi"'] & \ZZ/2\ZZ
+    \end{tikzcd}
+    \end{center}
+\end{exm}
+
+It's because the only group homomorphism $\ZZ/2\ZZ\rightarrow \ZZ$ is the zero morphism (part of the reason is that the functor $\Hom_{\Ab}(\ZZ/2\ZZ,\_)$ is not exact). So, an alternative needs to be made.
+
+\hfil
+
+\section{Category of Pointed Sets}
+
+Since the goal is to generate element-like properties over an abelian category (while not losing much information), one needs a subcategory of sets that has certain notion of ``exactness'':
+\begin{defn}
+    The \textbf{Category of Pointed Sets}, denoted as $\Sets^*$, consists of objects with pairs $(A,0_A)$, where $A$ is a set, and $0_A\in A$ a chosen element (also called ``zero object'').
+
+    The morphisms $f:(A,0_A)\rightarrow (B,0_B)$ is a set map $f:A\rightarrow B$ such that $f(0_A)=0_B$.
+\end{defn}
+
+Since identity preserves every element in the set (together with the zero object), hence all endomorphism contains identity. Also, composition holds in this category (by set function composition, and both maps preserve zero object implies the composition also preserves it).
+
+\hfil
+
+Here are some properties of $\Sets^*$:
+
+\begin{enumerate}
+    \item \textbf{Existence of Zero Object:} 
+    
+    Take the singleton $\{0\}$, it's clear that all object $(A,0_A)\in \Sets^*$ has a unique morphism to $\{0\}$ (the constant map, which satisfies the condition). Also, the condition of the category restricts the only map $f:\{0\}\rightarrow (A,0_A)$ to be $f(0)= 0_A$.
+    
+    \hfil
+
+    \item \textbf{Exact Sequence:} 
+    
+    The chain $(S,0_S)\xrightarrow{f} (T,0_T)\xrightarrow{g} (U,0_U)$ is exact at $(T,0_T)$, if $f(S) = g^{-1}(U)$ (which is similar to the condition $\im(f)=\ker(g)$ in Abelian Categories).
+    
+    \hfil
+
+    \item \textbf{Injective $\iff$ Monomorphic:}
+    
+    \begin{itemize}
+        \item[$\implies$:] Given $f:(S,0_S)\rightarrow (T,0_T)$ injective, with arbitrary $g_1,g_2:(U,0_U)\rightarrow (S,0_S)$ satisfying $f \circ g_1=f\circ g_2$. Since they're all set maps, it's clear that $g_1=g_2$.
+        \item[$\impliedby$:] Here's the contrapositive: Suppose $f:(S,0_S)\rightarrow (T,0_T)$ is not injective, there exists distinct $s_1,s_2\in S$, with $f(s_1)=f(s_2)$. Then, consider $\id, g:(S,0_S)\rightarrow (S,0_S)$, where $\id$ is the identity, and $g$ is identity on everything except $s_1$, such that $g(s_1)=s_2$. 
+        
+        Then, $\id\neq g$, yet $f\circ \id=f\circ g$, since for $x\neq s_1$, one has $f\circ \id(x)=f(x)=f\circ g(x)$, while $f\circ \id(s_1)=f(s_1)=f(s_2)=f\circ g(s_1)$. This violates the monomorphic property.
+    \end{itemize}
+
+    \hfil
+
+    \item \textbf{Non-Equivalence of Injectivity with Exactness:}
+    
+    Given $(S,0_S)\xrightarrow{f} (T,0_T)$ that's injective, it's clear that $\{0\}\rightarrow (S,0_S)\xrightarrow{f} (T,0_T)$ is exact (since $f^{-1}(0_T) = {0_S}$ is the image of the unique morphism $\{0\}\rightarrow (S,0_S)$).
+
+    However, the converse is not true: Given $\{0\}\rightarrow (S,0_S)\xrightarrow{f} (T,0_T)$ is exact, $f$ need not be injective. For instance, take $S=T = \{0,1,2\}$ with zero object $0$, and take $f:(S,0_S)\rightarrow (T,0_T)$ by $f(0)=0$ and $f(1)=f(2)=1$. Then, $f$ is not injective, while $f^{-1}(0)=\{0\}$, showing the sequence is exact.
+
+    \hfil
+
+    \item \textbf{Equivalence of Surjectivity, Epimorphism, and Exatness:}
+    
+    It's true that Epimorphism $\iff$ Surjective $\iff$ $(S,0_S)\xrightarrow{f}(T,0_T)\rightarrow \{0\}$ is exact.
+
+    \begin{itemize}
+        \item[$(1)\implies (2)$:] Here's a contrapositive: If $f$ is not surjective, take $t\notin f(S)$ (which $t\neq 0_T$). Take $\id, g:(T,0_T)\rightarrow (T,0_T)$ where $\id$ is identity, $g$ is identity on everything except $g(t)=0_T$. Then, one has $g\neq \id$, yet $\id\circ f=g\circ f$, because for all $x\in S$, $f(x)\neq t$, so $\id \circ f(x)=f(x)=g\circ f(x)$. This violates the epimorphic property.
+        
+        \item[$(2)\iff (3)$:] We have $f$ is surjective $\iff$ $f(S)=T$ (with $T$ being the preimage of the map $(T,0_T)\rightarrow \{0\}$) $\iff$ the given sequence is exact.
+        
+        \item[$(3)\implies (1)$:] If the sequence is exact, the above shows $f$ is surjective. Which, any $g_1,g_2:(T,0_T)\rightarrow (U,0_U)$ satisfying $g_1 \circ f=g_2\circ f$ implies $g_1=g_2$ (since $f$ is epimorphic as set maps). So, $f$ is an empimorphism.
+    \end{itemize}
+\end{enumerate}
+
+\hfil
+
+\section{Generalized Element Construction}
+The goal is to generate a functor $\cat{F}:\cal{A}\rightarrow \Sets^*$, that preserves the ``zero objects'' and ``exactness'', while mapping epimorphisms to surjective maps, and monomorphisms to injective maps.
+
+\newpage
+
+\section{Appendix}
+
+\end{document}
