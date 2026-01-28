@@ -196,20 +196,39 @@ Two particles (masses $m_1$ and $m_2$) are attached to the ends of a massless ri
 Angular Ehrenfest
 
 \begin{itemize}
-\item[(a)] Prove the rotational analog to Ehrenfest’s theorem: for a particle in a general poten-
-tial $V(r)$, the rate of change of the expectation value of the orbital angular momentum
-$L$ is equal to the expectation value of the torque $N = \mathbf{r} \times (-\nabla V)$,
+\item[(a)] Prove the rotational analog to Ehrenfest’s theorem: for a particle in a general potential $V(r)$, the rate of change of the expectation value of the orbital angular momentum
+$L$ is equal to the expectation value of the torque $\bN = \mathbf{r} \times (-\nabla V)$,
 \[
-\frac{d}{dt}\langle L \rangle = \langle N \rangle
+\frac{d}{dt}\langle \bL \rangle = \langle \bN \rangle
 \]
 
-\item[(b)] Show that $d\langle L \rangle/dt = 0$ for any spherically symmetric potential. This is
-the quantum analog of the classical conservation of angular momentum
+\item[(b)] Show that $d\langle \bL \rangle/dt = 0$ for any spherically symmetric potential. This is the quantum analog of the classical conservation of angular momentum
 \end{itemize}
 \end{ques}
 
 \begin{proof}
-    
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] First, using the classical definition, one gets the following:
+        \begin{align}
+            \bN &= \br \times (-\nabla V) \\
+            &= -\left(y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right)\hat{x}-\left(z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right)\hat{y}-\left(x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right)\hat{z}
+        \end{align}
+        Now, assume one can directly promote each individual component to quantum-mechanical operators. Then, in the position basis, the expectation value of torque is givenn as follow:
+        \begin{align}
+            \left<\bN\right> &= -\left<y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right>\hat{x}-\left<z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right>\hat{y}-\left<x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right>\hat{z}
+        \end{align}
+        Now, using the definition $L_x = yp_z-zp_y$, the expectation value is given below (using the position basis, or the wave function):
+        \begin{align}
+            \left<L_x\right> = \int_{\RR^3}\psi^*(yp_z-zp_y)\psi dV
+        \end{align}
+        Which, incorporating the time derivative, assume the conditions are all satisfied (together with the position and momentum operators being time independent). Using the Schr\"odinger equation $\frac{\partial\psi}{\partial t} = \frac{(p_x^2+p_y^2+p_z^2)}{i\hbar 2m}\psi + \frac{V}{i\hbar}\psi$, together with the commutation relation $[u,p_v] = i\hbar\delta_{uv}, [p_u,p_v]=0, [u,v]=0$ for all $u,v \in \{x,y,z\}$ (which further implies$[u,p_u^2]=2i\hbar p_u$, and $[u,p_u^3] = 3i\hbar p_u^2$), one gets the following:
+        \begin{align}
+            \frac{d\left<L_x\right>}{dt} &= \frac{d}{dt}\int_{\RR^3}\psi^*(yp_z-zp_y)\psi dV = \int_{\RR^3}\left(\frac{\partial \psi}{\partial t}\right)^*(yp_z-zp_y)\psi + \psi^*(yp_z-zp_y)\frac{\partial\psi}{\partial t}dV
+        \end{align}
+    \end{itemize}
 \end{proof}
 
 \end{document}
