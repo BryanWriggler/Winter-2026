@@ -183,7 +183,7 @@ Note what happens at the top and bottom of the ladder (i.e. when you apply $L_+$
 
 \newpage
 
-\section*{4 ND}
+\section*{4 D}
 \begin{ques}\label{q4}
 Rigid Rotor (Griffiths 4.27 a, b, c only, 4.24 in the second edition)
 
@@ -201,14 +201,58 @@ Two particles (masses $m_1$ and $m_2$) are attached to the ends of a massless ri
     
     \emph{Answer:} $\nu_j = \frac{\hbar j}{2\pi I}$, $j=1,2,3,...$.
 
-    \item[(d)] Figure 4.13 shows a portion of the rotational spectrum of carbon monoxide (CO). What is the frequency separation ($\Delta \nu$) between adacent lines? Look up the masses of $^12 C$ and $^16 O$, and from $_1,m_2$, and $\Delta \nu$ determine the distance between the atoms.
+    \item[(d)] Figure 4.13 shows a portion of the rotational spectrum of carbon monoxide (CO). What is the frequency separation ($\Delta \nu$) between adjacent lines? Look up the masses of $^{12} C$ and $^{16} O$, and from $m_1,m_2$, and $\Delta \nu$ determine the distance between the atoms.
     
     \includegraphics[width=100mm]{figure 4.13.png}
 \end{itemize}
 \end{ques}
 
 \begin{proof}
-    
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] First, recall that the classical energy of the system (which is assumed to have no potential) is given by $E = T = \frac{L^2}{2I}$, where $L$ indicates the (classical) total angular momentum's magnitude, while $I$ represents the moment of inertia of the system. So, the hamiltonian $H = \frac{L^2}{2I}$. 
+        
+        Then, with the rod of length $a$, the center of mass would located at $\frac{m_2 a}{m_1+m_2}$ away from particle $m_1$, while located at $\frac{m_1 a}{m_1+m_2}$ away from particle $m_2$. Then, the total moment of inertia is given as follow:
+        \begin{align}
+            I &= I_1+I_2 = m_1\left(\frac{m_2 a}{m_1+m_2}\right)^2+m_2\left(\frac{m_1 a}{m_1+m_2}\right)^2\\
+            &= \frac{m_1+m_2}{(m_1+m_2)^2}m_1m_2a^2 = \frac{m_1m_2}{m_1+m_2}a^2
+        \end{align}
+        
+        Now, given any eigenstate of this Hamiltonian (which is a scaling of the total angular momentum operator $L^2$), it's in the form of $f^m_\ell$ with $\ell\in\NN$, and $m\in \{-\ell, -\ell+1,..., \ell-1, \ell\}$, where $L^2 f^m_\ell = \hbar^2 \ell(\ell+1)$. Hence, the corresponding eigenvalue is as follow:
+        \begin{align}
+            E_\ell = \braket{f^m_\ell}{\frac{L^2}{2I}f^m_\ell} = \frac{\hbar^2\ell(\ell+1)}{2I},\quad \ell\in\{0,1,2,...\}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Based on the claim in part (a), since the hamiltonian is the scalar multiple of the total angular momentum $L^2$, the corresponding eigenfunctions will be the eigenfunctions of $L^2$, which are precisely the spherical harmonics $Y^m_\ell$.
+        
+        For each energy level $E_n = \frac{\hbar^2}{2I}n(n+1)$, since the corresponding eigenfunctions have $\ell=n$ (we need $\ell(\ell+1)=n(n+1)$, so with $\ell,n\geq 0$, one needs $\ell=n$), then for the other quantum number $m$, it's allowed to be $m\in\{-n,-n+1,...,n-1,\ell\}$, showing there are total of $2n+1$ allowed $m$, or $2n+1$ linearly independent eigenfunctions. Hence, the degeneracy (i.e. the dimension of the eigenspace) is $2n+1$.
+
+        \hfil
+
+        \item[(c)] Recall that for a system where angular momentum is conserved, the magnitude of angular momentum $L = I w$, where $I$ is the system's moment of inertia, $w$ is the angular velocity (or angular frequency).
+        
+        Then, since the frequency $\nu = \frac{w}{2\pi}$, then for any allowed angular momentum $\hbar \ell$ where $\ell \in \NN$, the corresponding angular frequency is $w_\ell = \frac{\hbar \ell}{2\pi}$, so the frequency is $\nu_\ell = \frac{w_\ell}{2\pi} = \frac{\hbar \ell}{2\pi I}$.
+
+        \hfil
+
+        \item[(d)] By the graph, seems like the gap between each peak / trough is pretty even, and in between 30 to 50 cm$^{-1}$ (also between 50 to 70 cm$^{-1}$), there are total of $5$ gaps, hence one has $\Delta\nu = \frac{50-30}{5} = 4$ cm$^{-1}$ (in the graph).
+        
+        So, for the actual unit, the difference in frequency is $c\Delta\nu = 4\cdot 3\cdot 10^{10} = 1.2 \cdot 10^{11}$ Hz.
+
+        Now, given $m_1$ as mass of $^{12}C$, $m_2$ as mass of $^{16}O$, one gets the values as $m_1 \approx 1.993 \cdot 10^{-20}$ kg, and $m_2 \approx 2.656\cdot 10^{-20}$ kg. One can assume $\Delta\nu = \frac{\hbar}{2\pi I}$ based on part (c), then with $\hbar = 1.055\cdot 10^{-34}$ J$\cdot$s, one gets the following:
+        \begin{align}
+            \Delta\nu = \frac{\hbar}{2\pi I}\ \implies\ I = \frac{\hbar}{2\pi\Delta\nu}\approx 1.399\cdot 10^{-46}\ \text{kg}\cdot\text{m}^2
+        \end{align}
+        Also, one gets the following:
+        \begin{align}
+            I = \frac{m_1m_2}{m_1+m_2}a^2 \approx (1.139\cdot 10^{-20})a^2,\quad a^2 \approx \frac{1.399\cdot 10^{-46}}{1.139\cdot 10^{-20}}\approx 1.229\cdot 10^{-26}\ \text{m}^2
+        \end{align}
+        So, one gets the distance between the atoms $a\approx 1.109\cdot 10^{-13}$m. 
+    \end{itemize}
 \end{proof}
 
 \newpage
