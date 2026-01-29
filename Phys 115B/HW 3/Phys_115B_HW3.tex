@@ -137,7 +137,7 @@ Commutators
 
 \newpage
 
-\section*{3 ND}
+\section*{3 D}
 \begin{ques}\label{q3}
 Normalizing $L_+$ and $L_-$ (Griffiths 4.21, 4.18 in second edition)
 
@@ -148,7 +148,7 @@ where $A_\ell^m$ and $B_\ell^m$ are constants.
 \emph{Questions:} What \emph{are} they, if the eigenfunctions are to be normalized?
 
 \emph{Hint:} First show that $L_\mp$ is the hermitian conjugate of $L_\pm$ (since $L_x$ and $L_y$ are observables, you may assume they are hermition...but prove it if you like); then use the following equation:
-$$$$
+$$L^2 = L_\pm L_\mp + L_z^2 \mp \hbar L_z$$
 \emph{Answer:}
 $$A_\ell^m = \hbar\sqrt{\ell(\ell+1)-m(m+1)} = \hbar\sqrt{(\ell-m)(\ell+m+1)}$$
 $$B_\ell^m = \hbar\sqrt{\ell(\ell+1)-m(m-1)}=\hbar\sqrt{(\ell+m)(\ell-m+1)}$$
@@ -156,7 +156,29 @@ Note what happens at the top and bottom of the ladder (i.e. when you apply $L_+$
 \end{ques}
 
 \begin{proof}
-    
+    First, recall the definition $L_\pm:= L_x \pm iL_y$. Hence, its adjoint (Hermitian Conjugate) can be given as follow:
+    \begin{align}
+        L_\pm^* = L_x^* \pm (iL_y)^* = L_x \pm (-iL_y) = L_x \mp i_y = L_\mp
+    \end{align}
+    Now, recall that $L^2 f^m_\ell = \hbar^2\ell(\ell+1)f^m_\ell$ and $L_z f^m_\ell = \hbar mf^m_\ell$. So, one gets the following:
+    \begin{align}
+        \hbar^2\ell(\ell+1)f^m_\ell &= L^2f^m_\ell= (L_+L_-+L_z^2 - \hbar L_z)f^m_\ell= L_+L_-f^m_\ell + \hbar^2 m(m-1)f^m_\ell
+    \end{align}
+    \begin{align}
+        \hbar^2\ell(\ell+1)f^m_\ell &= L^2f^m_\ell= (L_-L_++L_z^2 + \hbar L_z)f^m_\ell= L_-L_+f^m_\ell + \hbar^2 m(m+1)f^m_\ell
+    \end{align}
+    Which implies the following two equality:
+    \begin{align}
+        \hbar^2(\ell(\ell+1)-m(m-1))f^m_\ell = L_+L_-f^m_\ell,\quad \hbar^2(\ell(\ell+1)-m(m+1))f^m_\ell = L_-L_+f^m_\ell
+    \end{align}
+    As a result, one derives the following:
+    \begin{align}
+        |A^m_\ell|^2 &= \braket{A^{m+1}_\ell f^m_\ell}{A^{m+1}_\ell f^m_\ell} = \braket{L_+f^m_\ell}{L_+f^m_\ell}=\braket{f^m_\ell}{L_-L_+f^m_\ell} = \hbar^2(\ell(\ell+1)-m(m+1))
+    \end{align}
+    \begin{align}
+        |B^m_\ell|^2 &= \braket{B^m_\ell f^{m-1}_\ell}{B^m_\ell f^{m-1}_\ell} = \braket{L_-f^m_\ell}{L_-f^m_\ell}=\braket{f^m_\ell}{L_+L_-f^m_\ell} = \hbar^2(\ell(\ell+1)-m(m-1))
+    \end{align}
+    Hence, take the value to be nonnegative real, one gets $A^m_\ell = \hbar\sqrt{\ell(\ell+1)-m(m-1)}$, and $B^m_\ell = \hbar\sqrt{\ell(\ell+1)-m(m+1)}$.
 \end{proof}
 
 \newpage
@@ -191,7 +213,7 @@ Two particles (masses $m_1$ and $m_2$) are attached to the ends of a massless ri
 
 \newpage
 
-\section*{5 ND}
+\section*{5 D}
 \begin{ques}\label{q5}
 Angular Ehrenfest
 
@@ -226,8 +248,42 @@ $L$ is equal to the expectation value of the torque $\bN = \mathbf{r} \times (-\
         \end{align}
         Which, incorporating the time derivative, assume the conditions are all satisfied (together with the position and momentum operators being time independent). Using the Schr\"odinger equation $\frac{\partial\psi}{\partial t} = \frac{(p_x^2+p_y^2+p_z^2)}{i\hbar 2m}\psi + \frac{V}{i\hbar}\psi$, together with the commutation relation $[u,p_v] = i\hbar\delta_{uv}, [p_u,p_v]=0, [u,v]=0$ for all $u,v \in \{x,y,z\}$ (which further implies$[u,p_u^2]=2i\hbar p_u$, and $[u,p_u^3] = 3i\hbar p_u^2$), one gets the following:
         \begin{align}
-            \frac{d\left<L_x\right>}{dt} &= \frac{d}{dt}\int_{\RR^3}\psi^*(yp_z-zp_y)\psi dV = \int_{\RR^3}\left(\frac{\partial \psi}{\partial t}\right)^*(yp_z-zp_y)\psi + \psi^*(yp_z-zp_y)\frac{\partial\psi}{\partial t}dV
+            \frac{d\left<L_x\right>}{dt} &= \frac{d}{dt}\int_{\RR^3}\psi^*(yp_z-zp_y)\psi dV = \int_{\RR^3}\left(\left(\frac{\partial \psi}{\partial t}\right)^*(yp_z-zp_y)\psi + \psi^*(yp_z-zp_y)\frac{\partial\psi}{\partial t}\right)dV\\
+            &= \int_{\RR^3}\left(\frac{1}{i\hbar}\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\psi\right)^*(yp_z-zp_y)\psi dV + \int_{\RR^3}\psi^*(yp_z-zp_y)\frac{1}{i\hbar}\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\psi dV\\
+            &= \frac{1}{i\hbar}\int_{\RR^3}\psi^*\left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right]\psi dV\\
+            &= \frac{1}{i\hbar}\left<\left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right]\right>
         \end{align}
+        Which, computing the commutator, one provides the following:
+        \begin{align}
+            \left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right] &= \left[yp_z, \frac{p_y^2}{2m}+V\right]-\left[zp_y, \frac{p_z^2}{2m}+V\right]\\
+            &= \left(\frac{2i\hbar p_yp_z}{2m}-i\hbar y\frac{\partial V}{\partial z}\right)-\left(\frac{2i\hbar p_yp_z}{2m}-i\hbar z\frac{\partial V}{\partial y}\right)\\
+            &= -i\hbar\left(y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right)
+        \end{align}
+        Hence, one gets the following:
+        \begin{align}
+            \frac{d\left<L_x\right>}{dt} = \frac{1}{i\hbar}\left<\left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right]\right> = -\left<y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right>
+        \end{align}
+        Do the same calculation, one also gets the following:
+        \begin{align}
+            \frac{d\left<L_y\right>}{dt} = -\left<z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right>,\quad \frac{d\left<L_z\right>}{dt} = -\left<x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right>
+        \end{align}Hence, one gets the following for the time derivative of expectation value of angular momentum:
+        \begin{align}
+            \frac{d\left<\bL\right>}{dt} &= \frac{d\left<L_x\right>}{dt}\hat{x}+\frac{d\left<L_y\right>}{dt}\hat{y}+\frac{d\left<L_z\right>}{dt}\hat{z}\\
+            &= -\left<y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right>\hat{x}-\left<z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right>\hat{y}-\left<x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right>\hat{z}\\
+            &= \left<\bN\right>
+        \end{align}
+
+        \hfil
+
+        \item[(b)] If $V$ is spherically symmetric (i.e. $V=V(r)$ for $r=\sqrt{x^2+y^2+z^2}$), one deduces the following for $r\neq 0$:
+        \begin{align}
+            u\in\{x,y,z\},\quad \frac{\partial V}{\partial u} = \frac{\partial V}{\partial r}\frac{\partial r}{\partial u} = \frac{u}{r}\frac{\partial V}{\partial r}
+        \end{align}
+        So, $\nabla V = \sum_{u\in\{x,y,z\}}\frac{u}{r}\frac{\partial V}{\partial r}\hat{u} = \frac{1}{r}\frac{\partial V}{\partial r}\sum_{u\in\{x,y,z\}}u\hat{u} =\frac{1}{r}\frac{\partial V}{\partial r}\br$. Hence, one deduces the following:
+        \begin{align}
+            \bN &= \br\times (-\nabla V) = -\frac{1}{r}\frac{\partial V}{\partial r}(\br \times \br)=\bzero
+        \end{align}
+        So, one also has $\frac{d\left<\bL\right>}{dt}=\left<\bN\right> = \bzero$.
     \end{itemize}
 \end{proof}
 
