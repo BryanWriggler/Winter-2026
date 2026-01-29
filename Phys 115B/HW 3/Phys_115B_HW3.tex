@@ -8,7 +8,7 @@
 \begin{document}
 \maketitle
 
-\section*{1 ND}
+\section*{1 D}
 \begin{ques}\label{q1}
 Hydrogen-like (variation on 4.19, or 4.16 in second edition [or 4.17 in the first edition])
 
@@ -54,11 +54,44 @@ Energy levels and eigenfunctions of a “hydrogenic” system can be obtained fr
 
         \hfil
 
-        \item[(c)]
+        \item[(c)] Given that $^3$He$^+$ has nucleus charge $2e$ ($Z=2$), then its bohr radius as $a' = \frac{1}{2}a_0 \approx 2.649\cdot 10^{-11}$ m.
+        
+        \hfil
+
+        \item[(d)] Given that the ground state given by $n=1$ (where $0\leq \ell\leq n-1$, enforcing $\ell=0$, and futher enforcing $m=0$), then the wavefunction is of the following form:
+        \begin{align}
+            \psi_{0,0,0} &= R_{1,0}(r)Y^0_0(\theta,\phi) = \frac{1}{\sqrt{2}}\left(\frac{2}{a'}\right)^\frac{3}{2}e^{-r/a'}Y^0_0
+        \end{align}
+        where $a'$ is the bohr radius of the given system. So, before the decay (as a tritium, which has the same Bohr radius as the original hydrogen atom), one has th wavefunction $\psi$ given above with $a'=a_0$.
+
+        After the beta decay (where the system switches to $^3$He$^+$), the given Bohr radius is now $a'=\frac{1}{2}a_0$. So, the new ground state is given as follow:
+        \begin{align}
+            \psi_{0,0,0} = \frac{1}{\sqrt{2}}\left(\frac{4}{a_0}\right)^\frac{3}{2}e^{\frac{-2r}{a_0}}Y^0_0
+        \end{align}
+        Assuming the orthonormality of $Y^m_\ell$ is satisfied. Then, the inner product provides the following:
+        \begin{align}
+            \braket{\psi_{0,0,0}}{\psi} &= \int_{0}^{\infty}\left(\frac{1}{\sqrt{2}}\left(\frac{4}{a_0}\right)^\frac{3}{2}e^{-2r/a_0}\right)\left(\frac{1}{\sqrt{2}}\left(\frac{2}{a_0}\right)^\frac{3}{2}e^{-r/a_0}\right)r^2 dr\\
+            &= \frac{8\sqrt{2}}{a_0^3}\int_{0}^{\infty}r^2e^{-3r/a_0}dr\\
+            &= -\frac{8\sqrt{2}}{a_0^3}\left(\frac{a_0}{3}r^2e^{-3r/a_0}+\frac{2a_0^2}{9}re^{-3r/a_0}+\frac{2a_0^3}{27}e^{-3r/a_0}\right)\bigg|_{0}^{\infty}\\
+            &= \frac{8\sqrt{2}}{a_0^3}\cdot\frac{2a_0^3}{27}= \frac{16\sqrt{2}}{27}
+        \end{align}
+        So, the probability of being in the new ground state is $|\braket{\psi_{0,0,0}}{\psi}|^2 = \frac{512}{729}\approx 70.233\%$.
+        
+        \hfil
+
+        \item[(e)] Given that the emitted electron leaves at $6$ keV (approximately $9.612\cdot 10^{-16}$ J). If using the traditional Newtonian mechanics, setting this energy to $\frac{1}{2}m_e v_e^2$, with $m_e\approx 9.109\cdot 10^{-31}$ kg, one gets that $v_e \approx 4.594\cdot 10^7$ m/s.
+        
+        Hence, the corresponding electron momentum is about $m_ev_e \approx 4.195\cdot 10^{-23}$ kg$\cdot$m/s.
+
+        With conservation of momentum, the proton would admit an equal (and opposite) momentum, which with $^3$He$^+$ having a mass of $m\approx 5.008\cdot 10^{-27}$ kg, leading to a velocity of $v=\frac{m_e v_e}{m}\approx 8355.894$ m/s for the atom.
+
+        Finally, this implies its kinetic energy is $\frac{1}{2}mv^2 \approx 1.748\cdot 10^{-19}$ J, which is a bit higher that $1 eV$.
+
+        Even though the energy is considered low in this case, but the speed is in fact not low at all from a classical sense. Which, the assumption that the wave function is not affected may be a bit absurd in this case.
     \end{itemize}
 \end{proof}
 
-\newpage
+\hfil
 
 \section*{2 D}
 \begin{ques}\label{q2}
