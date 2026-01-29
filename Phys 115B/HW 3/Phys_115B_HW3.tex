@@ -27,7 +27,35 @@ Energy levels and eigenfunctions of a “hydrogenic” system can be obtained fr
 \end{ques}
 
 \begin{proof}
+
+    \hfil
     
+    \begin{itemize}
+        \item[(a)] Since now the potential that the electron feels (with respect to the atom) is $V(r) = -\frac{e\cdot Z e}{4\pi\epsilon_0 r}$, if one wants to reduce the potential to the form $-\frac{\hbar^2}{\mu a' r}$, where $\mu$ indicates the reduced mass of the system (approximately the electron mass), and $a'$ represents the new bohr radius, then one gets $a'$ as follow:
+        \begin{align}
+            -\frac{\hbar^2}{\mu a' r} = -\frac{Z e^2}{4\pi\epsilon_0 r}\ \implies\ a' = \frac{4\pi\epsilon_0\hbar^2}{Z\mu e^2} = \frac{1}{Z}a_0
+        \end{align}
+        Here, $a_0$ represents the original Bohr radius of the hydrogen.
+
+        Then, since the Hamiltonian didn't change except it swaps $a_0$ by $a'$, so the solutions can be used commonly if sawpping $a_0$ with $a' = \frac{1}{Z}a_0$. Hence, the alloed energies are of the form:
+        \begin{align}
+            n\in\NN\setminus\{0\},\quad E_n' = -\frac{\hbar^2}{2\mu (a')^2n^2} = Z^2\cdot \frac{\hbar^2}{2\mu a_0^2 n^2} = Z^2\cdot E_n
+        \end{align}
+        Here, $E_n$ represents the original allowed energies of hydrogen atom (for circular orbits).
+
+        So, the new Bohr radius becomes $\frac{1}{Z}a_0$, and the allowed energies are $E_n' = Z^2\cdot E_n$ (where $E_n$ are allowed energies for the original hydrogen atom).
+
+        \hfil
+
+        \item[(b)] Given that Tritium has the nucleus charge of $e\approx 1.602\cdot 10^{-19}$ C (where $Z=1$), one has its Bohr radius being $a_0$ also (where $a_0$ is the hydrogen atom's Bohr radius). Then, with $\mu \approx m_e\approx 9.109\cdot 10^{-31}$ kg (the electron mass), $\epsilon_0\approx 8.854\cdot 10^{-12}$ F$\cdot$m$^{-1}$, $\hbar \approx 1.055\cdot 10^{-34}$ J$\cdot$s, one as $a_0$ as follow:
+        \begin{align}
+            a_0=\frac{4\pi\epsilon_0\hbar^2}{\mu e^2}\approx 5.297\cdot 10^{-11}\ \text{m}
+        \end{align}
+
+        \hfil
+
+        \item[(c)]
+    \end{itemize}
 \end{proof}
 
 \newpage
