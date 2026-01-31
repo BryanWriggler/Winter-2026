@@ -118,7 +118,7 @@
 
 \ 
 
-= ND//5
+= D//5
 #problem[
   Prove that every PID is a UFD.
 ][
@@ -156,8 +156,13 @@
 
   \ 
 
-  Now, we claim that every element has unique such factorization (up to associates): given any nonzero $a in R$, let $a = p_1 ... p_m = q_1 ... q_n$ be two facorizations of $a$ as products of irreducibles. Recall that in a PID, all irreducible elements are prime, 
+  Now, we claim that every element has unique such factorization (up to associates): given any nonzero $a in R$, let $a = p_1 ... p_m = q_1 ... q_n$ be two facorizations of $a$ as products of irreducibles. Recall that in a PID, all irreducible elements are prime, hence with the equality showing $p_1 | q_1...q_n$, the prime property of $p_1$ implies $p_1 | q_i$ for some index $1<=i<=n$. Up to rearrangement, WLOG one can assume it's $q_1$, hence $p_1 tilde q_1$; by multiplying suitable units to other irreducible factors, one can assume $p_1 = q_1$, so using the left cancellation property of integral domain, one gets $p_2...p_m = q_2...q_n$.
 
+  Finally, one can apply the above process to the new equality to derive $p_2 tilde q_2$ (by the prime property of $p_2$), and inductively show that each $p_i tilde q_i$ for all index $1<=i<=m$. This enforces $m=n$ (since one needs $m<=n$ for all $p_i$ to have an associate in the $q_j$'s; also, $m>=n$, since after cancelling all $p_i$'s with their associate $q_i$'s, the left side of $p_1...p_m = q_1...q_n$ is leff with unit, so the right side can't have any irreducibles left). Hence, one has $p_1...p_m = q_1...q_m$, with each $p_i tilde q_i$ up to rearrangement. Ths shows the factorization is unique up to associates.
+
+  \ 
+
+  Hence, PID has all nonzero elements admit a factorization, and is unique, showing a PID is a UFD.
 ]
 
 \ 
@@ -167,13 +172,89 @@
   Let $R$ be a UFD in which every nonzero prime ideal is maximal. Prove or disprove that $R$ is a PID.
 ][]
 
-\ 
+#pagebreak()
 
-= ND//7
+= D//7
 #problem[
   Prove or disprove that $ZZ[x]\/(x^2+5)$ is a PID.
 ][
+  We'll prove that the given ring is not a PID, by showing that it's not a UFD (since all PID's are UFD's, which is proven in #text(weight: "bold")[Problem 5]).
 
+  \ 
+
+  Here we'll implicitly use the observation that $ZZ[x]\/(x^2+5) tilde.equiv ZZ[sqrt(-5)]$. 
+  
+  Notice first that $overline(x^2) = -5$, and $overline(x^3) = overline(x^2)dot overline(x)=-5x$ in this ring, which are integer multiples of $1$ or $overline(x)$; also, notice that for any monomials $overline(x^k)$ with $k>=3$, it can be written as $overline(x^2)dot overline(x^(k-2)) = -5 overline(x^(k-2))$ (which is the quotient of a smaller degree). Hence, inductively all monomials with degree $k>=2$ has a quotient that can be an integer multiples of $1$ or $overline(x)$, showing that all polynomials $f(x) in ZZ[x]$ has its quotient $overline(f(x)) in ZZ[x]\/(x^2+5)$ being an integer combination of $1$ and $overline(x)$. 
+  
+  Moreover, such integer combination of $1$ and $overline(x)$ must be unique: Suppose $overline(f(x)) = a+b overline(x)=a' + b' overline(x)$, then one has $(a-a')+(b-b')overline(x)=0$, showing that $(a-a')+(b-b')x in (x^2+5)$. So, either $(a-a')+(b-b')x = 0$, or there exists nonzero $g(x) in ZZ[x]$, satisfying $g(x)(x^2+5) = (a-a')+(b-b')x$. Yet, the second possibility leads to a contradiction, due to the fact that $ZZ[x]$ is an integral domain, so $deg(g(x)(x^2+5)) >= deg(x^2+5) = 2 > 1 = deg((a-a')+(b-b')x)$, showing the degrees don't match. Hence, one must have $(a-a')+(b-b')x = 0$, or $a=a'$ and $b=b'$. This shows the unique integer combination part.
+
+  \ 
+  
+  Now, define a function $N:ZZ[x]\/(x^2+5)->ZZ_(>=0)$ by $N(a+b overline(x)) = a^2 + 5 b^2$. This function is well-defined, since all $f(x) in ZZ[x]$ has unique $a,b in ZZ$, such that $overline(f(x)) = a+b overline(x)$ in $ZZ[x]\/(x^2+5)$.
+
+  \
+
+  Then, notice that this function $N$ has the following properties: 
+  1. Given any $a,b,c,d in ZZ$, the multiplication $(a+b overline(x))(c+d overline(x)) = a c+(b c+a d)overline(x) + b d overline(x^2) = (a c-5b d)+(b c+a d)overline(x)$. Hence, the function $N$ satisfies the following equality:
+    $ N((a+b overline(x))(c+d overline(x)))&= (a c-5b d)^2+5(b c+a d)^2\
+  &= a^2c^2-10a b c d + 5^2b^2d^2+5b^2c^2+10a b c d +5a^2d^2\
+  &= a^2c^2+5^2b^2d^2+5b^2c^2+5a^2d^2\
+  &=a^2(c^2+5d^2)+5b^2(c^2+5d^2)\
+  &= (a^2+5b^2)(c^2+5d^2)\ 
+  &= N(a+b overline(x)) dot N(c+d overline(x)) $
+    This shows the multiplicative property of $N$.
+
+    \ 
+
+  2. Based on 1 above, the only units are $pm 1$: It's clear why these two elemens are units, to argue they're the only units, suppose $a+b overline(x) in ZZ[x]\/(x^2+5)$ is also a unit, there exists $c+d overline(x) in ZZ[x]\/(x^2+5)$, such that $(a+b overline(x))(c+d overline(x))=1$. Plugin to the function $N$, one yields:
+    $ 1=1^0+5 dot 0^2 = N(1+0overline(x))=N(1) = N((a+b overline(x))(c+d overline(x)))=N(a+b overline(x))N(c+d overline(x)) $
+    This shows that both $N(a+b overline(x))=a^2+5 b^2$, and $N(c+d overline(x))=c^2+5 d^2$ must divide $1$, which the values can only be $pm 1$; furthermore, these two values are nonnegative, since arbitrary integer $x,y$ has $x^2,y^2>=0$, so $x^2+5 y^2>=0$ also, forcing both values to be $1$. Finally, this implies that $b = 0$, since if $b!=0$, $b^2>=1$, showing that $a^2+5 b^2>=5 b^2>=5 >1$, which the value $N(a+b overline(x))!=1$, showing a contradiction.
+
+    As a result, $a+b overline(x)=a$, which it satisfies $N(a+b overline(x))=a^2+5 b^2=a^2=1$, so $a = pm 1$, showing $pm 1$ are the only units in this ring.
+
+    Also, this shows that $N(a+b overline(x))=a^2+5 b^2=1$ implies $a+b overline(x)=pm 1$, since if $b!=0$ the above equality shows $a^2+5b^2>1$, so $b=0$; as a result, one has $a^2=1$, or $a=pm 1$. Hence, $a+b overline(x)= pm 1$. So, one also concludes that $N(a+b overline(x))=1$ iff $a+b overline(x)=pm 1$ iff $a+b overline(x)$ is a unit.
+
+    \ 
+
+  3. Also based on 1 above, $ZZ[x]\/(x^2+5)$ is an integral domain: Since $N(0)= 0^2+5 dot 0^2=0$, suppose $a+b overline(x), c+d overline(x) in ZZ[x]\/(x^2+5)$ satisfies $(a+b overline(x))(c+d overline(x))=0$, then one has:
+    $ 0=N(0)=N((a+b overline(x))(c+d overline(x)))=N(a+b overline(x)) dot N(c+d overline(x))=(a+5b^2)(c+5d^2) $
+    Because $ZZ$ is an integral domain, the above equality forces $a^2+5 b^2=0$ or $c^2+5 d^2=0$. However, given any $x,y in ZZ$, if $x^2+5 y^2=0$, it enforces both $x,y=0$ (Suppose $y!=0$, then $y^2>=1$, so $x^2+5 y^2>= 5y^2>=5>0$; likewise, if $x!=0$, then $x^2+5 y^2>= x^2>0$). So, if $a^2+5 b^2=0$, then $a,b=0$, forcing $a+b overline(x)=0$; similarly, if $c^2+5 d^2=0$, one has $c+d overline(x)=0$ instead.
+
+    So, $ZZ[x]\/(x^2+5)$ is an integral domain.
+
+    \ 
+
+  Then, using these facts we claim that $2,3,1+overline(x), 1-overline(x) in ZZ[x]\/(x^2+5)$ are irreducible, and non-associates to each other:
+
+  4. Given that $N(2)=4$, $N(3)=9$, and $N(1+overline(x))=N(1-overline(x))=1+5=6$. Notice that if $a+b overline(x), c+d overline(x) in ZZ[x]\/(x^2+5)$ are associates, there exists unit (namely $1$ or $-1$) such that $c+d overline(x)=pm (a+b overline(x))$ (the sign dependent on the situation), which implies that $N(c+d overline(x))=N((pm 1) dot (a+b overline(x))) = N(pm 1) dot N(a+b overline(x))=N(a+b overline(x))$.
+
+    So, associates must have the same values under $N$, showing $2$, and $3$, and $(1+overline(x)), (1-overline(x))$ must all belong to distinct associates class (because $N(2)=4$, $N(3)=9$, $N(1+overline(x))=N(1-overline(x))=6$ are all distinct); furthermore, $1+overline(x), 1-overline(x)$ are not associates, simply because multiplying by $1$ or $-1$ on one of them doesn't recover the other element.
+
+    \ 
+
+  5. To prove they're irreducibles, we'll show there doesn't exist element $a+b overline(x)$, such that $N(a+b overline(x))=2$ or $3$ (the only nonnegative integers possibly dividing $N(2)=4$, $N(3)=9$, or $N(1+overline(x))=N(1-overline(x))=6$). 
+  
+    Suppose there exists $a+b overline(x)$ satisfying $N(a+b overline(x))=a^2+5 b^2 = 2$ or $3$. First notice that $b=0$ (since if $b!=0$, $b^2>=1$, one has $a^2+5 b^2>= 5b^2>=5>2,3$, which forms a contradiction). So, it results in $a^2= 2$ or $3$. Yet, both of these are prime numbers, which cannot be square of some integers, which we reach a contradiction. Therefore, there doesn't exists element with $N(a+b overline(x))=2$ or $3$.
+
+    \ 
+
+    Now, notice that this verifies $2,3,1+overline(x),1-overline(x)$ are all irreducibles: 
+    
+    Suppose the contrary that (for instance) $2$ is reducible, then $2 = (a+b overline(x))(c+d overline(x))$ for $a+b overline(x), c+d overline(x)$ being non-units. Which, the condition proven before shows that $N(a+b overline(x)), N(c+d overline(x))!=1$. With $4 = N(2)=N(a+b overline(x))N(c+d overline(x))$, these two values are nonnegative, non-$1$ divisors of $4$, which must be $2$. Yet, this contradicts the result proven above, where there's no element with $N(a+b overline(x))=2$. So, $2$ must be irreducible.
+
+    Likewise, the same proof applies for $3$, since $N(3)=9$, and there doesn't exists element with $N(a+b overline(x))=3$.
+
+    Finally, for $1+overline(x), 1-overline(x)$, if one of them are irreducible, say $1+overline(x)=(a+b overline(x))(c+d overline(x))$ for two non-units. The above equality states that $6 = N(1+overline(x))=N(a+b overline(x))N(c+d overline(x))$, so $N(a+b overline(x)), N(c+d overline(x))$ are non-$1$ divisors of $6$, showing one must be $2$ and the other one must be $3$. But this is again a contradiction based on the same reasoning above.
+
+    \ 
+
+  Thus, we can conclude that $2,3,1-overline(x), 1+overline(x)$ are irreducibles, and are non-associates of each other.
+
+  \ 
+
+  Finally, this shows that $ZZ[x]\/(x^2+5)$ is not a PID, because it's not a UFD: Consider $6 =2 dot 3$, and $6 = 1+5 = 1-overline(x^2) = (1-overline(x))(1+overline(x))$. With $2,3,1+overline(x), 1-overline(x)$ be non-associate irreducibles, $6$ has two distinct factorizations, showing the given ring is not a UFD.
+
+  
 ]
 
 \ 
@@ -197,7 +278,7 @@
   &= 1-0=1 $
   So, one has the following:
   $ (b+a)(b^(-1)sum_(i=0)^(n-1)(-b^(-1)a)^i) = b(1+b^(-1)a)b^(-1)(sum_(i=1)^(n-1)(-b^(-1)a)^i)=1 $
-  This shows that $(b+1) in U(R)$.
+  This shows that $(a+b) in U(R)$.
 ]
 
 \ 
