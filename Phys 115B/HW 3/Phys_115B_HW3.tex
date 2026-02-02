@@ -8,7 +8,7 @@
 \begin{document}
 \maketitle
 
-\section*{1 ND}
+\section*{1 D}
 \begin{ques}\label{q1}
 Hydrogen-like (variation on 4.19, or 4.16 in second edition [or 4.17 in the first edition])
 
@@ -27,10 +27,71 @@ Energy levels and eigenfunctions of a “hydrogenic” system can be obtained fr
 \end{ques}
 
 \begin{proof}
+
+    \hfil
     
+    \begin{itemize}
+        \item[(a)] Since now the potential that the electron feels (with respect to the atom) is $V(r) = -\frac{e\cdot Z e}{4\pi\epsilon_0 r}$, if one wants to reduce the potential to the form $-\frac{\hbar^2}{\mu a' r}$, where $\mu$ indicates the reduced mass of the system (approximately the electron mass), and $a'$ represents the new bohr radius, then one gets $a'$ as follow:
+        \begin{align}
+            -\frac{\hbar^2}{\mu a' r} = -\frac{Z e^2}{4\pi\epsilon_0 r}\ \implies\ a' = \frac{4\pi\epsilon_0\hbar^2}{Z\mu e^2} = \frac{1}{Z}a_0
+        \end{align}
+        Here, $a_0$ represents the original Bohr radius of the hydrogen.
+
+        Then, since the Hamiltonian didn't change except it swaps $a_0$ by $a'$, so the solutions can be used commonly if sawpping $a_0$ with $a' = \frac{1}{Z}a_0$. Hence, the alloed energies are of the form:
+        \begin{align}
+            n\in\NN\setminus\{0\},\quad E_n' = -\frac{\hbar^2}{2\mu (a')^2n^2} = Z^2\cdot \frac{\hbar^2}{2\mu a_0^2 n^2} = Z^2\cdot E_n
+        \end{align}
+        Here, $E_n$ represents the original allowed energies of hydrogen atom (for circular orbits).
+
+        So, the new Bohr radius becomes $\frac{1}{Z}a_0$, and the allowed energies are $E_n' = Z^2\cdot E_n$ (where $E_n$ are allowed energies for the original hydrogen atom).
+
+        \hfil
+
+        \item[(b)] Given that Tritium has the nucleus charge of $e\approx 1.602\cdot 10^{-19}$ C (where $Z=1$), one has its Bohr radius being $a_0$ also (where $a_0$ is the hydrogen atom's Bohr radius). Then, with $\mu \approx m_e\approx 9.109\cdot 10^{-31}$ kg (the electron mass), $\epsilon_0\approx 8.854\cdot 10^{-12}$ F$\cdot$m$^{-1}$, $\hbar \approx 1.055\cdot 10^{-34}$ J$\cdot$s, one as $a_0$ as follow:
+        \begin{align}
+            a_0=\frac{4\pi\epsilon_0\hbar^2}{\mu e^2}\approx 5.297\cdot 10^{-11}\ \text{m}
+        \end{align}
+
+        \hfil
+
+        \item[(c)] Given that $^3$He$^+$ has nucleus charge $2e$ ($Z=2$), then its bohr radius as $a' = \frac{1}{2}a_0 \approx 2.649\cdot 10^{-11}$ m.
+        
+        \hfil
+
+        \item[(d)] Given that the ground state given by $n=1$ (where $0\leq \ell\leq n-1$, enforcing $\ell=0$, and futher enforcing $m=0$), then the wavefunction is of the following form:
+        \begin{align}
+            \psi_{0,0,0} &= R_{1,0}(r)Y^0_0(\theta,\phi) = \frac{1}{\sqrt{2}}\left(\frac{2}{a'}\right)^\frac{3}{2}e^{-r/a'}Y^0_0
+        \end{align}
+        where $a'$ is the bohr radius of the given system. So, before the decay (as a tritium, which has the same Bohr radius as the original hydrogen atom), one has th wavefunction $\psi$ given above with $a'=a_0$.
+
+        After the beta decay (where the system switches to $^3$He$^+$), the given Bohr radius is now $a'=\frac{1}{2}a_0$. So, the new ground state is given as follow:
+        \begin{align}
+            \psi_{0,0,0} = \frac{1}{\sqrt{2}}\left(\frac{4}{a_0}\right)^\frac{3}{2}e^{\frac{-2r}{a_0}}Y^0_0
+        \end{align}
+        Assuming the orthonormality of $Y^m_\ell$ is satisfied. Then, the inner product provides the following:
+        \begin{align}
+            \braket{\psi_{0,0,0}}{\psi} &= \int_{0}^{\infty}\left(\frac{1}{\sqrt{2}}\left(\frac{4}{a_0}\right)^\frac{3}{2}e^{-2r/a_0}\right)\left(\frac{1}{\sqrt{2}}\left(\frac{2}{a_0}\right)^\frac{3}{2}e^{-r/a_0}\right)r^2 dr\\
+            &= \frac{8\sqrt{2}}{a_0^3}\int_{0}^{\infty}r^2e^{-3r/a_0}dr\\
+            &= -\frac{8\sqrt{2}}{a_0^3}\left(\frac{a_0}{3}r^2e^{-3r/a_0}+\frac{2a_0^2}{9}re^{-3r/a_0}+\frac{2a_0^3}{27}e^{-3r/a_0}\right)\bigg|_{0}^{\infty}\\
+            &= \frac{8\sqrt{2}}{a_0^3}\cdot\frac{2a_0^3}{27}= \frac{16\sqrt{2}}{27}
+        \end{align}
+        So, the probability of being in the new ground state is $|\braket{\psi_{0,0,0}}{\psi}|^2 = \frac{512}{729}\approx 70.233\%$.
+        
+        \hfil
+
+        \item[(e)] Given that the emitted electron leaves at $6$ keV (approximately $9.612\cdot 10^{-16}$ J). If using the traditional Newtonian mechanics, setting this energy to $\frac{1}{2}m_e v_e^2$, with $m_e\approx 9.109\cdot 10^{-31}$ kg, one gets that $v_e \approx 4.594\cdot 10^7$ m/s.
+        
+        Hence, the corresponding electron momentum is about $m_ev_e \approx 4.195\cdot 10^{-23}$ kg$\cdot$m/s.
+
+        With conservation of momentum, the proton would admit an equal (and opposite) momentum, which with $^3$He$^+$ having a mass of $m\approx 5.008\cdot 10^{-27}$ kg, leading to a velocity of $v=\frac{m_e v_e}{m}\approx 8355.894$ m/s for the atom.
+
+        Finally, this implies its kinetic energy is $\frac{1}{2}mv^2 \approx 1.748\cdot 10^{-19}$ J, which is a bit higher that $1 eV$.
+
+        Even though the energy is considered low in this case, but the speed is in fact not low at all from a classical sense. Which, the assumption that the wave function is not affected may be a bit absurd in this case.
+    \end{itemize}
 \end{proof}
 
-\newpage
+\hfil
 
 \section*{2 D}
 \begin{ques}\label{q2}
@@ -137,7 +198,7 @@ Commutators
 
 \newpage
 
-\section*{3 ND}
+\section*{3 D}
 \begin{ques}\label{q3}
 Normalizing $L_+$ and $L_-$ (Griffiths 4.21, 4.18 in second edition)
 
@@ -148,7 +209,7 @@ where $A_\ell^m$ and $B_\ell^m$ are constants.
 \emph{Questions:} What \emph{are} they, if the eigenfunctions are to be normalized?
 
 \emph{Hint:} First show that $L_\mp$ is the hermitian conjugate of $L_\pm$ (since $L_x$ and $L_y$ are observables, you may assume they are hermition...but prove it if you like); then use the following equation:
-$$$$
+$$L^2 = L_\pm L_\mp + L_z^2 \mp \hbar L_z$$
 \emph{Answer:}
 $$A_\ell^m = \hbar\sqrt{\ell(\ell+1)-m(m+1)} = \hbar\sqrt{(\ell-m)(\ell+m+1)}$$
 $$B_\ell^m = \hbar\sqrt{\ell(\ell+1)-m(m-1)}=\hbar\sqrt{(\ell+m)(\ell-m+1)}$$
@@ -156,12 +217,34 @@ Note what happens at the top and bottom of the ladder (i.e. when you apply $L_+$
 \end{ques}
 
 \begin{proof}
-    
+    First, recall the definition $L_\pm:= L_x \pm iL_y$. Hence, its adjoint (Hermitian Conjugate) can be given as follow:
+    \begin{align}
+        L_\pm^* = L_x^* \pm (iL_y)^* = L_x \pm (-iL_y) = L_x \mp i_y = L_\mp
+    \end{align}
+    Now, recall that $L^2 f^m_\ell = \hbar^2\ell(\ell+1)f^m_\ell$ and $L_z f^m_\ell = \hbar mf^m_\ell$. So, one gets the following:
+    \begin{align}
+        \hbar^2\ell(\ell+1)f^m_\ell &= L^2f^m_\ell= (L_+L_-+L_z^2 - \hbar L_z)f^m_\ell= L_+L_-f^m_\ell + \hbar^2 m(m-1)f^m_\ell
+    \end{align}
+    \begin{align}
+        \hbar^2\ell(\ell+1)f^m_\ell &= L^2f^m_\ell= (L_-L_++L_z^2 + \hbar L_z)f^m_\ell= L_-L_+f^m_\ell + \hbar^2 m(m+1)f^m_\ell
+    \end{align}
+    Which implies the following two equality:
+    \begin{align}
+        \hbar^2(\ell(\ell+1)-m(m-1))f^m_\ell = L_+L_-f^m_\ell,\quad \hbar^2(\ell(\ell+1)-m(m+1))f^m_\ell = L_-L_+f^m_\ell
+    \end{align}
+    As a result, one derives the following:
+    \begin{align}
+        |A^m_\ell|^2 &= \braket{A^{m+1}_\ell f^m_\ell}{A^{m+1}_\ell f^m_\ell} = \braket{L_+f^m_\ell}{L_+f^m_\ell}=\braket{f^m_\ell}{L_-L_+f^m_\ell} = \hbar^2(\ell(\ell+1)-m(m+1))
+    \end{align}
+    \begin{align}
+        |B^m_\ell|^2 &= \braket{B^m_\ell f^{m-1}_\ell}{B^m_\ell f^{m-1}_\ell} = \braket{L_-f^m_\ell}{L_-f^m_\ell}=\braket{f^m_\ell}{L_+L_-f^m_\ell} = \hbar^2(\ell(\ell+1)-m(m-1))
+    \end{align}
+    Hence, take the value to be nonnegative real, one gets $A^m_\ell = \hbar\sqrt{\ell(\ell+1)-m(m-1)}$, and $B^m_\ell = \hbar\sqrt{\ell(\ell+1)-m(m+1)}$.
 \end{proof}
 
 \newpage
 
-\section*{4 ND}
+\section*{4 D}
 \begin{ques}\label{q4}
 Rigid Rotor (Griffiths 4.27 a, b, c only, 4.24 in the second edition)
 
@@ -179,37 +262,134 @@ Two particles (masses $m_1$ and $m_2$) are attached to the ends of a massless ri
     
     \emph{Answer:} $\nu_j = \frac{\hbar j}{2\pi I}$, $j=1,2,3,...$.
 
-    \item[(d)] Figure 4.13 shows a portion of the rotational spectrum of carbon monoxide (CO). What is the frequency separation ($\Delta \nu$) between adacent lines? Look up the masses of $^12 C$ and $^16 O$, and from $_1,m_2$, and $\Delta \nu$ determine the distance between the atoms.
+    \item[(d)] Figure 4.13 shows a portion of the rotational spectrum of carbon monoxide (CO). What is the frequency separation ($\Delta \nu$) between adjacent lines? Look up the masses of $^{12} C$ and $^{16} O$, and from $m_1,m_2$, and $\Delta \nu$ determine the distance between the atoms.
     
     \includegraphics[width=100mm]{figure 4.13.png}
 \end{itemize}
 \end{ques}
 
 \begin{proof}
-    
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] First, recall that the classical energy of the system (which is assumed to have no potential) is given by $E = T = \frac{L^2}{2I}$, where $L$ indicates the (classical) total angular momentum's magnitude, while $I$ represents the moment of inertia of the system. So, the hamiltonian $H = \frac{L^2}{2I}$. 
+        
+        Then, with the rod of length $a$, the center of mass would located at $\frac{m_2 a}{m_1+m_2}$ away from particle $m_1$, while located at $\frac{m_1 a}{m_1+m_2}$ away from particle $m_2$. Then, the total moment of inertia is given as follow:
+        \begin{align}
+            I &= I_1+I_2 = m_1\left(\frac{m_2 a}{m_1+m_2}\right)^2+m_2\left(\frac{m_1 a}{m_1+m_2}\right)^2\\
+            &= \frac{m_1+m_2}{(m_1+m_2)^2}m_1m_2a^2 = \frac{m_1m_2}{m_1+m_2}a^2
+        \end{align}
+        
+        Now, given any eigenstate of this Hamiltonian (which is a scaling of the total angular momentum operator $L^2$), it's in the form of $f^m_\ell$ with $\ell\in\NN$, and $m\in \{-\ell, -\ell+1,..., \ell-1, \ell\}$, where $L^2 f^m_\ell = \hbar^2 \ell(\ell+1)$. Hence, the corresponding eigenvalue is as follow:
+        \begin{align}
+            E_\ell = \braket{f^m_\ell}{\frac{L^2}{2I}f^m_\ell} = \frac{\hbar^2\ell(\ell+1)}{2I},\quad \ell\in\{0,1,2,...\}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Based on the claim in part (a), since the hamiltonian is the scalar multiple of the total angular momentum $L^2$, the corresponding eigenfunctions will be the eigenfunctions of $L^2$, which are precisely the spherical harmonics $Y^m_\ell$.
+        
+        For each energy level $E_n = \frac{\hbar^2}{2I}n(n+1)$, since the corresponding eigenfunctions have $\ell=n$ (we need $\ell(\ell+1)=n(n+1)$, so with $\ell,n\geq 0$, one needs $\ell=n$), then for the other quantum number $m$, it's allowed to be $m\in\{-n,-n+1,...,n-1,\ell\}$, showing there are total of $2n+1$ allowed $m$, or $2n+1$ linearly independent eigenfunctions. Hence, the degeneracy (i.e. the dimension of the eigenspace) is $2n+1$.
+
+        \hfil
+
+        \item[(c)] Recall that for a system where angular momentum is conserved, the magnitude of angular momentum $L = I w$, where $I$ is the system's moment of inertia, $w$ is the angular velocity (or angular frequency).
+        
+        Then, since the frequency $\nu = \frac{w}{2\pi}$, then for any allowed angular momentum $\hbar \ell$ where $\ell \in \NN$, the corresponding angular frequency is $w_\ell = \frac{\hbar \ell}{2\pi}$, so the frequency is $\nu_\ell = \frac{w_\ell}{2\pi} = \frac{\hbar \ell}{2\pi I}$.
+
+        \hfil
+
+        \item[(d)] By the graph, seems like the gap between each peak / trough is pretty even, and in between 30 to 50 cm$^{-1}$ (also between 50 to 70 cm$^{-1}$), there are total of $5$ gaps, hence one has $\Delta\nu = \frac{50-30}{5} = 4$ cm$^{-1}$ (in the graph).
+        
+        So, for the actual unit, the difference in frequency is $c\Delta\nu = 4\cdot 3\cdot 10^{10} = 1.2 \cdot 10^{11}$ Hz.
+
+        Now, given $m_1$ as mass of $^{12}C$, $m_2$ as mass of $^{16}O$, one gets the values as $m_1 \approx 1.993 \cdot 10^{-20}$ kg, and $m_2 \approx 2.656\cdot 10^{-20}$ kg. One can assume $\Delta\nu = \frac{\hbar}{2\pi I}$ based on part (c), then with $\hbar = 1.055\cdot 10^{-34}$ J$\cdot$s, one gets the following:
+        \begin{align}
+            \Delta\nu = \frac{\hbar}{2\pi I}\ \implies\ I = \frac{\hbar}{2\pi\Delta\nu}\approx 1.399\cdot 10^{-46}\ \text{kg}\cdot\text{m}^2
+        \end{align}
+        Also, one gets the following:
+        \begin{align}
+            I = \frac{m_1m_2}{m_1+m_2}a^2 \approx (1.139\cdot 10^{-20})a^2,\quad a^2 \approx \frac{1.399\cdot 10^{-46}}{1.139\cdot 10^{-20}}\approx 1.229\cdot 10^{-26}\ \text{m}^2
+        \end{align}
+        So, one gets the distance between the atoms $a\approx 1.109\cdot 10^{-13}$m. 
+    \end{itemize}
 \end{proof}
 
 \newpage
 
-\section*{5 ND}
+\section*{5 D}
 \begin{ques}\label{q5}
 Angular Ehrenfest
 
 \begin{itemize}
-\item[(a)] Prove the rotational analog to Ehrenfest’s theorem: for a particle in a general poten-
-tial $V(r)$, the rate of change of the expectation value of the orbital angular momentum
-$L$ is equal to the expectation value of the torque $N = \mathbf{r} \times (-\nabla V)$,
+\item[(a)] Prove the rotational analog to Ehrenfest’s theorem: for a particle in a general potential $V(r)$, the rate of change of the expectation value of the orbital angular momentum
+$L$ is equal to the expectation value of the torque $\bN = \mathbf{r} \times (-\nabla V)$,
 \[
-\frac{d}{dt}\langle L \rangle = \langle N \rangle
+\frac{d}{dt}\langle \bL \rangle = \langle \bN \rangle
 \]
 
-\item[(b)] Show that $d\langle L \rangle/dt = 0$ for any spherically symmetric potential. This is
-the quantum analog of the classical conservation of angular momentum
+\item[(b)] Show that $d\langle \bL \rangle/dt = 0$ for any spherically symmetric potential. This is the quantum analog of the classical conservation of angular momentum
 \end{itemize}
 \end{ques}
 
 \begin{proof}
-    
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] First, using the classical definition, one gets the following:
+        \begin{align}
+            \bN &= \br \times (-\nabla V) \\
+            &= -\left(y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right)\hat{x}-\left(z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right)\hat{y}-\left(x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right)\hat{z}
+        \end{align}
+        Now, assume one can directly promote each individual component to quantum-mechanical operators. Then, in the position basis, the expectation value of torque is givenn as follow:
+        \begin{align}
+            \left<\bN\right> &= -\left<y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right>\hat{x}-\left<z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right>\hat{y}-\left<x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right>\hat{z}
+        \end{align}
+        Now, using the definition $L_x = yp_z-zp_y$, the expectation value is given below (using the position basis, or the wave function):
+        \begin{align}
+            \left<L_x\right> = \int_{\RR^3}\psi^*(yp_z-zp_y)\psi dV
+        \end{align}
+        Which, incorporating the time derivative, assume the conditions are all satisfied (together with the position and momentum operators being time independent). Using the Schr\"odinger equation $\frac{\partial\psi}{\partial t} = \frac{(p_x^2+p_y^2+p_z^2)}{i\hbar 2m}\psi + \frac{V}{i\hbar}\psi$, together with the commutation relation $[u,p_v] = i\hbar\delta_{uv}, [p_u,p_v]=0, [u,v]=0$ for all $u,v \in \{x,y,z\}$ (which further implies$[u,p_u^2]=2i\hbar p_u$, and $[u,p_u^3] = 3i\hbar p_u^2$), one gets the following:
+        \begin{align}
+            \frac{d\left<L_x\right>}{dt} &= \frac{d}{dt}\int_{\RR^3}\psi^*(yp_z-zp_y)\psi dV = \int_{\RR^3}\left(\left(\frac{\partial \psi}{\partial t}\right)^*(yp_z-zp_y)\psi + \psi^*(yp_z-zp_y)\frac{\partial\psi}{\partial t}\right)dV\\
+            &= \int_{\RR^3}\left(\frac{1}{i\hbar}\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\psi\right)^*(yp_z-zp_y)\psi dV + \int_{\RR^3}\psi^*(yp_z-zp_y)\frac{1}{i\hbar}\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\psi dV\\
+            &= \frac{1}{i\hbar}\int_{\RR^3}\psi^*\left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right]\psi dV\\
+            &= \frac{1}{i\hbar}\left<\left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right]\right>
+        \end{align}
+        Which, computing the commutator, one provides the following:
+        \begin{align}
+            \left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right] &= \left[yp_z, \frac{p_y^2}{2m}+V\right]-\left[zp_y, \frac{p_z^2}{2m}+V\right]\\
+            &= \left(\frac{2i\hbar p_yp_z}{2m}-i\hbar y\frac{\partial V}{\partial z}\right)-\left(\frac{2i\hbar p_yp_z}{2m}-i\hbar z\frac{\partial V}{\partial y}\right)\\
+            &= -i\hbar\left(y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right)
+        \end{align}
+        Hence, one gets the following:
+        \begin{align}
+            \frac{d\left<L_x\right>}{dt} = \frac{1}{i\hbar}\left<\left[yp_z-zp_y,\left(\frac{p_x^2+p_y^2+p_z^2}{2m}+V\right)\right]\right> = -\left<y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right>
+        \end{align}
+        Do the same calculation, one also gets the following:
+        \begin{align}
+            \frac{d\left<L_y\right>}{dt} = -\left<z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right>,\quad \frac{d\left<L_z\right>}{dt} = -\left<x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right>
+        \end{align}Hence, one gets the following for the time derivative of expectation value of angular momentum:
+        \begin{align}
+            \frac{d\left<\bL\right>}{dt} &= \frac{d\left<L_x\right>}{dt}\hat{x}+\frac{d\left<L_y\right>}{dt}\hat{y}+\frac{d\left<L_z\right>}{dt}\hat{z}\\
+            &= -\left<y\frac{\partial V}{\partial z}-z\frac{\partial V}{\partial y}\right>\hat{x}-\left<z\frac{\partial V}{\partial x}-x\frac{\partial V}{\partial z}\right>\hat{y}-\left<x\frac{\partial V}{\partial y}-y\frac{\partial V}{\partial x}\right>\hat{z}\\
+            &= \left<\bN\right>
+        \end{align}
+
+        \hfil
+
+        \item[(b)] If $V$ is spherically symmetric (i.e. $V=V(r)$ for $r=\sqrt{x^2+y^2+z^2}$), one deduces the following for $r\neq 0$:
+        \begin{align}
+            u\in\{x,y,z\},\quad \frac{\partial V}{\partial u} = \frac{\partial V}{\partial r}\frac{\partial r}{\partial u} = \frac{u}{r}\frac{\partial V}{\partial r}
+        \end{align}
+        So, $\nabla V = \sum_{u\in\{x,y,z\}}\frac{u}{r}\frac{\partial V}{\partial r}\hat{u} = \frac{1}{r}\frac{\partial V}{\partial r}\sum_{u\in\{x,y,z\}}u\hat{u} =\frac{1}{r}\frac{\partial V}{\partial r}\br$. Hence, one deduces the following:
+        \begin{align}
+            \bN &= \br\times (-\nabla V) = -\frac{1}{r}\frac{\partial V}{\partial r}(\br \times \br)=\bzero
+        \end{align}
+        So, one also has $\frac{d\left<\bL\right>}{dt}=\left<\bN\right> = \bzero$.
+    \end{itemize}
 \end{proof}
 
 \end{document}
