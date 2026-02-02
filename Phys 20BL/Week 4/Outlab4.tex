@@ -126,7 +126,7 @@ $D$ & $\delta D$ & $t_1$ & $\delta t_1$ & $t_2$ & $\delta t_2$ & $t_3$ & $\delta
 \label{tab:distance_time}
 \end{table}
 When making into scatter plot, one yields the following:
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=100mm]{scatter_plot_1.png}
 \end{figure}
@@ -139,7 +139,22 @@ So, the best-fitting line for the data is given as follow:
 \end{align}
 Where $D$ is the distance the wave traveled (unit: m), and $t$ is the time it takes for the travel (unit: ms).
 
-As a result, the best-fit speed of sound in air would be given by the slope of the best-fit line, which is $3.50067\cdot 10^{-1}$ m/ms, which translates to speed $v=350.0670$ m/s.
+To calculate the uncertainties of the parameters, for the slope it'll use the formula as follow:
+\begin{align}
+    \delta_m = m\frac{\sqrt{1/R^2-1}}{\sqrt{n-2}}
+\end{align}
+where $R^2$ represents the coefficient of determination, $R= \sum (y_i-y(x_i))^2$. On the other hand, the intercept uncertainty is given by:
+\begin{align}
+    \delta_k = \delta_m \sqrt{\frac{\sum x_i^2}{n}}
+\end{align}
+Plugin the values, one yields the following:
+\begin{align}
+    R^2=0.9996,\quad \delta_m \approx 0.0026467 \text{ m/ms},\quad \delta_k \approx 0.0074 \text{ m}
+\end{align}
+
+\hfil
+
+As a result, the best-fit speed of sound in air would be given by the slope of the best-fit line, which is $3.50067\cdot 10^{-1}$ m/ms, which translates to speed $v=350.0670$ m/s. And, since $v$ is obtained by $1000\cdot m$ (where $m$ is the slope of the line of best fit), then its propogation of uncertainty $\delta v =1000\cdot \delta_m \approx 2.6467$ m/s.
 
 \hfil
 
@@ -163,7 +178,51 @@ $D$ & $\delta D$
 \hline
 \end{tabular}
 \end{table}
+When making into scatter plot, one yields the following:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=100mm]{scatter_plot_2.png}
+\end{figure}
 
+\newpage
 
+So, the best-fitting line for the data is given as follow:
+\begin{align}
+    D = 3.381688\cdot 10^{-1}t+0.0701
+\end{align}
+Using the formulas mentioned in the previous section, one yields the following for uncertainties of slopes and intercepts:
+\begin{align}
+    R^2 \approx 0.9995,\quad \delta_m \approx 0.0028588 \text{ m/ms},\quad \delta_k \approx 0.0081\text{ m}
+\end{align}
+
+\hfil
+
+Similar to the previous part, the best-fit speed of sound in air would be given by the slope of the best-fit line, which is $3.381688\cdot 10^{-1}$ m/ms, which translates to speed $v = 338.1688$ m/s.
+
+Again, similar to the previous part, the propogation of uncertainty $\delta v = 1000\cdot \delta m \approx 2.8588$ m/s.
+
+\hfil
+
+\subsection{T-Test}
+If performing T-test on the gathered data (which are the time differences), since the two data sets all have $9$ data points, the $T$-value is given as follow:
+\begin{align}
+    T = \frac{t_{\text{ave},1}-t_{\text{ave},2}}{\sqrt{\frac{(n_1-1)\Var(t_1)^2+(n_2-1)\Var(t_2)^2}{n_1+n_2-2}\left(\frac{1}{n_2}+\frac{1}{n_2}\right)}}
+\end{align}
+With $t_{\text{ave},1}\approx 2.7585$ ms, $\Var(t_1)\approx 0.2447$ ms$^2$, $t_{\text{ave},2}\approx 2.7793$ ms, $\Var(t_2)\approx 0.2622$ ms$^2$, and $n_1=n_2=9$, one yields $T \approx -0.0067$. If chosenthe significance level $\alpha=0.05$, one can see the $T$-value is significantly lower than $\alpha$. Hence, the rejection failed, showing there's no evidence for significant difference between the two data sets.
+
+\newpage
+
+\section{Reflection}
+Based on the two sets of data collected (for $f=1, 1.25$ kHz respectively), one yield the best-fit speed of sound being $v_1=350.0670$ and $v_2=338.1688$ m/s respectively, with uncertainty $\delta v_1 =2.6467$ and $\delta v_2 = 2.8588$ m/s.
+
+In comparison to the model's prediction $v = 340.8750$ m/s, the difference are between $2$ to $10$ m/s, which is somewhere between $1$ to $5$ scale of uncertainty away from the prediction. Looking at the percent error, one yields $2.6258\%$ and $0.8003\%$ respectively. Which, one has a high confidence to conclude that the measurements agree with the model prediction in this lab.
+
+\hfil
+
+Finally, about some potential improvement of the lab:
+\begin{itemize}
+    \item First, since the microphone has the receiver being a solid ball, one can't directly tell the precise position where the microphone received the signal. As a solution (which is mentioned in the In Lab), instead of usingthe absolute positionof the microphone, using the relative position between different positions people placed it, and consider the new time difference as the difference between two time data points. This will avoid the situation where the receiver of the microphone is unclear. To compensate for this change, one needs to increase more position points to be measured.
+    \item Another interesting phenomenon that appeared in the data set, is as the frequency gets higher, the measured time difference has an increasing trend. This suggests there are also some other external factors that may be affecting the result. To compensate for that, there's also a necessity of increasing trials regarding the frequency of the
+\end{itemize}
 
 \end{document}

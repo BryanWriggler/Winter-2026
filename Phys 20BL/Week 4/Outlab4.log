@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  2 FEB 2026 05:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.6.12)  2 FEB 2026 06:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -800,7 +800,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-<temperature.png, id=121, 1174.3875pt x 2541.495pt>
+<temperature.png, id=131, 1174.3875pt x 2541.495pt>
 File: temperature.png Graphic file (type png)
 <use temperature.png>
 Package pdftex.def Info: temperature.png  used on input line 72.
@@ -831,40 +831,54 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 110.
 
-<scatter_plot_1.png, id=131, 462.528pt x 346.896pt>
+<scatter_plot_1.png, id=141, 462.528pt x 346.896pt>
 File: scatter_plot_1.png Graphic file (type png)
 <use scatter_plot_1.png>
 Package pdftex.def Info: scatter_plot_1.png  used on input line 131.
 (pdftex.def)             Requested size: 284.52756pt x 213.40593pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 146.
+(hyperref)                removing `math shift' on input line 161.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 146.
+(hyperref)                removing `math shift' on input line 161.
 
-[5 <./scatter_plot_1.png>] (Outlab4.aux)
+<scatter_plot_2.png, id=150, 462.528pt x 346.896pt>
+File: scatter_plot_2.png Graphic file (type png)
+<use scatter_plot_2.png>
+Package pdftex.def Info: scatter_plot_2.png  used on input line 184.
+(pdftex.def)             Requested size: 284.52756pt x 213.40593pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5 <./scatter_plot_1.png>] [6 <./scatter_plot_2.png>] [7] (Outlab4.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `Outlab4.out' has not changed.
-(rerunfilecheck)             Checksum: 8A32799038C3F1732B9C0E52390D3518;1843.
+(rerunfilecheck)             Checksum: BAFC2AAD42AFB22D8680E676A0FA2531;2025.
  ) 
 Here is how much of TeX's memory you used:
- 31596 strings out of 474486
- 641272 string characters out of 5744227
- 1938542 words of memory out of 5000000
- 53347 multiletter control sequences out of 15000+600000
+ 31616 strings out of 474486
+ 641600 string characters out of 5744227
+ 1939542 words of memory out of 5000000
+ 53356 multiletter control sequences out of 15000+600000
  565932 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,10n,113p,622b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,12n,113p,622b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on Outlab4.pdf (5 pages, 1286106 bytes).
+Output written on Outlab4.pdf (7 pages, 1314787 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
- 255 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 246 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 276 words of extra memory for PDF output out of 10000 (max. 10000000)
 
