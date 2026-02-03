@@ -38,7 +38,7 @@
 
   Consider the ideal $(2,x) subset.eq ZZ[x]$, we claim that it is not a principal ideal: Suppose the contrary that it is a principal ideal, there exists $f(x) in ZZ[x]$, such that $(f(x)) = (2,x)$. In particular, $f(x)!=0$.
 
-  This implies that there exists nonzero polynomials $g(x), h(x) in ZZ[x]$, such that $2 = g(x)h(x)$ and $x = h(x)f(x)$.
+  This implies that there exists nonzero polynomials $g(x), h(x) in ZZ[x]$, such that $2 = g(x)f(x)$ and $x = h(x)f(x)$.
 
   \ 
 
@@ -80,9 +80,9 @@
 
   \ 
 
-  Now, we claim that all of its nonzero prime ideals are maximal. Given any prime ideal $P subset.eq ZZ_2 times ZZ_2$, one has $ZZ_2 times ZZ_2\/P$ be an integral domain that is finite. However, all finite integral domain must be a field: 
+  Now, we claim that all of its nonzero prime ideals are maximal. Given any prime ideal $P subset.eq ZZ_2 times ZZ_2$, one has $ZZ_2 times ZZ_2\/P$ be an integral domain that is finite. However, all finite integral domain must be a field (proof below): 
 
-  Given $R$ a finite integral domain, then for any nonzero $a in R$, since $a^n!=0$ for all $n>=1$ due to the integral domain property, then the collection ${a,a^2,...,a^n,...} subset.eq R$ are consist of nonzero elemens. But, with $R$ being finite, at some point this subset must repeat, so there exists positive integers $i<j$, such that $a^i = a^j$. As a result, $a^i(1-a^(j-i))=0$; with $R$ being an integral domain and $a^i!=0$, this equality enforces $1-a^(j-i)=0$, so $a^(j-i)=1$, showing $a dot a^(j-i-1)=1$, which $a$ is invertible.
+  Given $R$ a finite integral domain, then for any nonzero $a in R$, since $a^n!=0$ for all $n>=1$ due to the integral domain property, then the collection ${a,a^2,...,a^n,...} subset.eq R$ are consist of nonzero elemens. But, with $R$ being finite, at some point this subset must repeat, so there exists positive integers $i<j$, such that $a^i = a^j$. As a result, $a^i (1-a^(j-i))=0$ (Note: $j-i>0$); with $R$ being an integral domain and $a^i!=0$, this equality enforces $1-a^(j-i)=0$, so $a^(j-i)=1$, showing $a dot a^(j-i-1)=1$, which $a$ is invertible.
 
   \ 
 
@@ -105,15 +105,36 @@
   $ (1-2x)^2 = (1-2x)+(-2x)(1-2x) = 1-2x-2x+2^2x^2 = 1-4x+0x^2 = 1 $
   So, $1-2x$ is a unit in $R[x]$ (with its inverse being itself), or $1-2x in U(S)$ (with $S=R[x]$).
 
-  Yet, $1-2x in.not U(R)$ (when viewing $R$ as a subring of $R[x]$), showing that $U(S) != U(R)$ in this case.
+  Yet, $1-2x in.not U(R)$ (when viewing $R$ as a subring of $R[x]$) since it's not constant, showing that $U(S) != U(R)$ in this case.
 ]
 
 \ 
 
-= ND//4
+= D//4
 #problem[
   Let $R$ be a commutative ring and $f(x) in R[x]$ be a zero-divisor. Prove or disprove that there exists $a in R$ such that $a f(x) = 0$ in $R[x]$.
 ][
+  We'll prove that if $f(x) in R[x]$ is a zero-divisor, there exists nonzero $a in R$ such that $a f(x)=0$ in $R[x]$. (Here, one can assume $f(x)!=0$, as the case $f(x)=0$ is trivially true for all nonzero $a in R$)
+  
+  \ 
+
+  Suppose that $f(x)=a_n x^n+...+a_0 in R[x]$ is a zero-divisor, there exists a nonzero $g(x)=b_m x^m+...+b_0 in R[x]$, such that $f(x)g(x)=0$. In particular, one can choose $g(x)$ to have the minimum (i.e. choose the smallest $m$, so that there exists polynomial $h(x) in R[x]$, with $deg(h)=m$, and $f(x)h(x)=0$).
+
+  First, notice that $f(x)g(x)=0$ implies its leading term given by $a_n b_m x^(m+n)$ is $0$, forcing $a_n b_m=0$.
+  Then, consider the polynomial $a_n g(x) in R[x]$: Since $a_n g(x)=a_n b_m x^m+...+a_n b_0$, with $a_n b_m=0$, one either has $a_n g(x)=0$, or $deg(a_n g(x))<m$. Yet, notice that $f(x) dot a_n g(x) = a_n (f(x)g(x))=0$, if $a_n g(x)!=0$, with its degree smaller than $m$ (which is assumed to be minimal degree among all polynomials with $f(x)h(x)=0$), this is a contradiction. So, one must have $a_n g(x)=0$.
+
+  \ 
+
+  Now, inductively, given integer $r$ with $0<=r<=n$, suppose all index $0<=s<r$ satisfies the equation $a_(n-s)g(x)=0$. Then, one has the following:
+  $ 0 = f(x)g(x)&=(a_n x^n+..+a_(n-(r-1))x^(n-(r-1)))g(x) + (a_(n-r)x^(n-r)+...+a_0)g(x)\ 
+  &= (a_(n-r)x^(n-r)+...+a_0)g(x) = (a_(n-r)x^(n-r)+...+a_0)(b_m x^m+...+b_0) $
+  This is due to the fact that $a_n g(x)=...=a_(n-(r-1))g(x)=0$ based on our induction hypothesis.
+
+  Then, the above equation provides that $a_(n-r)b_m = 0$. Hence, the term $a_(n-r)g(x) = a_(n-r)(b_m x^m+...+a_0) = a_(n-r)b_(m-1)x^(m-1)+...+a_(n-r)b_0$, satisfies either $a_(n-r)g(x)=0$, or $deg(a_(n-r)g(x))< m$. However, if $a_(n-r)g(x)!=0$, then the term $f(x)dot a_(n-r)g(x) = a_(n-r)(f(x)g(x))=0$, while $deg(a_(n-r)g(x))<m$, this violates the minimality of $m$, which is a contradiction. Therefore, we once again has $a_(n-r)g(x)=0$.
+
+  \ 
+
+  Finally, using induction we've proven that all integer $0<=r<=n$ satisfies $a_(n-r)g(x)=0$, then in particular all $a_(n-r)b_m = 0$ (the leading coefficient of $a_(n-r)g(x)$). Hence, $b_m f(x)=(a_n b_m)x^n+...+(a_0 b_m)=0$, showing $b_m !=0$ in $R$ is the desired element with $b_m f(x)=0$.
 ]
 
 \ 
@@ -144,9 +165,9 @@
   
   Let $I_n := (a_(1...1))$ (the element with $n$ ones as index). Given the ascending chain of ideals $(a) subset I_1 subset I_2 subset ... subset I_n subset...$, define the set $J:= union.big_(n>=1) I_n$, notice that $J$ is an ideal: 
   
-  Given any $x,y in J$, there exists $n,m >=1$, such that $x in I_n$ and $y in I_m$. WLOG, say $n>=m$, then the ascending chain implies $I_m subset.eq I_n$, showing that $y in I_n$ also. Therefore, the subtraction $x-u in I_n subset.eq J$, showing $J$ satisfies the subgroup test, which is a subgroup under addition.
+  - Given any $x,y in J$, there exists $n,m >=1$, such that $x in I_n$ and $y in I_m$. WLOG, say $n>=m$, then the ascending chain implies $I_m subset.eq I_n$, showing that $y in I_n$ also. Therefore, the subtraction $x-y in I_n subset.eq J$, showing $J$ satisfies the subgroup test, which is a subgroup under addition.
 
-  Furthermore, given any $r in R$ and $x in J$, there exists $I_n$ such that $x in I_n$, so $r x in I_n subset.eq J$, showing $J$ is an ideal.
+  - Furthermore, given any $r in R$ and $x in J$, there exists $I_n$ such that $x in I_n$, so $r x in I_n subset.eq J$, showing $J$ is an ideal.
 
   Yet, by the PID property, there exists $d in J$, such that $J = (d)$. So, there exists $k>=1$, such that $d in I_k$, which implies $J = subset.eq I_k subset I_(k+1) subset ... subset J$. Hence, all $n>=k$ satisfies $I_n = J$, showing the chain is not strictly ascending, which contradicts the previous construction.
 
@@ -156,21 +177,77 @@
 
   \ 
 
-  Now, we claim that every element has unique such factorization (up to associates): given any nonzero $a in R$, let $a = p_1 ... p_m = q_1 ... q_n$ be two facorizations of $a$ as products of irreducibles. Recall that in a PID, all irreducible elements are prime, hence with the equality showing $p_1 | q_1...q_n$, the prime property of $p_1$ implies $p_1 | q_i$ for some index $1<=i<=n$. Up to rearrangement, WLOG one can assume it's $q_1$, hence $p_1 tilde q_1$; by multiplying suitable units to other irreducible factors, one can assume $p_1 = q_1$, so using the left cancellation property of integral domain, one gets $p_2...p_m = q_2...q_n$.
+  Now, we claim that every element has unique such factorization (up to associates): given any nonzero $a in R$, let $a = p_1 ... p_m = q_1 ... q_n$ be two facorizations of $a$ as products of irreducibles. Recall that in a PID, all irreducible elements are prime, hence with the equality showing $p_1 | q_1...q_n$, the prime property of $p_1$ implies $p_1 | q_i$ for some index $1<=i<=n$. Up to rearrangement, WLOG one can assume it's $q_1$, hence $p_1 | q_1$; but, with $q_1$ being irreducible, if $q_1 = b p_1$ for some $b in R$, $b$ must be a unit (since $p_1$ is not a unit). So, $p_1 tilde q_1$; by multiplying suitable units to other irreducible factors, one can assume $p_1 = q_1$, so using the left cancellation property of integral domain, one gets $p_2...p_m = q_2...q_n$.
 
-  Finally, one can apply the above process to the new equality to derive $p_2 tilde q_2$ (by the prime property of $p_2$), and inductively show that each $p_i tilde q_i$ for all index $1<=i<=m$. This enforces $m=n$ (since one needs $m<=n$ for all $p_i$ to have an associate in the $q_j$'s; also, $m>=n$, since after cancelling all $p_i$'s with their associate $q_i$'s, the left side of $p_1...p_m = q_1...q_n$ is leff with unit, so the right side can't have any irreducibles left). Hence, one has $p_1...p_m = q_1...q_m$, with each $p_i tilde q_i$ up to rearrangement. Ths shows the factorization is unique up to associates.
+  Finally, one can apply the above process to the new equality to derive $p_2 tilde q_2$ (by the prime property of $p_2$ and $q_2$), and inductively show that each $p_i tilde q_i$ for all index $1<=i<=m$. This enforces $m=n$ (since one needs $m<=n$ for all $p_i$ to have an associate in the $q_j$'s; also, $m>=n$, since after cancelling all $p_i$'s with their associate $q_i$'s, the left side of $p_1...p_m = q_1...q_n$ is leff with unit, so the right side can't have any irreducibles left). Hence, one has $p_1...p_m = q_1...q_m$, with each $p_i tilde q_i$ up to rearrangement. This shows the factorization is unique up to associates.
 
   \ 
 
   Hence, PID has all nonzero elements admit a factorization, and is unique, showing a PID is a UFD.
 ]
 
-\ 
+#pagebreak()
 
-= ND//6
+= D//6
 #problem[
   Let $R$ be a UFD in which every nonzero prime ideal is maximal. Prove or disprove that $R$ is a PID.
-][]
+][
+  We'll prove that $R$ is a PID, given all the conditions stated in the problem.
+
+  \ 
+
+  First, we'll prove that all prime ideals are principal ideals in $R$. Given $P subset.eq R$ a prime ideal, it's maximal by the assumption. 
+  
+  Then, notice that it must contain an irreducible element: Pick any nonzero $a in P$, use the unique factorization property of $R$ to write $a = p_1...p_n$, products of irreducibles. Since $p_1...p_n = a in P$, by the prime property, either $p_1 in P$ or $p_2...p_n in P$; if $p_1 in P$ then we find an irreducible element in $P$, else if $p_2...p_n in P$, since its length as products of irreducibles decreases by $1$, one can inductively deduce that at least one of the $p_i in P$ (where $2<=i<=n$).
+
+  WLOG, up to reordering, we can say $p_1 in P$ using the above process. Then, the ideal $(p_1) subset.eq P$ is generated by irreducible element, which is a prime ideal in a UFD; furthermore, by our assumption all prime ideals are maximal, hence $(p_1)$ is also a maximal ideal. With $(p_1), P$ both be maximal ideals, $(p_1) subset.eq P$ implies $(p_1)=P$, hence $P$ is principal.
+
+  \ 
+
+  Now, we'll proceed using the following lemma:
+  #lemma[
+    Given $R$ an integral domain, then $R$ is a PID iff all prime ideals are principal.
+  ][
+    
+    $==>:$ 
+    
+    If $R$ is a PID, then consequently all prime ideals must be principal.
+
+    \ 
+
+    $<==:$ 
+
+    We'll approach the converse by contradiction. Suppose all prime ideals are principal, but $R$ is not a PID. Let $Sigma$ denote the set collecting all the non-principal ideals in $R$, by the assumption $Sigma != emptyset$, and with inclusion as the partial order $Sigma$ forms a POset.
+
+    Now, let $C subset.eq Sigma$ be a chain, we claim that $C$ has an upper bound within $Sigma$: Consider the ideal $I_C := union.big_(J in C)J$, the union of all ideals in $J$. Let's check the ideal property of $I_C$ as practice:
+    - Given any $x,y in I_C$, there exists ideals $J_x, J_y in C$, such that $x in J_x$ and $y in J_y$. Since $C$ is a chain, either $J_x subset.eq J_y$ or $J_y subset.eq J_x$ (WLOG, say $J_x subset.eq J_y$), then one yields $x in J_x subset.eq J_y$. By the fact that ideals are subgroup under addition, one has $x, y in J_y$ implies $x-y in J_y subset.eq I_C$, hence $I_C$ satisfies the subgroup test (under addition), which is a subgroup under addition.
+    - Given any $x in I_C$ and $r in R$, there exists ideal $J in C$, such that $x in J$. So, $r x in J subset.eq I_C$, showing $I_C$ is an ideal.
+    Notice that $I_C$ cannot be a principal ideal, since if it's principal, say $I_C = (d)$ for some $d in I_C$, then there exists an ideal $J in C$, such that $d in J$, showing $(d) subset.eq J subset.eq I_C=(d)$, or $J=(d)$. Yet, this contradicts the fact that $J in Sigma$ (or $J$ is non-principal), so $I_C$ can't be a principal ideal. Hence, $I_C in Sigma$, which also serves as an upper bound to the chain $C$.
+
+    \ 
+
+    Since all chain in $Sigma$ as a POset has an upper bound, apply Zorn's Lemma, $Sigma$ must contain some maximal element, say $I in Sigma$. Because $I$ is non-principal, it's also not prime (by assumption, all prime ideals are principal). Thus, there exists $a,b in R\\I$, such that $a b in I$.
+
+    Now, let $I_a := I+(a)$, and $I_b := I+(b)$. Since $a,b in.not I$ by our choice, $I_a, I_b$ are ideals strictly containing $I$. Which, by the maximality of $I in Sigma$, $I_a, I_b$ are not in $Sigma$, hence they're principal. In particular, $I_a = (alpha)$ for some $alpha in I_a$.
+
+    \ 
+
+    Then, let's take the set $J:= {x in R | x I_a subset.eq I}$ (I believe in Atiyah Macdonald, this is called #emph[Ideal Quotient]), which $J$ is also an ideal:
+    - Given $x,y in J$, since $x I_a, y I_a subset.eq I$, then $(x-y)I_a subset.eq I$, showing $x-y in J$. Thus, $J$ is a subgroup under addition (as it passes the subgroup test).
+    - Given $r in R$ ans $x in J$, since $x I_a subset.eq I$, one has $(r x)I_a = r(x I_a) subset.eq I$, so $r x in J$, showing $J$ is an ideal.
+    Notice that by definition of an ideal, $I subset.eq J$ (since all $x in I$ satisfies $x I_a subset.eq I$); on the other hand, since $b in.not I$ satisfies $b I_a = b(I+(a)) = b I+b (a) = b I+(a b) subset.eq I$ (since $a b in I$), one has $b in J$, so $J$ strictly contains $I$. By similar reasoning, $J = (gamma)$ for some $gamma in J$.
+
+    \ 
+
+    Finally, given any $x in I$, since it's strictly contained in $I_a = (alpha)$, one has $x = s_alpha alpha$ for some $s_alpha in R$; then, all $r in R$ has satisfied $s_alpha  dot r alpha = r dot s_alpha alpha=r x in I$, showing that $s_alpha (alpha) = s_alpha I_a subset.eq I$, so $s_alpha in J = (gamma)$. Hence, there exists $s in R$, such that$ s_alpha = s gamma$, showing that $x = s_alpha alpha = s gamma alpha$, or $x in (alpha gamma)$. Thus, $I subset.eq (alpha gamma)$.
+
+    On the other hand, let's not forget that $gamma in J$, so with $alpha in I_a$, one has $alpha gamma in I$, hence $(alpha gamma) subset.eq I$. This concludes that $I = (alpha gamma)$, or $I$ is a principal ideal. Yet, this contradicts the fact that $I in Sigma$ (showing $I$ is non-principal).
+
+    Therefore, the assumption is wrong, $R$ must be a PID. 
+  ]
+
+  Finally, using the above lemma, because all prime ideals of $R$ is proven to be principal, $R$ must be a PID.
+]
 
 #pagebreak()
 
@@ -184,7 +261,7 @@
 
   Here we'll implicitly use the observation that $ZZ[x]\/(x^2+5) tilde.equiv ZZ[sqrt(-5)]$. 
   
-  Notice first that $overline(x^2) = -5$, and $overline(x^3) = overline(x^2)dot overline(x)=-5x$ in this ring, which are integer multiples of $1$ or $overline(x)$; also, notice that for any monomials $overline(x^k)$ with $k>=3$, it can be written as $overline(x^2)dot overline(x^(k-2)) = -5 overline(x^(k-2))$ (which is the quotient of a smaller degree). Hence, inductively all monomials with degree $k>=2$ has a quotient that can be an integer multiples of $1$ or $overline(x)$, showing that all polynomials $f(x) in ZZ[x]$ has its quotient $overline(f(x)) in ZZ[x]\/(x^2+5)$ being an integer combination of $1$ and $overline(x)$. 
+  Notice first that $overline(x^2) = -5$, and $overline(x^3) = overline(x^2)dot overline(x)=-5overline(x)$ in this ring, which are integer multiples of $1$ or $overline(x)$; also, notice that for any monomials $overline(x^k)$ with $k>=3$, it can be written as $overline(x^2)dot overline(x^(k-2)) = -5 overline(x^(k-2))$ (which is the quotient of a smaller degree). Hence, inductively all monomials with degree $k>=2$ has a quotient that can be an integer multiples of $1$ or $overline(x)$, showing that all polynomials $f(x) in ZZ[x]$ has its quotient $overline(f(x)) in ZZ[x]\/(x^2+5)$ being an integer combination of $1$ and $overline(x)$. 
   
   Moreover, such integer combination of $1$ and $overline(x)$ must be unique: Suppose $overline(f(x)) = a+b overline(x)=a' + b' overline(x)$, then one has $(a-a')+(b-b')overline(x)=0$, showing that $(a-a')+(b-b')x in (x^2+5)$. So, either $(a-a')+(b-b')x = 0$, or there exists nonzero $g(x) in ZZ[x]$, satisfying $g(x)(x^2+5) = (a-a')+(b-b')x$. Yet, the second possibility leads to a contradiction, due to the fact that $ZZ[x]$ is an integral domain, so $deg(g(x)(x^2+5)) >= deg(x^2+5) = 2 > 1 = deg((a-a')+(b-b')x)$, showing the degrees don't match. Hence, one must have $(a-a')+(b-b')x = 0$, or $a=a'$ and $b=b'$. This shows the unique integer combination part.
 
@@ -206,7 +283,7 @@
 
     \ 
 
-  2. Based on 1 above, the only units are $pm 1$: It's clear why these two elemens are units, to argue they're the only units, suppose $a+b overline(x) in ZZ[x]\/(x^2+5)$ is also a unit, there exists $c+d overline(x) in ZZ[x]\/(x^2+5)$, such that $(a+b overline(x))(c+d overline(x))=1$. Plugin to the function $N$, one yields:
+  2. Based on 1 above, the only units are $pm 1$: It's clear why these two elements are units, to argue they're the only units, suppose $a+b overline(x) in ZZ[x]\/(x^2+5)$ is also a unit, there exists $c+d overline(x) in ZZ[x]\/(x^2+5)$, such that $(a+b overline(x))(c+d overline(x))=1$. Plugin to the function $N$, one yields:
     $ 1=1^0+5 dot 0^2 = N(1+0overline(x))=N(1) = N((a+b overline(x))(c+d overline(x)))=N(a+b overline(x))N(c+d overline(x)) $
     This shows that both $N(a+b overline(x))=a^2+5 b^2$, and $N(c+d overline(x))=c^2+5 d^2$ must divide $1$, which the values can only be $pm 1$; furthermore, these two values are nonnegative, since arbitrary integer $x,y$ has $x^2,y^2>=0$, so $x^2+5 y^2>=0$ also, forcing both values to be $1$. Finally, this implies that $b = 0$, since if $b!=0$, $b^2>=1$, showing that $a^2+5 b^2>=5 b^2>=5 >1$, which the value $N(a+b overline(x))!=1$, showing a contradiction.
 
@@ -244,7 +321,7 @@
 
     Likewise, the same proof applies for $3$, since $N(3)=9$, and there doesn't exists element with $N(a+b overline(x))=3$.
 
-    Finally, for $1+overline(x), 1-overline(x)$, if one of them are irreducible, say $1+overline(x)=(a+b overline(x))(c+d overline(x))$ for two non-units. The above equality states that $6 = N(1+overline(x))=N(a+b overline(x))N(c+d overline(x))$, so $N(a+b overline(x)), N(c+d overline(x))$ are non-$1$ divisors of $6$, showing one must be $2$ and the other one must be $3$. But this is again a contradiction based on the same reasoning above.
+    Finally, for $1+overline(x), 1-overline(x)$, if one of them are reducible, say $1+overline(x)=(a+b overline(x))(c+d overline(x))$ for two non-units. The above equality states that $6 = N(1+overline(x))=N(a+b overline(x))N(c+d overline(x))$, so $N(a+b overline(x)), N(c+d overline(x))$ are non-$1$ divisors of $6$, showing one must be $2$ and the other one must be $3$. But this is again a contradiction based on the same reasoning above.
 
     \ 
 
@@ -257,7 +334,7 @@
   
 ]
 
-\ 
+#pagebreak()
 
 = D//8
 #problem[
@@ -267,7 +344,7 @@
 
   \ 
 
-  Given $b$ is a unit and $a$ is nilpotent, there exists $n>0$, such that $a^n = 0$. Also, one can rewrite $b+a = b(1+b^(-1)a)$, which $b^(-1)a$ is also nilpotent (since $(b^(-1)a)^n = b^(-n)a^n = 0$).
+  Given $b$ is a unit and $a$ is nilpotent, there exists $n>0$, such that $a^n = 0$. Also, one can rewrite $b+a = b(1+b^(-1)a)$, which $b^(-1)a$ is also nilpotent (since $(b^(-1)a)^n = b^(-n)a^n = 0$ due to commutativity of $R$).
 
   \ 
 
@@ -281,7 +358,7 @@
   This shows that $(a+b) in U(R)$.
 ]
 
-\ 
+#pagebreak()
 
 = D//9
 #problem[
@@ -299,9 +376,9 @@
 
   Now, suppose given $n$, one has $f(x)=a_0+a_1 x+...+a_(n-1) x^(n-1) in Nil(R[x])$ implies each coefficient $a_i in Nil(R)$. Given now that $f(x)=a_0+a_1x+...+a_(n-1) x^(n-1)+a_n x^n in Nil(R[x])$, there exists $k>0$, such that $f(x)^k = 0$. Notice that the highest degree term in $f(x)^k$ is given by $(a_n x^n)^k = a_n^k x^(n k)$, which $f(x)^k = 0$ implies that $a_n^k = 0$, showing $a_n in Nil(R)$. 
   
-  However, this also implies that $(a_n x^n)^k = a_n^k x^(n k)=0$, showing $a_n x^n in Nil(R[x])$, so the term $f(x)-a_n x^n = a_0+a_1x+...+a_(n-1)x^(n-1) in Nil(R[x])$ (since the nilradical is an ideal). So by induction hypothesis, one has $a_0,a_1,...,a_(n-1) in Nil(R)$, showing all coefficients of $f(x)$ is in $Nil(R)$.
+  However, this also implies that $(a_n x^n)^k = a_n^k x^(n k)=0$, showing $a_n x^n in Nil(R[x])$, so the term $f(x)-a_n x^n = a_0+a_1x+...+a_(n-1)x^(n-1) in Nil(R[x])$ (since the nilradical is an ideal). By our induction hypothesis, one has $a_0,a_1,...,a_(n-1) in Nil(R)$, showing all coefficients of $f(x)$ is in $Nil(R)$.
 
-  Hence, by induction one can say $f(x) in Nil(R[x])$ implies all its coefficients are in $Nil(R)$.
+  Hence, by induction one concludes that $f(x) in Nil(R[x])$ implies all its coefficients are in $Nil(R)$.
 
   \ 
 
@@ -309,14 +386,14 @@
 
   If $f(x)=a_0+a_1x+...+a_n x^n$ has all coefficients lie in $Nil(R)$, for each index $k in {0,1,...,n}$, there exists $l_k>0$, such that $a_k^(l_k)=0$. As a result, $a_k x^k$ satisfies $(a_k x^k)^(l_k) = a_k^(l_k)x^(k l_k)=0$, showing that $a_k x^k in Nil(R[x])$.
 
-  Then, since $f(x)$ is a finite sume of nilpotent elements (since each monomial is verified to be nilpotent), $f(x) in Nil(R[x])$ (because nilradical is an ideal).
+  Then, since $f(x)$ is a finite sum of nilpotent elements (since each monomial is verified to be nilpotent), $f(x) in Nil(R[x])$ (because nilradical is an ideal).
 
   \ 
 
   The above two proofs verifies the equivalence of the two statements.
 ]
 
-\ 
+#pagebreak()
 
 = D//10
 #problem[
@@ -359,13 +436,13 @@
   */
   Define $g(x)=sum_(j>=0)b_j x^j$ by $b_0 := a_0^(-1)$, and each $k>0$ has $b_k := -sum_(i=1)^k a_0^(-1)a_i b_(k-i)$. Then, we have the following:
   $ f(x)g(x)=(sum_(i>=0)a_i x^i)(sum_(j>=0)b_j x^j) = sum_(k>=0)(sum_(i=0)^k a_i b_(k-i))x^k $
-  Which, for $k=0$, the coefficient is $a_0 b_0 = a_0 a_0^(-1)=1$; for $k=1$, one has coefficient $a_1 b_0+a_0 b_1 = a_1 b_0 + a_0 (-a_0^(-1)a_1b_0) = 0$. And inductively, if for given $k$, every $1<=l < k$ has $sum_(i=0)^l a_i b_(l-i)=0$, for the case of $k$, one has the following by the definition of $b_k$:
+  Which, for $k=0$, the coefficient is $a_0 b_0 = a_0 a_0^(-1)=1$; for $k=1$, one has coefficient $a_1 b_0+a_0 b_1 = a_1 b_0 + a_0 (-a_0^(-1)a_1b_0) = 0$. And for all $k>=1$, one has the following by the definition of $b_k$:
   $ sum_(i=0)^k a_i b_(k-i) &= a_0 b_k + sum_(i=1)^k a_i b_(k-i) = a_0(-sum_(i=1)^k a_0^(-1)a_i b_(k-i))+sum_(i=1)^k a_i b_(k-i)\ 
   &= -sum_(i=1)^k a_i b_(k-i)+sum_(i=1)^k a_i b_(k-i) = 0 $
-  So by induction, $f(x)g(x)$ has constant coefficient $1$, and all non-constant coefficient $0$, showing $f(x)$ has an inverse, hence a unit in $R[[x]]$.
+  So, all $k>=1$ has the coefficient of $f(x)g(x)$ at degree $k$ being $sum_(i=0)^k a_i b_(k-i)=0$, showing $f(x)g(x)$ has constant coefficient $1$, and all non-constant coefficient $0$, showing $f(x)$ has an inverse, hence a unit in $R[[x]]$.
 ]
 
-\ 
+#pagebreak()
 
 = D//11
 #problem[
@@ -381,7 +458,7 @@
 
   \ 
 
-  Now, suppose for given $n$, one has $a_0, ..., a_(n-1) in R$ all being nilpotent. Then, as a result each index $0<=i < n$ has $a_i x^i in R[[x]]$ being nilpotent also (since the only potential nonzero coefficient is nilpotent). As a result, one has $sum_(m>=n)a_m x^m = sum_(m>=0)a_m x^m - (a_0+a_1 x+...+a_(n-1)x^(n-1)) = f(x)-(a_0+a_1 x+...+a_(n-1)x^(n-1)) in Nil(R[[x]])$ (since nilradical is an ideal). 
+  Now, suppose for given $n$, one has $a_0, ..., a_(n-1) in R$ all being nilpotent. Then, as a result each index $0<=i < n$ has $a_i x^i in R[[x]]$ being nilpotent also (since the only potential nonzero coefficient is nilpotent). Thus, one has $sum_(m>=n)a_m x^m = sum_(m>=0)a_m x^m - (a_0+a_1 x+...+a_(n-1)x^(n-1)) = f(x)-(a_0+a_1 x+...+a_(n-1)x^(n-1)) in Nil(R[[x]])$ (since nilradical is an ideal). 
 
   So, there exists $l_n>0$, such that $(sum_(m>=n)a_m x^m)^(l_n) = 0$. Thus, one derives the following:
   $ 0 &= (sum_(m>=n)a_m x^m)^(l_n) = (x^n sum_(m>=n)a_m x^(m-n))^(l_n)= (x^n sum_(m>=0)a_(n+m)x^m)^(l_n) = x^(n l_n)(a_n^(l_n)+...) $
@@ -392,7 +469,7 @@
   Hence, by induction, one can conclude that all coefficients of $f(x)$ are nilpotent in $R$.
 ]
 
-\ 
+#pagebreak()
 
 = D//12
 #problem[
@@ -425,7 +502,7 @@
   So, $1-g(x)f(x)$ has its constant term $1-a_0 b_0$ being a unit, showing $1-g(x)f(x)$ is a unit. Since such relation is true for all $g(x) in R[[x]]$, $f(x) in J(R[[x]])$.
 ]
 
-\ 
+#pagebreak()
 
 = D//13
 #problem[
@@ -448,7 +525,7 @@
   So, our assumption is false, every prime ideal in $R$ must be maximal.
 ]
 
-\ 
+#pagebreak()
 
 = D//14
 #problem[
@@ -458,15 +535,15 @@
 
   \ 
 
-  Given any nonzero element $a in R$, consider the following ideal $(a,x) subset.eq R[x]$: Since $R[x]$ is a PID, one has $(a,x)=(f(x))$ for some $f(x) in R[x]$. Then, since $a = g(x)f(x)$ for some $g(x) in R[x]$, using the degree formula, we get:
+  Given any nonzero element $a in R$, consider the following ideal $(a,x) subset.eq R[x]$: Since $R[x]$ is a PID, one has $(a,x)=(f(x))$ for some $f(x) in R[x]$. Then, since $a = g(x)f(x)$ for some $g(x) in R[x]$, using the degree formula of integral domain polynomial ring, we get:
   $ 0 = deg(a) = deg(g(x)f(x))=deg(g(x))+deg(f(x)) $
   So, with the degrees being nonnegative, one has $deg(f(x))=deg(g(x))=0$, showing there exists nonzero $b,c in R$, such that $f(x)=b$, and $g(x)=c$.
 
-  On the other hand, since $b = f(x) = k(x) a+ l(x) x$ for some $k(x),l(x) in R[x]$ (by the ideal relation), take the evaluation map $phi:R[x] ->> R$ by $phi(x)=x$, one has the following:
+  On the other hand, since $b = f(x) = k(x) a+ l(x) x$ for some $k(x),l(x) in R[x]$ (by the ideal relation), take the evaluation map $phi:R[x] ->> R$ by $phi(x)=0$, one has the following:
   $ b = phi(b)=phi(k(x) a+l(x) x) = k(0) a+l(0) 0 = k(0) a $
-  Combining with the previous relation $a = f(x)g(x) = b c$, one has $a = c k(0)a$, so $a(1-c k(0))=0$; with the assumption $a!=0$, one must have $1=c k(0)$, or $c$ is a unit.
+  Combining with the previous relation $a = f(x)g(x) = b c$, one has $a = c dot k(0)a$, so $a(1-c dot k(0))=0$; with the assumption $a!=0$, one must have $1=c dot k(0)$, or $c$ is a unit.
 
-  Hence, $b = c^(-1)a$, showing that $a,b$ are associates, hence $(a)=(b)$, showing $(a,x) = (b,x)=(f(x))=(b)=(a)$.
+  Hence, $b = c^(-1)a$, showing that $a,b$ are associates, implying $(a)=(b)$, or $(a,x) = (b,x)=(f(x))=(b)=(a)$.
 
   \ 
 
@@ -495,7 +572,7 @@
 
     $<==:$
 
-    First, if $a_0$ is a unit and $a_1,...,a_n$ are nilpotent in $R$, each index $1<=i<=n$ has $a_i x^i$ be nilpotent also. Hence, $f(x)=a_0 + (a_1 x+...+a_n x^n)$, where $a_1x+...+a_n x^n in Nil(R[x])$, and $a_1 in U(R[x])$. Using #text(weight: "bold")[Problem 8], $f(x)$ is a unit plus a nilpotent element, hence a unit.
+    First, if $a_0$ is a unit and $a_1,...,a_n$ are nilpotent in $R$, each index $1<=i<=n$ has $a_i x^i$ be nilpotent also. Hence, $f(x)=a_0 + (a_1 x+...+a_n x^n)$, where $a_1x+...+a_n x^n in Nil(R[x])$, and $a_0 in U(R[x])$. Using #text(weight: "bold")[Problem 8], $f(x)$ is a unit plus a nilpotent element, hence a unit in $R[x]$.
 
     \ 
 
@@ -507,9 +584,9 @@
     $ phi(r_0+r_1x+...+r_k x^k) = overline(r_0)+overline(r_1)x+...+overline(r_k)x^k $
     where $overline(r)$ represents the quotient of $r$ in $R\/P$.
 
-    Notice that $R\/P$ is an integral domain, so is $(R\/P)[x]$, which implies that $U(R\/P) = U((R\/P)[x])$: Given the inclusion $R\/P arrow.hook (R\/P)[x]$, it is clear that $U(R\/P) subset.eq U((R\/P)[x])$. Now, suppose $f(x) in (R\/P)[x]$ is a unit, then there exists $g(x) in (R\/P)[x]$, such that $f(x)g(x)=1$. Recall that for integral domain polynomial ring, one has the following:
+    Notice that $R\/P$ is an integral domain, so is $(R\/P)[x]$, which implies that $U(R\/P) = U((R\/P)[x])$ (here's the proof): Given the inclusion $R\/P arrow.hook (R\/P)[x]$, it is clear that $U(R\/P) subset.eq U((R\/P)[x])$. Now, suppose $f(x) in (R\/P)[x]$ is a unit, then there exists $g(x) in (R\/P)[x]$, such that $f(x)g(x)=1$. Recall that for integral domain polynomial ring, one has the following:
     $ 0=deg(1)=deg(f(x)g(x))=deg(f(x))+deg(g(x)) $
-    Since degree is nonnegative, this enforces $deg(f(x))=deg(g(x))=0$, showing both $f(x),g(x)$ is in fact a constant, hence in $R$. As a result, $f(x), g(x) in U(R\/P)$, showing $U((R\/P)[x]) subset.eq U(R\/P)$.
+    Since degree is nonnegative, this enforces $deg(f(x))=deg(g(x))=0$, showing both $f(x),g(x)$ is in fact a constant, hence in $R\/P$. As a result, $f(x), g(x) in U(R\/P)$, showing $U((R\/P)[x]) subset.eq U(R\/P)$.
 
     
     Finally, if consider $phi(f(x)) = overline(a_0)+overline(a_1)x+...+overline(a_n)x^n$ in $(R\/P)[x]$, it remains as a unit. Hence by the above statement, it enforces $phi(f(x))$ to be constant, showing that $overline(a_1),...,overline(a_n) = 0$ in $R\/P$, or $a_1,...,a_n in P$. Then, since $P$ is arbitrary prime ideal of $R$, $a_1,...,a_n$ lies in the intersection of all prime ideal, which is precisely $Nil(R)$. Thus, $a_1,...,a_n$ are nilpotent, and it finishes the lemma.
