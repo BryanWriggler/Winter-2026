@@ -1,0 +1,523 @@
+\documentclass{article}
+\usepackage{../../Self_Style}
+
+\title{Phys 115B HW 4}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1 D} 
+\begin{ques}\label{q1}
+An Electron Spin State (Griffiths 4.30, which is 4.27 in the second edition)
+
+An electron is in the spin state $\chi = A\begin{pmatrix}
+    3i\\4
+\end{pmatrix}$.
+
+\begin{itemize}
+    \item[(a)] Determine the normalization constant $A$.
+    \item[(b)] Find the expectation values of $S_x, S_y$, and $S_z$.
+    \item[(c)] Find the ``uncertainties'' $\sigma_{S_x}, \sigma_{S_y}$, and $\sigma_{S_z}$.
+    \item[(d)] Confirm that your results are consistent with all three uncertainty principles. 
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+
+    Here we'll assume the spin state is in the basis consists of eigenvectors of $S_z$.
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given that the state is normalized, $1=\|\chi\| = \sqrt{|A3i|^2+|A4|^2} = |A|\sqrt{9+16} = 5|A|$, so $|A| = \frac{1}{5}$. WLOG, pick $A$ to be positive real, hence $A=\frac{1}{5}$.
+        
+        \hfil
+
+        \item[(b)] First, recall that the matrix in $z$-basis are given as following:
+        \begin{align}
+            S_x = \frac{\hbar}{2}\begin{pmatrix}
+                0&1\\1&0
+            \end{pmatrix},\quad S_y=\frac{\hbar}{2}\begin{pmatrix}
+                0&-i\\i&0
+            \end{pmatrix},\quad S_z = \frac{\hbar}{2}\begin{pmatrix}
+                1&0\\0&-1
+            \end{pmatrix}
+        \end{align}
+        Hence, the expectation values are given as follow:
+        \begin{align}
+            &\left<S_x\right> = \chi^\dagger S_x \chi = \frac{\hbar}{2\cdot 25}\begin{pmatrix}
+                -3i&4
+            \end{pmatrix}\begin{pmatrix}
+                0&1\\1&0
+            \end{pmatrix}\begin{pmatrix}
+                3i\\4
+            \end{pmatrix} = \frac{\hbar}{50}\begin{pmatrix}
+                -3i&4
+            \end{pmatrix}\begin{pmatrix}
+                4\\3i
+            \end{pmatrix} = 0\\
+            &\left<S_y\right> = \chi^\dagger S_y \chi = \frac{\hbar}{2\cdot 25}\begin{pmatrix}
+                -3i&4
+            \end{pmatrix}\begin{pmatrix}
+                0&-i\\i&0
+            \end{pmatrix}\begin{pmatrix}
+                3i\\4
+            \end{pmatrix} = \frac{\hbar}{50}\begin{pmatrix}
+                -3i&4
+            \end{pmatrix}\begin{pmatrix}
+                -4i\\-3
+            \end{pmatrix} = -\frac{24\hbar}{50} = -\frac{12\hbar}{25}\\
+            &\left<S_z\right> = \chi^\dagger S_x \chi = \frac{\hbar}{2\cdot 25}\begin{pmatrix}
+                -3i&4
+            \end{pmatrix}\begin{pmatrix}
+                1&0\\0&-1
+            \end{pmatrix}\begin{pmatrix}
+                3i\\4
+            \end{pmatrix} = \frac{\hbar}{50}\begin{pmatrix}
+                -3i&4
+            \end{pmatrix}\begin{pmatrix}
+                3i\\-4
+            \end{pmatrix} = -\frac{7\hbar}{50}
+        \end{align}
+
+        \hfil
+
+        \item[(c)] For the uncertainties, we also need to compute the expectation values of the squares. For simplicity, we first compute the square of the operators:
+        \begin{align}
+            S_x^2= S_y^2=S_z^2 = \frac{\hbar^2}{4}\begin{pmatrix}
+                1&0\\0&1
+            \end{pmatrix}
+        \end{align}
+        Then, the expectation values become:
+        \begin{align}
+            \left<S_x^2\right>=\left<S_y^2\right>=\left<S_z^2\right>=\chi^\dagger S_z^2\chi = \frac{\hbar^2}{4}\chi^\dagger I_2\chi = \frac{\hbar^2}{4}\chi^\dagger\chi = \frac{\hbar^2}{4}\|\chi\|^2 = \frac{\hbar^2}{4}
+        \end{align}
+        Then, the corresponding uncertainties are:
+        \begin{align}
+            &\sigma_{S_x} = \sqrt{\left<S_x^2\right>-\left<S_x\right>^2} = \sqrt{\frac{\hbar^2}{4}-0^2} = \frac{\hbar}{2}\\
+            &\sigma_{S_y} = \sqrt{\left<S_y^2\right>-\left<S_y\right>^2} = \sqrt{\frac{\hbar^2}{4}-\left(\frac{-24\hbar}{50}\right)^2} = \frac{\hbar}{2}\sqrt{1-\left(\frac{24}{25}\right)^2} = \frac{7\hbar}{25}\\
+            &\sigma_{S_z} = \sqrt{\left<S_z^2\right>-\left<S_z\right>^2} = \sqrt{\frac{\hbar^2}{4}-\left(\frac{-7\hbar}{50}\right)^2} = \frac{\hbar}{2}\sqrt{1-\left(\frac{7}{25}\right)^2} = \frac{24\hbar}{25}
+        \end{align}
+        
+        \hfil
+
+        \item[(d)] If compute the product of any two uncertainties, we get the following:
+        \begin{align}
+            \sigma_{S_x}\sigma_{S_z} = \frac{7\hbar^2}{50},\quad \sigma_{S_x}\sigma_{S_z} = \frac{24\hbar^2}{50} = \frac{12\hbar^2}{25},\quad \sigma_{S_y}\sigma_{S_z} = \frac{168\hbar^2}{625}
+        \end{align}
+        Which, using the expectation values deduced in part (b), we have the following:
+        \begin{align}
+            &\frac{1}{2}\left|\left<[S_x,S_y]\right>\right|= \frac{1}{2}\left|\left<i\hbar S_z\right>\right| = \frac{\hbar}{2}\left|\left<S_z\right>\right| = \frac{7\hbar^2}{100}\\
+            &\frac{1}{2}\left|\left<[S_y,S_z]\right>\right|= \frac{1}{2}\left|\left<i\hbar S_x\right>\right| = \frac{\hbar}{2}\left|\left<S_x\right>\right| = 0\\
+            &\frac{1}{2}\left|\left<[S_z,S_x]\right>\right|= \frac{1}{2}\left|\left<i\hbar S_y\right>\right| = \frac{\hbar}{2}\left|\left<S_y\right>\right| = \frac{6\hbar^2}{25}
+        \end{align}
+        Which, one results in the following:
+        \begin{align}
+            &\sigma_{S_x}\sigma_{S_y} = \frac{7\hbar^2}{50}\geq \frac{7\hbar^2}{100} = \frac{1}{2}\left|\left<[S_x,S_y]\right>\right|\\
+            &\sigma_{S_x}\sigma_{S_z} = \frac{12\hbar^2}{25}\geq \frac{6\hbar^2}{25} = \frac{1}{2}\left|\left<[S_z,S_x]\right>\right|\\
+            &\sigma_{S_y}\sigma_{S_z} = \frac{168\hbar^2}{625}\geq 0 = \frac{1}{2}\left|\left<[S_y,S_z]\right>\right|
+        \end{align}
+        So, the uncertainty principles are preserved.
+    \end{itemize}
+\end{proof}
+
+\newpage
+
+\section*{2 D}
+\begin{ques}\label{q2}
+Spin in $\hat{y}$ (Griffiths 4.32, 4.29 in second edition)
+
+I wrote down the answers in lecture - derive the answers the same way we did it for $S_x$ in class.
+
+\begin{itemize}
+    \item[(a)] Find the eigenvalues and eigenspinors of $S_y$.
+    \item[(b)] If you measured $S_y$ on a particle in the general state $\chi = a\chi_+ + b\chi_-$, what values might you get, and what is the probability of each? Check that the probabilities add up to $1$.
+    \item[(c)] If you measured $S_y^2$, what values might you get, and with what probabilities? 
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+    First, if using the $z$-basis, then the raising and lowering operators have the following actions:
+    \begin{align}
+        S_+ \chi_+ = \bzero,\quad S_+ \chi_- = \hbar\chi_+,\quad\quad S_-\chi_+ = \hbar\chi_-,\quad S_-\chi_- = \bzero
+    \end{align}
+    And, by definition $S_\pm = S_x \pm i S_y$. So, one also gest $S_+ - S_- = 2i S_y$, or $S_y = -\frac{i}{2}(S_+-S_-)$. 
+    Hence, the actions on the basis elements are given as follow:
+    \begin{align}
+        S_y \chi_+ = -\frac{i}{2}(-\hbar \chi_-) = i\frac{\hbar}{2}\chi_-,\quad S_y \chi_- = -\frac{i}{2}(\hbar \chi_+) = -i\frac{\hbar}{2}\chi_+
+    \end{align}
+    Hence, the matrices are written as follow under the $z$-basis:
+    \begin{align}
+        \mathcal{M}(S_y) = \frac{\hbar}{2}\begin{pmatrix}
+            0&-i\\i&0
+        \end{pmatrix}
+    \end{align}
+
+    \begin{itemize}
+        \item[(a)] Taking the characteristic polynomial of the matrix $A=\begin{pmatrix}
+            0&-i\\i&0
+        \end{pmatrix}$, one gets the following:
+        \begin{align}
+            \det(A-\lambda I) = \det\begin{pmatrix}
+                -\lambda & -i\\i & -\lambda
+            \end{pmatrix} = \lambda^2-1
+        \end{align}
+        Hence, $\lambda^2-1 = 0$ implies the eigenvalues are $\pm 1$. Which, solving the equations about the eigenvectors of $\lambda=1$, one gets the following:
+        \begin{align}
+            \lambda=1,\quad v_1=\begin{pmatrix}
+                a\\b
+            \end{pmatrix} \in \ker(A-I)\ \implies\ \begin{pmatrix}
+                -1&-i\\i&-1
+            \end{pmatrix}\begin{pmatrix}
+                a\\b
+            \end{pmatrix} = \begin{pmatrix}
+                -a-ib\\ia-b
+            \end{pmatrix}=\bzero
+        \end{align}
+        Which, it implies that $a=-ib$, and $b = ia$. WLOG, take $a=\frac{1}{\sqrt{2}}$, then one has $b = \frac{i}{\sqrt{2}}$, showing $v_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+            1\\i
+        \end{pmatrix}$.
+
+        Now, solving the equations about the eigenvectors of $\lambda=-1$, one gets the following:
+        \begin{align}
+            \lambda=1,\quad v_2=\begin{pmatrix}
+                a\\b
+            \end{pmatrix} \in \ker(A+I)\ \implies\ \begin{pmatrix}
+                1&-i\\i&1
+            \end{pmatrix}\begin{pmatrix}
+                a\\b
+            \end{pmatrix} = \begin{pmatrix}
+                a-ib\\ia+b
+            \end{pmatrix}=\bzero
+        \end{align}
+        Which, it implies that $a=ib$, and $b = -ia$. WLOG, take $a=\frac{1}{\sqrt{2}}$, then one has $b = -\frac{i}{\sqrt{2}}$, showing $v_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+            1\\-i
+        \end{pmatrix}$.
+
+        As $S_y = \frac{\hbar}{2}A$, then it inherits all eigenvectors, with corresponding eigenvalues rescaled by factor of $\frac{\hbar}{2}$. Hence, we get:
+        \begin{align}
+            &\lambda = \frac{\hbar}{2},\ \chi_+^{(y)} = v_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                1\\i
+            \end{pmatrix} = \frac{\chi_++i\chi_-}{\sqrt{2}}\\
+            &\lambda = -\frac{\hbar}{2},\ \chi_-^{(y)} = v_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                1\\-i
+            \end{pmatrix} = \frac{\chi_+-i\chi_-}{\sqrt{2}}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Given $\chi_+^{(y)} = \frac{1}{\sqrt{2}}(\chi_++i\chi_-)$ and $\chi_-^{(y)}=\frac{1}{\sqrt{2}}(\chi_+-i\chi_-)$, one gets that $\chi_+^{(y)}+\chi_-^{(y)} = \frac{2}{\sqrt{2}}\chi_+ = \sqrt{2}\chi_+$, so $\chi_+ = \frac{1}{\sqrt{2}}(\chi_+^{(y)}+\chi_-^{(y)})$. On the other hand, one also gets $\chi_+^{(y)}-\chi_-^{(y)} = \frac{2i}{\sqrt{2}}\chi_- = i\sqrt{2}\chi_-$, so one has $\chi_- = -\frac{i}{\sqrt{2}}(\chi_+^{(y)}-\chi_-^{(y)})$.
+        
+        Hence, given the state $\chi = a\chi_++b\chi_-$ with $\|\chi\|^2=|a|^2+|b|^2 = 1$, one has the following in terms of the eigenvectors of $S_y$:
+        \begin{align}
+            \chi = a\chi_++b\chi_- = \frac{a}{\sqrt{2}}(\chi_+^{(y)}+\chi_-^{(y)})+\frac{bi}{\sqrt{2}}(\chi_+^{(y)}-\chi_-^{(y)}) = \frac{a+bi}{\sqrt{2}}\chi_+^{(y)}+\frac{a-bi}{\sqrt{2}}\chi_-^{(y)}
+        \end{align}
+        Hence, with $a = a_u+ia_v$ and $b =b_u + i b_v$ for $a_u,a_v,b_u,b_v in \RR$ (where the condition $|a|^2+|b|^2=1$ translates to $a_u^2+a_v^2+b_u^2+b_v^2=1$), one has the following:
+        \begin{align}
+            \chi = \frac{(a_u-b_v)+i(a_v+b_u)}{\sqrt{2}}\chi_+^{(y)}+\frac{(a_u+b_v)+i(a_v-b_u)}{\sqrt{2}}\chi_-^{(y)}
+        \end{align}
+        Thus, with the observables of $S_y$ being $\pm\frac{\hbar}{2}$, the above states have the following probabilities of measuring each observables:
+        \begin{align}
+            &\PP\left(\lambda = \frac{\hbar}{2}\right) = \left|\frac{(a_u-b_v)+i(a_v+b_u)}{\sqrt{2}}\right|^2 = \frac{1}{2}((a_u-b_v)^2+(a_v+b_u)^2) = \frac{1+2(a_v b_u-a_u b_v)}{2}\\
+            &\PP\left(\lambda = -\frac{\hbar}{2}\right) = \left|\frac{(a_u+b_v)+i(a_v-b_u)}{\sqrt{2}}\right|^2 = \frac{1}{2}((a_u+b_v)^2+(a_v-b_u)^2) = \frac{1-2(a_v b_u-a_u b_v)}{2}
+        \end{align}
+        These two values do add up to $1$.
+
+        Then, notice that $a\bar{b} = (a_u+ia_v)(b_u-ib_v) = (a_ub_u+a_vb_v)+i(a_vb_u-a_ub_v)$, so the term $(a_vb_u-a_ub_v) = \Imag(a\bar{b})$. Hence, the probabilities can also be written as:
+        \begin{align}
+            \PP\left(\lambda=\frac{\hbar}{2}\right) = \frac{1+2\cdot \Imag(a\bar{b})}{2},\quad \PP\left(\lambda=-\frac{\hbar}{2}\right) = \frac{1-2\cdot \Imag(a\bar{b})}{2}
+        \end{align}
+        Where $\bar{b}$ is the complex conjugate of $b$.
+
+        \hfil
+
+        \item[(c)] If measuring $S_y^2$, notice that its eigenvectors are the same as $S_y$, with eigenvalues being the square $\frac{\hbar^2}{4}$ (for both $\pm\frac{\hbar}{2}$). Hence, no matter which state it collapses to in the $y$-basis, we'll always measure $\frac{\hbar^2}{4}$. There is a total probability of $1$ to measure $\frac{\hbar^2}{4}$.
+    \end{itemize}
+\end{proof}
+
+\newpage
+
+\section*{3 D}
+\begin{ques}\label{q3}
+Spin One (Griffiths 4.34, 4.31 in second edition)
+
+This is very similar to what we did in the matrix representation lecture, but simpler, as there is no total $s = 0$ case to worry about (spin is fixed and immutable).
+
+Construct the spin matrices $S_x,S_y$, and $S_z$ for a partile of spin $1$.
+
+\emph{Hint:} How many eigenstates of $S_z$ are there? Determine the action of $S_z$, $S_+$, and $S_-$ on each of these statess. Follow the procedure used in the text for spin $\frac{1}{2}$.
+\end{ques}
+
+\begin{proof}
+
+    \hfil
+
+    \textbf{I. Deduce the scaling of $S_\pm$}
+
+    First, for spin $s=1$, we know the allowed number $m$ is $m\in\{-1,0,1\}$. Here, we'll use $\chi_{-1},\chi_0,\chi_1$ to denote the three states corresponding to $m=-1,0,1$ as eigenvectors of $S_z$ (with eigenvalues $-\hbar, 0, \hbar$ respectively). Hence, one has the following equations:
+    \begin{align}
+        S^2 \chi_m = \hbar^2 s(s+1)\chi_m = 2\hbar^2\chi_m,\quad S_z\chi_m = \hbar m\chi_m
+    \end{align}
+    Now, consider the raising and lowering operators $S_\pm = S_x\pm i S_y$, so one has $S_\pm^\dagger = S_x^\dagger \pm (-i) S_y^\dagger = S_x\mp iS_y = S_\mp$. Using the commutation relation similar to $\so_3$, one also deduces the following:
+    \begin{align}
+        &S_+S_- = (S_x+iS_y)(S_x-iS_y) = S_x^2 + S_y^2 -iS_xS_y +iS_y S_x = S_x^2+S_y^2-i[S_x,S_y] = S_x^2+S_y^2+\hbar S_z\\
+        &[S_+,S_-] = [S_x+iS_y, S_x-iS_y] = -i[S_x,S_y]+i[S_y,S_x] = -2i\cdot i\hbar S_z = 2\hbar S_z\\
+        &\implies S_-S_+  = S_+S_- - [S_+,S_] = S_x^2+S_y^2 - \hbar S_z
+    \end{align}
+    Hence, with the total spin $S^2 = S_x^2+S_y^2+S_z^2$, one rewrite it as follow:
+    \begin{align}
+        S^2 = (S_x^2+S_y^2 + \hbar S_z) - \hbar S_z + S_z^2 = S_+S_- - \hbar S_z+S_z^2 = S_-S_+ + \hbar S_z + S_z^2
+    \end{align}
+    Then, suppose $S_\pm \chi_m$ are scaled from some normalized states (or possibly $0$), one gets the following actions on each basis vector:
+    \begin{itemize}
+        \item[$\chi_1$:]
+        \begin{align}
+            2\hbar^2 \chi_1 = S^2\chi_1 &= (S_+S_- -\hbar S_z+S_z^2)\chi_1 = S_+S_-\chi_1 - \hbar^2\chi_1 + \hbar^2\chi_1 = S_+S_-\chi_1\\
+            &= (S_-S_+ + \hbar S_z+S_z^2)\chi_1 = S_-S_+\chi_1 + \hbar^2\chi_1+\hbar^2\chi_1 = S_-S_+\chi_1 + 2\hbar^2\chi_1
+        \end{align}
+        Which implies the following on the norm:
+        \begin{align}
+            &S_+S_-\chi_1 = 2\hbar^2\chi_1 \implies 2\hbar^2 = \braket{\chi_1}{2\hbar^2\chi_1} = \braket{\chi_1}{S_+S_-\chi_1} = \braket{S_-\chi_1}{S_-\chi_1} \implies \|S_-\chi_1\| = \sqrt{2}\hbar\\
+            &S_-S_+\chi_1 = \bzero \implies 0 = \braket{\chi_1}{S_-S_+\chi_1} = \braket{S_+\chi_1}{S_+\chi_1} \implies \|S_+\chi_1\| = 0\implies S_+\chi_1 = \bzero
+        \end{align}
+        \item[$\chi_0$:]
+        \begin{align}
+            2\hbar^2 \chi_0 = S^2\chi_0 &= (S_+S_- - \hbar S_z + S_z^2)\chi_0 = S_+S_- \chi_0\\
+            &= (S_-S_+ + \hbar S_z + S_z^2) = S_-S_+\chi_0
+        \end{align}
+        Which implies the following on the norm:
+        \begin{align}
+            &S_+S_-\chi_0 = 2\hbar^2\chi_0 \implies 2\hbar^2 = \braket{\chi_0}{2\hbar^2\chi_0} = \braket{\chi_0}{S_+S_-\chi_0} = \braket{S_-\chi_0}{S_-\chi_0} \implies \|S_-\chi_0\| = \sqrt{2}\hbar\\
+            &S_-S_+\chi_0 = 2\hbar^2\chi_0 \implies 2\hbar^2 = \braket{\chi_0}{2\hbar^2\chi_0} = \braket{\chi_0}{S_-S_+\chi_0} = \braket{S_+\chi_0}{S_+\chi_0} \implies \|S_+\chi_0\| = \sqrt{2}\hbar
+        \end{align}
+        \item[$\chi_{-1}$:] 
+        \begin{align}
+            2\hbar^2\chi_{-1} = S^2\chi_{-1} &= (S_+S_--\hbar S_z+S_z^2)\chi_{-1} = S_+S_-\chi_{-1} + 2\hbar^2\chi_{-1}\\
+            &= (S_-S_++\hbar S_z+S_z^2)\chi_{-1} = S_-S_+\chi_{-1}-\hbar^2\chi_{-1}+\hbar^2\chi_{-1} = S_-S_+\chi_{-1}
+        \end{align}
+        Which implies the following on the norm:
+        \begin{align}
+            &S_+S_-\chi_{-1}=\bzero \implies 0=\braket{\chi_{-1}}{S_+S_-\chi_{-1}} = \braket{S_-\chi_{-1}}{S_-\chi_{-1}} \implies \|S_-\chi_{-1}\|= 0\implies S_-\chi_{-1}=\bzero\\
+            &S_-S_+\chi_{-1} = 2\hbar^2\chi_{-1}\implies 2\hbar^2=\braket{\chi_{-1}}{2\hbar^2\chi_{-1}} = \braket{\chi_{-1}}{S_-S_+\chi_{-1}} = \braket{S_+\chi_{-1}}{S_+\chi_{-1}}\implies \|S_+\chi_{-1}\| = \sqrt{2}\hbar
+        \end{align}
+    \end{itemize}
+
+    \hfil
+
+    \textbf{II. Deduce the vector $S_\pm \chi_m$}
+
+    First, let's consider the commutation relation of $S_z$ with $S_\pm$:
+    \begin{align}
+        [S_z, S_\pm] = [S_z,S_x]\pm i[S_z,S_y] = i\hbar S_y \mp i\cdot i\hbar S_x = i\hbar S_y \pm \hbar S_x = \pm \hbar (S_x\pm iS_y) = \pm\hbar S_\pm
+    \end{align}
+    So, the action of $S_z$ on the above $S_\pm\chi_m$ (that're not zero vectors) are as follow:
+    \begin{align}
+        &S_z(S_-\chi_1) = ([S_z,S_-]+S_-S_z)\chi_1 = -\hbar S_-\chi_1 + \hbar S_-\chi_1 = 0(S_-\chi_1) \implies S_-\chi_1 \in \text{span}\{\chi_0\}\\
+        &S_z(S_+\chi_0) = ([S_z,S_+]+S_+S_z)\chi_0 = \hbar S_+\chi_0 + \bzero = \hbar(S_+\chi_0) \implies S_+\chi_0 \in \text{span}\{\chi_1\}\\
+        &= S_z(S_-\chi_0) = ([S_z,S_-]+S_-S_z)\chi_0 = -\hbar S_-\chi_0 + \bzero = -\hbar(S_-\chi_0)\implies S_-\chi_0 \in \text{span}\{\chi_{-1}\}\\
+        &= S_z(S_+\chi_{-1}) = ([S_z,S_+]+S_+S_z)\chi_{-1} = \hbar S_+\chi_{-1} - \hbar S_+\chi_{-1} = 0(S_+\chi_{-1})\implies S_+\chi_{-1} \in \text{span}\{\chi_0\}
+    \end{align}
+    Combine with the norm deduced in the previous section, one gets:
+    \begin{align}
+        S_+\chi_1 = \bzero,\ S_-\chi_1 = \sqrt{2}\hbar \chi_0,\quad\quad S_+\chi_0 = \sqrt{2}\hbar \chi_1,\ _-\chi_0 = \sqrt{2}\hbar \chi_{-1},\quad\quad S_+\chi_{-1}=\sqrt{2}\hbar \chi_0,\ S_-\chi_{-1}=\bzero
+    \end{align}
+    Hence, representing $S_+,S_-$ as matrices under the basis $\chi_1,\chi_0,\chi_{-1}$, one has the following:
+    \begin{align}
+        \mathcal{M}(S_+) = \begin{pmatrix}
+            0 & \sqrt{2}\hbar &0\\
+            0 &0 & \sqrt{2}\hbar\\
+            0&0 & 0\\
+        \end{pmatrix} = \sqrt{2}\hbar\begin{pmatrix}
+            0&1&0\\0&0&1\\0&0&0
+        \end{pmatrix},\quad \mathcal{M}(S_-) = \begin{pmatrix}
+            0&0&0\\
+            \sqrt{2}\hbar &0&0\\
+            0&\sqrt{2}\hbar &0
+        \end{pmatrix} = \sqrt{2}\hbar\begin{pmatrix}
+            0&0&0\\1&0&0\\0&1&0
+        \end{pmatrix}
+    \end{align}
+
+    \hfil
+
+    \textbf{III. Spin matrices under $z$-basis}
+
+    Since $S_\pm = S_x\pm iS_y$, one has $S_++S_- = 2S_x$, so $S_x = \frac{1}{2}(S_++S_-)$; on the other hand, $S_+-S_- = 2iS_y$, so $S_y = \frac{-i}{2}(S_+-S_-)$. Which, the corresponding spin matrices are as follow (with the fact that $\chi_1,\chi_0,\chi_{-1}$ are eigenvectors of $S_z$ with $\hbar, 0,-\hbar$ as their eigenvalues):
+    \begin{align}
+        &\mathcal{M}(S_x) = \frac{1}{2}(\mathcal{M}(S_+)+\mathcal{M}(S_-)) = \frac{\hbar}{\sqrt{2}}\begin{pmatrix}
+            0&1&0\\1&0&1\\0&1&0
+        \end{pmatrix}\\
+        &\mathcal{M}(S_y) = -\frac{i}{2}(\mathcal{M}(S_+)-\mathcal{M}(S_-)) = \frac{\hbar}{\sqrt{2}}\begin{pmatrix}
+            0&-i&0\\i&0&-i\\0&i&0
+        \end{pmatrix}\\
+        &\mathcal{M}(S_z) = \hbar\begin{pmatrix}
+            1&0&0\\0&0&0\\0&0&-1
+        \end{pmatrix}
+    \end{align}
+\end{proof}
+
+\newpage
+
+\section*{4 ND}
+\begin{ques}\label{q4}
+General Spin Operator (Modified Griffiths 4.33, 4.30 in second edition)
+
+Construct the matrix $S_r$ corresponding to the component of spin angular momentum along an arbitrary direction $\hat{r}$. Use spherical coordinates, for which
+
+\[
+\hat{r} = \sin\theta \cos\phi\, \hat{x}
++ \sin\theta \sin\phi\, \hat{y}
++ \cos\theta\, \hat{z}
+\]
+
+\begin{itemize}
+\item[(a)] Doing no math, what do we expect the eigenvalues of $S_r$ to be?
+\item[(b)] Calculate the $2\times2$ matrix $S_r = \hat{r}\cdot \bS$.
+\item[(c)] Find the eigenvectors and eigenvalues of $S_r$ explicitly. (The answer is in the book)
+\item[(d)] We measure $S_z$ for a spin $1/2$ particle and get $\hbar/2$. Now measure $S_r$. What is the probability of getting $\hbar/2$? Check that the answer makes sense for $\theta = 0$ and $\theta = \pi/2$.
+\item[(e)] The above constructed the state $\psi_r$ which is the eigenstate with $\lambda = \hbar/2$ of an arbitrary spin projection operator $S_r$. Argue that the converse is always true: ANY state $\psi$ is the eigenstate of some spin projection operator $S_n$. This means that if you are given a spin $1/2$ particle in any random spin state, there is some axis on which it is fully polarized (and we might as well call that axis the $z$ axis).
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] If it's for spin-$\frac{1}{2}$, the expected eigenvalues of $S_r$ are still $\frac{\hbar}{2},-\frac{\hbar}{2}$.
+        
+        \hfil
+
+        \item[(b)] Given the definition $S_r = \hat{r}\cdot \bS$, one has the following matrix under the fixed $z$-basis:
+        \begin{align}
+            \mathcal{M}(S_r) &= \sin(\theta)\cos(\phi)\mathcal{M}(S_x)+\sin(\theta)\sin(\phi)\mathcal{M}(S_y)+\cos(\theta)\mathcal{M}(S_z)\\ 
+            &= \frac{\hbar}{2}\begin{pmatrix}
+                \cos(\theta)&\sin(\theta)(\cos(\phi)-i\sin(\phi))\\
+                \sin(\theta)(\cos(\phi)+i\sin(\phi))&-\cos(\theta)
+            \end{pmatrix}\\
+            &= \frac{\hbar}{2}\begin{pmatrix}
+                \cos(\theta) & \sin(\theta)e^{-i\phi}\\
+                \sin(\theta)e^{i\phi} & -\cos(\theta)
+            \end{pmatrix}
+        \end{align}
+
+        \hfil
+
+        \item[(c)] We'll consider $\mathcal{M}(S_r) = \frac{\hbar}{2}A$ for the matrix $A$ written above, then scale the eigenvectors / eigenvalues correspondingly.
+        
+        Consider the characteristic polynomial:
+        \begin{align}
+            \det(A-\lambda I)=\det\begin{pmatrix}
+                \cos(\theta)-\lambda & \sin(\theta)e^{-i\phi}\\
+                \sin(\theta)e^{i\phi} & -\cos(\theta)-\lambda
+            \end{pmatrix} = (\lambda+\cos(\theta))(\lambda-\cos(\theta)) - \sin^2(\theta) = \lambda^2-1
+        \end{align}
+        So, the eigenvalues are $\lambda = \pm 1$. Solving for the eigenvectors, we get:
+        \begin{align}
+            \lambda=1,\quad v_1=\begin{pmatrix}
+                a\\b
+            \end{pmatrix}\in\ker(A-I)\ \implies\ \begin{pmatrix}
+                \cos(\theta)-1 & \sin(\theta)e^{i\phi}\\
+                \sin(\theta)e^{-i\phi} & -\cos(\theta)-1
+            \end{pmatrix}\begin{pmatrix}
+                a\\b
+            \end{pmatrix} = \bzero
+        \end{align}
+        Which, it implies that $d$
+    \end{itemize}
+\end{proof}
+
+\newpage
+
+\section*{5 D}
+\begin{ques}\label{q5}
+Electron in Oscillating Magnetic Field (Griffiths 4.36, 4.33 in second edition)
+
+\hfil
+
+An electron is at rest in an oscillating magnetic field $\bB = B_0 \cos(wt)\hat{k}$, where $B_0$ and $w$ are constants.
+\begin{itemize}
+    \item[(a)] Construct the Hamiltonian matrix for this system.
+    \item[(b)] The electron starts out (at $t=0$) in the spin-up state with respect to the $x$-axis ($\chi(0)=\chi_+^{(x)}$). Determine $\chi(t)$ at any subsequent time. 
+    
+    \emph{Remark:} This is a time-dependent Hamiltonian, so you cannot get $\chi(t)$ in the usual way from stationary states. Fortunately, in this case you can solve the time-depenent Schr\"odinger equation directly.
+    \item[(c)] Find the probability of getting $-\frac{\hbar}{2}$, if you measure $S_x$.
+    
+    \emph{Answer:} $\sin^2\left(\frac{\gamma B_0}{2w}\sin(wt)\right)$.
+
+    \item[(d)] What is the minimum field $B_0$ required to force a complete flip in $S_x$?
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+    \begin{itemize}
+        \item[(a)] Given the hamiltonian $H = -\gamma \bB\cdot \bS$, let $\hat{k} = \hat{z}$, then the hamiltonian as a matrix is represented as follow:
+        \begin{align}
+            \hat{H} = -\gamma B_0\cos(wt) \mathcal{M}(S_z) = -\frac{\hbar \gamma B_0 \cos(wt)}{2}\begin{pmatrix}
+                1&0\\0&-1
+            \end{pmatrix} 
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Given $\chi(t)=\begin{pmatrix}\chi_+(t)\\\chi_-(t)\end{pmatrix}$, we have $\chi(0) = \chi_+^{(x)} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+            1\\1
+        \end{pmatrix}$ under the $z$-basis. If consider the time-dependent Schr\"odinger equation, one has the following:
+        \begin{align}
+            i\hbar\frac{\partial}{\partial t}\begin{pmatrix}\chi_+(t)\\\chi_-(t)\end{pmatrix} = \hat{H}\chi(t) = -\frac{\hbar\gamma B_0\cos(wt)}{2}\begin{pmatrix}
+                1&0\\0&-1
+            \end{pmatrix}\begin{pmatrix}
+                \chi_+(t)\\\chi_-(t)
+            \end{pmatrix} = -\frac{\hbar\gamma B_0\cos(wt)}{2}\begin{pmatrix}
+                \chi_+(t)\\-\chi_-(t)
+            \end{pmatrix}
+        \end{align}
+        Hence, one deduce the following diffrential equation:
+        \begin{align}
+            &i\hbar\frac{\partial\chi_+(t)}{\partial t} = -\frac{\hbar\gamma B_0\cos(wt)}{2}\chi_+(t)\\
+            &i\hbar\frac{\partial\chi_-(t)}{\partial t} = \frac{\hbar\gamma B_0\cos(wt)}{2}\chi_-(t)
+        \end{align}
+        So, solving the equation, we get:
+        \begin{align}
+            &\frac{1}{\chi_+(t)}\frac{\partial\chi_+(t)}{\partial t} = \frac{i\gamma B_0}{2}\cos(wt)\ \implies\ \ln(\chi_+(t)) = \frac{i\gamma B_0}{2w}\sin(wt)+C\ \implies\ \chi_+(t) = Ae^{\frac{i\gamma B_0}{2w}\sin(wt)}\\
+            &\frac{1}{\chi_-(t)}\frac{\partial\chi_-(t)}{\partial t}=-\frac{i\gamma B_0}{2}\cos(wt)\ \implies\ \ln(\chi_-(t))=-\frac{i\gamma B_0}{2w}\sin(wt)+D\ \implies\ \chi_-(t)=Be^{-\frac{i\gamma B_0}{2w}\sin(wt)}
+        \end{align}
+        Which, with the initial condition that $\chi_+(0)=\chi_-(0)=\frac{1}{\sqrt{2}}$, one has both $A,B = \frac{1}{\sqrt{2}}$. So, the sate is given as follow:
+        \begin{align}
+            \chi(t) = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                e^{\frac{i\gamma B_0}{2w}\sin(wt)}\\e^{-\frac{i\gamma B_0}{2w}\sin(wt)}
+            \end{pmatrix}
+        \end{align}
+        
+        \hfil
+
+        \item[(c)] Given the above states, let's first rewrite it in the other form. Let $s(t) = \frac{\gamma B_0}{2w}\sin(wt)$, the state is given as follow:
+        \begin{align}
+            \chi(t) &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+                e^{is(t)}\\e^{-is(t)}
+            \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                \cos(s(t))+i\sin(s(t))\\\cos(s(t))-i\sin(s(t))
+            \end{pmatrix}\\ 
+            &= \cos(s(t))\frac{1}{\sqrt{2}}\begin{pmatrix}
+                1\\1
+            \end{pmatrix} + i\sin(s(t))\frac{1}{\sqrt{2}}\begin{pmatrix}
+                1\\-1
+            \end{pmatrix}\\
+            &= \cos(s(t))\chi_+^{(x)} + i\sin(s(t))\chi_-^{(x)}
+        \end{align}
+        Which, if measure $S_x$, the probability of getting $-\frac{\hbar}{2}$ is:
+        \begin{align}
+            \PP\left(\lambda_x = -\frac{\hbar}{2}\right) = |i\sin(s(t))|^2 = \sin^2\left(\frac{\gamma B_0}{2w}\sin(wt)\right)
+        \end{align}
+
+        \hfil
+
+        \item[(d)] To force a complete flip in $S_x$, since it's initially at $\chi_+^{(x)}$, one needs the coefficients of $\chi_-^{(x)}$ to have norm $1$ at some point. Which, it's necessary for $|\sin(s(t))| = 1$ for some $t$, or $s(t) = \frac{\pi}{2} + 2k\pi$ for some $k\in\ZZ$, $t\geq 0$. 
+        
+        With $s(t)=\frac{\gamma B_0}{2w}\sin(wt)$, one has $-\frac{\gamma B_0}{2w}\leq s(t)\leq \frac{\gamma B_0}{2w}$ (while the bounds are minimum and maximum), so it's necessary for $\frac{\gamma B_0}{2w} \geq \frac{\pi}{2}$, then $B_0 \geq \frac{w\pi}{\gamma}$ is the minimum required magnetic field strength to cause a complete flip in $S_x$.
+    \end{itemize}
+\end{proof}
+
+\end{document}
