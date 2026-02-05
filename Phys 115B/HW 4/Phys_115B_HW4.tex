@@ -419,16 +419,16 @@ Construct the matrix $S_r$ corresponding to the component of spin angular moment
             &\lambda=1,\quad v_1=\begin{pmatrix}
                 a\\b
             \end{pmatrix}\in\ker(A-I)\ \implies\ \begin{pmatrix}
-                \cos(\theta)-1 & \sin(\theta)e^{i\phi}\\
-                \sin(\theta)e^{-i\phi} & -\cos(\theta)-1
+                \cos(\theta)-1 & \sin(\theta)e^{-i\phi}\\
+                \sin(\theta)e^{i\phi} & -\cos(\theta)-1
             \end{pmatrix}\begin{pmatrix}
                 a\\b
             \end{pmatrix} = \bzero\\
             &\lambda-1,\quad v_{-1}=\begin{pmatrix}
                 c\\d
             \end{pmatrix}\in\ker(A-I)\ \implies\ \begin{pmatrix}
-                \cos(\theta)+1 & \sin(\theta)e^{i\phi}\\
-                \sin(\theta)e^{-i\phi} & -\cos(\theta)+1
+                \cos(\theta)+1 & \sin(\theta)e^{-i\phi}\\
+                \sin(\theta)e^{i\phi} & -\cos(\theta)+1
             \end{pmatrix}\begin{pmatrix}
                 c\\d
             \end{pmatrix} = \bzero
@@ -493,35 +493,57 @@ Construct the matrix $S_r$ corresponding to the component of spin angular moment
         \end{itemize}
         For general case (where $\theta\in (0,\pi)$), since $\cos(\theta)-1,\cos(\theta)+1\neq 0$, the equation becomes:
         \begin{align}
-            \begin{pmatrix}
+            &\begin{pmatrix}
                 \cos(\theta)-1 & \sin(\theta)e^{-i\phi}\\
                 \sin(\theta)e^{i\phi} & -\cos(\theta)-1
             \end{pmatrix}\begin{pmatrix}
                 a\\b
-            \end{pmatrix}=\bzero\ &\implies\ 
+            \end{pmatrix}=\bzero\ \implies\ a+\frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}b=0\\
+            &\begin{pmatrix}
+                \cos(\theta)+1 & \sin(\theta)e^{-i\phi}\\
+                \sin(\theta)e^{i\phi} & -\cos(\theta)+1
+            \end{pmatrix}\begin{pmatrix}
+                c\\d
+            \end{pmatrix}=\bzero\ \implies\ c+\frac{\sin(\theta)}{\cos(\theta)+1}e^{-i\phi}d=0
         \end{align}
-        \begin{comment}
-        \begin{pmatrix}
-                1 & \frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}\\
-                \sin(\theta)e^{i\phi} & -\cos(\theta)-1
-            \end{pmatrix}\begin{pmatrix}
-                \frac{a}{\cos(\theta)-1}\\b
-            \end{pmatrix}=\bzero\\
-            &\implies \begin{pmatrix}
-                1&\frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}\\
-                0 & -\cos(\theta)-1-\frac{\sin^2(\theta)}{\cos(\theta)-1}
-            \end{pmatrix}\begin{pmatrix}
-                \frac{a}{\cos(\theta)-1}\\
-                b-a\frac{\sin(\theta)}{\cos(\theta)-1}e^{i\phi}
-            \end{pmatrix} = \bzero\\
-            &\implies \begin{pmatrix}
-                1 & \frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}\\
-                0&0
-            \end{pmatrix}\begin{pmatrix}
-                \frac{a}{\cos(\theta)-1}\\b-a\frac{\sin(\theta)e^{i\phi}}{\cos(\theta)-1}
-            \end{pmatrix}=\bzero\\
-            &\implies \frac{a}{\cos(\theta)-1}+b\frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi} - a\frac{\sin^2(\theta)}{\cos(\theta)-1}=0
-        \end{comment}
+        Which, take $b=\sqrt{\frac{1-\cos(\theta)}{2}}e^{i\phi} = \sin(\frac{\theta}{2})e^{i\phi}$ and $d = \sqrt{\frac{1+\cos(\theta)}{2}}e^{i\phi}=\cos(\frac{\theta}{2})e^{i\phi}$, one has the following:
+        \begin{align}
+            &a = -\frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}b = -\frac{2\sin(\theta/2)\cos(\theta/2)}{1-\cos(\theta)}\sin(\theta/2) = \cos\left(\frac{\theta}{2}\right)\\
+            &\implies |a|^2+|b|^2 = \cos^2\left(\frac{\theta}{2}\right)+\sin^2\left(\frac{\theta}{2}\right)=1
+        \end{align}
+        \begin{align}
+            &c = -\frac{\sin(\theta)}{\cos(\theta)+1}e^{-i\phi}d = -\frac{2\sin(\theta/2)\cos(\theta/2)}{1+\cos(\theta)}\cos(\theta/2) = -\sin\left(\frac{\theta}{2}\right)\\
+            &\implies |c|^2+|d|^2 = \sin^2\left(\frac{\theta}{2}\right)+\cos^2\left(\frac{\theta}{2}\right) = 1
+        \end{align}
+        Hence, the states are normalized. 
+
+        Passing through $S_r$, we get the eigenvalues and eigenvectors as follow:
+        \begin{align}
+            &\lambda=\frac{\hbar}{2}\ \implies\ v_1 = \begin{pmatrix}
+                \cos(\theta/2)\\\sin(\theta/2)e^{i\phi}
+            \end{pmatrix} = \cos(\theta/2)\chi_+ + \sin(\theta/2)e^{i\phi}\chi_-\\
+            &\lambda=\frac{\hbar}{2}\ \implies\ v_{-1} = \begin{pmatrix}
+                -\sin(\theta/2)\\\cos(\theta/2)e^{i\phi}
+            \end{pmatrix} = -\sin(\theta/2)\chi_+ + \cos(\theta/2)e^{i\phi}\chi_-
+        \end{align}
+
+        \hfil
+
+        \item[(d)] After measuring $\frac{\hbar}{2}$ for $S_z$, the state is at $\chi_+$. Which, notice the following relation of the eigenvectors deduced in part (c):
+        \begin{align}
+            \cos(\theta/2)v_1 - \sin(\theta/2)v_{-1} = \chi_+
+        \end{align}
+        Which, one if measure $S_r$ now, the probability of getting $\frac{\hbar}{2}$, is the absolute value of coefficient square of $v_1$ (the corresponding eigenvector), which reads $\PP(\lambda_r = \frac{\hbar}{2})=|\cos(\theta/2)|^2 = \cos(\theta/2)^2$.
+
+        For $\theta=0$ (the $z$-axis), one has this probability being $1$; while $\theta=\frac{\pi}{2}$ (for the $xy$-plane, WLOG say it's the $x$-axis by choosing proper $\phi$), it reads $\frac{1}{2}$, which coincides with the case of the spin in $x$-axis.
+
+        \hfil
+
+        \item[(e)] First, fix any specific orientation/Cartesian coordinates system. Given any state $\psi_r = a\chi_++b\chi_-$ (WLOG, we'll assume $a$ is nonnegative real), there are two cases:
+        \begin{itemize}
+            \item First, if $a=0$, then $\psi_r = b\chi_-$ with $|b|^2=1$, so it's just the eigenvalue of $S_z$, hence polarized in the default $z$-axis.
+            \item Else, if $a\neq 0$, then since $a\in[0,1]$ by assumption that $|a|^2+|b|^2=1$ and $a$ is nonnegative real, 
+        \end{itemize}
     \end{itemize}
 \end{proof}
 
