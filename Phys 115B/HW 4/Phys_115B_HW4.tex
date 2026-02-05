@@ -414,18 +414,114 @@ Construct the matrix $S_r$ corresponding to the component of spin angular moment
                 \sin(\theta)e^{i\phi} & -\cos(\theta)-\lambda
             \end{pmatrix} = (\lambda+\cos(\theta))(\lambda-\cos(\theta)) - \sin^2(\theta) = \lambda^2-1
         \end{align}
-        So, the eigenvalues are $\lambda = \pm 1$. Solving for the eigenvectors, we get:
+        So, the eigenvalues are $\lambda = \pm 1$. For the eigenvectors, we get:
         \begin{align}
-            \lambda=1,\quad v_1=\begin{pmatrix}
+            &\lambda=1,\quad v_1=\begin{pmatrix}
                 a\\b
             \end{pmatrix}\in\ker(A-I)\ \implies\ \begin{pmatrix}
                 \cos(\theta)-1 & \sin(\theta)e^{i\phi}\\
                 \sin(\theta)e^{-i\phi} & -\cos(\theta)-1
             \end{pmatrix}\begin{pmatrix}
                 a\\b
+            \end{pmatrix} = \bzero\\
+            &\lambda-1,\quad v_{-1}=\begin{pmatrix}
+                c\\d
+            \end{pmatrix}\in\ker(A-I)\ \implies\ \begin{pmatrix}
+                \cos(\theta)+1 & \sin(\theta)e^{i\phi}\\
+                \sin(\theta)e^{-i\phi} & -\cos(\theta)+1
+            \end{pmatrix}\begin{pmatrix}
+                c\\d
             \end{pmatrix} = \bzero
         \end{align}
-        Which, it implies that $d$
+        Which, there are two special cases:
+        \begin{itemize}
+            \item First, if $\theta=0$, then one gets the following:
+            \begin{align}
+                &\begin{pmatrix}
+                    0&0\\0&-2
+                \end{pmatrix}\begin{pmatrix}
+                    a\\b
+                \end{pmatrix}=\bzero\ \implies\ v_1 = \begin{pmatrix}
+                    a\\b
+                \end{pmatrix} = \begin{pmatrix}
+                    a\\0
+                \end{pmatrix}\\
+                &\begin{pmatrix}
+                    2&0\\0&0
+                \end{pmatrix}\begin{pmatrix}
+                    c\\d
+                \end{pmatrix} = \bzero\ \implies \ v_{-1}=\begin{pmatrix}
+                    c\\d
+                \end{pmatrix}=\begin{pmatrix}
+                    0\\d
+                \end{pmatrix}
+            \end{align}
+            So, one deduces that $\lambda=1$ corresponds to normalized state $v_1 = \begin{pmatrix}
+                1\\0
+            \end{pmatrix}=\chi_+$, and $\lambda=-1$ corresponds to normalized state $v_{-1}=\begin{pmatrix}
+                0\\1
+            \end{pmatrix}=\chi_-$. Hence, after rescaling, $\pm\frac{\hbar}{2}$ corresponds to $\chi_\pm$ states correspondingly (which is consistent with the fact that $\theta=0$ implies $\hat{r}=\hat{z}$).
+
+            \hfil
+
+            \item Then, if $\theta=\pi$, one gets the following instead:
+            \begin{align}
+                &\begin{pmatrix}
+                    -2&0\\0&0
+                \end{pmatrix}\begin{pmatrix}
+                    a\\b
+                \end{pmatrix}=\bzero\ \implies\ v_1 = \begin{pmatrix}
+                    a\\b
+                \end{pmatrix} = \begin{pmatrix}
+                    0\\b
+                \end{pmatrix}\\
+                &\begin{pmatrix}
+                    0&0\\0&2
+                \end{pmatrix}\begin{pmatrix}
+                    c\\d
+                \end{pmatrix} = \bzero\ \implies \ v_{-1}=\begin{pmatrix}
+                    c\\d
+                \end{pmatrix}=\begin{pmatrix}
+                    c\\0
+                \end{pmatrix}
+            \end{align}
+            So, one deduces that $\lambda=1$ corresponds to normalized state $v_1 = \begin{pmatrix}
+                0\\1
+            \end{pmatrix}=\chi_-$, and $\lambda=-1$ corresponds to normalized state $v_{-1}=\begin{pmatrix}
+                1\\0
+            \end{pmatrix}=\chi_+$. Hence, after rescaling, $\pm\frac{\hbar}{2}$ corresponds to $\chi_\mp$ states correspondingly (which is consistent with the fact that $\theta=\pi$ implies $\hat{r}=-\hat{z}$, so the states flipped over).
+        \end{itemize}
+        For general case (where $\theta\in (0,\pi)$), since $\cos(\theta)-1,\cos(\theta)+1\neq 0$, the equation becomes:
+        \begin{align}
+            \begin{pmatrix}
+                \cos(\theta)-1 & \sin(\theta)e^{-i\phi}\\
+                \sin(\theta)e^{i\phi} & -\cos(\theta)-1
+            \end{pmatrix}\begin{pmatrix}
+                a\\b
+            \end{pmatrix}=\bzero\ &\implies\ 
+        \end{align}
+        \begin{comment}
+        \begin{pmatrix}
+                1 & \frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}\\
+                \sin(\theta)e^{i\phi} & -\cos(\theta)-1
+            \end{pmatrix}\begin{pmatrix}
+                \frac{a}{\cos(\theta)-1}\\b
+            \end{pmatrix}=\bzero\\
+            &\implies \begin{pmatrix}
+                1&\frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}\\
+                0 & -\cos(\theta)-1-\frac{\sin^2(\theta)}{\cos(\theta)-1}
+            \end{pmatrix}\begin{pmatrix}
+                \frac{a}{\cos(\theta)-1}\\
+                b-a\frac{\sin(\theta)}{\cos(\theta)-1}e^{i\phi}
+            \end{pmatrix} = \bzero\\
+            &\implies \begin{pmatrix}
+                1 & \frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi}\\
+                0&0
+            \end{pmatrix}\begin{pmatrix}
+                \frac{a}{\cos(\theta)-1}\\b-a\frac{\sin(\theta)e^{i\phi}}{\cos(\theta)-1}
+            \end{pmatrix}=\bzero\\
+            &\implies \frac{a}{\cos(\theta)-1}+b\frac{\sin(\theta)}{\cos(\theta)-1}e^{-i\phi} - a\frac{\sin^2(\theta)}{\cos(\theta)-1}=0
+        \end{comment}
     \end{itemize}
 \end{proof}
 
