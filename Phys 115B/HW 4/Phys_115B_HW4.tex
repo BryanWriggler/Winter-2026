@@ -360,7 +360,7 @@ Construct the spin matrices $S_x,S_y$, and $S_z$ for a partile of spin $1$.
 
 \newpage
 
-\section*{4 ND}
+\section*{4 D}
 \begin{ques}\label{q4}
 General Spin Operator (Modified Griffiths 4.33, 4.30 in second edition)
 
@@ -542,7 +542,9 @@ Construct the matrix $S_r$ corresponding to the component of spin angular moment
         \item[(e)] First, fix any specific orientation/Cartesian coordinates system. Given any state $\psi_r = a\chi_++b\chi_-$ (WLOG, we'll assume $a$ is nonnegative real), there are two cases:
         \begin{itemize}
             \item First, if $a=0$, then $\psi_r = b\chi_-$ with $|b|^2=1$, so it's just the eigenvalue of $S_z$, hence polarized in the default $z$-axis.
-            \item Else, if $a\neq 0$, then since $a\in[0,1]$ by assumption that $|a|^2+|b|^2=1$ and $a$ is nonnegative real, 
+            \item Else, if $a\neq 0$, then since $a\in(0,1]$ by assumption that $|a|^2+|b|^2=1$ and $a$ is nonnegative real, hence there exists $\theta\in [0,\pi)$, such that $a = \cos(\theta/2)$. As a result, one must have $|b|^2 = 1-|a|^2 = 1-\cos^2(\theta/2) = \sin^2(\theta/2)$, so $|b|=|\sin(\theta/2)|$, or $b = \sin(\theta)e^{i\phi}$ for some $\phi\in [0,2\pi]$.
+            
+            As a result, one has $\psi_r = \cos(\theta/2)\chi_+ + \sin(\theta)e^{i\phi}\chi_-$, which is precisely the up state $v_1$ for the axis $\hat{r} = \sin(\theta)\cos(\phi)\hat{x}+\sin(\theta)\sin(\phi)\hat{x}+\cos(\theta)\hat{z}$.
         \end{itemize}
     \end{itemize}
 \end{proof}
