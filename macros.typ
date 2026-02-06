@@ -62,7 +62,8 @@
 #let op = math.upright[op] //used for opposite category
 #let Cone = math.upright[Cone] //used for cone functor
 #let Cocone = math.upright[Cocone] //used for cocone functor
-#let Rep = math.sans[Rep]
+#let Rep = math.sans[Rep] //cat of Representations (rings and groups not fixed)
+#let colim = math.upright[colim] //the colimit in category
 
 //lie group/lie algebra
 #let GL = $"GL"$ //general linear
