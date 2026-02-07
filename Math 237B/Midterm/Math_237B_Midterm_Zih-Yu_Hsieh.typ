@@ -14,7 +14,7 @@
 )
 #show: ergo-init.with(
     colors: ergo-colors.bw,  
-    styles: ergo-styles.sidebar2, 
+    styles: ergo-styles.basic, 
     breakable: true,
     inline-qed: true
 )
@@ -29,16 +29,24 @@
 = ND//1
 #problem[
   Let $A=CC[X,Y]\/(f(X,Y))$ and consider the scheme $X=Spec(A)$. Prove or disprove that there is a finite set $S subset X$ such that every connected component of $X\\S$ is ireducible as a topological space.
+
+  \ 
+
+
 ][
   Guess: True, consider removing the intersection of each irreducible factor of $f(X,Y)$. If $g, h$ are two irreducible polynomials in $CC[x,y]$ that're distinct, try and argue that their set of solutions must be distinct.
 ]
 
 #pagebreak()
 
-= ND//2
+= D//2
 #problem[
   Let $f:X->Y$ be a morphism of integral schemes which is a topological homeomorphism. Prove or disprove that $f$ is an isomorphism of schemes.
+
+  \ 
+
 ][
+  /*
   Possibly needed information: integral schemes $<==>$ it's reduced and irreducible. We know it's a homeomorphism on each affine cover. If we can prove that it transfer fundamental open subsets of each affine cover to another one (that're isomorphic), then I think we're done.
 
   \ 
@@ -48,6 +56,28 @@
   \ 
 
   Based on this, if one has two local integral domains, a local homomorphism that's not an isomorphism maybe is a counterexample.
+
+  \
+
+  #text(weight: "bold")[Answer:] Consider the case between spec of two fields.
+  */
+  We'll disprove the statement by constructing a counterexample.
+
+  \ 
+
+  Consider the field inclusion $iota: RR arrow.hook CC$, which generates the pullback map $iota^*:Spec(CC) -> Spec(RR)$. 
+  
+  First, notice that because $RR,CC$ are both fields, the $Spec(CC), Spec(RR)$ are both singleton set, hence as continuous maps between topological spaces, $iota^*$ is a topological homeomorphism. 
+  
+  Second, since they're singletons, then the only nonempty open subsets are $Spec(CC)$ and $Spec(RR)$ themselves, so one deduces $cal(O)(Spec(CC)) = CC$ and $cal(O)(Spec(RR)) = RR$, which both are integral domains. Hence, these two spaces have all the nonempty open neighborhoods corresponding to an integral domain using their structure sheaves, showing $Spec(CC)$ and $Spec(RR)$ are integral schemes.
+
+  \ 
+
+  Yet, it's not an isomorphism as schemes: Suppose the contrary that it's an isomorphism of schemes, there exists another morphism of integral schemes $j:Spec(RR) -> Spec(CC)$, such that it's not only an inverse of $iota^*$, but its induced ring homomorphism $j^*:cal(O)(Spec(CC))-> cal(O)(Spec(RR))$ is the inverse of the ring homomorphism $(iota^*)^*:cal(O)(Spec(RR))-> cal(O)(Spec(CC))$. However, the induced ring homomorphism of $iota^*$, or $(iota^*)^*$, is precisely the inclusion $iota:RR arrow.hook CC$; since $j^*:CC -> RR$ is its inverse, they imply that $RR$ and $CC$ are isomorphic fields. 
+  
+  This is a contradiction, because consider $i in CC$, its multiplicative order is $4$ (since $i^4 = 1$, and any positive integer $n<4$ has $i^n!=1$); however, there's no element in $RR$ with multiplicative order of $4$ (since if $x in RR$ satisfies $x^4 = 1$, then $x^4-1 = (x-1)(x+1)(x^2+1)=0$; with $x^2+1=0$ having no solution in $RR$, then $x=pm 1$, which it either has multiplicative order of $1$ or $2$, not $4$).
+
+  So, since we derive a contradiction, $iota^*:Spec(CC)-> Spec(RR)$ can't be an isomorphism of schemes, despite it's a topological homeomorphism.
 ]
 
 #pagebreak()
