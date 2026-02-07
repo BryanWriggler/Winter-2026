@@ -30,31 +30,45 @@
 #problem[
   Let $A$ be a commutative ring. Prove or disprove that $A$ is a local ring if and only if $A[[x]]$ is a local ring.
 ][
-  
+  Take $(x) subset.eq A[[x]]$. Note that it's contained in the jacobsonn radical.
 ]
 
-\ 
+#pagebreak()
 
 = ND//2
 #problem[
   Let $A$ be a commutative ring and $a!=0$ be an element of $A$. Prove or disprove that we can find a multiplicatively closed subset $S subset A$ such that the image of $a$ under the localization $A -> S^(-1)A$ lies in every maximal ideal of $S^(-1)A$.
-][]
+][
+  If $a$ is a unit then this fails, else if $a$ is not a unit, take a maximal ideal $frak(m) in.rev a$, then the localization $A_frak(m)$ has $a$ be contained in all (and the only) maximal ideal, namely $frak(m) A_frak(m)$.
+]
 
-\ 
+#pagebreak()
 
 = ND//3
 #problem[
   Let $A$ be a finite integral domain. Prove or disprove that $A$ is a quotient of $ZZ$.
-][]
+][
+  Either redefine multiplication on $ZZ_2 times ZZ_2$, or prove that $ZZ[i]\/3ZZ[i]$ is a finite integral domain, then show it can't be a quotient of $ZZ$ by showing it's not cyclic as an abelian group.
+]
 
-\ 
+#pagebreak()
 
 = ND//4
 #problem[
   Let $A$ be a commutative ring. Prove or disprove that the canonical map $(A[X,Y])/((X Y))-> A[X] times A[Y]$, given by $f(X,Y) mapsto (f(X,0), f(0,Y))$, is an isomorphism of rings.
-][]
+][
+  If this is true: Check first that the kernel is $(X Y)$ (which requires the statement $(X) sect (Y) = (X Y)$ to be true). Then, the question becomes: is it surjective? Is there a polynomial $f(X,Y)$, such that $f(X,0)=g(X)$ and $f(0,Y)=h(Y)$ for any desired $g(X)$, $h(Y)$?
 
-\ 
+  If $f(X,Y) = f_n (X)Y^n + ...+ f_1 (X)Y + f_0(X)$, then mapping to $A[X]$ provides $f_0 (X)$; then, mapping th $A[Y]$ provides $f_n (0)Y^n + ... + f_1 (0)Y + f_0(0)$, each represents their zeroth coefficient.
+
+  Then, one needs their zeroth coefficient to agree, before one can say anything.
+
+  \
+
+  Conclusion: This is probably false.
+]
+
+#pagebreak()
 
 = ND//5
 #problem[
