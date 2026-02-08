@@ -242,5 +242,7 @@
 
   \ 
 ][
-  No idea yet...if it's a field it's definitely true in my opinion. I hope I can solve this...
+  No idea yet...if it's a field it's definitely true in my opinion. I hope I can solve this..
+  
+  WLOG, try and do look at the ring hom $A-> B$ (which descends to some quotient by some prime ideal, say image $tilde.equiv A\/P = A'$ for some prime ideal $P$). Then, see if the map descends to some map $A'[x_1,...,x_n]->> B$ (since $A'$ is an integral domain, this is much easier).
 ]

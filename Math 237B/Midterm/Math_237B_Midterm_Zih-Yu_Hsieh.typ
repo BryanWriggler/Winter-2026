@@ -38,7 +38,7 @@
 
   \ 
 ][
-  Guess: True, consider removing the intersection of each irreducible factor of $f(X,Y)$. If $g, h$ are two irreducible polynomials in $CC[x,y]$ that're distinct, try and argue that their set of solutions must be distinct.
+  Guess: True, consider removing the intersection of each irreducible factor of $f(X,Y)$. If $g, h$ are two irreducible polynomials in $CC[x,y]$ that're distinct, try and argue that their set of solutions must be distinct (transferring to $CC^2$ with Zariski Topology may be hard, but can use this as an intuition check)
 ]
 
 #pagebreak()
@@ -112,11 +112,11 @@
 
   \ 
 
-  First, since $Spec(k)$ is itself an affine scheme, and since $k$ is a field, $Spec(k)$ is a singleton, hence quasi-compact. As a result, $Spec(k)$ is a Noetherian scheme. Which, with $f:X -> Spec(k)$ being a finite type morphisms and $Spec(k)$ being a Noetherian scheme, $X$ must be Noetherian also (based on a theorem proven in class).
+  First, since $Spec(k)$ is an affine scheme, and $k$ is a field (which is Noetherian), it's a locally Noetherian Scheme. Moreover, $Spec(k)$ is a singleton, hence quasi-compact, so $Spec(k)$ is a Noetherian scheme. Which, with $f:X -> Spec(k)$ being a finite type morphism and $Spec(k)$ being a Noetherian scheme, $X$ must be Noetherian also (based on a theorem proven in class).
 
   \ 
 
-  Then, using the definition of finite type morphism, there exists an affine cover ${U_i}$ of $Spec(k)$, such that there exists finite affine open subset ${U_(i j)}$, such that $f^(-1)(U_i) = union.big_(j)U_(i j)$, and the induced ring homomorphism $cal(O)(U_i) -> cal(O)(U_(i j))$ is a finite type ring homomorphism. 
+  Then, using the definition of finite type morphism, there exists an affine cover ${U_i}$ of $Spec(k)$, each $U_i$ corresponds to finite affine open subset ${U_(i j)}$ in $X$, such that $f^(-1)(U_i) = union.big_(j)U_(i j)$, and the induced ring homomorphism $cal(O)(U_i) -> cal(O)(U_(i j))$ is a finite type ring homomorphism. 
   
   Notice that since $Spec(k)$ is compact, the list ${U_i}$ can be chosen to be finite (moreover, with $Spec(k)$ being singleton, it can be chosen to be a single set $U$). Which, since $U$ covers $Spec(k)$, one has $U = Spec(k)$, deducing that $cal(O)(U) = cal(O)(Spec(k))=k$. So, given that $f^(-1)(U)=f^(-1)(Spec(k)) = X$, one has $X = union.big_(j)U_j$ for finitely many affine open subsets $U_j$, and each induced ring homomorphism $cal(O)(U) -> cal(O)(U_j)$ is of finite type. 
 
@@ -164,7 +164,7 @@
 
 #pagebreak()
 
-= ND//5
+= D//5
 #problem[
   Let $A=RR[X_1,X_2,X_3]\/(X_2-X_1^2, X_3-X_1^3)$ and $X=Spec(A)$. Let $f(X_1,X_2,X_3) = a_1X_1+a_2X_2+a_3X_3+a_4$, where $a_i in RR$ and $Y=Spec(RR[X_1,X_2,X_3]\/(f))$. Is the set $X sect Y$ finite? If yes, what is a finite upper bound on its cardinality? Explain your answer with complete argument.
 
@@ -194,15 +194,16 @@
 
   \ 
   */
-  We'll prove that $X sect Y$ is not necessarily finite, by showing it's false for $f=0$. (For safety, we'll also prove that $f!=0$ implies $X sect Y$ is finite, and has a bound on its cardinality being $3$).
+  We'll prove that $X sect Y$ is not necessarily finite, by showing it's infinite for $f=0$. 
+  //(For safety, we'll also prove that $f!=0$ implies $X sect Y$ is finite, and has a bound on its cardinality being $3$).
   
   Here we denote $I = (X_2-X_1^2, X_3-X_1^3)$, and utilized the fact that $X = Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv V(I)$, and $Y=Spec(RR[X_1,X_2,X_3]\/(f)) tilde.equiv V((f))$ in $Spec(RR[X_1,X_2,X_3])$. Which, the intersection $X sect Y$ is precisely all the prime ideals $P subset RR[X_1,X_2,X_3]$ that contains both $I$ and $(f)$.
 
   Here's an order of the proof: 
-  1. Show that $RR[X_1,X_2,X_3]\/I tilde.equiv RR[t]$, which is a PID (where all prime ideals are maximal).
-  2. Show that if $X sect Y$ has a one-to-one correspondance to subset of prime ideals in $RR[t]$.
+  1. Show that $RR[X_1,X_2,X_3]\/I tilde.equiv RR[t]$. //which is a PID (where all prime ideals are maximal)
+  2. Show that $X sect Y$ has a one-to-one correspondance to a specific subset of $Spec(RR[t])$.
   3. Deduce $X sect Y$ is infinite for the case $f=0$.
-  4. (Extra:) Show that for $f!=0$, $X sect Y$ is finite, and has 3 as upper bound of its cardinality.
+  //4. (Extra:) Show that for $f!=0$, $X sect Y$ is finite, and has 3 as upper bound of its cardinality.
 
   \ 
 
@@ -210,7 +211,7 @@
 
   Consider the evaluation map $phi:RR[X_1,X_2,X_3]->> RR[t]$ by $phi(f(X_1,X_2,X_3)) = f(t, t^2, t^3)$. If consider $X_2-X_1^2, X_3-X_1^3$ (the generators of $I$), one has the following:
     $ phi(X_2-X_1^2) = t^2-(t)^2 = 0, quad phi(X_3-X_1^3)= t^3-(t)^3 = 0 $
-    This shows that $X_2-X_1^2, x_3-X_1^3 in ker(phi)$, so $I subset.eq ker(phi)$. 
+    This shows that $X_2-X_1^2, X_3-X_1^3 in ker(phi)$, so $I subset.eq ker(phi)$. 
 
     Now, we argue that $I = ker(phi)$: Given any monomial $X_1^(n_1)X_2^(n_2)X_3^(n_3)$, then one has the following equality:
     $ X_1^(n_1)X_2^(n_2)X_3^(n_3) &= (X_1^(n_1)X_2^(n_2)X_3^(n_3) - X_1^(n_1+2 n_2)X_3^(n_3))+X_1^(n_1+2 n_2)X_3^(n_3)\ 
@@ -235,11 +236,11 @@
 
   #text(weight: "bold")[Proof of (3):]
 
-  Part (2) provides that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$ as set bijection. However, if take $f=a_1X_1+a_2X_2+a_3X_3+a_4=0$, this ideal becomes $(0)$, hence $X sect Y = V((0))$, which is exactly $Spec(RR[t])$. However, $Spec(RR[t])$ is infinite (since $t-a in RR[t]$ is irreducible for all $a in RR$, so $(t-a)$ is a distinct prime ideal in $Spec(RR[t])$). Hence, $f=0$ is a case where $X sect Y$ is infinite, showing $X sect Y$ is not necessarily finite.
+  Part (2) provides that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$ as set bijection. However, if take $f=a_1X_1+a_2X_2+a_3X_3+a_4=0$, this ideal becomes $(0)$, hence $X sect Y = V((0))$, which is exactly $Spec(RR[t])$. However, $Spec(RR[t])$ is infinite (since $t-a in RR[t]$ is irreducible for all $a in RR$, so $(t-a)$ is a distinct prime ideal in $Spec(RR[t])$). Hence, $f=0$ is a case where $X sect Y$ is infinite, showing $X sect Y$ is not necessarily finite. This completes the proof.
 
   \ 
 
-  #text(weight: "bold")[(Extra) Proof of (4):]
+  //#text(weight: "bold")[(Extra) Proof of (4):]
 
   
 ]
