@@ -83,7 +83,7 @@
 
   Yet, it's not an isomorphism as schemes: Suppose the contrary that it's an isomorphism of schemes, there exists another morphism of integral schemes $j:Spec(RR) -> Spec(CC)$, such that it's not only an inverse of $iota^*$, but its induced ring homomorphism $j^*:cal(O)(Spec(CC))-> cal(O)(Spec(RR))$ is the inverse of the ring homomorphism $(iota^*)^*:cal(O)(Spec(RR))-> cal(O)(Spec(CC))$. However, the induced ring homomorphism of $iota^*$, or $(iota^*)^*$, is precisely the inclusion $iota:RR arrow.hook CC$; since $j^*:CC -> RR$ is its inverse, they imply that $RR$ and $CC$ are isomorphic fields. 
   
-  This is a contradiction, because consider $i in CC$, its multiplicative order is $4$ (since $i^4 = 1$, and any positive integer $n<4$ has $i^n!=1$); however, there's no element in $RR$ with multiplicative order of $4$ (since if $x in RR$ satisfies $x^4 = 1$, then $x^4-1 = (x-1)(x+1)(x^2+1)=0$; with $x^2+1=0$ having no solution in $RR$, then $x=pm 1$, which it either has multiplicative order of $1$ or $2$, not $4$).
+  This is a contradiction, because consider $i in CC$, its multiplicative order is $4$ (since $i^4 = 1$, and any positive integer $n<4$ has $i^n!=1$); however, there's no element in $RR$ with multiplicative order of $4$ (since if $x in RR$ satisfies $x^4 = 1$, then $x^4-1 = (x-1)(x+1)(x^2+1)=0$; with $x^2+1=0$ having no solution in $RR$, then $x=pm 1$, which it either has multiplicative order of $1$ or $2$, not $4$). hence, $RR, CC$ can't be isomorphic fields, leading to a contradiction.
 
   So, since we derive a contradiction, $iota^*:Spec(CC)-> Spec(RR)$ can't be an isomorphism of schemes, despite it's a topological homeomorphism.
 ]
@@ -174,9 +174,72 @@
 
   \
 ][
-  It's equivalent to say that the set $(t,t^2,t^3) subset.eq RR^3$ has only finite intersection with a plane. Which is always true, since the plane $a_1x^1+a_2x_2+a_3x_3+a_4=0$ plugging in the set has $a_1t+a_2t^2+a_3t^3+a_4 = 0$, which is a degree 3 $RR$-polynomial, so the bound of the intersection must be $3$.
+  /*It's equivalent to say that the set $(t,t^2,t^3) subset.eq RR^3$ has only finite intersection with a plane. Which is always true, since the plane $a_1x^1+a_2x_2+a_3x_3+a_4=0$ plugging in the set has $a_1t+a_2t^2+a_3t^3+a_4 = 0$, which is a degree 3 $RR$-polynomial, so the bound of the intersection must be $3$. (Here it's a bit more complicated, because $RR$ is not algebraically closed...)
 
   \ 
 
   Some tools: For an integral domain $B$ that's a finitely-generate $k$-algebra ($k$ a field, not necessarily algebraically close), then the Krull dimension of $B$ equals the transcedental degree of $F(B)$, its fraction field as a $k$-algebra over $k$.
+
+  \ 
+
+  Step 1: Argue that the first ring has krull dimension $1$, the second ring has krull dimension 2 (by proving they're isomorphic to $RR[t]$ and $RR[s,u]$). In other words, the first prime ideal has height 2, the second has height 1.
+
+  Step 2: Argue they're not including each other. So, if a prime ideal contains both (i.e. in $X sect Y$ when viewed them as subspaces in $Spec(RR[x_1,x_2,x_3])$), it must properly contain the two. With the second one already at height $2$, this proper containment makes the larger prime ideal height $3$ (matching the krull dimension of $RR[x_1,x_2,x_3]$), hence it's maximal.
+
+  Step 3: Construct a quotient and show that the quotient is isomorphic to either $RR$ or $CC$ (i.e. it always embedds into $CC$) by some fixed evaluation. Then, argue that this evaluation must have $x_2-x_1^2$, $x_3-x_1^3$,and $a_1 x_1+a_2x_2+a_3x_3+a_4$ all being $0$ (by fixing $x_1$). Then, show there's only $3$ such possibility.
+
+  \ 
+
+  #line(length: 100%)
+
+  \ 
+  */
+  We'll prove that $X sect Y$ is not necessarily finite, by showing it's false for $f=0$. (For safety, we'll also prove that $f!=0$ implies $X sect Y$ is finite, and has a bound on its cardinality being $3$).
+  
+  Here we denote $I = (X_2-X_1^2, X_3-X_1^3)$, and utilized the fact that $X = Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv V(I)$, and $Y=Spec(RR[X_1,X_2,X_3]\/(f)) tilde.equiv V((f))$ in $Spec(RR[X_1,X_2,X_3])$. Which, the intersection $X sect Y$ is precisely all the prime ideals $P subset RR[X_1,X_2,X_3]$ that contains both $I$ and $(f)$.
+
+  Here's an order of the proof: 
+  1. Show that $RR[X_1,X_2,X_3]\/I tilde.equiv RR[t]$, which is a PID (where all prime ideals are maximal).
+  2. Show that if $X sect Y$ has a one-to-one correspondance to subset of prime ideals in $RR[t]$.
+  3. Deduce $X sect Y$ is infinite for the case $f=0$.
+  4. (Extra:) Show that for $f!=0$, $X sect Y$ is finite, and has 3 as upper bound of its cardinality.
+
+  \ 
+
+  #text(weight: "bold")[Proof of (1):]
+
+  Consider the evaluation map $phi:RR[X_1,X_2,X_3]->> RR[t]$ by $phi(f(X_1,X_2,X_3)) = f(t, t^2, t^3)$. If consider $X_2-X_1^2, X_3-X_1^3$ (the generators of $I$), one has the following:
+    $ phi(X_2-X_1^2) = t^2-(t)^2 = 0, quad phi(X_3-X_1^3)= t^3-(t)^3 = 0 $
+    This shows that $X_2-X_1^2, x_3-X_1^3 in ker(phi)$, so $I subset.eq ker(phi)$. 
+
+    Now, we argue that $I = ker(phi)$: Given any monomial $X_1^(n_1)X_2^(n_2)X_3^(n_3)$, then one has the following equality:
+    $ X_1^(n_1)X_2^(n_2)X_3^(n_3) &= (X_1^(n_1)X_2^(n_2)X_3^(n_3) - X_1^(n_1+2 n_2)X_3^(n_3))+X_1^(n_1+2 n_2)X_3^(n_3)\ 
+    &= X_1^(n_1)X_3^(n_3)(X_2^(n_2)-X_1^(2 n_2))+(X_1^(n_1+2n_2)X_3^(n_3) - X_1^(n_1+2n_2+3n_3))+X_1^(n_1+2n_2+3n_3)\ 
+    &= X_1^(n_1)X_3^(n_3)(sum_(i=0)^(n_2-1)X_2^i (X_1^2)^(n_2-i-1))(X_2-X_1^2) + X_1^(n_1+2n_2)(X_3^(n_3)-X_1^(3n_3))+X_1^(n_1+2n_2+3n_3)\ 
+    &= X_1^(n_1)X_3^(n_3)(sum_(i=0)^(n_2-1)X_2^i (X_1^2)^(n_2-i-1))(X_2-X_1^2) + X_1^(n_1+2n_2)(sum_(j=0)^(n_3-1)X_3^j(X_1^3)^(n_3-j-1))(X_3-X_1^3)+X_1^(n_1+2n_2+3n_3)  $
+    Hence, all monomials can be written as $X_1^(n_1)X_2^(n_2)X_3^(n_3) = f dot (X_2-X_1^2)+g dot (X_3-X_1^3) + X_1^k$ for some $f,g in RR[X_1,X_2,X_3]$, and $k in NN$. As a result, all polynomials $h(X_1,X_2,X_3) = f dot (X_2-X_1^2)+g dot (X_3-X_1^3) + h_1(X_1)$ for some $f,g in RR[X_1,X_2,X_3]$, and $h_1(t) in RR[t]$.
+
+    So, one has $h in ker(phi)$ iff $phi(h) = h_1(t)=0$ (since $X_2-X_1^2, X_3-X_1^3$ are evaluated to $0$), which happens iff $h(X_1,X_2,X_3) = f dot (X_2-X_1^2)+g dot (X_3-X_1^3) in I$. This concludes that $I = ker(phi)$. As a result, $RR[X_1,X_2,X_3]\/I tilde.equiv RR[t]$.
+
+    \ 
+
+    #text(weight: "bold")[Proof of (2):]
+
+    Since $(X sect Y) subset X = Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv Spec(RR[t])$, it's naturally identified as a subset of prime ideals of $RR[t]$ (the identification $(X sect Y)-> Spec(RR[t])$ is by $P mapsto phi(P)$, where $P$ is the evaluation map defined in (1)). 
+
+    Notice that all prime ideals $P in (X sect Y)$ also contains $f=a_1X_1+a-2X_2+a_3X_3+a_4$, hence it satisfies $phi(f) = a_1t+a_2t^2+a_3t^3+a_4 in phi(P)$, so $X sec subset.eq V((a_1t+a_2t^2+a_3t^3+a_4)) subset Spec(RR[t])$.
+    
+    Conversly, given prime ideal $overline(P) in V((a_1t+a_2t^2+a_3t^3+a_4))$, then under the preimage of ealuation map, one has $f=a_1X_1+a_2X_2+a_3X_3+a_4 in phi^(-1)(a_1t+a_2t^2+a_3t^3+a_4) subset phi^(-1)(overline(P))$, showing that $phi^(-1)(overline(P))$ is a prime ideal containing both $I$ and $(f)$, which is in $X sect Y$. Therefore, set wise one can conclude that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$.
+
+  \ 
+
+  #text(weight: "bold")[Proof of (3):]
+
+  Part (2) provides that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$ as set bijection. However, if take $f=a_1X_1+a_2X_2+a_3X_3+a_4=0$, this ideal becomes $(0)$, hence $X sect Y = V((0))$, which is exactly $Spec(RR[t])$. However, $Spec(RR[t])$ is infinite (since $t-a in RR[t]$ is irreducible for all $a in RR$, so $(t-a)$ is a distinct prime ideal in $Spec(RR[t])$). Hence, $f=0$ is a case where $X sect Y$ is infinite, showing $X sect Y$ is not necessarily finite.
+
+  \ 
+
+  #text(weight: "bold")[(Extra) Proof of (4):]
+
+  
 ]
