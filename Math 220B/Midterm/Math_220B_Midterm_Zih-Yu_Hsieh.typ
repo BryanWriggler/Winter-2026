@@ -242,7 +242,88 @@
 
   \ 
 ][
+  /*
   No idea yet...if it's a field it's definitely true in my opinion. I hope I can solve this..
   
   WLOG, try and do look at the ring hom $A-> B$ (which descends to some quotient by some prime ideal, say image $tilde.equiv A\/P = A'$ for some prime ideal $P$). Then, see if the map descends to some map $A'[x_1,...,x_n]->> B$ (since $A'$ is an integral domain, this is much easier).
+
+  Induction is probably better (use the modification of the theorem: If $B = A[alpha]$ is integral over $A$, then $B$ is finitely generated as an $A$-module). Problem: integral requires it to satisfy a monic polynomial. Need to think about how to deal with this part (or this can be a breaking point).
+
+  \ 
+
+  #line(length: 100%)
+
+  It's false! Consider local ring $R = ZZ_((p))$, its field of fraction is $QQ$, and $R[x]\/(p x-1) tilde.equiv QQ$. But, $QQ$ can't be finitely generated over $R$ (since there are degrees that're bounded).
+
+  \ 
+  */
+  We'll prove that $B$ is NOT necessarily a finitely generated $A$-module, by constructing a counterexample.
+
+  \ 
+
+  First, let's pick a prime number $p in ZZ$, consider $A = {n/m in QQ | m in.not p ZZ}$ (where $n/m$ is assumed to be a reduced fraction). Let's verify $A$ is a ring:
+  - Since $0=0/1$ has $1 in.not p ZZ$, $0 in A$ ($A$ has zero), and since $1=1/1$ has $1 in.not p ZZ$, $1 in A$ ($A$ has multiplicative identity of $QQ$).
+  - Given $n_1/m_1, n_2/m_2 in A$, since $m_1, m_2 in.not p ZZ$, so $m_1 m_2 in.not p ZZ$, hence one has $n_1/m_1+n_2/m_2 = (n_1m_2+n_2m_1)/(m_1m_2) in A$ ($A$ is closed under addition of $QQ$).
+  - Similarly, the above statement ($m_1m_2 in.not p ZZ$) also implies $n_1/m_1 dot n_2/m_2 = (n_1n_2)/(m_1m_2) in A$ ($A$ is closed under multiplication of $QQ$).
+  So, since $A$ contains both $0,1$, and is closed under $QQ$'s addition and multiplication, it's a subring of $QQ$.
+
+  \ 
+
+  Now, consider the polynomial ring $A[x]$, and an ideal $(p x-1) subset A[x]$. We aim to use these to construct the desired counterexample. 
+
+  Since there's a canonical inclusion $A arrow.hook QQ$, take the element $1/p in QQ$, there is a canonical evaluation map $phi:A[x] -> QQ$ by $phi(x)=1/p$, and $phi(r)=r$ for all $r in A$. 
+
+  - First, notice that $phi$ is surjective, since given any $n/m in QQ$ (for $n,m in ZZ$, $m!=0$). Which, using the unique factorization property of $ZZ$, one can express $m = m_1 dot p^k$ for some integer $k>=0$, and $m_1 in.not p ZZ$. Hence, one has $n/m_1 in A$, and it yields the following:
+    $ phi(n/m_1 x^k) = n/m_1 dot 1/p^k = n/(m_1 p^k) = n/m $
+    This shows the surjectivity of $phi$.
+
+  - Now, if consider the expression $p x-1 in A[x]$, notice that $phi(p x-1) = p dot 1/p -1 = 1-1 = 0$, so $p x-1 in ker(phi)$, or $(p x-1) subset.eq ker(phi)$.
+
+    Now, we aim to show that $(p x-1)=ker(phi)$: Supppose $f(x) in ker(phi)$, then one has $phi(f) = f(1/p)=0$, showing $1/p$ is a root of $f(x) in A[x] arrow.hook QQ[x]$ (as a polynomial of rational coefficients). Hence, within $QQ[x]$, one has the following factorization:
+    $ &f(x)=(x-1/p)(m_k/n_k x^k+...+m_0/n_0)\ 
+    &forall 0<=i<=k,quad m_i/n_i in QQ,quad m_i=0 " or " gcd(m_i,n_i)=1 $
+    If expand $f(x)$, one yields back the following:
+    $ f(x) &= (m_k/n_k x^(k+1)+...+m_0/n_0 x)-(m_k/(p n_k) x^k+...+m_0/(p n_0))\ 
+    &= m_k/n_k x^(k+1)+sum_(i=1)^k (m_(i-1)/n_(i-1)-m_i/(p n_i))x^i +m_0/(p n_0) in A[x] $
+    We'll use induction to show that all $m_i in p ZZ$, and $n_i in.not p ZZ$:
+
+    First, for constant coefficient, one has $m_0/(p n_0) in A$. If $m_0 = 0 in p ZZ$ then we're done (since $n_0=1 in.not p ZZ$ can be chosen). Suppose $m_0!=0$, write $m_0 = m'_0 dot p^(r_0)$ and $n_0 = n'_0 dot p^(s_0)$ for integers $m_0', n_0' in.not p ZZ$, and $r_0,s_0 in NN$. With the assumption that $gcd(m_0,n_0)=1$, one can't have $r_0,s_0>0$ simultaneously (or else $p$ divides both $m_0,n_0$ is a contradiction); similarly, one can't have $r_0=0$ either (or else $m_0/(p n_0) = m'_0/(n'_0 dot p^(s_0+1))$ has $p$-factor in the denominator that can't be cancelled, violating the condition for $R$). Hence, one must have $s_0=0$, causing the following:
+    $ m_0/(p n_0) = (m'_0 dot p^(r_0))/(n'_0 dot p) = m'_0/n'_0 dot p^(r_0-1) in R $ 
+    Because $m'_0, n'_0 in.not p ZZ$, one has $n'_0/m'_0 in A$ (since $m'_0!=0$), showing $p^(r_0-1) in A$. As a result, one must have $r_0-1>=0$, or $r_0>=1$, showing that $m_0 in p ZZ$ (and $n_0 in.not p ZZ$, because $gcd(m_0,n_0)=1$, so $p divides m_0$ implies $p divides.not n_0$).
+
+    Now, inductively suppose for given index $1<=i<=k$, one has $m_(i-1) in p ZZ$ and $n_(i-1) in.not p ZZ$ . Then, using one of the coefficients of $f(x)$, one gets the following:
+    $ m_(i-1)/(n_(i-1))-m_i/(p n_i) = (p n_i m_(i-1)-n_(i-1)m_i)/(p n_(i-1)n_i) in A $
+    Here, if $m_i = 0 in p ZZ$ then we're done (since again $n_i=1$ can be chosen). So, suppose $m_i !=0$, write $m_i = m'_i dot p^(r_i)$ and $n_i = n'_i dot p^(s_i)$ for integers $m'_i, n'_i in.not p ZZ$ and $r_i,s_i in NN$. Again, since $gcd(m_i,n_i)=1$, one can't have $r_i,s_i>0$ simultaneously (or else $p$ divides both $m_i,n_i$ is a contradiction). Similarly, one can't have $r_i=0$, since then $m_i in.not p ZZ$, together with $n_(i-1) in.not p ZZ$ (by induction hypothesis), one has $n_(i-1)m_i in.not p ZZ$, hence $p n_i m_(i-1)-n_(i-1)m_i in.not p ZZ$. Yet, this is a contradiction, since the above term (5.5) has $p$-factor in the denominator that can't be cancel out in this case. So, one has $s_i=0$ again.
+
+    Finally, if expand the above terms, we get:
+    $ (p n_i m_(i-1)-n_(i-1)m_i)/(p n_(i-1)n_i) = (n'_i m_(i-1)-n_(i-1)m'_i p^(r_i-1))/(n_(i-1)n'_i) in A $
+    With $n_(i-1),n'_i in.not p ZZ$, the term $(n'_i m_(i-1))/(n_(i-1)n'_i) in A$; then, one requires $(n_(i-1)m'_i dot p^(r_i-1))/(n_(i-1)n'_i) in A$, or $n_(i-1)m'_i dot p^(r_i-1) in A$. Then, one must have $r_i-1>=0$, or $r_i>=1$, showing $m_i in p ZZ$. This completes the induction.
+
+    \ 
+
+    As a result, since all $m_i in p ZZ$ and $n_i in.not p ZZ$ (or, $m_i = p dot m'_i$ for some $m'_i in ZZ$), $f(x)$ can be rewrite as the following:
+    $ f(x) &= (x-1/p)(m_k/n_k x^k+...+m_0/n_0)\ 
+    &= (x-1/p) dot p(m'_k/n_k x^k+...+m'_0/n_0)\ 
+    &= (p x-1)(m'_k/n_k x^k+...+m'_0/n_0) $
+    With each $m'_i/n_i in R$ (since $n_i in.not p ZZ$), one has $f(x) in (p x-1)$. This shows that $ker(phi) subset.eq (p x-1)$, finishing the proof that $ker(phi)=(p x-1)$.
+
+  As a result, the evaluation $phi:A[x]->> QQ$ by $phi(x)=1/p$ is surjective, and has $ker(phi)=(p x-1)$, showing $A[x]\/(p x-1) tilde.equiv QQ$ (or $(p x-1) subset A[x]$ is maximal).
+
+  \ 
+
+  Finally, take the composition map $A arrow.hook A[x] ->> A[x]\/(p x-1) tilde.equiv QQ$, it is equivalent to the composition $phi compose iota:A -> QQ$, which all $r in A$ has $phi compose iota(r)=phi(r) = r$, being a canonical inclusion map (since $r in (p x-1)$ must have $r=0$ or $deg(r)>=1$, yet $r$ being a constant can't have $deg(r)>=1$, so it must be $0$).
+
+  Here, we claim that $QQ$ is not a finitely generated $A$-module: Suppose the contrary that $QQ$ is a finitely-generated $R$-module under the inclusion $iota:A arrow.hook QQ$, then there exists $m_1/n_1,...,m_k/n_k in QQ$, such that $QQ = A langle m_1/n_1,...,m_k/n_k rangle$. Which, for each $n_i$, one can write $n_i = n'_i dot p^(s_i)$ for some $n'_i in.not p ZZ$ and $s_i in NN$. Notice then $QQ = A langle m_1/p^(s_1),...,m_k/p^(s_k) rangle$, because every $ell in QQ$ has the following for some $a_1,...,a_n in A$:
+  $ ell = sum_(i=1)^k a_i dot m_i/n_i = sum_(i=1)a_i dot m_i/(n'_i dot p^(s_i)) = sum_(i=1)a_i/n'_i dot m_i/p^(s_i) $
+  This shows that ${m_1/n_1,...,m_k/n_k}$ and ${m_1/p^(s_1),...,m_k/p^(s_k)}$ both generate $QQ$ as $A$-module.
+
+  Yet, notice that for $s = max{s_1,..,s_k}$, the element $1/p^(s+1)$ can't be generated by ${m_1/p^(s_1),...,m_k/p^(s_k)}$: Suppose $1/p^(s+1)$ can be generated, one has some $a_i/b_i in A$ satisfy the following (with each $b_i in.not p ZZ$):
+  $ &1/p^(s+1) = sum_(i=1)^k a_i/b_i dot m_i/p^(s_i) = sum_(i=1)^k (a_i m_i dot b_1...b_(i-1)b_(i+1)...b_k dot p^(s-s_i+1))/(b_1...b_k dot p^(s+1))\ 
+  &==> b_1...b_k = sum_(i=1)^k a_i m_i dot b_1...b_(i-1) b_(i+1)...b_k dot p^(s-s_i+1) $
+  Notice that the right hand side has each term in the sum being divisible by $p$ (since $s-s_i+1>0$ for all index $i$). Yet, the left hand side can't be divisible by $p$ (since we assume each $b_i in.not p ZZ$, so $b_1...b_k in.not p ZZ$ by the prime property). Hence, we reach a contradiction.
+
+  \ 
+
+  As a result, the above $A$ and $B=A[x]\/(p x-1)$ is an example where $A arrow.hook R[x] ->> B$ has $B$ not being a finitely-generated $A$-module, which is a counterexample for the statement.
+
 ]

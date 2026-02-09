@@ -160,6 +160,22 @@
   \
 ][
   Counterexample: $CC PP^1$ can be covered by two affine spaces. Given $AA^1_CC = Spec(CC[x])$, the gluing map between two copies of $AA^1_CC\\{0}$ is $(x-z) mapsto (x-1/z)$ (corresponding to the gluing map $z mapsto 1/z$ when creating two projective spaces).
+
+  \ 
+
+  Here, we'll prove that $X$ is not necessarily affine, by constructing a counterexample.
+
+  \ 
+
+  Consider the two schemes $Y=Z=AA^1_CC= Spec(CC[t])$, and consider $U= AA^1_CC\\{(t)}$ (where $(t)$ corresponds to the maximal ideal for origin $0 in CC$). Then, take the identity map $f=id_U:U arrow.tilde U$, the inclusion $iota_U:U arrow.hook Y=Z$, and consider $X = Y union.sq_f Z$ as the gluing of schemes:
+  #set align(center)
+  #diagram($
+             U edge("hook->", script(iota_U)) edge("d","hook->", script(iota_U)) & Y edge("d",->, script(iota_Y))\ 
+             Z edge(->, script(iota_Z)) & X=Y union.sq_f Z
+           $)
+  #set align(left)
+  Which, $X$ is clearly covered by $Y$ and $Z$ (or the image of them under the canonical inclusion maps), which both open subsets are affine. Yet, we claim that $X$ itself is not affine:
+  
 ]
 
 #pagebreak()
