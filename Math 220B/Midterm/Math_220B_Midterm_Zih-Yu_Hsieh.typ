@@ -91,7 +91,7 @@
 
 = D//2
 #problem[
-  Let $A$ be a commutative ring and $a!=0$ be an element of $A$. Prove or disprove that we can find a multiplicatively closed subset $S subset A$ such that the image of $a$ under the localization $A -> S^(-1)A$ lies in every maximal ideal of $S^(-1)A$.
+  Let $A$ be a commutative ring and $a!=0$ be a non-unit element of $A$. Prove or disprove that we can find a multiplicatively closed subset $S subset A$ such that the image of $a$ under the localization $A -> S^(-1)A$ lies in every maximal ideal of $S^(-1)A$.
 
   \ 
 
@@ -100,11 +100,11 @@
   \ 
 ][
   /*If $a$ is a unit then this fails, else if $a$ is not a unit, take a maximal ideal $frak(m) in.rev a$, then the localization $A_frak(m)$ has $a$ be contained in all (and the only) maximal ideal, namely $frak(m) A_frak(m)$.*/
-  Here, if $a!=0$ can be a unit, we claim that the statement is false; else if $a$ is not a unit, we claim that the statement is true.
+  Here, we claim that the statement is true.
 
   \ 
 
-  #text(weight: "bold")[I. If $a!=0$ can be a unit:]
+  /*#text(weight: "bold")[I. If $a!=0$ can be a unit:]
 
   If $a!=0$ is allowed to be a unit, take $S = {1} subset A$, it's multiplicatively closed, since $1 in S$ and $0 in.not S$, together with $1 dot 1=1$. However, notice that given the set $A times S$, if any $a,b in A$ has $(a,1) tilde (b,1)$ under the equivalance relation of localization, then $(a dot 1-b dot 1) dot 1 = (a-b) = 0$, so $a=b$. Hence, one has $a/1 = b/1$ in $S^(-1)A$ iff $a=b$. Which, the map $phi:A -> S^(-1)A$ by $phi(a)=a/1$ is an isomorphism (since it's surjective by definition, together with $phi(a)=0/1$ iff $a/1 = 0/1$ iff $a=0$, showing $ker(phi)=0$, or $phi$ is injective).
 
@@ -112,7 +112,7 @@
 
   \ 
 
-  #text(weight: "bold")[II. If $a!=0$ is not a unit:]
+  #text(weight: "bold")[II. If $a!=0$ is not a unit:]*/
 
   Since $a!=0$ is not a unit, the ideal $(a) subset.neq A$ is proper, hence there exists a maximal ideal $M subset.neq A$, where $(a) subset.eq M$.
 
