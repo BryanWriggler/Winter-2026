@@ -331,6 +331,8 @@
   */
   We'll prove that $X sect Y$ is not necessarily finite, by showing it's infinite for $f=0$. 
   //(For safety, we'll also prove that $f!=0$ implies $X sect Y$ is finite, and has a bound on its cardinality being $3$).
+
+  \ 
   
   Here we denote $I = (X_2-X_1^2, X_3-X_1^3)$, and utilized the fact that $X = Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv V(I)$, and $Y=Spec(RR[X_1,X_2,X_3]\/(f)) tilde.equiv V((f))$ in $Spec(RR[X_1,X_2,X_3])$. Which, the intersection $X sect Y$ is precisely all the prime ideals $P subset RR[X_1,X_2,X_3]$ that contains both $I$ and $(f)$.
 
