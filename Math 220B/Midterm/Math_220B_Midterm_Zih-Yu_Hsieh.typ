@@ -49,28 +49,29 @@
 
   \ 
 
-  2. Consider the map $phi:A[[x]]->> A$ by $phi(sum_(n >=0)a_n x^n) = a_0$. This is in fact a ring homomorphism, because for any $f(x)=sum_(n>=0)a_n x^n$ and $g(x) = sum_(m>=0)b_m x^m$ in $A[[x]]$, they satisfy the following two equations:
+  2. Consider the surjective map $phi:A[[x]]->> A$ by $phi(sum_(n >=0)a_n x^n) = a_0$. This is in fact a ring homomorphism, because for any power series $f(x)=sum_(n>=0)a_n x^n$ and $g(x) = sum_(m>=0)b_m x^m$ in $A[[x]]$, they satisfy the following three equations:
     $ phi(f(x)+g(x)) &= phi(sum_(n>=0)(a_n + b_n)x^n)= a_0+b_0= phi(f(x))+phi(g(x)) $
     $ phi(f(x)g(x)) &= phi(sum_(k>=0)(sum_(n=0)^k a_n b_(k-n))x^k)= a_0 b_0= phi(f(x))phi(g(x))  $
-    Which, given any $f(x)=sum_(n>=0)a_n x^n in A[[x]]$, one has: 
+    $ phi(1) &= 1 in A $
+    Which, given any power series $f(x)=sum_(n>=0)a_n x^n in A[[x]]$, one has: 
     
     $ f(x) in ker(phi) " " &<==> " " phi(f(x)) = a_0 = 0 " " <==>" " f(x) = sum_(n>=1)a_n x^n\ 
-    &<==>" " f(x)=x dot sum_(n>=0)a_n x^(n-1)" " <==>" " f(x) in (x) $
+    &<==>" " f(x)=x dot sum_(n>=1)a_n x^(n-1)" " <==>" " f(x) in (x) $
     This proves that $ker(phi) = (x)$.
 
     Hence, one deduces that $A[[x]]\/(x) tilde.equiv A$; moreover, the sets ${"ideals" I subset.eq A[[x]] | (x) subset.eq I} <--> {"ideals" J subset.eq A}$ are in one-to-one correspondance via the associations $I mapsto phi(I)$ and $phi^(-1)(J) arrow.l.bar J$.
 
-    Also, notice that such bijection preserves the inclusion as partial order: Given two ideals $I,I' subset.eq A[[x]]$ containing $(x)$, then $I subset.eq I'$ implies $phi(I) subset.eq phi(I')$; similarly, given two ideals $J,J' subset.eq A$, if $J subset.eq J'$, one has $phi^(-1)(J) subset.eq phi^(-1)(J')$.
+    Furthermore, notice that such bijection preserves the inclusion as partial order: Given two ideals $I,I' subset.eq A[[x]]$ containing $(x)$, then $I subset.eq I'$ implies $phi(I) subset.eq phi(I')$; similarly, given two ideals $J,J' subset.eq A$, if $J subset.eq J'$, one has $phi^(-1)(J) subset.eq phi^(-1)(J')$.
 
     \ 
 
-  Now, let's prove the actual correspondance:
+  Now, let's prove the actual statement.
 
   \ 
 
   $==>:$
 
-  First, suppose $A$ is a local ring, let $frak(m) subset.neq A$ denotes its unique maximal ideal, then any proper ideal $J subset.neq A$ satisfies $J subset.eq frak(m)$. Hence, for any maximal ideal $M subset.neq A[[x]]$, since by (1) above we have $(x) subset.eq M$ (which, $M $ is in the set ${"ideal" I subset.eq A[[x]] | (x) subset.eq I}$), then by (2), one has $M =phi^(-1)(phi(M)) subset.eq phi^(-1)(frak(m))$ (since $phi(M)$ is a proper ideal). With $frak(m) subset.eq A$ being a proper ideal, $phi^(-1)(frak(m)) subset.eq A[[x]]$ is also proper, so $M subset.eq phi^(-1)(frak(m))$ together with $M$ being a maximal ideal in $A[[x]]$ implies $M = phi^(-1)(frak(m))$.
+  First, suppose $A$ is a local ring, let $frak(m) subset.neq A$ denotes its unique maximal ideal, then any proper ideal $J subset.neq A$ satisfies $J subset.eq frak(m)$ (since all proper ideal is contained in some maximal ideal, while here there's only one such choice). Hence, for any maximal ideal $M subset.neq A[[x]]$, since by (1) above we have $(x) subset.eq M$ (which, $M $ is in the set ${"ideal" I subset.eq A[[x]] | (x) subset.eq I}$), then by (2), one has $M =phi^(-1)(phi(M)) subset.eq phi^(-1)(frak(m))$ (since $phi(M)$ is a proper ideal). With $frak(m) subset.neq A$ being a proper ideal, $phi^(-1)(frak(m)) subset.eq A[[x]]$ is also proper, so $M subset.eq phi^(-1)(frak(m))$ together with $M$ being a maximal ideal in $A[[x]]$ implies $M = phi^(-1)(frak(m))$.
 
   Therefore, there exists unique maximal ideal in $A[[x]]$, namely $phi^(-1)(frak(m))$, showing $A[[x]]$ is a local ring.
 
@@ -78,13 +79,13 @@
 
   $<==:$
 
-  Then, suppose $A[[x]]$ is a local ring, let $M subset.neq A[[x]]$ denotes its unique maximal ideal. Then, for any maximal ideal $frak(m) subset.neq A$, since $phi^(-1)(frak(m))$ is a proper ideal in $A[[x]]$, one has $phi^(-1)(frak(m)) subset.eq M$. Using the correspondance in (2), one gets $frak(m) = phi(phi^(-1)(frak(m))) subset.eq phi(M)$. Yet, with $phi(M)$ being a proper ideal (since $M$ is proper), and with $frak(m) subset.neq A$ be a maximal ideal, then $frak(m) = phi(M)$.
+  Then, suppose $A[[x]]$ is a local ring, let $M subset.neq A[[x]]$ denotes its unique maximal ideal. Then, for any maximal ideal $frak(m) subset.neq A$, since $phi^(-1)(frak(m))$ is a proper ideal in $A[[x]]$, one has $phi^(-1)(frak(m)) subset.eq M$ (similar argument to previous part). Using the correspondance in (2), one gets $frak(m) = phi(phi^(-1)(frak(m))) subset.eq phi(M)$. Yet, with $phi(M)$ being a proper ideal (since $M$ is proper), and with $frak(m) subset.neq A$ be a maximal ideal, then $frak(m) = phi(M)$.
 
   Thus, there exists unique maximal ideal in $A$, namely $phi(M)$, showing $A$ is a local ring.
 
   \ 
 
-  The above two proofs conclude that $A$ is a local ring iff $A[[x]]$ is a local ring.
+  The above two proofs conclude that $A$ is a local ring iff $A[[x]]$ is a local ring. #place(right, $ballot$)
 ]
 
 #pagebreak()
@@ -100,7 +101,7 @@
   \ 
 ][
   /*If $a$ is a unit then this fails, else if $a$ is not a unit, take a maximal ideal $frak(m) in.rev a$, then the localization $A_frak(m)$ has $a$ be contained in all (and the only) maximal ideal, namely $frak(m) A_frak(m)$.*/
-  Here, we claim that the statement is true.
+  We'll prove that the statement is true.
 
   \ 
 
@@ -116,9 +117,9 @@
 
   Since $a!=0$ is not a unit, the ideal $(a) subset.neq A$ is proper, hence there exists a maximal ideal $M subset.neq A$, where $(a) subset.eq M$.
 
-  Now, since $M$ is also a prime ideal (because it's maximal), then take $S = A\\M$ a multiplicatively closed set, one has the localization $S^(-1)A = A_M$, while under the map $phi:A -> A_M$ by $phi(x)=x/1$ has the extension of $M$, say $M^e = M A_M$ being the unique maximal ideal of $A_M$. 
+  Now, since $M$ is also a prime ideal (because it's maximal), then take $S = A\\M$ a multiplicatively closed set, one has the localization $S^(-1)A = A_M$, while under the map $phi:A -> A_M$ by $phi(x)=x/1$ has the extension of $M$, say $M^e = M A_M$ being the unique maximal ideal of $A_M$ (property when doing localization with respect to a prime ideal, it's proven in class). 
 
-  Then, since $a in M$, one has $phi(a)=a/1 in M A_M$ (the unique maximal ideal of $S^(-1)A=A_M$). Hence, the image of $a$ under the localization lies in every maximal ideal of $S^(-1)A$ (since there's only one maximal ideal). 
+  Then, since $a in M$, one has $phi(a)=a/1 in M A_M$ (the unique maximal ideal of $S^(-1)A=A_M$). Hence, the image of $a$ under this localization lies in every maximal ideal of $S^(-1)A$ (since there's only one maximal ideal). This is a desired result for the statement. #place(right, $ballot$)
 ]
 
 #pagebreak()
@@ -155,9 +156,9 @@
   2. Second, we claim that $S$ is an integral domain: Given any $overline(a+b i), overline(c+d i) in S$ that satisfy $overline(a+b i) dot overline(c+d i) = overline((a c+b d)+(a d-b c)i)=0$. Which, $(a c+b d), (a d-b c) in 3ZZ$, and using (1) we can assume that $a,b,c,d in {0,1,2}$.
 
     Since any $x,y in {0,1,2}$ satisfies $0 <= x y <= 4$, this restricts*/
-  Consider the field $k=ZZ\/2ZZ$, the polynomial ring $k[x]$, and the polynomial $x^2+x+1 in k[x]$, we'll use these to construct a counterexample.
+  Consider the field $k=ZZ\/2ZZ$, the polynomial ring $k[x]$ (an integral domain), and the polynomial $x^2+x+1 in k[x]$, we'll use these to construct a counterexample.
 
-  Given that $0,1$ are the only elements inf $k= ZZ\/2ZZ$, if plugin $x^2+x+1$, one gets:
+  Given that $0,1$ are the only elements in $k= ZZ\/2ZZ$, if plugin $x^2+x+1$, one gets:
   $ 0^2+0+1 = 1!=0, quad 1^2+1+1 = 1+1+1 = 1 != 0 $
   This shows that $x^2+x+1$ has no solution in $k$; also, because it is of degree $2$, it can't be factored into any smaller degree nonconstant polynomial (since smaller degree nonconstant polynomials are degree $1$, which always has a solution in a field), so $x^2+x+1 in k[x]$ is an irreducible element. Because $k[x]$ is a PID (since $k$ is a field), then $(x^2+x+1) subset k[x]$ is a maximal ideal, the ring $A = k[x]\/(x^2+x+1)$ is a field (in particular an integral domain).
 
@@ -169,19 +170,21 @@
 
   1. We first claim that $A = {overline(a)+overline(b x) | a,b in k}$ (which since $k=ZZ\/2ZZ$ is finite, this implies $A$ is finite).
 
-    Given $x^2$, since one has $overline(x^2+x+1)=0$ under $S$, then $overline(x^2) = overline(-1-x) = overline(1)+overline(x)$ in $S$. Now, if consider any degree $n>=2$ monomial $x^n$, since $x^n = x^2 dot x^(n-2)$, then one has the following: 
+    Given $x^2$, since one has $overline(x^2+x+1)=0$ in $A$, then $overline(x^2) = overline(-1-x) = overline(1)+overline(x)$ in $A$. Now, if consider any degree $n>=2$ monomial $x^n$, since $x^n = x^2 dot x^(n-2)$, then one has the following: 
     $ overline(x^n) = overline(x^2) dot overline(x^(n-2)) = (overline(1+x)) dot overline(x^(n-2)) = overline(x^(n-2))+overline(x^(n-1)) $
-    Which, using induction, since $overline(x^n)$ can be written as linear combinations of smaller degree monomials, it can be written as linear combinations of $overline(a)$ and $overline(x)$.
+    Which, using induction, since $overline(x^n)$ can be written as linear combinations of smaller degree monomials, it can be written as linear combinations of $overline(1)$ and $overline(x)$.
 
-    Hence, since all monimials can be written in the form $overline(a)+overline(b x)$ in $A$ (and all polynomials are finite linear combinations of monomials), one concludes that $A = {overline(a)+overline(b x) | a,b in k}$.
+    Hence, since all monimials' quotient can be written in the form $overline(a)+overline(b x)$ in $A$ (and all polynomials are finite linear combinations of monomials), all polynomials' quotient can be written as $overline(a)+overline(b x)$ for some $a,b in k$, and one concludes that $A = {overline(a)+overline(b x) | a,b in k}$.
+
+    Moreover, such representative is unique (which suffices to show the case for $overline(0)$): Suppose $overline(a)+overline(b x)=overline(0)$ in $A$, then $a+b x in (x^2+x+1)$ in $k[x]$. But, this enforces $a+b x = 0$ (or else if it's nonzero, then $a+b x=g dot (x^2+x+1)$ for some $g in k[x]$; since $deg(a+b x)=0$ or $1$, while $deg (g dot (x^2+x+1))>= deg(x^2+x+1)=2$, this forms a contradiction). Hence, $overline(a)+overline(b x)=0$ enforces $a+b x=0$, which further enforces $a,b=0$. So, such representative is unique for each element.
 
     \ 
 
   2. Based on (1), we know $A = {overline(0)," " overline(1)," " overline(x)," " overline(1)+overline(x)}$ as sets (so $A$ has cardinality $4$). In particular, $overline(1)!=0$, and $overline(1)+overline(1) = overline(0)$ (since under $k=ZZ\/2ZZ$, $1+1=0$), so $Char(A) = 2$. 
   
-    However, among all the quotient of $ZZ$, since the only ideals of $ZZ$ are of the form $I = n ZZ$ (where $n in ZZ$; WLOG say $n>=0$, since if $n<0$, one has $n ZZ = -n ZZ$), then $Char(ZZ\/n ZZ) = n$, since $sum_(i=1)^n overline(1)=overline(n) = overline(0)$ in $ZZ\/n ZZ$, and for any $0<k<n$, by definition $sum_(i=1)^k overline(1) = overline(k)!=0$ (since $k in.not n ZZ$).
+    However, among all the quotient of $ZZ$, since the only ideals of $ZZ$ are of the form $I = n ZZ$ (where $n in ZZ$; WLOG say $n>=0$, since if $n<0$, take $-n>0$, one has $n ZZ = -n ZZ$). Which, $Char(ZZ\/n ZZ) = n$, since $sum_(i=1)^n overline(1)=overline(n) = overline(0)$ in $ZZ\/n ZZ$, and for any $0<k<n$, by definition $sum_(i=1)^k overline(1) = overline(k)!=0$ (since $k in.not n ZZ$).
 
-    So, suppose $I=n ZZ$ is an ideal of $ZZ$ satisfying $ZZ\/n ZZ = A$, then $2=Char(A) = Char(ZZ\/n ZZ) = n$, showing $I = 2 ZZ$. Yet, this implies $A = ZZ\/2 ZZ = {0," " 1}$, or $A$ has cardinality 2 instead of $4$, which is a contradiction. Therefore, $A$ cannot be a quotient of $ZZ$.
+    Now, suppose the contrary that $A$ is a quotient of $ZZ$, say $I=n ZZ$ is an ideal of $ZZ$ satisfying $ZZ\/n ZZ = A$, then $2=Char(A) = Char(ZZ\/n ZZ) = n$, showing $I = 2 ZZ$. Yet, this implies $A = ZZ\/2 ZZ = {0," " 1}$, or $A$ has cardinality 2 instead of $4$, which is a contradiction. Therefore, $A$ cannot be a quotient of $ZZ$.
 
   \ 
 
@@ -257,7 +260,7 @@
 
   \ 
   */
-  We'll prove that $B$ is NOT necessarily a finitely generated $A$-module, by constructing a counterexample.
+  We'll prove that $B$ is not necessarily a finitely generated $A$-module, by constructing a counterexample.
 
   \ 
 
@@ -271,11 +274,15 @@
 
   Now, consider the polynomial ring $A[x]$, and an ideal $(p x-1) subset A[x]$. We aim to use these to construct the desired counterexample. 
 
-  Since there's a canonical inclusion $A arrow.hook QQ$, take the element $1/p in QQ$, there is a canonical evaluation map $phi:A[x] -> QQ$ by $phi(x)=1/p$, and $phi(r)=r$ for all $r in A$. 
+  Since there's a canonical inclusion $A arrow.hook QQ$, take the element $1/p in QQ$, there is a canonical evaluation map $phi:A[x] -> QQ$ by $phi(x)=1/p$, and $phi(r)=r$ for all $r in A$. Let's deduce some property of $phi$:
+
+  \  
 
   - First, notice that $phi$ is surjective, since given any $n/m in QQ$ (for $n,m in ZZ$, $m!=0$). Which, using the unique factorization property of $ZZ$, one can express $m = m_1 dot p^k$ for some integer $k>=0$, and $m_1 in.not p ZZ$. Hence, one has $n/m_1 in A$, and it yields the following:
     $ phi(n/m_1 x^k) = n/m_1 dot 1/p^k = n/(m_1 p^k) = n/m $
     This shows the surjectivity of $phi$.
+
+    \ 
 
   - Now, if consider the expression $p x-1 in A[x]$, notice that $phi(p x-1) = p dot 1/p -1 = 1-1 = 0$, so $p x-1 in ker(phi)$, or $(p x-1) subset.eq ker(phi)$.
 
@@ -284,24 +291,24 @@
     &forall 0<=i<=k,quad m_i/n_i in QQ,quad m_i=0 " or " gcd(m_i,n_i)=1 $
     If expand $f(x)$, one yields back the following:
     $ f(x) &= (m_k/n_k x^(k+1)+...+m_0/n_0 x)-(m_k/(p n_k) x^k+...+m_0/(p n_0))\ 
-    &= m_k/n_k x^(k+1)+sum_(i=1)^k (m_(i-1)/n_(i-1)-m_i/(p n_i))x^i +m_0/(p n_0) in A[x] $
+    &= m_k/n_k x^(k+1)+sum_(i=1)^k (m_(i-1)/n_(i-1)-m_i/(p n_i))x^i +m_0/(p n_0) in A[x] quad  "(After reducing each fraction)" $
     We'll use induction to show that all $m_i in p ZZ$, and $n_i in.not p ZZ$:
 
-    First, for constant coefficient, one has $m_0/(p n_0) in A$. If $m_0 = 0 in p ZZ$ then we're done (since $n_0=1 in.not p ZZ$ can be chosen). Suppose $m_0!=0$, write $m_0 = m'_0 dot p^(r_0)$ and $n_0 = n'_0 dot p^(s_0)$ for integers $m_0', n_0' in.not p ZZ$, and $r_0,s_0 in NN$. With the assumption that $gcd(m_0,n_0)=1$, one can't have $r_0,s_0>0$ simultaneously (or else $p$ divides both $m_0,n_0$ is a contradiction); similarly, one can't have $r_0=0$ either (or else $m_0/(p n_0) = m'_0/(n'_0 dot p^(s_0+1))$ has $p$-factor in the denominator that can't be cancelled, violating the condition for $R$). Hence, one must have $s_0=0$, causing the following:
-    $ m_0/(p n_0) = (m'_0 dot p^(r_0))/(n'_0 dot p) = m'_0/n'_0 dot p^(r_0-1) in R $ 
+    First, for constant coefficient, one has $m_0/(p n_0) in A$. If $m_0 = 0 in p ZZ$ then we're done (since $n_0=1 in.not p ZZ$ can be chosen). Suppose $m_0!=0$, write $m_0 = m'_0 dot p^(r_0)$ and $n_0 = n'_0 dot p^(s_0)$ for integers $m'_0, n'_0 in.not p ZZ$, and $r_0,s_0 in NN$. With the assumption that $gcd(m_0,n_0)=1$, one can't have $r_0,s_0>0$ simultaneously (or else $p$ divides both $m_0,n_0$ is a contradiction); similarly, one can't have $r_0=0$ either (or else $m_0/(p n_0) = m'_0/(n'_0 dot p^(s_0+1))$ has $p$-factor in the denominator that can't be cancelled, violating the condition for $R$). Hence, one must have $s_0=0$, causing the following:
+    $ m_0/(p n_0) = (m'_0 dot p^(r_0))/(n'_0 dot p) = m'_0/n'_0 dot p^(r_0-1) in A $ 
     Because $m'_0, n'_0 in.not p ZZ$, one has $n'_0/m'_0 in A$ (since $m'_0!=0$), showing $p^(r_0-1) in A$. As a result, one must have $r_0-1>=0$, or $r_0>=1$, showing that $m_0 in p ZZ$ (and $n_0 in.not p ZZ$, because $gcd(m_0,n_0)=1$, so $p divides m_0$ implies $p divides.not n_0$).
 
     Now, inductively suppose for given index $1<=i<=k$, one has $m_(i-1) in p ZZ$ and $n_(i-1) in.not p ZZ$ . Then, using one of the coefficients of $f(x)$, one gets the following:
     $ m_(i-1)/(n_(i-1))-m_i/(p n_i) = (p n_i m_(i-1)-n_(i-1)m_i)/(p n_(i-1)n_i) in A $
-    Here, if $m_i = 0 in p ZZ$ then we're done (since again $n_i=1$ can be chosen). So, suppose $m_i !=0$, write $m_i = m'_i dot p^(r_i)$ and $n_i = n'_i dot p^(s_i)$ for integers $m'_i, n'_i in.not p ZZ$ and $r_i,s_i in NN$. Again, since $gcd(m_i,n_i)=1$, one can't have $r_i,s_i>0$ simultaneously (or else $p$ divides both $m_i,n_i$ is a contradiction). Similarly, one can't have $r_i=0$, since then $m_i in.not p ZZ$, together with $n_(i-1) in.not p ZZ$ (by induction hypothesis), one has $n_(i-1)m_i in.not p ZZ$, hence $p n_i m_(i-1)-n_(i-1)m_i in.not p ZZ$. Yet, this is a contradiction, since the above term (5.5) has $p$-factor in the denominator that can't be cancel out in this case. So, one has $s_i=0$ again.
+    Here, if $m_i = 0 in p ZZ$ then we're done (since again $n_i=1$ can be chosen). So, suppose $m_i !=0$, write $m_i = m'_i dot p^(r_i)$ and $n_i = n'_i dot p^(s_i)$ for integers $m'_i, n'_i in.not p ZZ$ and $r_i,s_i in NN$. Again, since $gcd(m_i,n_i)=1$, one can't have $r_i,s_i>0$ simultaneously (or else $p$ divides both $m_i,n_i$ is a contradiction). Similarly, one can't have $r_i=0$, since then $m_i in.not p ZZ$, together with $n_(i-1) in.not p ZZ$ (by induction hypothesis), one has $n_(i-1)m_i in.not p ZZ$, hence $p n_i m_(i-1)-n_(i-1)m_i in.not p ZZ$. Yet, this is a contradiction, since the above term (5.5) has $p$-factor in the denominator that can't be cancelled out in this case. So, one has $s_i=0$ again.
 
     Finally, if expand the above terms, we get:
     $ (p n_i m_(i-1)-n_(i-1)m_i)/(p n_(i-1)n_i) = (n'_i m_(i-1)-n_(i-1)m'_i p^(r_i-1))/(n_(i-1)n'_i) in A $
-    With $n_(i-1),n'_i in.not p ZZ$, the term $(n'_i m_(i-1))/(n_(i-1)n'_i) in A$; then, one requires $(n_(i-1)m'_i dot p^(r_i-1))/(n_(i-1)n'_i) in A$, or $n_(i-1)m'_i dot p^(r_i-1) in A$. Then, one must have $r_i-1>=0$, or $r_i>=1$, showing $m_i in p ZZ$. This completes the induction.
+    With $n_(i-1),n'_i in.not p ZZ$, the term $(n'_i m_(i-1))/(n_(i-1)n'_i) in A$; then, one requires $(n_(i-1)m'_i dot p^(r_i-1))/(n_(i-1)n'_i) in A$, or $p^(r_i-1) in A$ (since $n_(i-1),n'_i, n_(i-1), m'_i in.not p ZZ$ are all invertible in $A$). Then, one must have $r_i-1>=0$, or $r_i>=1$, showing $m_i in p ZZ$. This completes the induction.
 
     \ 
 
-    As a result, since all $m_i in p ZZ$ and $n_i in.not p ZZ$ (or, $m_i = p dot m'_i$ for some $m'_i in ZZ$), $f(x)$ can be rewrite as the following:
+    As a result, since all $m_i in p ZZ$ and $n_i in.not p ZZ$ (or, $m_i = p dot m'_i$ for some $m'_i in ZZ$), $f(x)$ can be rewritten as the following:
     $ f(x) &= (x-1/p)(m_k/n_k x^k+...+m_0/n_0)\ 
     &= (x-1/p) dot p(m'_k/n_k x^k+...+m'_0/n_0)\ 
     &= (p x-1)(m'_k/n_k x^k+...+m'_0/n_0) $
@@ -311,19 +318,23 @@
 
   \ 
 
-  Finally, take the composition map $A arrow.hook A[x] ->> A[x]\/(p x-1) tilde.equiv QQ$, it is equivalent to the composition $phi compose iota:A -> QQ$, which all $r in A$ has $phi compose iota(r)=phi(r) = r$, being a canonical inclusion map (since $r in (p x-1)$ must have $r=0$ or $deg(r)>=1$, yet $r$ being a constant can't have $deg(r)>=1$, so it must be $0$).
-
-  Here, we claim that $QQ$ is not a finitely generated $A$-module: Suppose the contrary that $QQ$ is a finitely-generated $R$-module under the inclusion $iota:A arrow.hook QQ$, then there exists $m_1/n_1,...,m_k/n_k in QQ$, such that $QQ = A langle m_1/n_1,...,m_k/n_k rangle$. Which, for each $n_i$, one can write $n_i = n'_i dot p^(s_i)$ for some $n'_i in.not p ZZ$ and $s_i in NN$. Notice then $QQ = A langle m_1/p^(s_1),...,m_k/p^(s_k) rangle$, because every $ell in QQ$ has the following for some $a_1,...,a_n in A$:
-  $ ell = sum_(i=1)^k a_i dot m_i/n_i = sum_(i=1)a_i dot m_i/(n'_i dot p^(s_i)) = sum_(i=1)a_i/n'_i dot m_i/p^(s_i) $
-  This shows that ${m_1/n_1,...,m_k/n_k}$ and ${m_1/p^(s_1),...,m_k/p^(s_k)}$ both generate $QQ$ as $A$-module.
-
-  Yet, notice that for $s = max{s_1,..,s_k}$, the element $1/p^(s+1)$ can't be generated by ${m_1/p^(s_1),...,m_k/p^(s_k)}$: Suppose $1/p^(s+1)$ can be generated, one has some $a_i/b_i in A$ satisfy the following (with each $b_i in.not p ZZ$):
-  $ &1/p^(s+1) = sum_(i=1)^k a_i/b_i dot m_i/p^(s_i) = sum_(i=1)^k (a_i m_i dot b_1...b_(i-1)b_(i+1)...b_k dot p^(s-s_i+1))/(b_1...b_k dot p^(s+1))\ 
-  &==> b_1...b_k = sum_(i=1)^k a_i m_i dot b_1...b_(i-1) b_(i+1)...b_k dot p^(s-s_i+1) $
-  Notice that the right hand side has each term in the sum being divisible by $p$ (since $s-s_i+1>0$ for all index $i$). Yet, the left hand side can't be divisible by $p$ (since we assume each $b_i in.not p ZZ$, so $b_1...b_k in.not p ZZ$ by the prime property). Hence, we reach a contradiction.
+  Finally, take the composition map $A arrow.hook A[x] ->> A[x]\/(p x-1) tilde.equiv QQ$, it is equivalent to the composition $phi compose iota:A -> QQ$, which all $r in A$ has $phi compose iota(r)=phi(r) = r$, being a canonical inclusion map (since $r in (p x-1)$ implies $r = g dot (p x-1)$ for some $g in A[x]$, which must have $r=0$ or $deg(r)>=1$; yet, $r$ being a constant can't have $deg(r)>=1$, so it must be $0$).
 
   \ 
 
-  As a result, the above $A$ and $B=A[x]\/(p x-1)$ is an example where $A arrow.hook R[x] ->> B$ has $B$ not being a finitely-generated $A$-module, which is a counterexample for the statement.
+  Here, we claim that $QQ$ is not a finitely generated $A$-module: 
+  
+  Suppose the contrary that $QQ$ is a finitely-generated $A$-module under the inclusion $iota:A arrow.hook QQ$, then there exists $m_1/n_1,...,m_k/n_k in QQ$, such that $QQ = A langle m_1/n_1,...,m_k/n_k rangle$. Which, for each $n_i$, one can write $n_i = n'_i dot p^(s_i)$ for some $n'_i in.not p ZZ$ and $s_i in NN$. Notice then $QQ = A langle m_1/p^(s_1),...,m_k/p^(s_k) rangle$, because every $ell in QQ$ has the following for some $a_1,...,a_n in A$:
+  $ ell = sum_(i=1)^k a_i dot m_i/n_i = sum_(i=1)a_i dot m_i/(n'_i dot p^(s_i)) = sum_(i=1)^k a_i/n'_i dot m_i/p^(s_i), quad quad forall i in {1,...,k}, " " a_i/n'_i in A $
+  This shows that ${m_1/n_1,...,m_k/n_k}$ and ${m_1/p^(s_1),...,m_k/p^(s_k)}$ both generate $QQ$ as $A$-module.
+
+  Yet, notice that for $s = max{s_1,..,s_k}$, the element $1/p^(s+1)$ can't be generated by ${m_1/p^(s_1),...,m_k/p^(s_k)}$: Suppose $1/p^(s+1)$ can be generated, there exists some $a_i/b_i in A$ satisfy the following (with each $b_i in.not p ZZ$):
+  $ &1/p^(s+1) = sum_(i=1)^k a_i/b_i dot m_i/p^(s_i) = sum_(i=1)^k (a_i m_i dot (b_1...b_(i-1)b_(i+1)...b_k) dot p^(s-s_i+1))/(b_1...b_k dot p^(s+1))\ 
+  &==> b_1...b_k = sum_(i=1)^k a_i m_i dot (b_1...b_(i-1) b_(i+1)...b_k) dot p^(s-s_i+1) $
+  Notice that the right hand side has each term in the sum being divisible by $p$ (since $s-s_i+1>0$ for all index $i$). Yet, the left hand side can't be divisible by $p$ (since we assume each $b_i in.not p ZZ$, so $b_1...b_k in.not p ZZ$ by the prime property). Hence, we reach a contradiction. This implies our assumption is false, showing $QQ tilde.equiv A[x]\/(p x-1)$ can't be a finitely generated $A$-module.
+
+  \ 
+
+  As a result, the above $A$ and $B=A[x]\/(p x-1)$ is an example where $A arrow.hook R[x] ->> B$ has $B$ not being a finitely-generated $A$-module, which is a desired counterexample for the statement.
 
 ]
