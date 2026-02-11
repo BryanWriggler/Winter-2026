@@ -146,7 +146,119 @@ What are the energy eigenvalues for this Hamiltonian, and what are their degener
 \end{ques}
 
 \begin{proof}
-    
+    Given the Hamiltonian as follow:
+    \begin{align}
+        H=\epsilon(S_{x,1}\tensor S_{x,2}+S_{y,1}\tensor S_{y,2}+S_{z,1}\tensor S_{z,2})
+    \end{align}
+    Now, recall the spin-$\frac{1}{2}$ matrices for $s_1$ (under the basis $\ket{\frac{1}{2}}, \ket{-\frac{1}{2}}$ in $z$-basis of quandum number $m$), we get:
+    \begin{align}
+        S_{x,1} = \frac{\hbar}{2}\begin{pmatrix}
+            0&1\\1&0
+        \end{pmatrix},\quad S_{y,1} = \frac{\hbar}{2}\begin{pmatrix}
+            0&-i\\i&0
+        \end{pmatrix},\quad S_{z,1}=\frac{\hbar}{2}\begin{pmatrix}
+            1&0\\0&-1
+        \end{pmatrix}
+    \end{align}
+    And, for the spin-$1$ matrices for $s_2$ (under the basis $\ket{1},\ket{0},\ket{-1}$ in $z$-basis of quantum number $m$), we get the following (from the last HW):
+    \begin{align}
+        S_{x,2}=\frac{\hbar}{\sqrt{2}}\begin{pmatrix}
+            0&1&0\\1&0&1\\0&1&0
+        \end{pmatrix},\quad S_{y,2}=\frac{\hbar}{\sqrt{2}}\begin{pmatrix}
+            0&-i&0\\i&0&-i\\0&i&0
+        \end{pmatrix},\quad S_{z,2}=\hbar\begin{pmatrix}
+            1&0&0\\0&0&0\\0&0&-1
+        \end{pmatrix}
+    \end{align}
+    Then, for the ccomposite states, take $\ket{m_1,m_2}:= \ket{m_1}\tensor \ket{m_2}$ as its label, then under the ordered basis $\{\ket{\frac{1}{2},1},\ket{\frac{1}{2},0},\ket{\frac{1}{2},-1},\ket{-\frac{1}{2},1},\ket{-\frac{1}{2},0},\ket{-\frac{1}{2},-1}\}$, the matrix of $H$ is expressed as follow:
+    \begin{align}
+        \frac{1}{\epsilon}H &= \frac{\hbar^2}{2\sqrt{2}}\begin{pmatrix}
+            0&0&0&0&1&0\\
+            0&0&0&1&0&1\\
+            0&0&0&0&1&0\\
+            0&1&0&0&0&0\\
+            1&0&1&0&0&0\\
+            0&1&0&0&0&0
+        \end{pmatrix}+\frac{\hbar^2}{2\sqrt{2}}\begin{pmatrix}
+            0&0&0&0&-i&0\\
+            0&0&0&i&0&-i\\
+            0&0&0&0&i&0\\
+            0&-i&0&0&0&0\\
+            i&0&-i&0&0&0\\
+            0&i&0&0&0&0
+        \end{pmatrix} + \frac{\hbar^2}{2}\begin{pmatrix}
+            1&0&0&0&0&0\\
+            0&0&0&0&0&0\\
+            0&0&-1&0&0&0\\
+            0&0&0&-1&0&0\\
+            0&0&0&0&0&0\\
+            0&0&0&0&0&1
+        \end{pmatrix}\\
+        &= \frac{\hbar^2}{2}\begin{pmatrix}
+            1&0&0&0&e^{-i\pi/4}&0\\
+            0&0&0&e^{i\pi/4}&0&e^{-i\pi/4}\\
+            0&0&-1&0&e^{i\pi/4}&0\\
+            0&e^{-i\pi/4}&0&-1&0&0\\
+            e^{i\pi/4}&0&e^{-i\pi/4}&0&0&0\\
+            0&e^{i\pi/4}&0&0&0&1
+        \end{pmatrix}
+    \end{align}
+    Take the characteristic polynomials, one has the following:
+    \begin{align}
+        \left(\frac{2}{\epsilon \hbar^2}\right)^6\det(H-\lambda I) =& \det\begin{pmatrix}
+            (1-\lambda)&0&0&0&e^{-i\pi/4}&0\\
+            0&-\lambda&0&e^{i\pi/4}&0&e^{-i\pi/4}\\
+            0&0&-(1+\lambda)&0&e^{i\pi/4}&0\\
+            0&e^{-i\pi/4}&0&-(1+\lambda)&0&0\\
+            e^{i\pi/4}&0&e^{-i\pi/4}&0&-\lambda&0\\
+            0&e^{i\pi/4}&0&0&0&(1-\lambda)
+        \end{pmatrix}\\
+        \\
+        =& (1-\lambda) \det\begin{pmatrix}
+            -\lambda&0&e^{i\pi/4}&0&e^{-i\pi/4}\\
+            0&-(1+\lambda)&0&e^{i\pi/4}&0\\
+            e^{-i\pi/4}&0&-(1+\lambda)&0&0\\
+            0&e^{-i\pi/4}&0&-\lambda&0\\
+            e^{i\pi/4}&0&0&0&(1-\lambda)
+        \end{pmatrix}\\
+        &+ e^{i\pi/4}\det\begin{pmatrix}
+            0&0&0&e^{-i\pi/4}&0\\
+            -\lambda&0&e^{i\pi/4}&0&e^{-i\pi/4}\\
+            0&-(1+\lambda)&0&e^{i\pi/4}&0\\
+            e^{-i\pi/4}&0&-(1+\lambda)&0&0\\
+            e^{i\pi/4}&0&0&0&(1-\lambda)
+        \end{pmatrix}\\
+        \\
+        =& (1-\lambda)^2\det\begin{pmatrix}
+            -\lambda&0&e^{i\pi/4}&0\\
+            0&-(1+\lambda)&0&e^{i\pi/4}\\
+            e^{-i\pi/4}&0&-(1+\lambda)&0\\
+            0&e^{-i\pi/4}&0&-\lambda
+        \end{pmatrix}\\
+        &+ (1-\lambda)e^{i\pi/4}\det\begin{pmatrix}
+            0&e^{i\pi/4}&0&e^{-i\pi/4}\\
+            -(1+\lambda)&0&e^{i\pi/4}&0\\
+            0&-(1+\lambda)&0&0\\
+            e^{-i\pi/4}&0&-\lambda&0
+        \end{pmatrix}\\
+        &-\det\begin{pmatrix}
+            -\lambda&0&e^{i\pi/4}&e^{-i\pi/4}\\
+            0&-(1+\lambda)&0&0\\
+            e^{-i\pi/4}&0&-(1+\lambda)&0\\
+            e^{i\pi/4}&0&0&(1-\lambda)
+        \end{pmatrix}\\
+        \\
+        =& -\lambda(1-\lambda)^2\det\begin{pmatrix}
+            -(1+\lambda)&0&e^{i\pi/4}\\
+            0&-(1+\lambda)&0\\
+            e^{-i\pi/4}&0&-\lambda
+        \end{pmatrix}\\
+        &+(1-\lambda)^2e^{i\pi/4}\det\begin{pmatrix}
+            0&-(1+\lambda)&e^{i\pi/4}\\
+            e^{-i\pi/4}&0&0\\
+            0&e^{-i\pi/4}&-\lambda
+        \end{pmatrix}
+    \end{align}
 \end{proof}
 
 \newpage
