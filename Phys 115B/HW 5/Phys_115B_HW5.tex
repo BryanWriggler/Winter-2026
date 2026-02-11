@@ -1,0 +1,299 @@
+\documentclass{article}
+\usepackage{../../Self_Style}
+
+\title{Phys 115B HW 5}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1 D}
+\begin{ques}\label{q1}
+Mesons and Baryons and Pentaquarks (modified Griffiths 4.38, 4.35 in second edition)
+
+Quarks carry total spin \( s = \frac{1}{2} \). Three quarks bind together to make a baryon (such as a proton or neutron), while two quarks (technically a quark and an antiquark, but the distinction is irrelevant here) bind together to make a meson (such as a pion or kaon). Assume the quark states are in the ground state with zero orbital angular momentum.
+\begin{itemize}
+\item[(a)] What spins are possible for baryons?
+
+\item[(b)] What spins are possible for mesons?
+
+\item[(c)] On July 3, 2015, the LHCb collaboration at CERN announced the discovery of a pentaquark state, consisting of \( 5 \) quarks. What spins are possible for a pentaquark?
+
+\item[(d)] You can produce beams of baryons, mesons, and pentaquarks in your lab, and shoot them at Stern-Gerlach apparati. How many beams might you expect each of the samples to split into as it passes the SGA?
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+    
+    Here, we'll assume that under the tensor product, a spin-$\frac{n}{2}$ particle always has degeneracy $n+1$ associated (for $m=\{\frac{n}{2},\frac{n}{2}-1,...,-\frac{n}{2}+1, -\frac{n}{2}\}$). In a more mathematical language, as an irreducible $\so(3)$-representation, spin-$\frac{n}{2}$ corresponds to an $n$-dimensional irreducible representation.
+
+    Also, we'll assume that each representation (for instance, the tensor representation, or sum of spins) is completely reducible, meaning it can be written as direct sums of various spin-$\frac{n}{2}$ representations.
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] For baryons that's bind by three quarks, the states are represented by tensor product of three spin-$\frac{1}{2}$ Hilbert spaces (each has dimension $2$), hence has dimension $2^3 = 8$. If consider the $S_u$ operator for $u\in\{x,y,z\}$, one has the following:
+        \begin{align}
+            S_u = S_{u,1}\tensor I_2\tensor I_3+I_1\tensor S_{u,2}\tensor I_3 + I_1\tensor I_2\tensor S_{u,3}
+        \end{align}
+        Which, the square is given as follow:
+        \begin{align}
+            S_u^2 =& S_{u,1}^2\tensor I_2\tensor I_3+I_1\tensor S_{u,2}^2\tensor I_3+I_1\tensor I_2\tensor S_{u,3}^2\\ 
+            &+ 2(S_{u,1}\tensor S_{u,2}\tensor I_3+S_{u,1}\tensor I_2\tensor S_{u,3}+I_1\tensor S_{u,2}\tensor S_{u,3})
+        \end{align}
+        As a result, one has the operator $S^2$ given as follow:
+        \begin{align}
+            S^2 =& S_x^2+S_y^2+S_z^2\\
+            =& S_1^2 \tensor I_2\tensor I_3+I_1 \tensor S_2^2\tensor I_3+I_1\tensor I_2\tensor S_3^2\\
+            &+ 2\sum_{u=x,y,z}(S_{u,1}\tensor S_{u,2}\tensor I_3+S_{u,1}\tensor I_2\tensor S_{u,3}+I_1\tensor S_{u,2}\tensor S_{u,3})
+        \end{align}
+        Using the fact that $2\sum_{u=x,y,z}S_{u,1}\tensor S_{u,2} = S_{+,1}\tensor S_{-,2}+S_{-,1}\tensor S_{+,2}+2S_{z,1}\tensor S_{z,2}$ (derived for two spin-$\frac{1}{2}$ particle system), together with the associativity of tensor product (up to isomorphism), one has the following:
+        \begin{align}
+            S^2 =& S_1^2 \tensor I_2\tensor I_3+I_1 \tensor S_2^2\tensor I_3+I_1\tensor I_2\tensor S_3^2\\
+            &+ S_{+,1}\tensor S_{-,2}\tensor I_3+S_{-,1}\tensor S_{+,2}\tensor I_3+2S_{z,1}\tensor S_{z,2}\tensor I_3\\
+            &+ S_{+,1}\tensor I_2\tensor S_{-,3}+S_{-,1}\tensor I_2\tensor S_{+,3}+2S_{z,1}\tensor I_2\tensor S_{z,3}\\
+            &+ I_1\tensor S_{+,2}\tensor S_{-,3}+I_1 \tensor S_{-,2}\tensor S_{+,3}+2I_1\tensor S_{z,2}\tensor S_{z,3}
+        \end{align}
+        Which, its action on the state $\ket{\uparrow}\tensor\ket{\uparrow}\tensor \ket{\uparrow}$ is as follow (Notice that if there is an $S_{+,i}$ involved in the tensor, then its action is $0$, since $S_{+,i}\ket{\uparrow_i} = \bzero$; on the other hand, each $S_i^2$ has action of scalar multiply by $\frac{3\hbar^2}{4}$, eigenvalue for spin-$\frac{1}{2}$, and each $S_{z,i}$ has action $\frac{\hbar}{2}$):
+        \begin{align}
+            S^2 \ket{\uparrow}\tensor\ket{\uparrow}\tensor \ket{\uparrow} = \left(3 \cdot \frac{3\hbar^2}{4} + 3 \cdot 2 \cdot \frac{\hbar^2}{4}\right)\ket{\uparrow}\tensor\ket{\uparrow}\tensor \ket{\uparrow} = \frac{15\hbar^2}{4}\ket{\uparrow}\tensor\ket{\uparrow}\tensor \ket{\uparrow}
+        \end{align}
+        Which, if $s$ satisfies $\hbar^2 s(s+1) = \frac{15\hbar^2}{4}$, then $s^2+s-\frac{15}{4} = 0$, or $(s+\frac{5}{2})(s-\frac{3}{2})=0$. Hence, for $s>0$, one has $s=\frac{3}{2}$. Which, it corresponds to degeneracy $4$, hence there is a spin-$\frac{3}{2}$ representation (with dimension $5$) in the tensor presentation, so there is an extra $8-4=4$-dimensional subrepresentation we're seeking in the tensor representation.
+
+        \hfil
+
+        For the extra $4$-dimensional subrepresentation, it's either spin-$\frac{3}{2}$ (with degeneray $4$), spin-$1$ and spin-$0$ direct sum (with degeneracy $3+1$), or spin-$\frac{1}{2}$ and spin-$\frac{1}{2}$ direct sum (with degeneracy $2+2$).
+
+        Now,consider the operator again, if viewed the first two states as a composite state (i.e. do the tensor of the first two spaces first), using $S_{12}^2 = S_1^2\tensor I_2+I_1\tensor S_2^2 + S_{+,1}\tensor S{-,2}+S_{-,1}\tensor S_{+,2}+2 S_{z,1}\tensor S_{z,2}$ represents the spin operator, $S_{z,12}=S_{z,1}\tensor I_2+I_1 \tensor S_{z,2}$ represents its $z$-spin operator, and $S_{\pm,12}= S_{\pm,1}\tensor I_2+I_1 \tensor S_{\pm,2}$ represents the raising and lowering operator (which coincides with the definition $S_{x,12}\pm iS_{y,12}$ if work out the derivation), notice that it can be rewritten as follow:
+        \begin{align}
+            S^2 =& (S_1^2\tensor I_2+I_1\tensor S_2^2 + S_{+,1}\tensor S{-,2}+S_{-,1}\tensor S_{+,2}+2 S_{z,1}\tensor S_{z,2})\tensor I_3 + I_{12}\tensor S_3^2\\
+            &+ (S_{+,1}\tensor I_2+I_1\tensor S_{+,2})\tensor S_{-,3}+(S_{-,1}\tensor I_2+I_1\tensor S_{-,2})\tensor S_{+,3}\\
+            &+2(S_{z,1}\tensor I_2+I_1\tensor S_{z,2})\tensor S_{z,3}\\
+            =& S_{12}^2\tensor I_3+I_{12}\tensor S_3^2 + S_{+,12}\tensor S_{-,3}+S_{-,12}\tensor S_{+,3} + 2S_{z,12}\tensor S_{z,3}
+        \end{align}
+        So, it can also be viewed as a composite (two spin-$\frac{1}{2}$) state, tensor a spin-$\frac{1}{2}$ state. If consider the state $\ket{\psi}:=\frac{\sqrt{2}\ket{1,1}\tensor \ket{-\frac{1}{2}}-\ket{1,0}\tensor \ket{\frac{1}{2}}}{\sqrt{3}}$ (for $\ket{s,m}$ being the spin-1 state in the composit of the first two, and $\ket{\pm \frac{1}{2}}$ represents spin up/down for the third particle), then $S^2$ has the following action:
+        \begin{align}
+            S^2\ket{\psi} =& \sqrt{\frac{2}{3}}\left[\left(2\hbar^2+\frac{3\hbar^2}{2}-\hbar^2\right)\ket{1,1}\tensor\ket{-\frac{1}{2}} + \sqrt{2}\hbar^2\ket{1,0}\tensor \ket{\frac{1}{2}}\right]\\
+            &- \frac{1}{\sqrt{3}}\left[\left(2\hbar^2+\frac{3\hbar^2}{2}+0\right)\ket{1,0}\tensor\ket{\frac{1}{2}} + \sqrt{2}\hbar^2\ket{1,1}\tensor\ket{-\frac{1}{2}}\right]\\
+            =& \frac{1}{\sqrt{3}}\left[\sqrt{2}\cdot\frac{3\hbar^2}{2}\ket{1,1}\tensor\ket{-\frac{1}{2}}-\frac{3\hbar^2}{2}\ket{1,0}\tensor\ket{\frac{1}{2}}\right]\\
+            =& \frac{3\hbar^2}{2}\frac{\sqrt{2}\ket{1,1}\tensor\ket{-\frac{1}{2}}-\ket{1,0}\tensor\ket{\frac{1}{2}}}{\sqrt{3}}= \frac{3\hbar^2}{2}\ket{\psi}
+        \end{align}
+        This shows that $\ket{\psi}$ has spin $s$ satisfies $\hbar^2 s(s+1)=\frac{3\hbar^2}{2}$, which corresponds to spin $s=\frac{1}{2}$.
+        This shows that there is a copy of spin-$\frac{1}{2}$ representation in the tensor product space of three spin-$\frac{1}{2}$ particles, which corresponds to degeneracy $2$.
+
+        \hfil
+
+        Eventually, one has spin-$\frac{3}{2}$ (degeneracy 4) and spin-$\frac{1}{2}$ (degeneracy 2) in an $8$-dimensional space, which the remaining $8-4-2=2$-dimension must be coming from spin-$\frac{1}{2}$ (the only spin with 2-dimensional irreducible $\so(3)$-representation). So, the possible spins for baryons are $s = \frac{3}{2},\frac{1}{2}$ (where there are $2$ copies of spin-$\frac{1}{2}$ when chosen a specific direct sum decomposition).
+
+        \hfil
+
+        \hfil
+
+        \item[(b)] For mesons that's bind by two quarkes, the states are represented by tensor product of two spin-$\frac{1}{2}$ Hilbert space. Which, we've already calculated the sum of two spin-$\frac{1}{2}$, which has allowed spin $s=1,0$.
+        
+        \hfil
+
+        \hfil
+
+        \item[(c)] For a pentaquark state with 5 quarks bind together, it can be viewed as a system binding two smaller systems, one with 3 quarks binded (like a baryon, with Hilbert Space dimension $8$), the other with 2 quarks binded (like a meson, with Hilbert Space dimension $4$). So, for the two Hilbert Spaces, one has the first one with allowed spins $s_1 = \frac{3}{2},\frac{1}{2}$, and the second one with $s_2 = 1,0$.
+        
+        Let $\mathcal{H}^{(1)}$ denotes the first Hilbert Space, $\mathcal{H}^{(2)}$ denotes the second Hilbert Space, and $\mathcal{H}_s$ denotes the Hilbert Space with spin $s$. Based on the answer in part (a) and (b), one has the following:
+        \begin{align}
+            \mathcal{H}^{(1)} \cong \mathcal{H}_{\frac{1}{2}}\tensor\mathcal{H}_{\frac{1}{2}}\tensor \mathcal{H}_{\frac{1}{2}} \cong \mathcal{H}_{\frac{3}{2}}\oplus\mathcal{H}_{\frac{1}{2}}\oplus \mathcal{H}_{\frac{1}{2}},\quad \mathcal{H}^{(2)} \cong \mathcal{H}_{1}\oplus \mathcal{H}_{0}\cong \mathcal{H}_{\frac{1}{2}}\tensor \mathcal{H}_{\frac{1}{2}}
+        \end{align}
+        (Note: Reacll that composite two spin-$\frac{1}{2}$ particles have Hilbert Space $\mathcal{H}_{\frac{1}{2}}\tensor \mathcal{H}_{\frac{1}{2}}$; on the other hand, composite three spin-$\frac{1}{2}$ particles have Hilbert space $\mathcal{H}_{\frac{1}{2}}\tensor\mathcal{H}_{\frac{1}{2}}\tensor \mathcal{H}_{\frac{1}{2}}$).
+
+        So, the pentaquark has its Hilbert Space (as an $\so(3)$-representation) being as follow:
+        \begin{align}
+            \mathcal{H}^{(1)}\tensor \mathcal{H}^{(2)} &\cong (\mathcal{H}_{\frac{3}{2}}\tensor \mathcal{H}_{1})\oplus (\mathcal{H}_{\frac{3}{2}}\tensor \mathcal{H}_{0})\oplus (\mathcal{H}_{\frac{1}{2}}\tensor\mathcal{H}_{\frac{1}{2}}\tensor \mathcal{H}_{\frac{1}{2}})\oplus (\mathcal{H}_{\frac{1}{2}}\tensor\mathcal{H}_{\frac{1}{2}}\tensor \mathcal{H}_{\frac{1}{2}})\\
+            &\cong (\mathcal{H}_{\frac{3}{2}}\tensor \mathcal{H}_{1})\oplus (\mathcal{H}_{\frac{3}{2}}\tensor \mathcal{H}_{0})\oplus \mathcal{H}^{(1)}\oplus \mathcal{H}^{(1)}
+        \end{align}
+        First, let's resolve the case of $\mathcal{H}_0 \tensor \mathcal{H}_s$ for arbitrary $s$: Its spin operator $S^2 := S_1^2\tensor I_2+I_1\tensor S_2^2 + S_{+,1}\tensor S_{-,2}+S_{-,1}\tensor S_{+,2}+2S_{z,1}\tensor S_{z,2}$; but notie that $\mathcal{H}_0$ has everything acting on it trivially (since $s=m=0$), then anything involving nontrivial spin operators in the first column is a zero operator. Hence, $S^2 = I_1 \tensor S_2^2$, showing that $\mathcal{H}_0\tensor \mathcal{H}_s \cong \mathcal{H}_s$ (since $\mathcal{H}_0$ provides no action, and as a 1-dimension space it adds no dimension to the tensor product). Hence, the above tensor product can be reduced the following:
+        \begin{align}
+            \mathcal{H}^{(1)}\tensor \mathcal{H}^{(2)} \cong (\mathcal{H}_{\frac{3}{2}}\tensor \mathcal{H}_{1})\oplus \mathcal{H}_{\frac{3}{2}}\oplus \mathcal{H}^{(1)}\oplus \mathcal{H}^{(1)}
+        \end{align}
+        Now, since $\mathcal{H}^{(1)}$ has dimension $8$ (with spin $s=\frac{3}{2},\frac{1}{2}$), $\mathcal{H}_{\frac{3}{2}}$ has dimension $4$ (with spin $\frac{3}{2}$), with the tensor representation having dimension $8\times 4 = 32$, there are total of $32-8-8-4=12$-dimension remaining. Which all comes from $\mathcal{H}_{3/2}\tensor \mathcal{H}_1$.
+
+        Doing all the manual calculation will put too much work for this, so we'll appeal to the Clebsch-Gordan table. Which, a composite spin of $\frac{3}{2}$ and $1$ particles will form allowed spin $s = \frac{5}{2},\frac{3}{2},\frac{1}{2}$ (with degeneracy $6,4,2$ respectively, matching up with the dimension $12$).
+
+        Hence, here is the full direct sum decomposition:
+        \begin{align}
+            \mathcal{H}^{(1)}\tensor \mathcal{H}^{(2)} &\cong (\mathcal{H}_\frac{5}{2}\oplus \mathcal{H}_\frac{3}{2}\oplus \mathcal{H}_\frac{1}{2}) \oplus (\mathcal{H}_\frac{3}{2}) \oplus (\mathcal{H}_{\frac{3}{2}}\oplus\mathcal{H}_{\frac{1}{2}}\oplus \mathcal{H}_{\frac{1}{2}})\oplus (\mathcal{H}_{\frac{3}{2}}\oplus\mathcal{H}_{\frac{1}{2}}\oplus \mathcal{H}_{\frac{1}{2}})\\
+            &= \mathcal{H}_\frac{5}{2}\oplus \mathcal{H}_\frac{3}{2}^{\oplus 4}\oplus \mathcal{H}_\frac{1}{2}^{\oplus 5}
+        \end{align}
+        Which, the allowed spin for the pentaquark is $s=\frac{5}{2},\frac{3}{2},\frac{1}{2}$.
+
+        \hfil
+
+        \item[(d)] If a beam contains baryons (spin $s=\frac{3}{2},\frac{1}{2}$ allowed), mesons (spin $s=1,0$ allowed), and pentaquarks (spin $s=\frac{5}{2},\frac{3}{2},\frac{1}{2}$ allowed), then the possible value of $m$ is $\{\frac{5}{2},\frac{3}{2},\frac{1}{2},-\frac{1}{2},-\frac{3}{2},-\frac{5}{2},1,0,-1\}$. So, there's possibly $9$ beams when passing through the Stern-Gerlach apparati.
+    \end{itemize}
+\end{proof}
+
+\newpage
+
+\section*{2}
+\begin{ques}\label{q2}
+Coupled Spins
+
+Consider two particles, with \( s_1 = \frac{1}{2} \) and \( s_2 = 1 \). The particles are at rest and subject to an interaction that depends on the relative spin orientations, with Hamiltonian
+
+\[
+H = \epsilon \, \mathbf{S}_1 \cdot \mathbf{S}_2
+\]
+
+What are the energy eigenvalues for this Hamiltonian, and what are their degeneracies?
+\end{ques}
+
+\begin{proof}
+    
+\end{proof}
+
+\newpage
+
+\section*{3}
+\begin{ques}\label{q3}
+Clebsch Gordan Practice (this is like Griffiths 4.40, or 4.36 in second edition, if you want to practice on that first)
+\begin{itemize}
+\item[(a)] A particle of spin \( s_1 = \frac{3}{2} \) and a particle of spin \( s_2 = \frac{1}{2} \) are at rest in a configuration where the total spin of the two particles is \( 1 \) and a measurement of the total spin of the two particles in the \( z \) direction yields \( -\hbar \). If you measured the spin of the spin-\( \frac{3}{2} \) particle in the \( z \) direction, what values might you obtain, and with what probabilities?
+
+\item[(b)] Imagine the outcome of your measurement in part (a) was \( -\frac{3\hbar}{2} \). You subsequently measure the total spin of the two-particle system. What values might you obtain and with what probabilities?
+
+\item[(c)] An electron with spin up in the \( z \) direction is in the state \( \psi_{4,2,-1} \) of the hydrogen atom. If you measure the total angular momentum (orbital plus spin) what values might you obtain and with what probabilities?
+
+\item[(d)] Imagine the outcome of your measurement of the total angular momentum in part (c) gave \( j = \frac{3}{2} \). You subsequently measure the spin of the electron in the \( z \) direction. What is the probability that your result is \( -\frac{\hbar}{2} \)?
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+    
+\end{proof}
+
+\newpage
+
+\section*{4 D}
+\begin{ques}\label{q4}
+EPR Pair (Griffiths 12.1 in both editions)
+
+\hfil
+
+The singlet spin configuration (State $\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})$) is a classic example of an \emph{entangled state}--a two particle state that cannot be expressed as the product of two one-partile states, and for which, therefore, one cannot really speak of ``the state'' of either particle separately. You might wonder whether this is somehow an artifact of bad notation--maybe some linear combination of the one-particle states would disentangle the system. Prove the following theorem:
+\begin{thm}
+    Consider a two-level system, $\ket{\phi_a}$ and $\ket{\phi_b}$, with $\braket{\phi_i}{\phi_j}=\delta_{ij}$ (For example, $\ket{\phi_a}$ might represent spin up and $\ket{\phi_b}$ spin down). The two-particle state 
+    $$\alpha\ket{\phi_a(1)}\ket{\phi_b(2)}+\beta\ket{\phi_b(1)}\ket{\phi_a(2)}$$
+    with $\alpha,\beta\neq 0$ \emph{cannot} be expressed as a product $\ket{\psi_r(1)}\ket{\psi_s(2)}$ for \emph{any} one-particle states $\ket{\psi_r}$ and $\ket{\psi_s}$.
+\end{thm}
+\end{ques}
+
+\begin{proof}
+    Suppose the contrary that it can be expressed as a product $\ket{\psi_r(1)}\tensor\ket{\psi_s(2)}$ for some other one-particle states $\ket{\psi_r}$ and $\ket{\psi_s}$. If express them as linear combinations of $\ket{\phi_a}$ and $\ket{\phi_b}$, one gets the following for some $x,y,z,w\in\CC$ satisfying $|x|^2+|y|^2=|z|^2+|w|^2=1$:
+    \begin{align}
+        \ket{\psi_r} =x\ket{\phi_a}+y\ket{\phi_b},\quad \ket{\psi_s}=z\ket{\phi_a}+w\ket{\phi_b} 
+    \end{align}
+    Then, its tensor product is expressed as follow:
+    \begin{align}
+        \ket{\psi_r}\tensor\ket{\psi_s} = xz\ket{\phi_a(1)}\tensor\ket{\phi_a(2)}+xw\ket{\phi_a(1)}\tensor\ket{\phi_b(2)}+yz\ket{\phi_b(1)}\ket{\phi_a(2)}+yw\ket{\phi_b(1)}\tensor\ket{\phi_b(2)}
+    \end{align}
+    Which, compared to the original state $\ket{\psi_r}\ket{\psi_s}=\alpha\ket{\phi_a(1)}\ket{\phi_b(2)}+\beta\ket{\phi_b(1)}\ket{\phi_a(2)}$, since under the tensor product, the pure tensor of the basis elements form a basis for the tensor product, each coefficient must match up. Hence, we get the following:
+    \begin{align}
+        xz = yw = 0,\quad xw = \alpha,\quad yz = \beta
+    \end{align}
+    This indicates that either $x$ or $z$ is $0$, and also either $y$ or $w$ is $0$. Notice that in each case, at least one of $\alpha,\beta$ is $0$:
+    \begin{itemize}
+        \item If $x=0$, then $\alpha=xw=0$
+        \item If $z=0$, then $\beta=yz=0$
+        \item If $y=0$, then $\beta=yz=0$ again
+        \item If $w=0$, then $\alpha=xw=0$ again.
+    \end{itemize}
+    This contradicts the assumption that $\alpha,\beta\neq 0$.
+
+    So, it can't be written in a pure tensor form of any vectors in the space (i.e. it's not a product of any one-particle states).
+\end{proof}
+
+\newpage
+
+\section*{5 D}
+\begin{ques}\label{q5}
+\( S_x \) of the singlet state
+
+The singlet state
+
+\[
+|\psi_S\rangle = \frac{1}{\sqrt{2}} \left( |\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle \right)
+\]
+
+has \( s = 0 \), and therefore any measurement of \( S^2 \), \( S_x \), \( S_y \), or \( S_z \) will give zero. In this problem, show explicitly that
+
+\[
+S^2 |\psi_S\rangle = 0
+\]
+
+and that
+
+\[
+S_x |\psi_S\rangle = 0 .
+\]
+
+The most straightforward way to approach the second part of this problem is to re-write \( |\psi_S\rangle \) in terms of the \( S_x \) eigenstates that were derived in the text book or in class.
+\end{ques}
+
+\begin{proof}
+    First, recall that for the addition of two spin-$\frac{1}{2}$ particles has the following definition for $S^2$ and $S_x$:
+    \begin{align}
+        &S^2 = S_1^2 \tensor I_2 + I_1 \tensor S_2^2 + (S_{1,+}\tensor S_{2,-}+S_{1,-}\tensor S_{2,+}) + 2(S_{1,z}\tensor S_{2,z})\\
+        &S_x = S_{x,1}\tensor I_2 + I_1\tensor S_{x,2}
+    \end{align}    
+    Hence, we get the following:
+    \begin{align}
+        S^2\ket{\psi_S} =& \frac{1}{\sqrt{2}}S^2(\ket{\uparrow}\tensor\ket{\downarrow}-\ket{\downarrow}\tensor\ket{\uparrow})\\
+        =& \frac{1}{\sqrt{2}}\left(\bigg(\frac{3\hbar^2}{4} + \frac{3\hbar^2}{4}-\frac{\hbar^2}{2}\bigg)\ket{\uparrow}\tensor\ket{\downarrow}+\hbar^2\ket{\downarrow}\tensor\ket{\uparrow}\right) - \frac{1}{\sqrt{2}}\left(\left(\frac{3\hbar^2}{4}+\frac{3\hbar^2}{4}-\frac{\hbar^2}{2}\right)\ket{\downarrow}\tensor\ket{\uparrow}+\hbar^2\ket{\uparrow}\tensor\ket{\downarrow}\right)\\
+        =& \frac{\hbar^2}{\sqrt{2}}(\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow})- \frac{\hbar^2}{\sqrt{2}}(\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow})\\
+        =& \bzero
+    \end{align} 
+    \begin{align}
+        S_x\ket{\psi_S} &= \frac{1}{\sqrt{2}}(S_{x,1}\tensor I_2+I_1\tensor S_{x,2})(\ket{\uparrow}\tensor\ket{\downarrow}-\ket{\downarrow}\tensor\ket{\uparrow})\\
+        &= \frac{1}{\sqrt{2}}\left(\left(\frac{\ket{\uparrow}+\ket{\downarrow}}{\sqrt{2}}\right)\tensor\ket{\downarrow} - \left(\frac{\ket{\uparrow}-\ket{\downarrow}}{\sqrt{2}}\right)\tensor\ket{\uparrow} + \ket{\uparrow}\tensor\left(\frac{\ket{\uparrow}-\ket{\downarrow}}{\sqrt{2}}\right)-\ket{\downarrow}\tensor\left(\frac{\ket{\uparrow}+\ket{\downarrow}}{\sqrt{2}}\right)\right)\\
+        &= \frac{1}{2}(\ket{\uparrow}\tensor\ket{\downarrow}+\ket{\downarrow}\tensor\ket{\downarrow}-\ket{\uparrow}\tensor\ket{\uparrow}+\ket{\downarrow}\tensor\ket{\uparrow}+\ket{\uparrow}\tensor\ket{\uparrow}-\ket{\uparrow}\tensor\ket{\downarrow}-\ket{\downarrow}\tensor\ket{\uparrow}-\ket{\downarrow}\tensor\ket{\downarrow})\\
+        &= \bzero
+    \end{align}
+\end{proof}
+
+\newpage
+
+\section*{6 D}
+\begin{ques}\label{q6}
+Is it entangled?
+
+Is
+
+\[
+|\psi\rangle = \frac{1}{2} \left( |\uparrow\uparrow\rangle + |\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle + |\downarrow\downarrow\rangle \right)
+\]
+
+entangled? Prove it one way or the other.
+\end{ques}
+
+\begin{proof}
+    Given the above states, we'll prove that it's entangled. 
+
+    \hfil
+    
+    Suppose the contrary that it's not entangled, it can be written as $\ket{\theta_1}\tensor\ket{\phi_2}$ a pure tensor of two states in the 2-level system. Rewrite each $\ket{\theta},\ket{\phi}$ under the basis $\ket{\uparrow},\ket{\downarrow}$, there exists $x,y,z,w in \CC$ with $|x|^2+|y|^2=|z|^2+|w|^2=1$, such that the following is true:
+    \begin{align}
+        \ket{\theta} = x\ket{\uparrow}+y\ket{\downarrow},\quad \ket{\phi}=z\ket{\uparrow}+w\ket{\downarrow}
+    \end{align}
+    Then, the pure tensor becomes the following:
+    \begin{align}
+        \ket{\psi} = \ket{\theta_1}\tensor\ket{\phi_2} = xz\ket{\uparrow}\tensor\ket{\uparrow}+xw\ket{\uparrow}\tensor\ket{\downarrow}+yz\ket{\downarrow}\tensor\ket{\uparrow}+yw\ket{\downarrow}\tensor\ket{\downarrow}
+    \end{align}
+    To matchh up with the original expression $\ket{\psi}=\frac{1}{2}(\ket{\uparrow}\tensor\ket{\uparrow}+\ket{\uparrow}\tensor\ket{\downarrow}-\ket{\downarrow}\tensor\ket{\uparrow}+\ket{\downarrow}\tensor\ket{\downarrow})$, one must have the following:
+    \begin{align}
+        xz = xw = yw = \frac{1}{2},\quad yz = -\frac{1}{2}
+    \end{align}
+    As a result, one has $x,y,z,w\neq 0$. So, the eqution $xz = xw$ implies $z=w$; yet, this also implies that $yz = yw = -\frac{1}{2}$, which contradicts the equation $yw = \frac{1}{2}$.
+
+    So, this state can't be written as a pure tensor of any states, showing $\ket{\psi}$ has the two particles being entangled.
+\end{proof}
+
+\end{document}
+
