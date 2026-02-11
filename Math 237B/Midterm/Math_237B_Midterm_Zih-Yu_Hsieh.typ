@@ -28,7 +28,7 @@
 
 #set enum(numbering: "(1)")
 
-= D//1
+= ND (Need to avoid using 237A)//1
 #problem[
   Let $A=CC[x,y]\/(f(x,y))$ and consider the scheme $X=Spec(A)$. Prove or disprove that there is a finite set $S subset X$ such that every connected component of $X\\S$ is irreducible as a topological space.
 
@@ -228,7 +228,7 @@
 
   1. #text(weight: "bold")[$k[x_1,...,x_n]$ is countable, given that $k$ is countable:] 
   
-    Here we'll approach by induction on the number of variables $n$. For $n=1$, recall that every polynomial $f(x) in k[x]$ is of bounded degree, hence there exists $i in NN$, such that $f(x) in plus.circle.big_(n=0)^i k x^n$, which is isomorphic to $plus.circle.big_(n=0)^i k$. Because finite product of countable sets is countable, and finite product coincides with direct coincides for abelian groups, one has $plus.circle.big_(n=0)^i k x^n$ being countable. As a result, $k[x] = union.big_(i=0)^infinity (plus.circle.big_(n=0)^i k x^i)$ is a countable union of countable sets, hence countable.
+    Here we'll approach by induction on the number of variables $n$. For $n=1$, recall that every polynomial $f(x) in k[x]$ is of bounded degree, hence there exists $i in NN$, such that $f(x) in plus.circle.big_(n=0)^i k x^n$, which is isomorphic to $plus.circle.big_(n=0)^i k$ as abelian group. Because finite product of countable sets is countable, and finite product coincides with direct sum for abelian groups, one has $plus.circle.big_(n=0)^i k x^n$ being countable. As a result, $k[x] = union.big_(i=0)^infinity (plus.circle.big_(n=0)^i k x^i)$ is a countable union of countable sets, hence countable.
 
     Now, suppose for given $n in NN$, all $j<n$ satisfies $k[x_1,...,x_j]$ being countable, then for $k[x_1,...,x_n]$, interpret as the polynomial ring $(k[x_1,...,x_(n-1)])[x_n]$. Because $k[x_1,...,x_(n-1)]$ is countable by induction hypothesis, apply the proof for the case $n=1$, we obtained that $k[x_1,...,x_n]$ (as a single-variable polynomial ring over $k[x_1,...,x_(n-1)]$) is also countable. This finishes the induction.
 
@@ -240,13 +240,13 @@
 
     Now, for each ideal $I$, fix a specific finite set of generators (say $I=(f_1,...,f_i)$), then let $S = {"all finite subset of "k[x_1,...,x_n]}$, there is a clear inclusion from $Sigma = {"ideals "I subset.eq k[x_1,...,x_n]}$ to $S$, by $I mapsto {f_1,...,f_i}$ (the fixed finite set of generators).
 
-    Finally, because $k[x_1,...,x_n]$ is countable, let $(f_i)_(i=0)^infinity$ be an ordering of $k[x_1,...,x_n]$ using natural numbers. Then, for any finite subset $T subset k[x_1,...,x_n]$, it contains some largest index, say $i_T in NN$, in particular $T in cal(P)({f_0,...,f_(i_T)})$ (the power set of ${f_0,...,f_(i_T)}$). So as a set, one has $S subset.eq union.big_(i=0)^infinity cal(P)({f_0,...,f_i})$. Because the index is countable, and each $cal(P)({f_0,...,f_i})$ is finite, then the union $union.big_(i=0)^infinity cal(P)({f_0,...,f_i})$ is countable, which its subset $S$ is also countable.
+    Finally, because $k[x_1,...,x_n]$ is countable, let $(f_j)_(j=0)^infinity$ be an ordering of $k[x_1,...,x_n]$ using natural numbers. Then, for any finite subset $T subset k[x_1,...,x_n]$, it contains some largest index, say $j_T in NN$, in particular $T in cal(P)({f_0,...,f_(j_T)})$ (the power set of ${f_0,...,f_(j_T)}$). So as a set, one has $S subset.eq union.big_(j=0)^infinity cal(P)({f_0,...,f_j})$. Because the index is countable, and each $cal(P)({f_0,...,f_j})$ is finite, then the union $union.big_(j=0)^infinity cal(P)({f_0,...,f_j})$ is countable, which its subset $S$ is also countable.
 
-    As a result, because the set of ideals $Sigma$ can be identified as a subset of $S$, $Sigma$ is also countable, showing $k[x_1,...,x_n]$ has countable ideals. In particular, $Spec(k[x_1,....,x_n])$ is also countable (since it collects all prime ideals of $k[x_1,...,x_n]$).
+    As a result, because the set of ideals $Sigma$ can be identified as a subset of $S$, $Sigma$ is also countable, showing $k[x_1,...,x_n]$ has countable number of ideals. In particular, $Spec(k[x_1,....,x_n])$ is also countable (since it collects all prime ideals of $k[x_1,...,x_n]$).
 
   \ 
 
-  Finally, since each $Spec(k[x_1,...,x_n])$ is countable, because $cal(O)(U_j)$ is a quotient of $k[x_1,...,x_n]$ (for some positive integer $n$), then $Spec(cal(O)(U_j)) = U_j$ is also countable. Then, because $X = union.big_(j)U_j$, with the index being finite, $X$ itself must be countable as set, hence has at most countably many points. #place(right, $ballot$) 
+  Finally, since each $Spec(k[x_1,...,x_n])$ is countable, because $cal(O)(U_j)$ is a quotient of $k[x_1,...,x_n]$ (for some positive integer $n$), say $cal(O)(U_j) = k[x_1,...,x_n]\/I$, then $Spec(cal(O)(U_j)) = U_j$ is also countable (since $U_j = Spec(cal(O)(U_j) ) = Spec(k[x_1,...,x_n]\/I) tilde.equiv V(I)$ as a subspace of $Spec(k[x_1,...,x_n])$). Then, because $X = union.big_(j)U_j$, with the index being finite, $X$ itself must be countable as set, hence has at most countably many points. #place(right, $ballot$) 
 ]
 
 #pagebreak()
@@ -273,14 +273,12 @@
 
   #set align(center)
   #diagram($
-             U edge("hook->", script(iota_U)) edge("d","hook->", script(iota_U)) edge("dr", ->, script(theta)) & Y edge("d",->, script(iota_Y))\ 
+             U edge("hook->", script(iota_U)) edge("d","hook->", script(iota_U)) & Y edge("d",->, script(iota_Y))\ 
              Z edge(->, script(iota_Z)) & X=Y union.sq_f Z
            $)
   #set align(left)
 
-  (Note: $theta$ is the composition of the morphisms of schemes).
-
-  Which, $X$ is clearly covered by $Y$ and $Z$ (or the image of them under the canonical inclusion maps), which both open subsets are affine. Yet, we'll prove that $X$ itself is not affine via contradiction:
+  Which, $X$ is clearly covered by $Y$ and $Z$ (by the image of them under the canonical inclusion maps), which both open subsets are affine. Yet, we'll prove that $X$ itself is not affine via contradiction:
 
   \ 
   
@@ -292,21 +290,23 @@
              cal(O)(Z) edge("u",->, script(iota_U^*), #left) & cal(O)(X) edge("l",->, script(iota_Z^*), #left) edge("u",->, script(iota_Y^*))
            $)
   #set align(left)
-  Where, $cal(O)(X)$ together with the rihg homomorphisms $iota_Y^*, iota_Z^*$ form a fibre product of the to ring homomorphisms $iota_U^*:cal(O)(Y)=cal(O)(Z)->cal(O)(U)$.
+  Where, $cal(O)(X)$ together with the ring homomorphisms $iota_Y^*, iota_Z^*$ form a fibre product of the two ring homomorphisms $iota_U^*:cal(O)(Y)=cal(O)(Z)->cal(O)(U)$.
 
   \ 
 
-  Notice that since $U = AA^1_CC\\{(t)}$, it denotes all the prime ideals in $CC[t]$, which is of the form $(t-a)$ for some $a != 0$. So, since if $a!=0$ then $t in.not (t-a)$ (because $a$ is not a solution of $t$, so $(t-a) divides.not t$), and $t$ is irreducible in $CC[t]$ (a PID), showing $(t)$ is the only prime (hence maximal) ideal containing $t$. This proves that $U = D(t)$, the open set consists of all prime ideals not containing $t in CC[t]$.
+  Notice that since $U = AA^1_CC\\{(t)}$, it denotes all the prime ideals in $CC[t]$, which is of the form $(t-a)$ for some $a != 0$ (by the fact that $CC$ is algebraically closed, and $CC[t]$ is a PID). So, since if $a!=0$ then $t in.not (t-a)$ (because $a$ is not a solution of $t$, so $t in.not (t-a)$), and $t$ is irreducible in $CC[t]$, showing $(t)$ is the only prime (hence maximal) ideal containing $t$. This proves that $U = D(t)$, the open set consists of all prime ideals not containing $t in CC[t]$.
 
   As a result, $cal(O)(U) = cal(O)(D(t)) = CC[t]_t tilde.equiv (CC[t])[x]\/(x t-1)$; and, with $Y=Z=AA^1_CC$, $cal(O)(Y)=cal(O)(Z) = cal(O)(Spec(CC[t])) = CC[t]$. This shows that $iota_U^*:CC[t] -> CC[t]_t$ is given by composing the inclusion $CC[t] arrow.hook (CC[t])[x]$ and projection $(CC[t])[x]->> (CC[t])[x]\/(t x-1)$. 
   
-  Here, we'll prove that the ring homomorphism $iota^*_U: CC[t]-> (CC[t])[x]\/(t x-1)$ is injective (for later purpose): If $f in CC[t] arrow.hook (CC[t])[x]$ has $f in (t x-1)$, notice that as a polynomial ring over $CC[t]$, one has $deg_x (f)=0$, if $f = g dot (t x-1)$ for some $g in (CC[t])[x]$, then $f=0$ (since if $f!=0$, then $0=deg_x (f)= deg_x (g dot (t x-1))>= deg_x (t x-1) = 1$, which is a contradiction). Therefore, for $f in CC[t] arrow.hook (CC[t])[x]$, one has $overline(f)=0 in (CC[t])[x]\/(t x-1)$ iff $f in (t x-1)$ iff $f=0$, showing the map $iota^*_U: CC[t]-> (CC[t])[x]\/(t x-1)$ is injective.
+  - #text(weight: "bold")[Note:] For later purpose, we'll prove that $iota^*_U: CC[t]-> (CC[t])[x]\/(t x-1)$ is injective: 
+    
+    If $f in CC[t] arrow.hook (CC[t])[x]$ has $f in (t x-1)$, notice that as a polynomial ring over $CC[t]$, one has $deg_x (f)=0$, if $f = g dot (t x-1)$ for some $g in (CC[t])[x]$, then $f=0$ (since if $f!=0$, then $0=deg_x (f)= deg_x (g dot (t x-1))>= deg_x (t x-1) = 1$, which is a contradiction). Therefore, for $f in CC[t] arrow.hook (CC[t])[x]$, one has $overline(f)=0 in (CC[t])[x]\/(t x-1)$ iff $f in (t x-1)$ iff $f=0$, showing the map $iota^*_U: CC[t]-> (CC[t])[x]\/(t x-1)$ is injective.
 
   \ 
 
-  However, since $iota_U^*:cal(O)(Y)=cal(O)(Z)-> cal(O)(U)$ are just two identical maps (since they're induced by the same morphism of schemes), then their fibre product is in fact themselves together with identity, so $cal(O)(X) tilde.equiv cal(O)(Y)=cal(O)(Z) = CC[t]$, and $iota_Y^* = iota_Z^* = id_(CC[t])$.
+  However, since $iota_U^*:cal(O)(Y)=cal(O)(Z)-> cal(O)(U)$ are just two identical maps (since they're induced by the same morphism of schemes), then their fibre product is in fact $cal(O)(Y)=cal(O)(Z)$ together with identity, so $cal(O)(X) tilde.equiv cal(O)(Y)=cal(O)(Z) = CC[t]$, and $iota_Y^* = iota_Z^* = id_(CC[t])$.
   
-  (Note: Take $cal(O)(X)=cal(O)(Y)=cal(O)(Z)=CC[t]$ and $iota_Y^*=iota_Z^* = id_(CC[t])$ definitely satisfies the fibre square, because the two maps taking fibre product are identical; Now, given any commutative ring $B$ together with ring homomorphisms $i_Y:B-> cal(O)(Y)$ and $i_Z:B->cal(O)(Z)$ such that $iota^*_U compose i_Y = iota^*_U compose i_Z$, i.e. $B$ with $i_Y,i_Z$ satisfies the fibre squares; then, because $iota_U^*$ is proven to be injective, then it enforces $i_Y=i_Z$ as set maps. So, $i_Y=i_Z:B->cal(O)(Y)=cal(O)(Z) = CC[t]$ is the unique map satisfying $id_(CC[t]) compose i_Y = i_Y$, and $id_(CC[t]) compose i_Z = i_Z$). 
+  (Note: Take $cal(O)(X)=cal(O)(Y)=cal(O)(Z)=CC[t]$ and $iota_Y^*=iota_Z^* = id_(CC[t])$ definitely satisfies the fibre square, because the two maps taking fibre product are identical; Now, given any commutative ring $B$ together with ring homomorphisms $i_Y:B-> cal(O)(Y)$ and $i_Z:B->cal(O)(Z)$ such that $iota^*_U compose i_Y = iota^*_U compose i_Z$, i.e. $B$ with $i_Y,i_Z$ satisfies the fibre squares; then, because $iota_U^*$ is proven to be injective, then $iota^*_U compose i_Y = iota^*_U compose i_Z$ enforces $i_Y=i_Z$ as set maps. So, $i_Y=i_Z:B->cal(O)(Y)=cal(O)(Z) = CC[t]$ is the unique map satisfying $id_(CC[t]) compose i_Y = i_Y$, and $id_(CC[t]) compose i_Z = i_Z$). 
   
   \ 
 
@@ -316,7 +316,7 @@
 
   \ 
 
-  Since we reaches a contradiction, then our assumption is false, which $X$ cannot be affine. Therefore, it's a desired counterexample for this statement. #place(right, $ballot$)
+  Since we reach a contradiction, then our assumption is false, which $X$ cannot be affine. Therefore, it's a desired counterexample for this statement. #place(right, $ballot$)
 ]
 
 #pagebreak()
@@ -356,11 +356,11 @@
 
   \ 
   
-  Here we denote $I = (X_2-X_1^2, X_3-X_1^3)$, and utilized the fact that $X = Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv V(I)$, and $Y=Spec(RR[X_1,X_2,X_3]\/(f)) tilde.equiv V((f))$ in $Spec(RR[X_1,X_2,X_3])$. Which, the intersection $X sect Y$ is precisely all the prime ideals $P subset RR[X_1,X_2,X_3]$ that contains both $I$ and $(f)$.
+  Here we denote $I = (X_2-X_1^2, X_3-X_1^3)$, and utilized the fact that $X = Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv V(I)$, and $Y=Spec(RR[X_1,X_2,X_3]\/(f)) tilde.equiv V((f))$ as subspaces in $Spec(RR[X_1,X_2,X_3])$. Which, the intersection $X sect Y$ is precisely all the prime ideals $P subset RR[X_1,X_2,X_3]$ that contains both $I$ and $(f)$.
 
   Here's an order of the proof: 
   1. Show that $RR[X_1,X_2,X_3]\/I tilde.equiv RR[t]$. //which is a PID (where all prime ideals are maximal)
-  2. Show that $X sect Y$ has a one-to-one correspondance to a specific subset of $Spec(RR[t])$.
+  2. Show that $X sect Y$ has a one-to-one correspondance to a specific closed subset of $Spec(RR[t])$.
   3. Deduce $X sect Y$ is infinite for the case $f=0$.
   //4. (Extra:) Show that for $f!=0$, $X sect Y$ is finite, and has 3 as upper bound of its cardinality.
 
@@ -385,17 +385,19 @@
 
     #text(weight: "bold")[Proof of (2):]
 
-    Since $(X sect Y) subset X = Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv Spec(RR[t])$, it's naturally identified as a subset of prime ideals of $RR[t]$ (the identification $(X sect Y)-> Spec(RR[t])$ is by $P mapsto phi(P)$, where $P$ is the evaluation map defined in (1)). 
+    Since $(X sect Y) subset X = V(I) tilde.equiv Spec(RR[X_1,X_2,X_3]\/I) tilde.equiv Spec(RR[t])$, it's naturally identified as a subset of $Spec(RR[t])$ (the identification $(X sect Y)-> Spec(RR[t])$ is by $P mapsto phi(P)$, where $P$ is the evaluation map defined in (1)). Notation wise we'll still use $X sect Y$ (as subset in $Spec(RR[t])$).
 
-    Notice that all prime ideals $P in (X sect Y)$ also contains $f=a_1X_1+a-2X_2+a_3X_3+a_4$, hence it satisfies $phi(f) = a_1t+a_2t^2+a_3t^3+a_4 in phi(P)$, so $X sec subset.eq V((a_1t+a_2t^2+a_3t^3+a_4)) subset Spec(RR[t])$.
+    - Notice that all prime ideals $P in (X sect Y)$ also contains $f=a_1X_1+a_2X_2+a_3X_3+a_4$, hence it satisfies $phi(f) = a_1t+a_2t^2+a_3t^3+a_4 in phi(P)$, so $(X sect Y) subset.eq V((a_1t+a_2t^2+a_3t^3+a_4)) $ in $ Spec(RR[t])$.
     
-    Conversly, given prime ideal $overline(P) in V((a_1t+a_2t^2+a_3t^3+a_4))$, then under the preimage of ealuation map, one has $f=a_1X_1+a_2X_2+a_3X_3+a_4 in phi^(-1)(a_1t+a_2t^2+a_3t^3+a_4) subset phi^(-1)(overline(P))$, showing that $phi^(-1)(overline(P))$ is a prime ideal containing both $I$ and $(f)$, which is in $X sect Y$. Therefore, set wise one can conclude that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$.
+    - Conversely, given prime ideal $overline(P) in V((a_1t+a_2t^2+a_3t^3+a_4))$, then under the preimage of ealuation map, one has $f=a_1X_1+a_2X_2+a_3X_3+a_4 in phi^(-1)(a_1t+a_2t^2+a_3t^3+a_4) subset phi^(-1)(overline(P))$, showing that $phi^(-1)(overline(P))$ is a prime ideal containing both $I$ and $(f)$, which $overline(P)$ is in $X sect Y$ (when identified in $Spec(RR[t])$). 
+    
+  Therefore, set wise one can conclude that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$.
 
   \ 
 
   #text(weight: "bold")[Proof of (3):]
 
-  Part (2) provides that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$ as set bijection. However, if take $f=a_1X_1+a_2X_2+a_3X_3+a_4=0$, this ideal becomes $(0)$, hence $X sect Y = V((0))$, which is exactly $Spec(RR[t])$. However, $Spec(RR[t])$ is infinite (since $t-a in RR[t]$ is irreducible for all $a in RR$, so $(t-a)$ is a distinct prime ideal in $Spec(RR[t])$). Hence, $f=0$ is a case where $X sect Y$ is infinite, showing $X sect Y$ is not necessarily finite. This completes the proof. #place(right, $ballot$)
+  Part (2) provides that $X sect Y = V((a_1t+a_2t^2+a_3t^3+a_4))$ as set bijection. However, if take $f=a_1X_1+a_2X_2+a_3X_3+a_4=0$, this ideal becomes $(0)$, hence $X sect Y = V((0))$ in $Spec(RR[t])$, which is precisely the whole space. However, $Spec(RR[t])$ is infinite (since $t-a in RR[t]$ is irreducible for all $a in RR$, so each $(t-a)$ is a distinct prime ideal in $Spec(RR[t])$). Hence, $f=0$ is a case where $X sect Y$ is infinite, showing $X sect Y$ is not necessarily finite. This completes the proof. #place(right, $ballot$)
 
   \ 
 
