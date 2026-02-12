@@ -132,7 +132,7 @@ Quarks carry total spin \( s = \frac{1}{2} \). Three quarks bind together to mak
 
 \newpage
 
-\section*{2}
+\section*{2 D}
 \begin{ques}\label{q2}
 Coupled Spins
 
@@ -150,6 +150,17 @@ What are the energy eigenvalues for this Hamiltonian, and what are their degener
     \begin{align}
         H=\epsilon(S_{x,1}\tensor S_{x,2}+S_{y,1}\tensor S_{y,2}+S_{z,1}\tensor S_{z,2})
     \end{align}
+    Notice that if we consider $S^2 = S_1^2\tensor I_2+S_2^2\tensor I_1 + 2\sum_{u=x,y,z}S_{u,1}\tensor S_{u,2}$, one has $\sum_{u=x,y,z} = \frac{1}{2}(S^2-S_1^2\tensor I_1-I_2\tensor S_2^2)$. Notice that since $S^2, S_1^2\tensor I_2$, and $I_1\tensor S_2^2$ all commute, they share the same eigenvectors. So, $H = \epsilon\sum_{u=x,y,z}S_{u,1}\tensor S_{u,2} = \frac{\epsilon}{2}(S^2-S_1^2\tensor I_1-I_2\tensor S_2^2)$ has the same eigenvectors as $S^2$.
+
+    In particular, when doing the measurements, the outcome will be $\frac{\epsilon}{2}(s(s+1)\hbar^2 - s_1(s_1+1)\hbar^2-s_2(s_2+1)\hbar^2)$ ($s$ is the total spin, while $s_1=\frac{1}{2}$ and $s_2=1$ are always fixed).
+
+    Using the Clebsch-Gordan table, the possible values of $s$ are $\frac{3}{2}$ (with degeneracy 4) and $\frac{1}{2}$ (with degeneracy 2). So, for this Hamiltonian, the allowed energies are given as follow:
+    \begin{align}
+        &E_{\frac{3}{2}} = \frac{\epsilon}{2}\left(\frac{3}{2}\frac{5}{2}\hbar^2 - \frac{1}{2}\frac{3}{2}\hbar^2 - 2\hbar^2\right)=\frac{\epsilon\hbar^2}{2}\\
+        &E_{\frac{1}{2}} = \frac{\epsilon}{2}\left(\frac{1}{2}\frac{3}{2}\hbar^2 - \frac{1}{2}\frac{3}{2}\hbar^2 - 2\hbar^2\right)=-2\hbar^2
+    \end{align}
+
+    \begin{comment}
     Now, recall the spin-$\frac{1}{2}$ matrices for $s_1$ (under the basis $\ket{\frac{1}{2}}, \ket{-\frac{1}{2}}$ in $z$-basis of quandum number $m$), we get:
     \begin{align}
         S_{x,1} = \frac{\hbar}{2}\begin{pmatrix}
@@ -257,13 +268,26 @@ What are the energy eigenvalues for this Hamiltonian, and what are their degener
             0&-(1+\lambda)&e^{i\pi/4}\\
             e^{-i\pi/4}&0&0\\
             0&e^{-i\pi/4}&-\lambda
-        \end{pmatrix}
+        \end{pmatrix}\\
+        &+(1+\lambda)\det\begin{pmatrix}
+            -\lambda&e^{i\pi/4}&e^{-i\pi/4}\\
+            e^{-i\pi/4}&-(1+\lambda)&0\\
+            e^{i\pi/4}&0&(1-\lambda)
+        \end{pmatrix}\\
     \end{align}
+    \begin{align}
+        =& \lambda(1+\lambda)(1-\lambda)^2(\lambda(1+\lambda)-1) - (1-\lambda)^2(\lambda(1+\lambda)-1)\\
+        &+ (1+\lambda)(1-\lambda)(\lambda(1+\lambda)-1) + (1+\lambda)e^{i\pi/4}(1+\lambda)e^{-i\pi/4}\\
+        =& (\lambda(1+\lambda)-1)(1-\lambda)(\lambda(1-\lambda^2) - (1-\lambda)+(1+\lambda)) + (1+\lambda)^2\\
+        =& (\lambda^2+\lambda-1)(1-\lambda)(-\lambda^3+3\lambda)+(1+\lambda)^2\\
+        =&
+    \end{align}
+    \end{comment}
 \end{proof}
 
 \newpage
 
-\section*{3}
+\section*{3 D}
 \begin{ques}\label{q3}
 Clebsch Gordan Practice (this is like Griffiths 4.40, or 4.36 in second edition, if you want to practice on that first)
 \begin{itemize}
@@ -278,7 +302,53 @@ Clebsch Gordan Practice (this is like Griffiths 4.40, or 4.36 in second edition,
 \end{ques}
 
 \begin{proof}
+    Here we'll read off the Clebsch Gordan table provided in the textbook. For $s_1=\frac{3}{2}$ and $s_2=\frac{1}{2}$, then the composite state has allowed spin $s=2,1,0$. Here, we'll denote the state as $\ket{m_1,m_2}$ (where $m_1,m_2$ indicate the $z$-measurement of particle $1$ and $2$ respectively). On the other hand, $\ket{s,m}_0$ indicates the state with the total spin $s$ and $z$-measurement $m$.
     
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given the composite state with measurement $s=1$ and $m=-\hbar$, the state is $\ket{1,-1}_0$. Which, in terms of the standard basis of tensor product, one has the following:
+        \begin{align}
+            \ket{1,-1}_0 &= \frac{\ket{-\frac{1}{2},-\frac{1}{2}} - \sqrt{3}\ket{-\frac{3}{2},\frac{1}{2}}}{2}
+        \end{align}
+        Which, if measure the spin-$\frac{3}{2}$ particle in $z$-direction, it's possible to be $m_1 = \frac{1}{2},-\frac{3}{2}$. Which, coefficient $\frac{1}{2}$ corresponds to the state $\ket{-\frac{1}{2},-\frac{1}{2}}$, and coefficient $\frac{\sqrt{3}}{2}$ corresponds to the state $\ket{-\frac{3}{2},\frac{1}{2}}$, showing the following probability of measurement:
+        \begin{align}
+            \PP\left(m_1 = -\frac{1}{2}\right) = \left(\frac{1}{2}\right)^2=\frac{1}{4},\quad \PP\left(m_1 = -\frac{3}{2}\right) = \left(\frac{\sqrt{3}}{2}\right)^2=\frac{3}{4}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] If measure $-\frac{3\hbar}{2}$, this indicates that the state collapses to $\ket{-\frac{3}{2},\frac{1}{2}}$. Then, if consider all the possible states (in total spin) with nontrivial components of this state, we have the following:
+        \begin{align}
+            \ket{2,-1}_0 = \frac{\sqrt{3}\ket{-\frac{1}{2},-\frac{1}{2}}+\ket{-\frac{3}{2},\frac{1}{2}}}{2},\quad \ket{1,-1}_0 = \frac{\ket{-\frac{1}{2},-\frac{1}{2}}-\sqrt{3}\ket{-\frac{3}{2},\frac{1}{2}}}{2}
+        \end{align}
+        Then, notice that $\ket{2,-1}_0 - \sqrt{3}\ket{1,-1}_0 = 2\ket{-\frac{3}{2},\frac{1}{2}}$, so $\ket{-\frac{3}{2},\frac{1}{2}}=\frac{\ket{2,-1}_0-\sqrt{3}\ket{1,-1}_0}{2}$. Hence, if measure the total spin again, it's possible to get $\{s=2, m=-1\}$ or $\{s=1,m=-1\}$. Each with the following probability:
+        \begin{align}
+            \PP(\{s=2,m=-1\}) = \left(\frac{1}{2}\right)^2=\frac{1}{4},\quad \PP(\{s=1,m=-1\}) = \left(\frac{\sqrt{3}}{2}\right)^2 = \frac{3}{4}
+        \end{align}
+        If consider only $s$, then there's a $\frac{1}{4}$ probability of measuring $6\hbar^2$, and $\frac{3}{4}$ probability of measuring $2\hbar^2$; if consider only $m$, since in both possible states one has $m=-1$, then there's a probability of $1$ to measure $-\hbar$ (when measure $S_z$).
+
+        \hfil
+
+        \item[(c)] Given $\psi_{4,2,-1}= \sqrt{\left(\frac{1}{2a}\right)^3\frac{1}{8\cdot 6!}}e^{-r/(4a)}\left(\frac{r}{2a}\right)^2[L^{5}_1(r/(a))]Y^{-1}_2(\theta,\phi)$ and $\chi_+$ (spin up). Then, when measuring the angular momentum, with $\ell=2$ and $m=-1$, then $L_z \ket{\psi_{4,2,-1}} = -\hbar\ket{\psi_{4,2,-1}}$, and $L^2 \ket{\psi_{4,2,-1}} = 6\hbar^2\ket{\psi_{4,2,-1}}$. If measure the total angular momentum $\bJ = \bL+\bS$, then $J^2 = L^2\tensor I_s + I_\ell \tensor S^2 + 2 \sum_{u=x,y,z}L_u \tensor S_u = L^2\tensor I_s + I_\ell \tensor S^2 + (L_+\tensor S_- + L_-\tensor S_+)+2 L_z\tensor S_z$.
+        
+        Which, it since the system is similar between angular momentum and spin, this can also b thought of as $\ell=2$ tensor $s=\frac{1}{2}$. With it originally being in the eigenstate for $\ell=2$ (with $m_\ell=-1$) and $s=\frac{1}{2}$ (with $m_s = \frac{1}{2}$, spin up),  we'll write as $\ket{m_\ell = -1, m_s = \frac{1}{2}}$. Then, in terms of the coupled eigenstates (denote as $\ket{j,m}_0$), one as the following involvement:
+        \begin{align}
+            \ket{\frac{5}{2},-\frac{1}{2}}_0 = \frac{\sqrt{3}\ket{0,-\frac{1}{2}}+\sqrt{2}\ket{-1,\frac{1}{2}}}{\sqrt{5}},\quad \ket{\frac{3}{2},-\frac{1}{2}}_0 = \frac{\sqrt{2}\ket{0,-\frac{1}{2}}-\sqrt{3}\ket{-1,\frac{1}{2}}}{\sqrt{5}}
+        \end{align}
+        Which, notice that $\sqrt{2}\ket{\frac{5}{2},-\frac{1}{2}}_0 - \sqrt{3}\ket{\frac{3}{2},-\frac{1}{2}}_0 = \sqrt{5}\ket{-1,\frac{1}{2}}$, so $\ket{-1,\frac{1}{2}}=\frac{\sqrt{2}\ket{\frac{5}{2},-\frac{1}{2}}_0-\sqrt{3}\ket{\frac{3}{2},-\frac{1}{2}}_0}{\sqrt{5}}$. So, if measure $j$, it's possible to measure $j=\frac{5}{2}$ and $j=\frac{3}{2}$, each with the following probability:
+        \begin{align}
+            \PP\left(j=\frac{5}{2}\right) = \left(\frac{\sqrt{2}}{\sqrt{5}}\right)^2 = \frac{2}{5},\quad \PP\left(j=\frac{3}{2}\right) = \left(\frac{\sqrt{3}}{\sqrt{5}}\right)^2 = \frac{3}{5}
+        \end{align}
+        
+        \hfil
+
+        \item[(d)] Using the notation in (c), if measure $j=\frac{3}{2}$, then the state collapses to $\ket{\frac{3}{2},-\frac{1}{2}}_0$. Writing in the standard tensor product notation, one has the following:
+        \begin{align}
+            \ket{\frac{3}{2},-\frac{1}{2}}_0 = \frac{\sqrt{2}\ket{0,-\frac{1}{2}}-\sqrt{3}\ket{-1,\frac{1}{2}}}{\sqrt{5}}
+        \end{align}
+        Then, if measure the spin of the electron (i.e. looking at $m_s$, the second number in the ket), the probability of measuring $m_s = -\frac{1}{2}$ is $\left(\frac{\sqrt{2}}{\sqrt{5}}\right)^2 =\frac{2}{5}$, so there's a $\frac{2}{5}$ probability to measure $-\frac{\hbar}{2}$.
+    \end{itemize}
 \end{proof}
 
 \newpage
