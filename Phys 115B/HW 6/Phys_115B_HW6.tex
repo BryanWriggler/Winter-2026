@@ -51,7 +51,7 @@
 
 \newpage
 
-\section*{2}
+\section*{2 D}
 \begin{ques}
 2 Particles in the infinite square well (Griffiths 5.5, same)
 
@@ -84,20 +84,127 @@ $$\hat{H} = -\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x_1^2}+\frac{\pa
         \begin{itemize}
             \item \textbf{Distinguishable:}
             
-            Since the distinguishable states are $\psi_{n_1n_2} = \psi_{n_1}(x_1)\psi_{n_2}(x_2)$ with eigenvalue $E_{n_1n_2} = (n_1^2+n_2^2)K$ (for $K = \frac{\hbar^2\pi^2}{2ma^2}$). With the case of $(n_1,n_2) = (1,1),(1,2),(2,1)$ being described (corresponds to $n_1^2+n_2^2=2,5,5$ respectively), the next two eigenvalues should be $(n_1,n_2) = (2,2)$ (corresponding to $E_{22} = 8K$), and $(n_1,n_2) = (1,3),(3,1)$ (corresponding to $E_{13}=E_{31} = 10K$)
+            Since the distinguishable states are $\psi_{n_1n_2} = \psi_{n_1}(x_1)\psi_{n_2}(x_2)$ with eigenvalue $E_{n_1n_2} = (n_1^2+n_2^2)K$ (for $K = \frac{\hbar^2\pi^2}{2ma^2}$). With the case of $(n_1,n_2) = (1,1),(1,2),(2,1)$ being described (corresponds to $n_1^2+n_2^2=2,5,5$ respectively), the next two eigenvalues should be related to $(n_1,n_2) = (2,2)$ (corresponding to $E_{22} = 8K$), and $(n_1,n_2) = (1,3),(3,1)$ (corresponding to $E_{13}=E_{31} = 10K$). Which, the intormations are as below:
+            \begin{align}
+                &\text{Wave function: } \frac{2}{a}\sin\left(\frac{2\pi x_1}{a}\right)\sin\left(\frac{2\pi x_2}{a}\right),\quad \text{Eigenvalue: } E_{22} = 8K,\quad\text{Degeneracy: } 1
+            \end{align}
+            \begin{align}
+                &\text{Wave function: } \frac{2}{a}\sin\left(\frac{\pi x_1}{a}\right)\sin\left(\frac{3\pi x_2}{a}\right) \text{ or } \frac{2}{a}\sin\left(\frac{3\pi x_1}{a}\right)\sin\left(\frac{\pi x_2}{a}\right)\\
+                &\text{Eigenvalue: } E_{13} = E_{31} = 10K,\quad\text{Degeneracy: } 2
+            \end{align}
+
+            \hfil
+
+            \item \textbf{Identical bosons:}
+            
+            Since the identical bosons are given by the following, and with energy $E_{n_1n_2}=(n_1^2+n_2^2)K$ again:
+            \begin{align}
+                \psi_{n_1n_2} = \begin{cases}
+                    \frac{\sqrt{2}}{a}\left(\psi_{n_1}(x_1)\psi_{n_2}(x_2)+\psi_{n_1}(x_2)\psi_{n_2}(x_1)\right) & n_1\neq n_2\\
+                    \frac{2}{a}\psi_{n_1}(x_1)\psi+{n_2}(x_2) & n_1=n_2
+                \end{cases}
+            \end{align}
+            With the case of $(n_1,n_2)=(1,1),(1,2),(2,1)$ being mentioned (corresponds to $n_1^2+n_2 = 2,5,5$, and the case $(1,2),(2,1)$ has identical wavefunctions), then the next two eigenvalues shold be related to $(n_1,n_2)=(2,2)$ (corresponds to $E_{22}=8K$), and $(n_1,n_2) = (1,3),(3,1)$ (correspond to $E_{13}=E_{31}=10K$). As a side note, $(1,3),(3,1)$ by symmtric tensor are the same. So, the informations are as below:
+            \begin{align}
+                &\text{Wave function: } \frac{2}{a}\sin\left(\frac{2\pi x_1}{a}\right)\sin\left(\frac{2\pi x_2}{a}\right),\quad \text{Eigenvalue: } E_{22} = 8K,\quad\text{Degeneracy: } 1
+            \end{align}
+            \begin{align}
+                &\text{Wave function: } \frac{\sqrt{2}}{a}\left(\sin\left(\frac{\pi x_1}{a}\right)\sin\left(\frac{3\pi x_2}{a}\right)+\sin\left(\frac{3\pi x_1}{a}\right)\sin\left(\frac{\pi x_2}{a}\right)\right)\\
+                &\text{Eigenvalue: } E_{13} = 10K,\quad\text{Degeneracy: } 1
+            \end{align}
+
+            \hfil
+
+            \item \textbf{Identical fermions:}
+            
+            Since the identical fermions are given by the following, and with energy $E_{n_1n_2}=(n_1^2+n_2^2)K$ again:
+            \begin{align}
+                \psi_{n_1n_2} = \frac{\sqrt{2}}{a}\left(\psi_{n_1}(x_1)\psi_{n_2}(x_2)-\psi_{n_1}(x_2)\psi_{n_2}(x_1)\right)
+            \end{align}
+            Hence, the allowed nonzero states only happen with $n_1\neq n_2$.
+
+            With the case of $(n_1,n_2)=(1,2),(2,1)$ being described (corresponds to $n_1^2+n_2^2=5,5$ respectively, and in this case the two wave functions differ by a factor of $-1$, which is a global phase instead; below we'll just choose $(n_1,n_2)$ once, and not consider $(n_2,n_1)$), then next two eigenvalues should be related to $(n_1,n_2) = (1,3)$ (corresponding to $E_{13}=10K$) and $(n_1,n_2)=(2,3)$ (corresponding to $E_{23}=13K$). Which, the informations are as below:
+            \begin{align}
+                &\text{Wave function: } \frac{\sqrt{2}}{a}\left(\sin\left(\frac{\pi x_1}{a}\right)\sin\left(\frac{3\pi x_2}{a}\right)-\sin\left(\frac{3\pi x_1}{a}\right)\sin\left(\frac{\pi x_2}{a}\right)\right)\\
+                &\text{Eigenvalue: } E_{13} = 10K,\quad\text{Degeneracy: } 1
+            \end{align}
+            \begin{align}
+                &\text{Wave function: } \frac{\sqrt{2}}{a}\left(\sin\left(\frac{2\pi x_1}{a}\right)\sin\left(\frac{3\pi x_2}{a}\right)-\sin\left(\frac{3\pi x_1}{a}\right)\sin\left(\frac{2\pi x_2}{a}\right)\right)\\
+                &\text{Eigenvalue: } E_{23} = 13K,\quad\text{Degeneracy: } 1
+            \end{align}
         \end{itemize}
     \end{itemize}
 \end{proof}
 
 \newpage
 
-\section*{3}
+\section*{3 D}
 \begin{ques}
 3 Exchange forces across orbitals (Griffiths 5.6, same)
+
+Imagine two noninteracting particles, each of mass $m$, in the infinite square well. If one is in the state $\psi_n$, and the other in state $\psi_l$ ($l\neq n$), calculate $\left<(x_1-x_2)^2\right>$, assuming:
+\begin{itemize}
+    \item[(a)] They are distinguishable particles
+    \item[(b)] They are identical bosons
+    \item[(c)] They are identical fermions  
+\end{itemize}
 \end{ques}
 
 \begin{proof}
-    
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] As distinguishable particles, the wave functions are $\psi_{nl} = \frac{2}{a}\sin\left(\frac{n\pi x_1}{a}\right)\sin\left(\frac{l\pi x_2}{a}\right)$. Which, one has the following:
+        \begin{align}
+            \left<(x_1-x_2)^2\right> =& \int_{x_1=0}^a\int_{x_2=0}^a\psi_{nl}^*(x_1-x_2)^2\psi_{nl}dx_1\ dx_2\\
+            =& \frac{4}{a^2}\int_{x_1=0}^ax_1^2\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}\sin^2\left(\frac{l\pi x_2}{a}\right)dx_2\\ 
+            &+ \frac{4}{a^2}\int_{x_1=0}^a\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2^2\sin^2\left(\frac{l\pi x_2}{a}\right)dx_2\\
+            &- \frac{8}{a^2}\int_{x_1=0}^{a}x_1\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2\sin^2\left(\frac{l\pi x_2}{a}\right)dx\\
+            =& \frac{2}{a}\int_{0}^a x_1^2\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1 + \frac{2}{a}\int_{0}^{a}x_2^2\sin^2\left(\frac{l\pi x_2}{a}\right)dx_2 - \frac{8}{a^2}\cdot \left(\frac{a^2}{4}\right)^2\\
+            =& \left(\frac{a^2}{3}-\frac{a^2}{2n^2\pi^2}\right)+\left(\frac{a^3}{3}-\frac{a^2}{2l^2\pi^2}\right) - \frac{a^2}{2}\\
+            =&\left(\frac{1}{6}-\frac{1}{2n^2\pi^2}-\frac{1}{2l^2\pi^2}\right)a^2\\
+            =& \frac{n^2l^2\pi^2 - 3l^2\pi^2-3n^2\pi^2}{6n^2l^2\pi^2}a^2
+        \end{align}
+        (Rest on the next few pages)
+
+        \newpage
+
+        \item[(b),(c)] As identical bosons/fermions (with $l\neq n$), the wavefunction is $\psi_{nl}= \frac{\sqrt{2}}{a}\left(\sin\left(\frac{n\pi x_1}{a}\right)\sin\left(\frac{l\pi x_2}{a}\right)\pm \sin\left(\frac{n\pi x_2}{a}\right)\sin\left(\frac{l\pi x_1}{a}\right)\right)$ ($+$ for bosons, and $-$ for fermions)
+        
+        Which, one has the following:
+        \begin{align}
+            \left<(x_1-x_2)^2\right> =& \int_{x_1=0}^a\int_{x_2=0}^a\psi_{nl}^*(x_1-x_2)^2\psi_{nl}dx_1\ dx_2\\
+            \\
+            =& \frac{2}{a^2}\int_{x_1=0}^a x_1^2\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}\sin^2\left(\frac{l\pi x_2}
+            {a}\right)dx_2\\
+            &\pm \frac{4}{a^2}\int_{x_1=0}^ax_1^2\sin\left(\frac{n\pi x_1}{a}\right)\sin\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^a\sin\left(\frac{n\pi x_2}{a}\right)\sin\left(\frac{l\pi x_2}{a}\right)dx_2\\
+            &+\frac{2}{a^2}\int_{x_1=0}^a \sin^2\left(\frac{n\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2^2\sin^2\left(\frac{l\pi x_2}
+            {a}\right)dx_2\\
+            &\pm \frac{4}{a^2}\int_{x_1=0}^a\sin\left(\frac{n\pi x_1}{a}\right)\sin\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^ax_2^2\sin\left(\frac{n\pi x_2}{a}\right)\sin\left(\frac{l\pi x_2}{a}\right)dx_2\\
+            &- \frac{4}{a^2}\int_{x_1=0}^a x_1\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2\sin^2\left(\frac{l\pi x_2}
+            {a}\right)dx_2\\
+            &\mp \frac{8}{a^2}\int_{x_1=0}^a x_1\sin\left(\frac{n\pi x_1}{a}\right)\sin\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^ax_2\sin\left(\frac{n\pi x_2}{a}\right)\sin\left(\frac{l\pi x_2}{a}\right)dx_2\\
+            &+ \frac{2}{a^2}\int_{x_1=0}^a x_1^2\sin^2\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}\sin^2\left(\frac{n\pi x_2}
+            {a}\right)dx_2\\
+            &+ \frac{2}{a^2}\int_{x_1=0}^a \sin^2\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2^2\sin^2\left(\frac{n\pi x_2}
+            {a}\right)dx_2\\
+            &- \frac{4}{a^2}\int_{x_1=0}^a x_1\sin^2\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2\sin^2\left(\frac{n\pi x_2}
+            {a}\right)dx_2\\
+            \\
+            =& \frac{2}{a}\int_{x_1=0}^a x_1^2\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1+\frac{2}{a}\int_{x_2=0}^{a}x_2^2\sin^2\left(\frac{l\pi x_2}
+            {a}\right)dx_2\\
+            &- \frac{4}{a^2}\int_{x_1=0}^a x_1\sin^2\left(\frac{n\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2\sin^2\left(\frac{l\pi x_2}
+            {a}\right)dx_2\\
+            &\mp \frac{8}{a^2}\int_{x_1=0}^a x_1\sin\left(\frac{n\pi x_1}{a}\right)\sin\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^ax_2\sin\left(\frac{n\pi x_2}{a}\right)\sin\left(\frac{l\pi x_2}{a}\right)dx_2\\
+            &- \frac{4}{a^2}\int_{x_1=0}^a x_1\sin^2\left(\frac{l\pi x_1}{a}\right)dx_1\int_{x_2=0}^{a}x_2\sin^2\left(\frac{n\pi x_2}
+            {a}\right)dx_2\\
+            \\
+            =& a^2\left(\frac{1}{3}-\frac{1}{2n^2\pi^2}\right)+a^2\left(\frac{1}{3}-\frac{1}{2l^2\pi^2}\right) - \frac{a^2}{2} \mp \frac{32n^2l^2((-1)^{n-l}-1)^2a^2}{\pi^4(n^2-l^2)^4}\\
+            =& a^2\left(\frac{1}{6}-\frac{1}{2n^2\pi^2}-\frac{1}{2l^2\pi^2}\mp\frac{32n^2l^2((-1)^{n-l}-1)^2}{\pi^4(n^2-l^2)^4}\right)
+        \end{align}
+        Which, $-$ corresponds to identical bosons, while $+$ corresponds to identical fermions.
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -105,10 +212,62 @@ $$\hat{H} = -\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x_1^2}+\frac{\pa
 \section*{4}
 \begin{ques}
 4 Three particles (Griffiths 5.8, 5.7 in second edition)
+
+Suppose you had \emph{three} particles, one in state $\psi_a(x)$, one in state $\psi_b(x)$, and one in state $\psi_c(x)$. Assuming $\psi_a,\psi_b$, and $\psi_c$ are orthonormal, construct the three-particle states representing:
+\begin{itemize}
+    \item[(a)] Distinguishable particles
+    \item[(b)] Identical bosons
+    \item[(c)] Identical fermions.  
+\end{itemize}
+
+Keep in mind that (b) must be completely symmetric, under interchange of \emph{any} pair of particles, and (c) must be completely \emph{anti-symmetric}, in the same sense.
 \end{ques}
 
 \begin{proof}
     
+    Here we'll assume the grader has some background in group theory (because this simplifies the terms a lot).
+
+    \begin{itemize}
+        \item[(a)] For three distinguishable particles, one has the wave function $\psi_{abc} = \psi_a(x_1)\psi_b(x_2)\psi_c(x_3)$.
+        
+        \hfil
+
+        \item[(b)] For identical bosons, one has the wave function being some multiples of $\sum_{\sigma\in S_3}\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})$ (where $S_3$ denotes the permutation group of $\{1,2,3\}$, there's too many terms I'll abbreviate it as this). The reason is simply because such sum is symmetric under any possible permutation of $\{1,2,3\}$ (since the let multiplication of group element is a bijection on the group itself).
+        
+        Which, notice that if $\sigma,\sigma'\in S_3$ are distinct permutations, there exists $n \in \{1,2,3\}$, such that $n = \sigma(m)=\sigma'(m')$ for distinct $m,m'\in\{1,2,3\}$ (or in other words, because $\sigma\neq \sigma'$, then $\sigma^{-1}\neq \sigma'^{-1}$, hence $m=\sigma^{-1}(n)\neq \sigma'^{-1}(n)=m'$ for some $n\in\{1,2,3\}$). WLOG, up to reindexing one can say $m=1, m'=2$. Then, notice the two states satisfies the following:
+        \begin{align}
+            &\int_{x_1}\int_{x_2}\int_{x_3}\big(\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})\big)^* \big(\psi_a(x_{\sigma'(1)})\psi_b(x_{\sigma'(2)})\psi_c(x_{\sigma'(3)})\big)x_3\ dx_2\ dx_1=0
+        \end{align}
+        And, the reason is because, $x_n$ in the first (conjugated) term corresponds to $x_{\sigma(m)}$, and the second (non-conjugated) term corresponds to $x_{\sigma'(m')}$, which are inputs of distinct states because $m\neq m'$, causing the two states to be othogonal. For instance, if $m=1$, $m'=2$, then $x_n$ corresponds to $\psi_a(x_{\sigma(1)})^*$ in the conjugated term, and corresponds to $\psi_b(x_{\sigma'(2)})$ in the non-conjugated term, which the two are orthornormal, hence the integral contains a multiple of $\int_{x_n}\psi_a(x_{\sigma(1)})^*\psi_b(x_{\sigma'(2)}) dx_n$, which is $0$.
+
+        (On the other hand, if $\sigma=\sigma'$, the above term is clearly $1$ due to the three states being normalized in each integral).
+
+        Hence, we derived the following:
+        \begin{align}
+            \int_{x_1}\int_{x_2}\int_{x_3}\big(\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})\big)^* \big(\psi_a(x_{\sigma'(1)})\psi_b(x_{\sigma'(2)})\psi_c(x_{\sigma'(3)})\big)x_3\ dx_2\ dx_1=\delta_{\sigma\sigma'}
+        \end{align}
+        As a result, if $\psi_{abc} = A\sum_{\sigma\in S_3}\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})$ (where $A>0$ is a normalization constant), then it satisfies the following:
+
+        \newpage
+
+        \begin{align}
+            1 &= \int_{x_1}\int_{x_2}\int_{x_3}\psi_{abc}^*\psi_{abc}dx_3\ dx_2\ dx_1\\
+            &= |A|^2\sum_{\sigma\in S_3}\sum_{\sigma'\in S_3}\int_{x_1}\int_{x_2}\int_{x_3}\big(\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})\big)^* \big(\psi_a(x_{\sigma'(1)})\psi_b(x_{\sigma'(2)})\psi_c(x_{\sigma'(3)})\big)x_3\ dx_2\ dx_1\\
+            &= |A|^2\sum_{\sigma \in S_3}\sum_{\sigma'\in S_3}\delta_{\sigma\sigma'}\\
+            &= |A|^2 \sum_{\sigma\in S_3}1\\
+            &= 6|A|^2
+        \end{align}
+        (Note: Recall that $S_3$ has $3!=6$ terms).
+
+        Hence, for normalization one needs $|A| = \frac{1}{\sqrt{6}}$, or $A=\frac{1}{\sqrt{6}}$. Hence, for identical boson, here is the state:
+        \begin{align}
+            \psi_{abc} = \frac{1}{\sqrt{6}}\sum_{\sigma\in S_3}\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})
+        \end{align}
+
+        \hfil
+
+        \item[(c)]
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -154,6 +313,13 @@ E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2} \equiv n^2 E_1
 (d) What is the ground state degeneracy for $N = 4$, and $S = 3/2$?
 \end{ques}
 
+\begin{proof}
+    
+\end{proof}
+
+\newpage
+
+\section*{7}
 \begin{ques}
 7 The Ground State of Lithium (Griffiths 5.16, DNE in second edition)
 
