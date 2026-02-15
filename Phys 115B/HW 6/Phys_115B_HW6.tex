@@ -209,7 +209,7 @@ Imagine two noninteracting particles, each of mass $m$, in the infinite square w
 
 \newpage
 
-\section*{4}
+\section*{4 D}
 \begin{ques}
 4 Three particles (Griffiths 5.8, 5.7 in second edition)
 
@@ -232,7 +232,12 @@ Keep in mind that (b) must be completely symmetric, under interchange of \emph{a
         
         \hfil
 
-        \item[(b)] For identical bosons, one has the wave function being some multiples of $\sum_{\sigma\in S_3}\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})$ (where $S_3$ denotes the permutation group of $\{1,2,3\}$, there's too many terms I'll abbreviate it as this). The reason is simply because such sum is symmetric under any possible permutation of $\{1,2,3\}$ (since the let multiplication of group element is a bijection on the group itself).
+        \item[(b)] For identical bosons, one has the wave function being some multiples of this function: $f(x_1,x_2,x_3)=\sum_{\sigma\in S_3}\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})$ (where $S_3$ denotes the permutation group of $\{1,2,3\}$, there's too many terms I'll abbreviate it as this). The reason it's permutation invariant, because for any $\alpha \in S_3$, the following is true:
+        \begin{align}
+            f(x_{\alpha(1)},x_{\alpha(2)},x_{\alpha(3)})&= \sum_{\sigma \in S_3}\psi_a(x_{\sigma(\alpha(1))})\psi_b(x_{\sigma(\alpha(2))})\psi_a(x_{\sigma(\alpha(3))})\\
+            &= \sum_{\sigma' \in S_3\alpha = S_3}\psi_a(x_{\sigma'(1)})\psi_b(\sigma'(2))\psi_c(\sigma'(3))\\
+            &= f(x_1,x_2,x_3)
+        \end{align}
         
         Which, notice that if $\sigma,\sigma'\in S_3$ are distinct permutations, there exists $n \in \{1,2,3\}$, such that $n = \sigma(m)=\sigma'(m')$ for distinct $m,m'\in\{1,2,3\}$ (or in other words, because $\sigma\neq \sigma'$, then $\sigma^{-1}\neq \sigma'^{-1}$, hence $m=\sigma^{-1}(n)\neq \sigma'^{-1}(n)=m'$ for some $n\in\{1,2,3\}$). WLOG, up to reindexing one can say $m=1, m'=2$. Then, notice the two states satisfies the following:
         \begin{align}
@@ -246,13 +251,11 @@ Keep in mind that (b) must be completely symmetric, under interchange of \emph{a
         \begin{align}
             \int_{x_1}\int_{x_2}\int_{x_3}\big(\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})\big)^* \big(\psi_a(x_{\sigma'(1)})\psi_b(x_{\sigma'(2)})\psi_c(x_{\sigma'(3)})\big)x_3\ dx_2\ dx_1=\delta_{\sigma\sigma'}
         \end{align}
-        As a result, if $\psi_{abc} = A\sum_{\sigma\in S_3}\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})$ (where $A>0$ is a normalization constant), then it satisfies the following:
-
-        \newpage
+        As a result, if $\psi_{abc} = Af(x_1,x_2,x_3)$ (where $A>0$ is a normalization constant), then it satisfies the following:
 
         \begin{align}
             1 &= \int_{x_1}\int_{x_2}\int_{x_3}\psi_{abc}^*\psi_{abc}dx_3\ dx_2\ dx_1\\
-            &= |A|^2\sum_{\sigma\in S_3}\sum_{\sigma'\in S_3}\int_{x_1}\int_{x_2}\int_{x_3}\big(\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})\big)^* \big(\psi_a(x_{\sigma'(1)})\psi_b(x_{\sigma'(2)})\psi_c(x_{\sigma'(3)})\big)x_3\ dx_2\ dx_1\\
+            &= |A|^2\sum_{\sigma\in S_3}\sum_{\sigma'\in S_3}\int_{x_1}\int_{x_2}\int_{x_3}\big(\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})\big)^* \big(\psi_a(x_{\sigma'(1)})\psi_b(x_{\sigma'(2)})\psi_c(x_{\sigma'(3)})\big)dx_3\ dx_2\ dx_1\\
             &= |A|^2\sum_{\sigma \in S_3}\sum_{\sigma'\in S_3}\delta_{\sigma\sigma'}\\
             &= |A|^2 \sum_{\sigma\in S_3}1\\
             &= 6|A|^2
@@ -266,13 +269,26 @@ Keep in mind that (b) must be completely symmetric, under interchange of \emph{a
 
         \hfil
 
-        \item[(c)]
+        \item[(c)]For identical fermions, because swapping any two states (i.e. a transposition as premutation) will provide an extra negative sign, then having $n$ transpositions corresponds to a sign change of $(-1)^n$. Note that this agrees with the sign of the given permutation, so the wave function must be some multiples of this function: $g(x_1,x_2,x_3) = \sum_{\sigma\in S_3}\textrm{sign}(\sigma)\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})$.
+        
+        Now, using the tool in (b), we know each function $\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})$ form an orthonormal list, so if $\psi_{abc} = Ag(x_1,x_2,x_3)$ (where $A>0$ can be assumed), one has the following:
+        \begin{align}
+            1 &= \int_{x_1}\int_{x_2}\int_{x_3}\psi_{abc}^*\psi_{abc}dx_3\ dx_2\ dx_1\\
+            &= |A|^2 \sum_{\sigma\in S_3}\sum_{\sigma'\in S_3}\int_{x_1}\int_{x_2}\int_{x_3}\big(\textrm{sign}(\sigma)\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})\big)^*\big(\textrm{sign}(\sigma')\psi_a(x_{\sigma'(1)})\psi_b(x_{\sigma'(2)})\psi_c(x_{\sigma'(3)})\big)dx_3\ dx_2\ dx_1\\
+            &= |A|^2\sum_{\sigma\in S_3}\sum_{\sigma'\in S_3}\textrm{sign}(\sigma)\textrm{sign}(\sigma')\delta_{\sigma\sigma'}\\
+            &= |A|^2\sum_{\sigma\in S_3}(\textrm{sign}(\sigma))^2\\
+            &= 6|A|^2
+        \end{align}
+        So again, this implies $|A| = \frac{1}{\sqrt{6}}$, or $A=\frac{1}{\sqrt{6}}$. Therefore, for identical fermion, here is the state:
+        \begin{align}
+            \psi_{abc} = \frac{1}{\sqrt{6}}\sum_{\sigma\in S_3}\textrm{sign}(\sigma)\psi_a(x_{\sigma(1)})\psi_b(x_{\sigma(2)})\psi_c(x_{\sigma(3)})
+        \end{align}
     \end{itemize}
 \end{proof}
 
 \newpage
 
-\section*{5}
+\section*{5 D}
 \begin{ques}
 5 Spins in the SHO (similar to Griffiths 5.9 in third edition)
 
@@ -286,11 +302,77 @@ simple harmonic oscillator potential of frequency $\omega$. Determine the energi
 
 \begin{proof}
     
+    In general, if partile one has state $\psi_{n_1}$, particle two has position state $\psi_{n_2}$, then the corresponding energy is $E_{n_1n_2} = E_{n_1}+E_{n_2} = (n_1+n_2+1)\hbar w$. So, it's the matter to determine whether the position wave function is allowed to be symmetric / antisymmetric. If symmetric is allowed, then $n_1=n_2$ is allowed; else if antisymmetric, one must have $n_1\neq n_2$.
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given two spin-$\frac{1}{2}$ fermions, since one only requires the whole state (including the composite of position and spin states) to be antisymmetric, one can fix the spin states to be antisymmetric while the position states to be symmetric. Then, the lowest energy allowed is related to $n_1=n_2=0$, which corresponds to energy $E_{00} = \hbar w$, and position wave function for particle one and two is $\psi_0(x) = \left(\frac{mw}{\pi\hbar}\right)^\frac{1}{4}e^{-\frac{mw}{2\hbar}x^2}$. Also, there's only one antisymmetric spin state for two spin-$\frac{1}{2}$ particle, namely $\chi = \frac{\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}}{\sqrt{2}}$. So, the ground state becomes:
+        \begin{align}
+            \text{Ground state: }\psi_{00}\chi = \sqrt{\frac{mw}{\pi\hbar}}e^{-\frac{mw}{2\hbar}(x_1^2+x_2^2)} \cdot \frac{\ket{\uparrow\downarrow}-\ket{\uparrow\downarrow}}{\sqrt{2}},\quad\text{Energy: }\quad E_{00} = \hbar w
+        \end{align}
+        For first excited state, since in general having when ${n_1,n_2} = {0,1}$ (i.e. one is 1, the other in 0, corresponding to energy $2\hbar w$). Which, the wave function can either be symmetric or antisymmetric (one just requires the spin state to be the opposite). With SHO state $\psi_1(x)=\sqrt{\frac{2mw}{\hbar}}\left(\frac{mw}{\pi\hbar}\right)^\frac{1}{4}xe^{-\frac{mw}{2\hbar}x^2}$, there are two possible position wave functions: $\psi_{10,\pm} = \frac{1}{\sqrt{2}}(\psi_0(x_1)\psi_1(x_2)\pm \psi_1(x_1)\psi_0(x_2))$ (where $+$ corresponds to symmetric position function, $-$ corresponds to antisymmeric position wave function). Also, here are the canonical symmetric spin states that generate all symmetric spin states (for two spin-$\frac{1}{2}$ particles):
+        \begin{align}
+            \ket{\uparrow\uparrow},\quad \frac{\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow}}{\sqrt{2}}, \quad \ket{\downarrow\downarrow}
+        \end{align}
+        So, the allowed first excited states are:
+        \begin{align}
+            &\text{First excited states: }\\
+            &\psi_{10,+}\chi_\text{anti} = \frac{mw}{\sqrt{\pi}\hbar}(x_1+x_2)e^{-\frac{mw}{2\hbar}(x_1^2+x_2^2)}\cdot\frac{\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}}{\sqrt{2}}\\
+            \\
+            &\psi_{10,-}\chi_\text{symm} = \frac{mw}{\sqrt{\pi}\hbar}(x_1-x_2)e^{-\frac{mw}{2\hbar}(x_1^2+x_2^2)}\chi,\quad \|\chi_\text{symm}\|=1,\quad \chi_\text{symm}\in\span_\CC\left\{\ket{\uparrow\uparrow},\quad \frac{\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow}}{\sqrt{2}}, \quad \ket{\downarrow\downarrow}x\right\}\\
+            \\
+            &\text{Energy: } E_{10}= 2\hbar w
+        \end{align}
+
+        \hfil
+
+        \item[(b)] For bosons, one only requires the whole state to be symmetric, so one in fact can allow having either: (1) both position and spin states are symmetric, or (2) both position and spin states are antisymmetric.
+        
+        \hfil
+
+        Let's first address the symmetric and antisymmetric spin states. 
+
+        To look at the symmetric spin states, here are the canonical ones that form the basis of all symmetric spin states (for two spin-$1$ particles, using the notation $\ket{m_1,m_2}$):
+        \begin{align}
+            \ket{1,1},\quad \frac{\ket{1,0}+\ket{0,1}}{\sqrt{2}},\quad \frac{\ket{1,-1}+\ket{-1,1}}{\sqrt{2}},\quad \ket{0,0},\quad \frac{\ket{0,-1}+\ket{-1,0}}{\sqrt{2}},\quad \ket{-1,-1}
+        \end{align}
+        As a fun fact, for $3$-dimensional vector space $V$, the symmetric tensor $S^2V$ has dimension $\frac{3(3+1)}{2}=6$, which this matches up with the dimension, hence must be all the (distinct) orthonormal symmetric spin states.
+
+        On the other hand, the following are canonical ones that form a basis of all symmtric spin states (again, for two spin-1 particles):
+        \begin{align}
+            \frac{\ket{1,0}-\ket{0,1}}{\sqrt{2}},\quad \frac{\ket{1,-1}-\ket{-1,1}}{\sqrt{2}},\quad \frac{\ket{0,-1}-\ket{-1,0}}{\sqrt{2}}
+        \end{align}
+        Which, the number also matches with the dimension of the skew-symmetric tensor $\Lambda^2 V$ (with $V$ having dimension $3$, skey-symmetric tensor has dimension $\frac{3(3-1)}{2}=3$), so this must be all the distinct orthonormal symmetric spin states.
+
+        \hfil
+        
+        Now, for lowest energy, it requires $n_1=n_2=0$, which the two particles both corresponds to $\psi_0(x)$ in SHO. This results in the position wave function being symmetric, forcing the spin states to be symmetric also.
+
+        Therefore, one has the following being all the possible ground states:
+        \begin{align}
+            &\text{Ground states: }\\
+            &\psi_{00}\chi_\text{symm} = \sqrt{\frac{mw}{\pi\hbar}}e^{-\frac{mw}{2\hbar}(x_1^2+x_2^2)} \cdot\chi_\text{symm},\quad \|\chi_\text{symm}\|=1\\
+            &\chi_\text{symm} \in \textrm{span}_\CC\left\{\ket{1,1},\ \frac{\ket{1,0}+\ket{0,1}}{\sqrt{2}},\ \frac{\ket{1,-1}+\ket{-1,1}}{\sqrt{2}},\ \ket{0,0},\ \frac{\ket{0,-1}+\ket{-1,0}}{\sqrt{2}},\ \ket{-1,-1}\right\}\\
+            &\text{Energy: }E_{00} = \hbar w
+        \end{align}
+        For first excited states, similar to the fermion case, it must have $\{n_1,n_2\}=\{0,1\}$, which the position wave function would be similar to what we derived in (a). Given the restriction of boson (where position and spin states must both be symmetric / antisymmetric), one has the following:
+        \begin{align}
+            &\text{First excited states: }\\
+            &\psi_{10,+}\chi_{\text{symm}} = \frac{mw}{\sqrt{\pi}\hbar}(x_1+x_2)e^{-\frac{mw}{2\hbar}(x_1^2+x_2^2)}\chi_\text{symm},\quad \|\chi_\text{symm}\|=1\\
+            &\chi_\text{symm} \in \textrm{span}_\CC\left\{\ket{1,1},\ \frac{\ket{1,0}+\ket{0,1}}{\sqrt{2}},\ \frac{\ket{1,-1}+\ket{-1,1}}{\sqrt{2}},\ \ket{0,0},\ \frac{\ket{0,-1}+\ket{-1,0}}{\sqrt{2}},\ \ket{-1,-1}\right\}\\
+            \\
+            &\psi_{10,-}\chi_\text{anti} = \frac{mw}{\sqrt{\pi}\hbar}(x_1-x_2)e^{-\frac{mw}{2\hbar}(x_1^2+x_2^2)}\chi_\anti,\quad \|\chi_\anti\|=1\\
+            &\chi_\anti\in \text{span}_\CC\left\{\frac{\ket{1,0}-\ket{0,1}}{\sqrt{2}},\ \frac{\ket{1,-1}-\ket{-1,1}}{\sqrt{2}},\ \frac{\ket{0,-1}-\ket{-1,0}}{\sqrt{2}}\right\}\\
+            \\
+            &\text{Energy: }E_{10} = 2\hbar w
+        \end{align}
+    \end{itemize}
 \end{proof}
 
 \newpage
 
-\section*{6}
+\section*{6 HD (part b could change)}
 \begin{ques}
 6 Atoms in a box
 
@@ -314,7 +396,35 @@ E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2} \equiv n^2 E_1
 \end{ques}
 
 \begin{proof}
-    
+    Recall that for 3D harmonic osciillator, the position eigenfunctions can be determined by its states in $x,y,z$ direcitons: Given $n_1,n_2,n_3\in\NN\setminus\{0\}$, if $x,y,z$ occupies state $\psi_{n_1},\psi_{n_2},\psi_{n_3}$ respectively, which corresponds to energy $E_{n_1n_2n_3}=(n_1^2+n_2^2+n_3^3)E_1$. Which, the 3-tuple $(n_1,n_2,n_3)_i$ will be used to determine the state of the $i$th particle.
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given $S=0$, since it's integer spin, it must be boson. So, choose position states $(n_1,n_2,n_3)_i = (1,1,1)$ for all $N=3$ particles, one has the lowest possible energy $E_{111,111,111} = 9E_1$ (which, position state corresponds to degeneracy $1$). Also, with all the particles having spin $S=0$, each spin corresponds to a $1$-dimension Hilbert Space; with $N=3$ particles, the tensor product is still $1$-dimension, and must be symmetric. So, the ground state degeneracy is $1$.
+        
+        \hfil
+
+        \item[(b)] Given $S=\frac{1}{2}$, since it's half integer spin, it must be fermions. Which, with all the particle having spin $S=0$, each spin corresponds to a $2$-dimension Hilbert Space $\mathcal{H}_\frac{1}{2}$; with $N=3$ particles, the antisymmetric tensors $\Lambda^3 \mathcal{H}_\frac{1}{2}$ has only dimension $0$ (since $2$-dimensional space has antisymmetric tensor with dimension $0$ for $n>2$). So, it's not possible for spin states to be antisymmetric, then it must be symmetric. Which, the dimension of the symmetric tensor $S^3\mathcal{H}_\frac{1}{2}$ is given by $4$ (since it's spanned by all tensors of the form $\sum_{\sigma \in S_3}\chi_{\sigma(1)}\tensor\chi_{\sigma(2)}\tensor \chi_{\sigma(3)}$, it's purely determined by the number of spin up/down in the three states; since there are $4$ distinct ways of have three states, each spin up or down, then the dimension is $4$).
+        
+        On the other hand, since the spin state is symmetric, the position wave function must be antisymmetric. Which, none of the particles can stay in the same state, showing that to decrease the energy, one must have $3$ consecutive energy for 3D infinite square well, given by $(n_1,n_2,n_3)_1 = (1,1,1)$ (energy $3E_1$, with degeneracy $1$), $(n_1,n_2,n_3)_2 = (1,1,2)$ (energy $6E_1$, with degeneracy $3$, depending on which column $2$ is in), and $(n_1,n_2,n_3)_3 = (1,2,2)$ (energy $9E_1$, with degeneracy $3$, depending on which column $1$ is in). So, as a tensor product, the lowest energy state (for antisymmetric position wave function) corresponds to dimension $1 \cdot 3\cdot 3 = 9$.
+
+        When taking the tensor product of position and spin states, one gets a total dimension of $4\cdot 9=36$, so the degeneracy of ground state energy is $36$.
+
+        \hfil
+
+        \item[(c)] Given $S=1$, it's integer spin, which must be bosons. So, it's fine to have symmetric position wave function. Therefore, choose $(n_1,n_2,n_3)_i = (1,1,1)$ for all $N=2$ particles creates the lowest energy (which, in this case the position state has dimension $1$). Then, since boson requires both the spin and position states to both be symmetric/antisymmetric, then spin is also symmetric. With each particle having spin $S=1$, each particle corresponds to a $3$-dimensional Hilbert Space $\mathcal{H}_1$; then, with $2$ particles being presented, the symmetric tensor $S^2\mathcal{H}_1$ has dimension $\frac{3\cdot (3+1)}{2} = 6$.
+        
+        Hence, the degeneracy of ground state energy is $6$.
+
+        \hfil
+
+        \item[(d)] Given $S=\frac{3}{2}$, it's half integer spin, which must be fermions. With each particle's spin corresponding to a $4$-dimensional Hilbert Space $\mathcal{H}_\frac{3}{2}$, and $N=4$ particles, then the antisymmetric tensor $\Lambda^4 \mathcal{H}_\frac{3}{2}$ has dimension $1$ (since it's given by $_4 C_4 = 1$).
+        
+        Then, since the antisymmetric spin states are allowed, one can take the position wave function to be symmetric. Hence, choosing $(n_1,n_2,n_3)_i = (1,1,1)$ for each particle provides the lowest energy (meaning the position wave function corresponds to dimension $1$).
+
+        Hence, the degeneracy of te ground state energy is $1$.
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -331,6 +441,12 @@ Hint: Griffiths 5.10 (doesn’t exist in second edition) might be very useful.
 \end{ques}
 
 \begin{proof}
+    Recall that for charge ratio $Z$ hydrogen-like system, one has the Bohr radius being $\frac{a_0}{Z}$ (where $a_0$ is the typical Bohr radius for hydrogen atom), and each $n$-state corresponds to energy $Z^2E_n$ (where $E_n$ is the $n$th hydrogen atom state).
+
+    Then, if the first two electrons occupy the ground state ($n=1$), the third one can only occupy the next state ($n=2$). In this case, the total energy will be $E_{112} = Z^2(E_1+E_1+E_2) = 9(1+1+\frac{1}{2^2})E_1 = \frac{81E_1}{4}$ (where $E_1 = -\frac{m_e e^4}{8\pi^2\epsilon_0^2\hbar^2\rho_0^2} \approx -13.6 $ eV).
+
+    \hfil
+
     
 \end{proof}
 
