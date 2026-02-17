@@ -52,9 +52,10 @@
 #let Mod = math.sans[Mod] //cat of Mod in general
 #let RAlg = math.sans[R-Alg] //cat of R-Alg
 #let Vect(k) = $#k -sans("Vect")$ //cat of k-vector space (not sure if this works though)
+#let Set(G) = $#G -sans("Set")$//G-action category
 #let Top = math.sans[Top] //cat of topological spaces
 #let hTop = math.sans[hTop] //cat of topological spaces, with homotopic classes of continuous maps
-#let Set = math.sans[Set] //cat of sets
+#let Sets = math.sans[Set] //cat of sets
 #let Ch(name) = math.sans[Ch(#name)] //cat of chain / cochaincomplex over an abelian category, sometimes also expressed as Kom
 #let D(name) = math.sans[D(#name)] //derived category 
 #let Met = math.sans[Met] //cat of metric spaces
