@@ -67,20 +67,22 @@
 
     \ 
 
-  + To compute $Hom_G (V, cal(O)(G))$ (where $cal(O)(G)$ has action by right translation, or any $B in G$ satisfies $(B*f)(X) := f(X B^(-1))$), given any $T in Hom_G (V, cal(O)(G))$, for any $v in V$, define $f_v:= T(v)$. Then, it satisfies the following relation:
-    $ forall B,X in G, quad f_v (X B^(-1))=(B * f_v)(X) = (B * T(v))(X) = (T(B dot v))(X) = f_(B dot v)(X) $
-    Notice that if take $X := I in G$ (the identity matrix in $GL_n (CC)$), one has $f_v (B^(-1)) = f_(B dot v)(I)$. So, one can define a function $rho:G -> V^*$ by the following:
-    $ forall B in G, quad forall v in V, quad rho(B)(v) := f_v (B^(-1)) $
+  + To compute $Hom_G (V, cal(O)(G))$ (where $cal(O)(G)$ has action by right translation, or any $B in G$ satisfies $(B*f)(X) := f(X B^(-1))$), given any $T in Hom_G (V, cal(O)(G))$, for any $v in V$, define $T_v:= T(v)$. Then, it satisfies the following relation:
+    $ forall B,X in G, quad T_v (X B^(-1))=(B * T_v)(X) = (B * T(v))(X) = (T(B dot v))(X) = T_(B dot v)(X) $
+    Notice that if take $X := I in G$ (the identity matrix in $GL_n (CC)$), one has $T_v (B^(-1)) = T_(B dot v)(I)$. So, one can define a function $rho_T:G -> V^*$ by the following:
+    $ forall B in G, quad forall v in V, quad rho_T (B)(v) := T_v (B^(-1)) $
     First, notice that this function is well-defined for all $B in G$, as any $a,b in CC$ and $u,v in V$ satisfies the following:
-    $ rho(B)(a u+b v) &= f_(a u+b v)(B^(-1)) = (T(a u+b v))(B^(-1)) \
-    &= (a T(u)+b T(v))(B^(-1)) = (a dot f_u + b dot f_v)(B^(-1))\
-    &= a dot f_u (B^(-1))+b dot f_v (B^(-1)) = a dot rho(B)(u)+b dot rho(B)(v) $
-    This shows that $rho(B)(a u+b v) - a dot rho(B)(u)+b dot rho(B)(v)$, which it's a linear functional (since $f_v in cal(O)(G)$, plugin any $B^(-1) in G$ provides a complex number).
+    $ rho_T (B)(a u+b v) &= T_(a u+b v)(B^(-1)) = (T(a u+b v))(B^(-1)) \
+    &= (a T(u)+b T(v))(B^(-1)) = (a dot T_u + b dot T_v)(B^(-1))\
+    &= a dot T_u (B^(-1))+b dot T_v (B^(-1)) = a dot rho_T (B)(u)+b dot rho_T (B)(v) $
+    This shows that $rho_T (B)(a u+b v) - a dot rho_T (B)(u)+b dot rho_T (B)(v)$, which it's a linear functional (since $T_v in cal(O)(G)$, plugin any $B^(-1) in G$ provides a complex number).
 
     Then, to prove that it's a $G$-equivariant map, consider the following:
-    $ forall A,B in G, quad forall v in V, rho(A B)(v) &= f_v ((A B)^(-1)) = f_v (B^(-1)A^(-1))\
-    &= f_(A dot v)(B^(-1)) = rho(B)(A dot v) $
-    So, $rho$ is in fact a $G$-equivariant map that turns a left action on $G$ itself, into a right action on $V^*$.
+    $ forall A,B in G, quad forall v in V, rho_T (A B)(v) &= T_v ((A B)^(-1)) = T_v (B^(-1)A^(-1))\
+    &= T_(A dot v)(B^(-1)) = rho_T (B)(A dot v) $
+    So, $rho_T$ is in fact a $G$-equivariant map that turns a left action on $G$ itself, into a right action on $V^*$.
 
-    Notice that this generates an inclusion $Hom_G (V, cal(O)(G)) arrow.hook Hom_Set(G)(G^(op), V^*)$ (if $Set(G)$ denots all sets endow with a right action of $G$),
+    Notice that this generates an inclusion $Hom_G (V, cal(O)(G)) arrow.hook Hom_Set(G)(G^(op), V^*)$ by $T mapsto rho_T$ (if $Set(G)$ denots all sets endow with a right action of $G$), as if any $T in Hom_G (V, cal(O)(G))$ satisfies $rho_T equiv 0$, thenn any $B in G$ and $v in V$ has $rho_T (B)(v) = T_v (B^(-1))=0$, so as a polynomial with input $X_(i j)$ and $det(X)^(-1)$, one has $T(v) = T_v equiv 0$ on $G$. So, $T = 0$, showing the inclusion is injective. (This is due to the fact that when pull back using any local charts, $T_v$ is a function which is identically $0$ on any chart, so it must be $0$ globally).
+
+    On the other hand, we claim that this map is surjective: Suppose $rho:G -> V^*$ is a $G$-equivariant map ($G$ with a left action, and $V^*$ with a right action)
 ]
