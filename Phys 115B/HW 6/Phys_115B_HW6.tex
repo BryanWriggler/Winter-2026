@@ -372,7 +372,7 @@ simple harmonic oscillator potential of frequency $\omega$. Determine the energi
 
 \newpage
 
-\section*{6 HD (part b could change)}
+\section*{6 D }
 \begin{ques}
 6 Atoms in a box
 
@@ -405,11 +405,21 @@ E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2} \equiv n^2 E_1
         
         \hfil
 
-        \item[(b)] Given $S=\frac{1}{2}$, since it's half integer spin, it must be fermions. Which, with all the particle having spin $S=0$, each spin corresponds to a $2$-dimension Hilbert Space $\mathcal{H}_\frac{1}{2}$; with $N=3$ particles, the antisymmetric tensors $\Lambda^3 \mathcal{H}_\frac{1}{2}$ has only dimension $0$ (since $2$-dimensional space has antisymmetric tensor with dimension $0$ for $n>2$). So, it's not possible for spin states to be antisymmetric, then it must be symmetric. Which, the dimension of the symmetric tensor $S^3\mathcal{H}_\frac{1}{2}$ is given by $4$ (since it's spanned by all tensors of the form $\sum_{\sigma \in S_3}\chi_{\sigma(1)}\tensor\chi_{\sigma(2)}\tensor \chi_{\sigma(3)}$, it's purely determined by the number of spin up/down in the three states; since there are $4$ distinct ways of have three states, each spin up or down, then the dimension is $4$).
+        \item[(b)] Given $S=\frac{1}{2}$, since it's half integer spin, it must be fermions. Which, with all the particle having spin $S=0$, each spin corresponds to a $2$-dimension Hilbert Space $\mathcal{H}_\frac{1}{2}$; with $N=3$ particles, the antisymmetric tensors $\Lambda^3 \mathcal{H}_\frac{1}{2}$ has only dimension $0$ (since $2$-dimensional space has antisymmetric tensor with dimension $0$ for $n>2$). So, it's not possible to construct the state with symmetric position wave function, and antisymmetric spin state. 
+        
+        Instead, if consider the alternating sum $\sum_{\sigma \in S_3}\mathrm{sign}(\sigma) \psi_{n_1}(x_{\sigma(1)})\psi_{n_2}(x_{\sigma(2)})\psi_{n_3}(x_{\sigma(3)})(\chi_{\sigma(1)}\tensor \chi_{\sigma(2)}\tensor \chi_{\sigma(3)})$, it's a nonzero totally antisymmetric state (as long as not all position / spin components are identical). Which, specifically one can choose $(n_1,n_2,n_3)_1 = (n_1,n_2,n_3)_2 = (1,1,1)$ (so particle 1,2 both have ground state energy $3 E_1$), and $(n_1,n_2,n_3)_3= (1,1,2)$ (which has particle 3 having the next lowest energy, $(1^2+1^2+2^2)E_1 = 6E_1$ of 1D infinite square well). In this case, because the position wave function has total degeneracy of 3 (since ground state of 3D infinite square well has degeneracy 1, while the next lowest energy $(1,1,2)$ depends on the position of $2$ in the tuple, which has degeneracy 3).
+
+        Finally, since two of the particles can acquire the same position state, they must acquire opposite spin states (WLOG, say $\chi_1 = \chi_+$ and $\chi_2 = \chi_-$). Then, the third state is in fact allowed to be any state based on the above construction, showing that it can be arbitrary linear combination of $\chi_+,\chi_-$ (for spin-$\frac{1}{2}$). Therefore, the spin state has degeneracy 2.
+
+        As a result, the total degeneracy of the ground state is $3\cdot 2=6$.
+        \begin{comment}
+
+        So, it's not possible for spin states to be antisymmetric, then it must be symmetric. Which, the dimension of the symmetric tensor $S^3\mathcal{H}_\frac{1}{2}$ is given by $4$ (since it's spanned by all tensors of the form $\sum_{\sigma \in S_3}\chi_{\sigma(1)}\tensor\chi_{\sigma(2)}\tensor \chi_{\sigma(3)}$, it's purely determined by the number of spin up/down in the three states; since there are $4$ distinct ways of have three states, each spin up or down, then the dimension is $4$).
         
         On the other hand, since the spin state is symmetric, the position wave function must be antisymmetric. Which, none of the particles can stay in the same state, showing that to decrease the energy, one must have $3$ consecutive energy for 3D infinite square well, given by $(n_1,n_2,n_3)_1 = (1,1,1)$ (energy $3E_1$, with degeneracy $1$), $(n_1,n_2,n_3)_2 = (1,1,2)$ (energy $6E_1$, with degeneracy $3$, depending on which column $2$ is in), and $(n_1,n_2,n_3)_3 = (1,2,2)$ (energy $9E_1$, with degeneracy $3$, depending on which column $1$ is in). So, as a tensor product, the lowest energy state (for antisymmetric position wave function) corresponds to dimension $1 \cdot 3\cdot 3 = 9$.
 
         When taking the tensor product of position and spin states, one gets a total dimension of $4\cdot 9=36$, so the degeneracy of ground state energy is $36$.
+        \end{comment}
 
         \hfil
 
@@ -429,7 +439,7 @@ E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2} \equiv n^2 E_1
 
 \newpage
 
-\section*{7}
+\section*{7 D}
 \begin{ques}
 7 The Ground State of Lithium (Griffiths 5.16, DNE in second edition)
 
@@ -443,11 +453,19 @@ Hint: Griffiths 5.10 (doesn’t exist in second edition) might be very useful.
 \begin{proof}
     Recall that for charge ratio $Z$ hydrogen-like system, one has the Bohr radius being $\frac{a_0}{Z}$ (where $a_0$ is the typical Bohr radius for hydrogen atom), and each $n$-state corresponds to energy $Z^2E_n$ (where $E_n$ is the $n$th hydrogen atom state).
 
-    Then, if the first two electrons occupy the ground state ($n=1$), the third one can only occupy the next state ($n=2$). In this case, the total energy will be $E_{112} = Z^2(E_1+E_1+E_2) = 9(1+1+\frac{1}{2^2})E_1 = \frac{81E_1}{4}$ (where $E_1 = -\frac{m_e e^4}{8\pi^2\epsilon_0^2\hbar^2\rho_0^2} \approx -13.6 $ eV).
+    Then, if the first two electrons occupy the ground state ($n=1$), the third one can only occupy the next state ($n=2$). In this case, the total energy will be $E_{112} = Z^2(E_1+E_1+E_2) = 9(1+1+\frac{1}{2^2})E_1 = \frac{81}{4}E_1$ (where $E_1 = -\frac{m_e e^4}{8\pi^2\epsilon_0^2\hbar^2\rho_0^2} = -13.6 $ eV).
 
     \hfil
 
-    
+    Given that the three position states are $\psi_{1,0,0},\psi_{1,0,0},\psi_{2,0,0}$ (and the spin states of particle 1,2 are antisymmetric; WLOG, one can pick $\chi_1=\chi_+$, and $\chi_2 = \chi_-$). For the third state, it can be chosen as any desired state (i.e. any normalized linear combination of $\chi_+,\chi_-$). Then, let $\chi_3 = a\chi_++b\chi_-$ represents the spin of particle 3, to antisymmetrize, one gets the following using the permutation group $S_3$:
+    \begin{align}
+        \ket{\psi} &= \sum_{\sigma\in S_3}\mathrm{sign}(\sigma)\psi_{1,0,0}(x_{\sigma(1)})\psi_{1,0,0}(x_{\sigma(2)})\psi_{2,0,0}(x_{\sigma(3)})(\chi_{\sigma(1)}\tensor \chi_{\sigma(2)}\tensor \chi_{\sigma(3)})
+    \end{align} 
+    Where, $\chi_1 = \chi_+$, and $\chi_2 = \chi_-$.
+
+    As a result, since $\chi_1\tensor\chi_2\tensor\chi_3$ can be written as $a\chi_+\tensor \chi_-\tensor \chi_++\chi_+\tensor\chi_-\tensor\chi_-$, then the degeneracy is $2$.
+
+    So, the ground state energy of Lithium has the state give as above, with $\chi_1 = \chi_+,\chi_2 = \chi_-$, and $\chi_3$ allowed to be any normalized linear combination. Also, it has energy $E = \frac{81}{4}E_1$ (where $E_1$ is the ground state energy of hydrogen), and degeneracy $2$.
 \end{proof}
 
 \end{document}
