@@ -47,10 +47,13 @@
 #let Grp = math.sans[Grp] //cat of group
 #let Ab = math.sans[Ab] //cat of abel group
 #let Ring = math.sans[Ring] //cat of rings
+#let CRing = math.sans[CRing] //cat of commutative rings
 #let Fld = math.sans[Fld] //cat of field
 #let RMod = math.sans[R-Mod] //cat of R-Mod
 #let Mod = math.sans[Mod] //cat of Mod in general
 #let RAlg = math.sans[R-Alg] //cat of R-Alg
+#let PreSh = math.sans[PreSh] //cat of presheaves
+#let Sh = math.sans[Sh] //cat of sheaves
 #let Vect(k) = $#k -sans("Vect")$ //cat of k-vector space (not sure if this works though)
 #let Set(G) = $#G -sans("Set")$//G-action category
 #let Top = math.sans[Top] //cat of topological spaces
