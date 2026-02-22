@@ -26,7 +26,7 @@
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
 
-#outline()
+#outline(title: "Table of Content:")
 
 = Presheaves and Sheaves//1
 #defn[Presheaves][

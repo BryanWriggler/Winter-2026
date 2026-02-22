@@ -21,9 +21,12 @@
 
 //start document
 #maketitle(
-  title: "Hartshorne Chapter 2 Section 2: Sheaves",
+  title: "Hartshorne Chapter 2 Section 2: Schemes",
   authors: ("Zih-Yu Hsieh",),
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
 
-#outline()
+#outline(title: "Table of Content:")
+
+= Affine Schemes
+
