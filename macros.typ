@@ -32,6 +32,8 @@
 #let im = math.upright[im] //image
 #let Spec = math.upright[Spec] //spectrum of a ring / vector space
 #let coker = math.upright[coker] //cokernel
+#let Ker = math.upright[Ker] //the object as source of kernel morphism
+#let Cok = math.upright[Cok] //the object as target of cokernel morphism
 #let span = math.upright[span] //span of vectors
 #let Orb = math.upright[Orb] //orbit in group theory
 #let Conj = math.upright[Conj] //denote the conjugation classes

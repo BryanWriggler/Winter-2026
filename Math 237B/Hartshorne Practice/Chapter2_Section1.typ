@@ -26,6 +26,8 @@
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
 
+#outline()
+
 = Presheaves and Sheaves//1
 #defn[Presheaves][
   Given a topological space $X$, let $Top(X)$ denotes the category of partial orders on open subsets of $X$, with morphisms being inclusions. 
@@ -84,7 +86,7 @@ If given these two axioms, one must have $F(emptyset)= 0$: Given any two element
 
 #pagebreak()
 
-= Stalks and Direct Limits
+= Stalks and Direct Limits of Presheaves
 
 As a review, let's talk about direct limits:
 #defn[Direct System][
@@ -191,19 +193,320 @@ For sheaf theory, the use of direct limit in commutative rings will also be esse
 
 \ 
 
-Now, given a sheaf $F in Sh(X)$, to collect its local information at a point, notice that the collection of open subsets $O(X)$ with inclusion forms a partial order, moreover any two element has a lower bound / upper bound: Given $U,V in O(X)$, then $U union V$ is an upper bound, while $U sect V$ is a lower bound. So, $O(X)$ with inclusion forms not only a partial order, but also a #emph[Preorder]. 
+Now, given a presheaf $F in PreSh(X)$, to collect its local information at a point, notice that the collection of open subsets $O(X)$ with inclusion forms a partial order, moreover any two element has a lower bound / upper bound: Given $U,V in O(X)$, then $U union V$ is an upper bound, while $U sect V$ is a lower bound. So, $O(X)$ with inclusion forms not only a partial order, but also a #emph[Preorder]. 
 
 Moreover, notice that for any $P in X$, the subcollection $O(X)_P$ (all open subset $U in.rev P$) also forms a preorder, such that all lower bound is nonempty (since the intersection always contains $P$). Which, it gives rise to the local information:
 #defn[Stalk][
   Let $F in Sh(X)$ be a sheaf of abelian groups (which, as a functor $F:O(X)^op -> Ab$, which the lower bound of $O(X)$ becomes an upper bound of $O(X)^op$). Given any point $P in X$. The #text(weight: "bold")[Stalk] of $F$ at point $P$, is the following:
-  $ F_P := colim(F) $
+  $ F_P := colim_(O(X)_P^op)(F) $
+  More in detail, consider the sub-preorder $O(X)_P$, and restrict the sheaf to $F|_(O(X)_P^op)$, and $F_P$ is the colimit of this functor.
 ]
 
-any two sheaves $F,G in Sh(X)$, let $mu:F->G$ be a natural transformation (which is a morphism in $Sh(X)$). Notice that if $mu$ is a natural isomorphism, then it's also isomorphic on each stalks (simply because each summand in the direct limit is isomorphic, and the equivalence relation is preserved).
+\ 
+
+In a more concrete sense, it "classifies" the restriction of elements up to the similarity in a common open subset around $P$. If the topological space is $K=RR$ or $CC$, and the sheaf is the sheaf of smooth / analytic functions, then the classical restrictions have the stalk at a point being all functions, up to an equivalence relation of $f tilde g$ iff there exists $U,V subset.eq K$ open subsets, such that $P in U sect V$, and $f|_(U sect V)=g|_(U sect V)$ (for convenience, we'll just state there exists an open neighborhood of $P$, where the two elements agree).
+
+\ 
+
+For any two presheaves $F,G in PreSh(X)$, let $mu:F->G$ be a natural transformation (which is a morphism in $PreSh(X)$), it induces a morphism $mu_P: F_P -> G_P$ for any point $P in X$ (since $mu_P$ preserves the equivalence relation for direct limit). Notice that if $mu$ is a natural isomorphism, then it's also isomorphic on each stalks (simply because each summand in the direct limit is isomorphic, and the equivalence relation is preserved).
 
 But, the question is: How far does its converse hold? If we know isomorphisms on stalks, what can we say about sheaves?
 
 In general, being isomorphic on stalks for presheaves don't imply it's isomorphic as presheaves. Yet, this is true for sheaves:
-#thm[
 
+#pagebreak()
+
+#thm[
+  Given sheaves $F,G in Sh(X)$, together with morphism of sheaves $phi:F -> G$. Then, $phi$ is an isomorphism iff the induced map on the stalk $phi_P:F_P -> G_P$ is an isomorphism for every $P in X$.
+][
+  $==>:$ 
+  
+  This part is clear (and is also true for presheaves).
+
+  \ 
+
+  $<==:$
+
+  Suppose $phi_P:F_P -> G_P$ is an isomorphism for every $P in X$, the goal is to prove that $phi(U):F(U) -> G(U)$ is an isomorphism for all open subset $U subset.eq X$.
+
+  \ 
+
+  First, we'll prove injectivity: Suppose $s in F(U)$ satisfies $phi(U)(s) = 0$ (i.e. in the kernel of $phi(U)$), then notice that for any point $P in U$, the following commutative diagram commutes:
+  #set align(center)
+  #diagram($
+             F(U) edge(->, script(phi(U))) edge("d", ->, script(iota_(F(U))), #right) & G(U) edge("d",->,script(iota_(G(U))))\ 
+             F_P edge(->, script(phi_P), #right) & G_P
+           $)
+  #set align(left)
+  So, take the representative $langle s, U rangle in F_P$, one has the following:
+  $ phi_P (langle s,U rangle) = phi_P compose iota_(F(U))(s) = iota_(G(U)) compose phi(U)(s) = iota_(G(U))(0) = 0 $
+  Hence, by injectivity of $phi_P$, one has $langle s,U rangle = 0$, i.e. there exists an open neighborhood $P in V_P subset.eq U$, such that $s|_(V_P) = 0|_(V_P)$. Then, because the ${V_P}_(P in U)$ forms an open cover of $U$, such that $s|_(V_P) = 0$ for all $P in U$, based on the separation axiom of sheaves, $s = 0$, proving the injectivity.
+
+  \ 
+
+  Then, to prove surjectivity, pick any $t in G(U)$, and for any $P in U$, consider its image $iota_(G(U))(t) = langle t,U rangle in G_P$. Since $phi_P$ is an isomorphism, we know there exists a unique $langle s_P, V_P rangle in F_P$, such that $phi_P (langle s_P,V_P rangle) = langle t, U rangle$. 
+  
+  WLOG, since one can intersect $V_P$, the domain of $s_P$, with $U$ and still not change the image of $s_P$ in the stalk, one can assume each $V_P subset.eq U$; moreover, one can also claim that $phi(V_P)(s_P) in G(V_P)$ satisfies $phi(V_P)(s_P) = t|_(V_P)$ based on this). Hence, one can assume ${V_P}_(P in U)$ forms an open cover in $U$.
+
+  Now, consider each $s_P in F(V_P)$ for all $P in U$, we claim that they glue together: Suppose $V_P, V_(P')$ are two open subsets such that $V_P sect V_(P') != emptyset$. Which, the previous claim says that $t, phi(V_P)(s_P)$ agrees on $V_P$, and $t,phi(V_P')(s_P')$ agrees on $V_P'$.
+
+  However, remember that the injectivity claim of $phi(U)$ holds FOR ALL open subset $U subset.eq X$, in particular it holds for $V_P sect V_P'$. Then, since $phi(V_P)(s_P)$ and $phi(V_P')(s_P')$ restricting to $V_P sect V_P'$ must agree with $t|_(V_P sect V_P')$, one has $phi(V_P sect V_P')(s_P|_(V_P sect V_P')) = phi(V_P sect V_P')(s_(P')|_(V_P sect V_(P')))$, then by injectivity $s_P|_(V_P sect V_P') = s_P'|_(V_P sect V_P')$.
+
+  This shows that all $s_P in F(V_P)$ agrees on the intersection of $V_P$'s, hence the gluing axiom of sheaves guarantees that there exists a $s in F(U)$, such that $s_|(V_P) = s_P$ for all $P in U$. As a result, one must have $phi(U)(s) = t$, as the restriction to any of the $V_P$'s they agree. This finishes the surjectivity.
+]
+
+\ 
+
+For me personally, this theorem is pretty astonishing results, as knowing local information restricts the whole sheaf.
+
+#pagebreak()
+
+= Abelian Category Structure of $Sh(X)$
+
+Since the category of presheaves $PreSh(X) = [O(X)^op, Ab]$ (as functor categories), then it naturally inherits all abelian category structur of $Ab$ (a result in homological algebra). In particular, the kernels and cokernels of the maps are defined by taking the kernels and cokernels of each individual piece in the natural transformation (and, one can construct $im := ker(coker)$, and $coim := coker(ker)$ for each morphism of presheaves).
+
+To construct similar concepts in $Sh(X)$, one do need to make extra observations though (in particular, problems arise for cokernel). Regardless, let's start with kernels in sheaf:
+#prop[
+  Given sheaves $F,G in Sh(X)$, and morphism $phi in Hom_(Sh(X))(F,G) = Hom_(PreSh(X))(F,G)$, one has $ker(phi)$ (as a kernel in $PreSh(X)$) also be a kernel in $Sh(X)$.
+][
+  First, let's fix the notation: Define $K in PreSh(X)$ by $K(U) = ker(phi(U))$ for all open subset $U subset.eq X$ (where $phi(U):F(U) -> G(U)$ is a morphism of abelian groups). Which, the defined $ker(phi)(U):K(U) arrow.hook F(U)$ as the canonical inclusion. (Note: the restriction map of $K$ can be directly inherited from $F$, as we chose specifically that $K(U)$ as a subgroup of $F(U)$).
+
+  \ 
+
+  Notice that $ker(phi)$ clearly satisfies the desired property as a kernel in $PreSh(X)$. To check that it's the right kernel in $Sh(X)$, it suffices to prove that $K in Sh(X)$ (since $Sh(X)$ is a full subcategory of $PreSh(X)$, so $K in Sh(X)$ automatically promotes $ker(phi)$ to a kernel in sheaves also). Let's check the two essential axioms:
+  1. Given any open subset $U subset.eq X$ together with open cover ${V_i}_(i in I)$ in $U$, suppose $s in K(U)$ satisfies $s|_(V_i)=0$ for all $i in I$, then notice that such statement also holds in $F$, which the separation axiom on $F$ enforces $s=0$. This checks out separation property for $K$.
+
+  \ 
+
+  2. Given open subset $U subset.eq X$ and an open cover ${V_i}_(i in I)$ in $U$, suppose given any elements $s_i in K(V_i)$ that satisfies $s_i|_(V_i sect V_j)=s_j|_(V_i sect V_j)$ for any index $i,j in I$, then notice that when including $K(V_i) arrow.hook F(V_i)$, the gluing axiom on $F$ guarantees a unique global section $s in F(U)$, such that $s|_(V_i) = s_i$ for any index $i in I$. 
+    
+    Then, to check that $s in K(U)$, notice one has the following:
+    $ phi(U)(s)|_(V_i) = phi(V_i)(s|_(V_i)) = phi(V_i)(s_i) = 0 $
+    So, since $phi(U)(s)$ restricts to $0$ on any $V_i$, the separation axiom on $G$ guarantees that $phi(U)(s)=0$, or $s in ker(phi(U))= K(U)$. THis shows the gluing property for $K$.
+
+    \ 
+
+  With the two axioms being satisfied, $K in Sh(X)$, and finishes the existence of kernel in $Sh(X)$.
+]
+
+As a corollary, one has the following:
+#corollary[
+  The forgetful functor $"For":Sh(X) -> PreSh(X)$ is left exact, since it preserves kernel.
 ][]
+
+\ 
+
+Now, to consider the case for cokernels, unfortunately the cokernels for morphisms between sheaves (in presheaves) need not be a sheaf. Here's an example from complex analysis:
+#ex[Cokernel for Sheaf of analytic functions][
+  Take $CC$ with Euclidean topology, take $F=Holo:O(CC)^op -> Ab$ by $Holo(U) := $ all analytic functions $U -> CC$ (with point wise addition as group operation), and $G = Holo^times: O(CC)^op -> Ab$ by $Holo^times (U) := $ all invertible analytic function on $U$ (with point wise multiplication as group operation). Consider the exponential map $exp: F-> G$ by $exp(U)(f):= exp(f)$ for any $f in F(U) = Holo(U)$, which $exp(f) in G(U) = Holo^times (U)$ is clear, and it's also a group homomorphism by exponential property. Take $coker(phi)$ by $coker(phi)(U):G(U) -> C(U)$ (where $C(U)$ is the cokernel of $phi(U)$ set wise).
+
+  \ 
+
+  Now, consider the open subset $U = CC\\{0}$, and consider the function $f(z)=z$ in $G(U)$. Notice that $f in.not im(exp(U))$ (since $U$ is not simply-connected while omitting $0$, so there's no well-defined log function for $z$ on $U$, so there doesn't have a function $h in Holo(U)$, such that $exp(h)=f$; in other words one has $overline(f) != 0$ in $coker(phi(U))$.
+
+  However, if consider the two open subset $U_1 = CC\\[0,infinity)$ and $U_2 = CC\\(-infinity,0]$, notice that $f in G(U_1),G(U_2)$ are both in the image of $phi(U_1),phi(U_2)$ respectively (as these two open subsets are simply-connected while not containing $0$, so log functions can be defined; hence, one can define $h_1 in Holo(U_1), h_2 in Holo(U_2)$, such that $exp(h_1)=f$ and $exp(h_2)=f$). As a result, $overline(f) = 0$ in $coker(phi(U_1)), coker(phi(U_2))$.
+
+  \ 
+
+  Then, because $U = U_1 union U_2$, with the commutative diagram of presheaf's restriction, one has $overline(f)|_(U_1) = 0$ and $overline(f)|_(U_2)=0$ based on the above construction. Yet, this cannot be the case if $coker(phi)$ is a sheaf (as restriction to be $0$ on an open cover should imply $overline(f)$ itself is $0$, by separation axiom).
+
+  This shows that $coker(phi)$ is not a morphism of sheaves (as the chosen cokernel $C$ CANNOT be a sheaf).
+]
+
+\ 
+
+So, to fix this problem, one needs a modification for cokernel. Let's introduce a tool for such construction:
+#theorem("Sheafification Functor")[
+  Given the forgetful functor $"For":Sh(X) -> PreSh(X)$, it has a left adjoint, called #text(weight: "bold")[Sheafification Functor], denoted as $(\_)^Sh:PreSh(X) -> Sh(X)$.
+
+  \ 
+
+  More concretely, for any presheaf $F in PreSh(X)$ and sheaf $G in Sh(X)$, the two sets are canonically isomorphic:
+  $ Hom_(Sh(X))(F^Sh, G) tilde.equiv Hom_(PreSh(X))(F, G) $
+  In particular, $F^Sh$ is equipped with a canonical morphism of presheaves $phi: F -> F^(Sh)$, so that given any morphism of presheaf $mu:F -> G$, there exists a unique morphism of sheaf $overline(mu):F^Sh -> G$, with the following universal property of diagrams:
+  #set align(center)
+  #diagram($
+             F edge("rr", ->, script(phi)) edge("rd", ->, script(forall mu), #right) && F^Sh edge("dl", "..>", script(exists ! overline(mu)), #left)\
+             & G
+           $)
+  #set align(left)
+  (i.e. in the category of morphisms from $F$ to a sheaf, $F^Sh$ is initial).
+][
+  Here's a construction of the sheaf $F^Sh$:
+
+  \ 
+
+  Let $U subset.eq X$ be open. Define $F^Sh (U):= {"functions " s:U -> union.sq.big_(x in U)F_x}$, such that:
+  1. for any $x in U$, $s(x) in F_x$.
+  2. For any $x in U$, there exists a neighborhood $x in V subset.eq U$ and $t in F(V)$, such that $s(y) = langle t,V rangle in F_y$, for all $y in V$ (in the future, this is denoted as $t_y$).
+
+  Here, we define the restriction on $F^Sh$ as the restriction of functions, and the morphism $phi:F -> F^Sh$ satisfies $phi(U):F(U) -> F^Sh(U)$ by $phi(U)(s):U -> union.sq.big_(x in U)F_x$ with $x mapsto s_x in F_x$ for all $s in F(U)$.
+
+  \ 
+
+  #text(weight: "bold")[I. The defined functor $F^Sh$ is a sheaf of abelian group on X:]
+
+  The part that it's a presheaf of abelian group is fine, as the point wise addition in $F^Sh(U)$ makes sense (because any $s,t in F^Sh(U)$ has $s(x),t(x) in F_x$, so $(s+t)(x):= s(x)+t(x)$ is well-defined and associative; the existence of identity is by $z(x)=0 in F_x$ for all $x in U$, and $(-s)(x):= - s(x)$. For $z$, the chosen condition can be $V=U$, and $t=0 in F(U)$; on the other hand, for $(-s)$, one can choose $V subset.eq U$ fixed for $s$, and $-t in F(V)$ for $t in F(V)$ chosen for $s$).
+
+  \ 
+
+  To verify that it's a sheaf, consider the following two proof:
+  - Given open subset $U subset.eq X$ with open cover ${V_i}$, suppose $s in F^Sh (U)$ satisfies $s|_(V_i) = z: V_i -> union.sq.big_(x in V_i)F_x$ (the "zero" function in $F^Sh (V_i)$), then notice that for all $x in U$, choose an index $i$ such that $x in V_i$, one has $s(x) = s|_(V_i)(x) = 0$ (the definition of canonical restriction of domain). Hence, $s=z$ in $F^Sh (U)$, verifying the separation axiom.
+
+  \ 
+
+  - Again, given open subset $U subset.eq X$ with open cover ${V_i}$, suppose $s_i in F^Sh (V_i)$ all agrees on all finite intersection, then it's clear they "glue" to a set function $s:U -> union.sq.big_(x in U)F_x$, such that $s|_(V_i)=s_i$ by definition. Notice that this $s$ automatically satisfies the condition $s(x) in F_x$ for all $x in U$ (since $s|_(V_i)(x) = s_i (x) in F_x$ if $x in V_i$); on the other hand, for the second condition, if $x in V_i$, choose the corrsponding $x in V'_i subset.eq V_i$, and $t in F(V'_i)$, such that $s_i(y) = t_y in F_y$ for all $y in V'_i$. Then, it satisfies $s(y) = s_i (y) = t_y in F_y$ for all $y in V'_i$, when view $x in V'_i subset.eq U$ as the open neighborhood.
+
+  \ 
+
+  So, the sheaf condition is satisfied, $F^Sh in Sh(X)$.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[II. The Morphism $phi$ is a Natural Transformation in $PreSh(X)$:]
+
+  It suffices to verify the group homomorphism property, and the following diagram is true for all inclusion of open subsets $V subset.eq U$:
+  #set align(center)
+  #diagram($
+             F(U) edge(->,script(phi(U))) edge("d", ->, script(rho_(U V)), #right) & F^Sh (U) edge("d",->, script(rho_(U V)), #left)\ 
+             F(V) edge(->, script(phi(V)),#right) & F^Sh (V)
+           $)
+  #set align(left)
+  Given any $s in F(U)$, notice that for any $x in V subset.eq U$, one has $s_x = (s|_(V))_x in F_x$ (because they agree on $V$). As a result, $phi(U)(s), phi(V)(s|_V)$ satisfies the following:
+  $ forall x in V, quad &phi(U)(s)(x):U -> union.sq.big_(y in U)F_y, quad phi(U)(s)(x)(y) = s_y in F_y\
+  &phi(V)(s)(x):V -> union.sq.big_(y in V)F_y, quad phi(V)(s)(x)(y) = s_y in F_y $
+  This shows that $phi(U)(s)|_V = phi(V)(s)$, so the above commutative diagram does commute, which $phi$ is a natural transformation (as functors over set).
+
+  \ 
+
+  For the group homomorphism property, one has any $s,t in F(U)$ satisfies $phi(U)(s+t)(x)(y)= (s+t)_y = s_y + t_y = phi(U)(s)(x)(y)+phi(U)(t)(x)(y)$, for any $x,y in U$, which $phi(U)(s+t) = phi(U)(s)+phi(U)(t)$, showing it's indeed a group homomorphism. So, $phi$ is also a natural transformation in $Ab$, proving $phi$ is a desired morphism of presheaves.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[III. Universal Property:]
+
+  To verify the universal property, suppose $mu: F -> G$ is a morphism of presheaves, we'll prove several lemmas (used in Krishna's class):
+
+  #lemma("1")[
+    For any $x in X$, the induced morphism on stalks $overline(phi)_x:F_x -> F^Sh _x$ is an isomorphism.
+  ][
+    #text(weight: "bold")[Injectivity:]
+
+    This suffices to prove that $phi$ is injective in all open neighborhoods (since if $s in F_x$ has $overline(phi)_x (s)=0$, then there exists open neighborhood $U in.rev x$, such that $s in F(U)$ equals to $0$ based on injectivity on each open neighborhood).
+
+    Suppose $s_x in F_x$ satisfies $overline(phi)_x (s_x)=0$ in $F^Sh_x$, then notice that pick some representative $s in F(U)$ of $s_x$, it satisfies that $phi(U)(s)$ is a representative of $overline(phi)_x (s_x)=0$. Hence, there exists an open neighborhood $x in V subset.eq U$, such that $phi(U)(s)|_V = 0$, or $phi(V)(s|_V)=0$. As a result, one has all $y in V$ satisfies $y mapsto 0$ via $phi(V)(s|_V)$, in particular $x in V$ satisfies $x mapsto s_x = 0$. So, $overline(phi)$ is injective.
+
+    \ 
+
+    #text(weight: "bold")[Surjectivity:]
+
+    Given any $s_x in F^Sh_x$, there exists an open neighborhood $x in U subset.eq X$, with representative $s in F^Sh (U)$. Notice that condition 2 of sheafification guarantees the existence of an open neighborhood $x in V subset.eq U$, and some $t in F(V)$, such that $s(y)= t_y$ for all $y in V$. Then, if consider $phi(V)(t)$ (with $y mapsto t_y$ for all $y in V$), notice that the behavior is identical to $s$ on $V$, so $phi(V)(t) = s|_V$. Hence, if consider the image in stalk, one has $s_x = phi(V)(t)_x$, where $phi(V)(t)_x = overline(phi)_x (t_x)$ by the following commutative diagram:
+    #set align(center)
+    #diagram($
+               F(V) edge(->, script(phi(V))) edge("d", ->, script(iota_V)) & F^Sh (V) edge("d", ->, script(iota_V))\ 
+               F_x edge(->, script(overline(phi)_x), #right) & F^Sh_x
+             $)
+    #set align(left)
+    This verifies the surjectivity of $overline(phi)_x$.
+  ]
+
+  \ 
+
+  #lemma("2")[
+    Let $F,G in PreSh(X)$ be a sheaf, and $theta:F -> G$ be a morphism of presheaves, there is a corresponding morphism of sheaves $theta^Sh:F^Sh -> G^Sh$, that satisfies the following commutative diagram:
+    #set align(center)
+    #diagram($
+               F edge(->,script(phi_F)) edge("d",->, script(theta)) & F^Sh edge("d",->, script(theta^Sh), #left)\ 
+               G edge(->, script(phi_G), #right) & G^Sh
+             $)
+    #set align(left)
+    In particular, $(\_)^Sh:PreSh(X) -> Sh(X)$ is a functor.
+  ][
+    Given any open subset $U subset.eq X$, one knows there exists morphism $theta(U):F(U) -> G(U)$, and it descends to the morphism on stalks $theta_x:F_x -> G_x$ for all $x in U$.
+
+    Which, notice that they gathered into the following set map:
+    $ union.sq theta_x:union.sq.big_(x in U)F_x -> union.sq.big_(x in U)G_x $
+    Which, for any $s in U$, define $theta^Sh (s) := (union.sq theta_x) compose s in G^Sh (U)$ 
+    
+    (Note: $theta^Sh (s)$ is well-defined, as it maps $theta^Sh(s)(x) = union.sq theta_y (s(x)) in G_x$ due to the fact that $s(x) in F_x$; on the other hand, for any $x in U$, pick the open neighborhood $x in V subset.eq U$ and $t in F(V)$ such that $s(y) = t_y$ for all $y in V$, then the morphism guarantees that $(union.sq theta_x) compose s(y) = union.sq theta_x (t_y) = theta_y (t_y)$, where $theta_y$ can be descended from $theta(V):F(V) -> G(V)$, so $theta_y (t_y) = theta(V)(t)_y$, which agrees for the element $theta(U)(t) in G(V)$).
+
+    Hence, one concludes that the morphism $s mapsto union.sq theta_x compose s in G^Sh (U)$ is well-defined, and is a group homomorphism.
+
+    \ 
+
+    Finally, the diagram commutes, simply because any $s in F(U)$ (with $theta(U)(s) in G(U)$) satisfies $union.sq theta_x compose phi_F (s)(y) = union.sq theta_x (s_y) = theta_y (s_y) = theta(U)(s)_y = phi_G (theta(U)(s))(y)$. So, $union.sq theta_x compose phi_F = phi_G compose theta(U)$, showing the desired commutativity.
+
+    \ 
+
+    (Note: If $theta=id: F->F$ is chosen, since $union.sq theta_x$ is identity on each stalk, the composition is trivial, so $id^Sh = id$ of $F^Sh$, showing the funcoriality).
+  ]
+
+  \ 
+
+  #lemma("3")[
+    Given any $G in PreSh(X)$, then $phi:G -> G^Sh$ is an isomorphism $<==>$ $G$ is a sheaf.
+  ][
+    $<==:$
+
+    If $G$ is a sheaf, then since $overline(phi)_x:G_x -> G^Sh_x$ is an isomorphism for all $x in X$, the isomorphism on stalks of sheaves guarantees $G tilde.equiv G^Sh$.
+
+    \ 
+
+    $==>:$ Suppose $G tilde.equiv G^Sh$, then $G$ is a sheaf, since $G^Sh$ is.
+  ]
+
+  Which, combining these results, given $F in PreSh(X)$ and $G in Sh(X)$, together with a morphism of presheaves $theta: F -> G$, notice that the following diagram commutes:
+  #set align(center)
+  #diagram($
+             F edge(->, script(phi_F)) edge("d",->, theta) & F^Sh edge("d",->, script(theta^Sh))\ 
+             G edge(->, script(phi_G), #right) & G^Sh
+           $)
+  #set align(left)
+  Where the bottom part is an isomorphism, so one can interpret $G = G^Sh$ if desired. Which, the uniqueness of $theta^Sh$ is guaranteed by the fact that it must preserve all the induced morphism on stalks $F_x -> G_x$, and the universality of disjoint union sets in $Sets$ guarantees the uniqueness of $union.sq theta_x$ (the composition map). This shows the universality.
+]
+
+\ 
+
+Which, with the "best approximation sheaf" of a presheaf, one can define a cokernel:
+#definition[Cokernel in $Sh(X)$][
+  Given sheaves $F,G in Sh(X)$ and morphism of sheaves $f:F -> G$, define $Cok(f):= (C(f))^Sh$, where $C(f)$ is the image of $coker(f):G -> C(f)$ (the cokernel morphism of $f$). 
+
+  Similarly, define $Im(f):= (im(f))^Sh$ (where $im(f)$ is defined in $PreSh(X)$).
+]
+In particular, $Cok(f)$ could also be called a "Quotient Sheaf" and denoted as $G\/F$ (or $(G\/F)^Sh$ if more formally), since it's a sheafification of the "Quotient Presheaf" $G\/F:O(X)^op -> Ab$, by $F\/G(U) := G(U)\/F(U)$ via the morphism $f:F->G$.
+
+Associated to this, we wish to define a notion of exactness:
+#definition[Exact Sequence in $Sh(X)$][
+  Given sheaves $F,G,H in Sh(X)$, with $f:F->G$ and $g:G -> H$ as morphism of sheaves. Then, the sequence is exact at $G$, if $Im(f) tilde.equiv Ker(g)$ as sheaves.
+]
+
+\ 
+
+Here, let's talk about another powerful tool of stalks on sheaves:
+#theorem("Exactness on Stalks")[
+  Given a sequence $F -> G -> H$ in $Sh(X)$. Then, this sequence is exact $<==>$ for every $x in X$, te sequence on stalks $F_x -> G_x -> H_x$ is exact.
+][
+  Will be done in the practice problems.
+]
+
+#pagebreak()
+
+= Sheaves based on Continuous Maps
+
+Finally, let's talk about two related concepts (related to pushforward and pullback of continuous functions) in $Sh(X)$:
+#definition[Direct Image Sheaf][
+  Given $f:X -> Y$ a continuous map of topological spaces, and any sheaf $F in Sh(X)$. Then, the #text(weight: "bold")[Direct Image Sheaf] $f_* F in Sh(Y)$ is defined by $f_* F(V) = F(f^(-1)(V))$ for any open subset $V subset.eq Y$.
+]
+
+Since the subsets are open in $X$, and any open subset $V subset.eq Y$ with open cover ${V_i}$ has the preimage $f^(-1)(V)$ having an open cover ${f^(-1)(V_i)}$, so all the sheaf properties of $F$ can be carried over onto $f_* F$.
+
+#definition[Inverse Image Sheaf][
+  Given $f:X -> Y$ a continuous map of topological spaces, and any sheaf $G in Sh(Y)$. Then, the #text(weight: "bold")[Inverse Image Sheaf] $f^(-1)G in Sh(X)$ is defined as the sheafification of the presheaf $f^(-1)G':O(X)^op -> Ab$, by $f^(-1)G'(U) := lim_(->\ V supset.eq f(U))G(V)$ (i.e. the direct limit of all $G(V)$, where $V$ runs over the preorder of open subsets containing $f(U)$).
+]
+
+Which, this final ideal is a bit different from the maps between prime spectrums.
+
