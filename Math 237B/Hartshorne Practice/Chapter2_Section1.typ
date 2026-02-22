@@ -510,3 +510,14 @@ Since the subsets are open in $X$, and any open subset $V subset.eq Y$ with open
 
 Which, this final ideal is a bit different from the maps between prime spectrums.
 
+\ 
+
+In particular, $f_*: Sh(X) -> Sh(Y)$ is a functor, and similarly $f^(-1):Sh(Y) -> Sh(X)$ is also a functor (which one needs to check the functoriality, but intuitively it's true).
+
+\ 
+
+Finally, here is the sheaf regarding subspace topology:
+#definition[Restriction of Sheaves][
+  Given $Z subset.eq X$ a subspace (with subspace topology), and $F in Sh(X)$ a sheaf. Take $iota:Z arrow.hook X$ as the inclusion map, then the #text(weight: "bold")[Restriction of Sheaf] $F$ to $Z$, is defined as $iota^(-1)F$. 
+]
+
