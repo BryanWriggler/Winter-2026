@@ -11,6 +11,16 @@
 \section*{1}
 \begin{ques}
 1 Perturbation Theory (Griffiths 5.15, 5.11 in second edition)
+
+\begin{itemize}
+    \item[(a)] Calculate $\left<\left(\frac{1}{|\br_1-\br_2}\right)\right>$ for the state $\psi_0 = \frac{8}{\pi a^3}e^{-2(r_1+r_2)/a}$.
+    
+    \emph{Hint:} Do the $d^3\br_2$ integral first, using spherical coordinates, and setting the polar axis along $\br_1$, so that $|\br_1-\br_2| = \sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2)}$. The $\theta_2$ integral is easy, but be careful to take the \emph{positive root}. You'll have to break the $r_2$ integral into two pieces, one ranging from $0$ to $r_1$, the other from $r_1$ to $\infty$. 
+
+    \emph{Answer:} $\frac{5}{4a}$.
+
+    \item[(b)] Use your result in (a) to estimate the electron interaction energy in the ground state of helium. Express your answer in electron volts, and add it to $E_0 = -109$ eV, to get a corrected estimate of the ground state energy. Compare the experimental value. (Of course, we're still working with an approximate wave function, so don't expect perfect agreement).
+\end{itemize}
 \end{ques}
 
 \begin{proof}
@@ -36,24 +46,25 @@ particle per sublevel is the binomial coefficient:
 \[
 w(N,g) = \frac{g!}{N!(g-N)!}.
 \]
+\begin{enumerate}
+\item What are the energies of the first 6 single particle levels if the particle has spin 0?
 
-1. What are the energies of the first 6 single particle levels if the particle has spin 0?
+\item What are the energies of the first 12 single particle levels if the particle has spin 1/2?
 
-2. What are the energies of the first 12 single particle levels if the particle has spin 1/2?
+\item What are the energies of the first 9 single particle levels if the particle has spin 1?
 
-3. What are the energies of the first 9 single particle levels if the particle has spin 1?
-
-4. Now we put in $N$ particles. What is the degeneracy of the ground state with $N = 2$
+\item Now we put in $N$ particles. What is the degeneracy of the ground state with $N = 2$
 if the particles are bosons with spin 0?
 
-5. What is the degeneracy of the ground state with $N = 2$ if the particles are bosons
+\item What is the degeneracy of the ground state with $N = 2$ if the particles are bosons
 with spin 1?
 
-6. What is the degeneracy of the ground state with $N = 4$ if the particles are fermions
+\item What is the degeneracy of the ground state with $N = 4$ if the particles are fermions
 with spin 1/2?
 
-7. What is the degeneracy of the ground state with $N = 6$ if the particles are fermions
+\item What is the degeneracy of the ground state with $N = 6$ if the particles are fermions
 with spin 3/2?
+\end{enumerate}
 \end{ques}
 
 \begin{proof}
@@ -67,20 +78,21 @@ with spin 3/2?
 
 The density of silver is 10.49 g/cm$^3$, and its atomic weight is 107.9 g/mole.
 
-(a) Calculate the Fermi energy for silver. Assume $d = 1$ and give your answer in electron
-volts.
+\begin{itemize}
+    \item[(a)] Calculate the Fermi energy for silver. Assume $d = 1$ and give your answer in electron volts.
 
-(b) What is the corresponding electron velocity? Hint: Set $E_F = \frac{1}{2}mv^2$. Is it safe to
-assume the electrons in silver are nonrelativistic?
+\item[(b)] What is the corresponding electron velocity? Hint: Set $E_F = \frac{1}{2}mv^2$. Is it safe to assume the electrons in silver are nonrelativistic?
 
-(c) At what temperature $T_F$ would the characteristic thermal energy ($k_B T$, where $k_B$
+\item[(c)] At what temperature $T_F$ would the characteristic thermal energy ($k_B T$, where $k_B$
 is the Boltzmann constant and $T$ is the temperature in Kelvin) equal the Fermi
 energy for silver? This is called the Fermi temperature $T_F$. As long as the actual
 temperature is significantly below $T_F$, the material can be regarded as “cold” in the
 sense that most of the electrons are in the lowest accessible state. Since the melting
 point of silver is 1235 K, solid silver is always cold.
 
-(d) Calculate the degeneracy pressure of silver, in the free electron gas model.
+\item[(d)] Calculate the degeneracy pressure of silver, in the free electron gas model.
+\end{itemize}
+
 \end{ques}
 
 \begin{proof}
@@ -91,6 +103,8 @@ point of silver is 1235 K, solid silver is always cold.
 \section*{4}
 \begin{ques}
 4 2D Gas Model (Griffiths 5.30, 5.34 in the second edition)
+
+Calculate the Fermi energy of the electrons in a two-dimensional infinite square well. Let $\sigma$ be the number of free electrons per unit area.
 \end{ques}
 
 \begin{proof}
@@ -101,6 +115,27 @@ point of silver is 1235 K, solid silver is always cold.
 \section*{5}
 \begin{ques}
 5 White Dwarfs (Griffiths 5.35 in both)
+
+Certain cold stars (called \textbf{white dwarfs}) are stabilized against gravitational collapse by the degeneracy pressure of their electrons ($P = \frac{2}{3}\frac{E_\text{tot}}{V} = \frac{2}{3}\frac{\hbar^2 k^5_F}{10\pi^2 m} = \frac{(3\pi^2)^{2/3}\hbar^2}{5m}\rho^{5/3}$). Assuming constant density, the radius $R$ of such an object can be calculated as follow:
+\begin{itemize}
+    \item[(a)] Write the total electron energy ($E_\text{tot} = \frac{\hbar^2 V}{2\pi^2 m}\int_{0}^{k_F}k^4 dk = \frac{\hbar^2 k^5_F V}{10\pi^2 m} = \frac{\hbar^2(3\pi^2 Nd)^{5/3}}{10\pi^2 m}V^{-2/3}$) in terms of the radius, the number of nucleons (protons and neutrons) $N$, the number of electrons per nucleon $d$, and the mass of the electron $m$. 
+    
+    \emph{Beware:} In this problem we are recycling the letters $N$ and $d$ for slightly different purpose than in the text.
+
+    \item[(b)] Look up, or calculate, the gravitational energy of a uniformly dense sphere. Express your answer in terms of $G$ (the constant of universal gravitation), $R$, $N$, and $M$ (he mass of a nucleon). Note that the gravitational energy is \emph{negative}.
+    \item[(c)] Find the radius for which the total energy, (a) plus (b), is minimum.
+    
+    \emph{Answer:} $R = \left(\frac{9\pi}{4}\right)^{2/3}\frac{\hbar^2 d^{5/3}}{Gm M^2N^{1/3}}$.
+
+    (Note that the radius \emph{decreases} as the total mass \emph{increasees}!).
+
+    Put in the actual numbers, for everything except $N$, using $d=\frac{1}{2}$ (actually, $d$ decreases a bit as the atomic number increases, but this is close enought for our purposes). 
+    
+    \emph{Answer:} $R=7.6\times 10^{25}N^{-1/3}$ m.
+
+    \item[(d)] Determine the radius, in kilometers, of a white dwarf with the mass of the sun.
+    \item[(e)] Determine the Fermi energy, in electron volts, for the white dwarf in (d), and compare it with the rest energy of an electron. Note taht this system is getting dangerously relativistic. 
+\end{itemize}
 \end{ques}
 
 \begin{proof}
