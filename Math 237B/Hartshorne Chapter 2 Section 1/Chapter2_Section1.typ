@@ -14,7 +14,7 @@
 )
 #show: ergo-init.with(
     colors: ergo-colors.penumbra-light,  
-    styles: ergo-styles.classic, 
+    styles: ergo-styles.sidebar2, 
     breakable: true,
     inline-qed: true
 )

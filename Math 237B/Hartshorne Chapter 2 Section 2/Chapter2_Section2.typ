@@ -14,7 +14,7 @@
 )
 #show: ergo-init.with(
     colors: ergo-colors.penumbra-light,  
-    styles: ergo-styles.classic, 
+    styles: ergo-styles.sidebar2, 
     breakable: true,
     inline-qed: true
 )
@@ -190,6 +190,8 @@ For extra constraints, we also want to restrict the stalks:
   One define a ringed space $(X,cal(O)_X)$ as a #text(weight: "bold")[Locally Ringed Space], if for each point $P in X$, the stalk $cal(O)_(X,P)$ is a local ring.
 
   Also, a morphism $(f,f^\#):(X, cal(O)_X)-> (Y, cal(O)_Y)$ is a #text(weight: "bold")[morphism of Locally Ringed Space], if the induced homomorphism $overline(f^\#):cal(O)_(Y,f(P)) -> f_* cal(O)_(X,P)$ is a #emph[local homomorphism] of local rings.
+
+  These collects to a category of Locally Ringed Spaces.
 ]
 
 For clarification, first let's explain the construction of the morphisms on stalks: Given any open subset $V subset.eq Y$, one has $V in.rev f(P)$ implies $f^(-1)(V) in.rev P$. Hence, if consider the direct limit over a system of $V in.rev f(P)$, hen one has a ring homomorphism $cal(O)_(Y, f(P)) -> lim_(V in.rev f(P))cal(O)_X (f^(-1)(V))$. Which, because the directed system span over a subportion of all $f_* cal(O)_X (V) = cal(O)(f^(-1)(V))$ (with $f^(-1)(V) in.rev P$), one generates a ring homomorphis $lim_(V in.rev f(P))cal(O)_X (f^(-1)(V)) -> f_* cal(O)_(X,P)$. Which, the composition generates the desired orphism on stalks.
@@ -291,7 +293,7 @@ Regarding the theorem of prime spectrum's structure, one has the following chara
                A_(f(P)) edge(->, script(f^\#_P), #right) & B_P
              $)
     #set align(left)
-    Now, notie that this enforces $f(P) = phi^(-1)(P)$ (since if $f(P) != phi^(-1)(P)$, then there exists element lying in one but not the other; for definiteness, say there exists $a in phi^(-1)(P)\\f(P)$. Then, the image of $a$ in $B_P$ is not invertible, since $a in.not A\\phi^(-1)(P)$, which by the first diagram is not allowed to be inverted; on the other hand, $a$ in $B_P$ should be invertible, since $a in A\\f(P)$, which by the second diagram is being inverted, which causes a contradiction).
+    Now, notie that this enforces $f(P) = phi^(-1)(P)$ (since if $f(P) != phi^(-1)(P)$, then there exists element lying in one but not the other; for definiteness, say there exists $a in phi^(-1)(P)\\f(P)$. Then, the image of $a$ in $B_P$ is not invertible, since $a in.not A\\phi^(-1)(P)$, which by the first diagram is not allowed to be inverted; on the other hand, $a$ in $B_P$ should be invertible, since $a in A\\f(P)$, which by the second diagram is being inverted, causing a contradiction).
 
     Then, this shows that $f:Spec(B)->Spec(A)$ coincides with the map induced by $phi:A->B$, which further follows that $f^\#$ must be induced by $phi$ also. Therefore, $(f,f^\#)$ is induced by a ring homomorphism $A->B$ (and the particular choice is $f^\#_(Spec(A)):A-> B$).
 ]
@@ -394,9 +396,9 @@ Now, using such idea, we can construct "gluing of schemes":
              && Z edge("uul", ->, script(i_Y^*), bend: #(-20deg)) edge("ull", ->, script(i_X^*), bend: #20deg)
            $)
   #set align(left)
-  In particular, $cal(O)_phi (W) = {(s_1, s_2) : s_1|_(W sect U) = s_2 |_(W sect V)}$ as product of rings.
+  In particular, $cal(O)_phi (W) = {(s_1, s_2) : s_1|_(W sect U) = s_2 |_(W sect V)}$ as subring of the product of rings.
 
-  Also, note that since $cal(O)_phi (W)$ is constructed as the kernel of a product map, which is preserved under direct limits. Then, in particular the stalk of any poin $x in U$, the induced stalk $cal(O)_(phi, x)$ is the fibre product of $cal(O)_(X, x)-> cal(O)_(U, x)$ and $cal(O)_(Y, x)-> cal(O)_(U, x)$, which is also a local ring (and has local homomorphisms to $cal(O)_(X,x)$ and $cal(O)_(Y, x)$ respectively), based on the following lemma:
+  Also, note that since $cal(O)_phi (W)$ is constructed as the kernel of a product map, which is preserved under direct limits. Then, in particular the stalk of any point $x in U$, the induced stalk $cal(O)_(phi, x)$ is the fibre product of $cal(O)_(X, x)-> cal(O)_(U, x)$ and $cal(O)_(Y, x)-> cal(O)_(U, x)$, which is also a local ring (and has local homomorphisms to $cal(O)_(X,x)$ and $cal(O)_(Y, x)$ respectively), based on the following lemma:
   #lemma[
     Given $A,B,C$ three local rings, and $phi:A -> C$, $psi:B -> C$ two local homomorphisms, then the fibre product $A times_C B$ with the two canonical projections $pi_A:A times_C B -> A$, $pi_B:A times_C B -> B$ are local ring, and local homomorphisms.
   ][
@@ -562,4 +564,10 @@ Now, let's talk about ring homomorphisms for graded rings:
 #definition[Graded Ring Homomorphism][
   Given $S=plus.circle.big S_n$ and $T=plus.circle.big T_m$ two graded rings, a ring homomorphism $f:S->T$ is #text(weight: "bold")[Graded], if it preserves the grading, or $f(S_n) subset.eq T_n$ for all $n in ZZ$.
 ]
-As an observation, notice that it pulls back homogeneous ideals to homogeneous ideals (as $f^(-1)(I) = f^(-1)(plus.circle.big I sect T_n) = plus.circle.big f^(-1)(I sect T_n)$, and each $f^(-1)(I sect T_n)$ must precisely be $f^(-1)(I) sect S_n$).
+As an observation, notice that it pulls back homogeneous ideals to homogeneous ideals (as $f^(-1)(I) = f^(-1)(plus.circle.big I sect T_n) = plus.circle.big f^(-1)(I sect T_n)$, due to the graded structure enforcing $f^(-1)(I sect T_n) subset.eq S_n$, and each $f^(-1)(I sect T_n)$ must precisely be $f^(-1)(I) sect S_n$).
+
+Hence, in particular if $f$ is surjective, its kernel is a homogeneous ideal, and one has $T tilde.equiv S\/ker(f) tilde.equiv plus.circle_(n in ZZ)S_n\/(ker(f) sect S_n)$ as abelian groups:
+
+#proof[
+
+]
