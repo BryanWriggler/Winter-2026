@@ -30,7 +30,7 @@
 
 The goal for this section is to understand the notion of schemes - a generalization of the algebraic sets that was used to be defined in a more embedding sense, using the notion of sheaves, rings, and local rings.
 
-= Affine Schemes
+= Prime Spectrum and its Structure
 
 Before starting, let's review some notion on the spectrum of a commutative ring:
 #definition[Spectrum of a Commutative Ring][
@@ -172,9 +172,11 @@ It's kind of weird to call a presheaf a sheaf before proving it is one...anyway,
   + For the third case, notice that $A_f = A$ for $f=1$. Hence, choosing $D(1) = Spec(A)$, one has $cal(O)_X (Spec(A)) tilde.equiv A_1=A$. Which, it's a special case of 2.    
 ]
 
-\ 
+#pagebreak()
 
-With these definitions, one can form some categories consisting of relevant objects:
+= Ringed Space and Locally Ringed Space
+
+With the definitions of prime spectrum, we'd like to have a category regulating simillar objects:
 #definition[Category of Ringed Space][
   A #text(weight: "bold")[Ringed Space] is a pair $(X, cal(O)_X)$, where $X$ is a topological space, and $cal(O)_X$ is its structure sheaf (sheaf of ring). 
 
@@ -197,4 +199,239 @@ Also, given $A,B$ two local rings (wht $m_A, m_B$ the maximal ideals respectivel
 \ 
 
 As a side note, within this category, $(f,f^\#)$ is an isomorphism (with two-sided inverse) iff $f$ is a topological homeomorphism, with $f^\#$ being an isomorphism of sheaves.
+
+\ 
+
+Let's get some examples regarding ringed spaces and locally ringed spaces:
+#example[Ringed Space that is not Local][
+  Consider a connected topological space $X$, with the constant sheaf of $ZZ$, say $F_ZZ$ equipped with. Then, $(X, F_ZZ)$ is a ringed space, but with any localization $F_(ZZ, x) tilde.equiv ZZ$, which is not local.
+
+  So, it's not a locally ringed space.
+]
+
+\ 
+
+#example[Morphism of Ringed Space, but not Local][
+  Given a local integral domain $A$ (for instance, $A = ZZ_((p))$), together with its fraction field $K = F(A)$, there is an obvious inclusion $iota: A arrow.hook K$, and notice that as an integral domain, for any multiplicatively closed set $S subset A$, the incuded localization map $A -> S^(-1)A$ is injective, and $S^(-1)A$ includes into $K$ by definition.
+
+  \ 
+
+  Now, consider $X = {*}$ a one point space, define $F_A, F_K$ to be the constant sheaf of $A$ and $K$ respectively on $X$, then $(X, F_K), (X,F_A)$ are naturally locally ringed spaces. Which, define the pair $(id_X, f):(X, F_K) -> (X, F_A)$, where $id_X :X -> X$ is the identity as topological homeomorphism, and $f: F_A -> F_K$ is the following morphism:
+  $ forall U subset.eq X "open", quad &f(U):F_A (U) = Hom_(Top)(U,A) -> F_K (U) = Hom_(Top)(U, K)\ 
+  &f(U)(psi) = iota compose psi $
+  Notice that since $A,K$ are endowed with discrete topology, $iota:A arrow.hook K$ is naturally a continuous map, so the above map $f$ is well-defined. So, they actually form a morphism of ringed spaces.
+
+  Yet, it's not a morphism of locally ringed spaces, as the direct limit of both sheaves are $A,K$ respectively, so the induced map on stalk $overline(f):F_(A,*)-> F_(K,*)$ becomes $overline(f):A -> K$, and it's precisely the inclusion, which is not a local homomorphism.
+]
+
+\ 
+
+
+Regarding the theorem of prime spectrum's structure, one has the following characterization:
+#theorem("Prime Spectrum as Locally Ringed Space")[
+  + Given $A$ a commutative ring, then $(Spec(A), cal(O))$ is a locally ringed space.
+  + If $phi:A->B$ is a commutative ring homomorphism, then the map $phi':Spec(B)->Spec(A)$ by $phi'(P) = phi^(-1)(P)$ is a continuous map, and it induces a morphism of locally ringed spaces 
+    $ (f, f^\#):(Spec(B), cal(O)_B) -> (Spec(A), cal(O)_A) $
+  + If $A,B$ are commutative rings, then any morphism of locally ringed spaces $(f,f^\#):(Spec(B),cal(O)_B)-> (Spec(A), cal(O)_A)$ is induced by a ring homomorphism $phi:A -> B$.
+][
+  + This follows the fact that $cal(O)_P tilde.equiv A_P$ for all $P in Spec(A)$ (cf. previous theorem).
+
+    \ 
+
+    \ 
+
+  + Given a commutative ring homomorphism $phi:A -> B$, notice the map $f:Spec(B)->Spec(A)$ is continuous: Suppose $I subset.eq A$ is an ideal, and consider the closed set $V(I) subset.eq Spec(A)$. Then, one has $P in f^(-1)(V(I))$ iff $f(P) = phi^(-1)(P) in V(I)$ iff $phi(I) subset.eq P$. Hence, take $V(I^e)$, one has $P in V(I^e)$ iff $phi^(-1)(P) in V(I)$, showing that $f^(-1)(V(I)) = V(I^e)$, which $f$ is a continuous map.
+
+    \ 
+
+    Then, notice that given any prime ideal $P in Spec(B)$, the composition of localization map with $phi$, say $pi compose phi:A -> B -> B_P$ has all element in $A\\phi^(-1)(P)$ being invertible, so it descends to a homomorphism $phi_P:A_(phi^(-1)(P))-> B_P$ (which is a local homomorphism, since $phi_P (phi^(-1)(P)) = phi(phi^(-1))(P)B_P subset.eq P B_P$).
+
+    Which, for any open subset $U subset.eq Spec(A)$, take $f^(-1)(U)$, construct the following map:
+    $ &f^\#_U:cal(O)_A (U) -> cal(O)_B (f^(-1)(U)), quad forall s:U -> union.sq.big_(Q in U)A_Q\ 
+    &f^\#_U (s):f^(-1)(U) -> union.sq.big_(P in f^(-1)(U))B_P, quad f^\#_U (s)(P) = phi_P compose s compose f(P) = phi_P compose s(phi^(-1)(P)) $
+    Which, it's clear that $f^\#_U (s)(P) in B_P$ by the definition (since $s(phi^(-1)(P)) in A_(phi^(-1)(P))$, so it's in the domain of $phi_P$). To verify that it's a ring homomorphism, consider the following:
+    $ f^\#_U (s+t)(P) &= phi_P compose (s+t)(phi^(-1)(P)) = phi_P (s(phi^(-1)(P))+t(phi^(-1)(P)))\ 
+    &= phi_P compose s(phi^(-1)(P)) + phi_P compose t(phi^(-1)(P)) = f^\#_U (s)(P)+f^\#_U (t)(P) $
+    $ f^\#_U (s dot t)(P) &= phi_P compose (s dot t)(phi^(-1)(P)) = phi_P (s(phi^(-1)(P)) dot t(phi^(-1)(P)))\ 
+    &= phi_P (s(phi^(-1)(P))) dot phi_P (t(phi^(-1)(P))) = f^\#_U (s)(phi^(-1)(P)) dot f^\#_U (t)(phi^(-1)(P)) $
+    Which, $f^\#_U (s+t) = f^\#_U (s)+f^\#_U (t)$, and $f^\#_U (s dot t)=f^\#_U (s) dot f^\#_U (t)$, showing $f^\#_U$ is a ring homomorphism.
+
+    Which, with the restriction map being restriction of domain, the diagram clearly commutes:
+    #set align(center)
+    #diagram($
+               cal(O)_A (U) edge("d",->, script(rho_(U V))) edge(->, script(f^\#_U)) & cal(O)_B (f^(-1)(U)) edge("d", ->, script(rho_(U V)))\ 
+               cal(O)_A (V) edge(->, script(f^\#_V), #right) & cal(O)_B (f^(-1)(V))
+             $)
+    #set align(left)
+    And the reason is because any $P in f^(-1)(V)$ has $f(P)= phi^(-1)(P) in V$, which the restriction of $U$ to $V$ for any $s in cal(O)_A (U)$, can be carried over when restricting $f^(-1)(U)$ to $f^(-1)(V)$ for $cal(O)_B (f^(-1)(U))$.
+
+    Hence, this defines a morphism of sheaf of rings $f^\#:cal(O)_A -> f_* cal(O)_B$.
+
+    Finally, this is a morphism of locally ringed space, because any $P in Spec(B)$ has the descended map being $phi_P: A_(phi^(-1)(P)) -> B_P$, which is already proven as a local homomorphism.
+
+    \ 
+
+    \ 
+
+  + Now, consider an morphism of locally ringed spaces $(f,f^\#):(Spec(B), cal(O)_B) -> (Spec(A), cal(O)_A)$, notice that take the whole space, one has a ring homomorphism $phi = f^\#_(Spec(A)):cal(O)_A (Spec(A)) -> cal(O)_B (f^(-1)(Spec(A))) = cal(O)_B (Spec(B))$, which reads precisely as $phi:A -> B$. Now, we claim that $phi$ induces a morphism of locally ringed spaces (cf. part (b)) that's identical to $(f,f^\#)$.
+
+    \ 
+
+    First, for any $P in Spec(B)$, notice the map $phi:A -> B$ descends to a local homomorphism $phi_P: A_(phi^(-1)(P)) -> B_P$, which is of the following commutative diagram:
+    #set align(center)
+    #diagram($
+               A edge("d",->) edge(->, script(phi)) & B edge("d", ->)\ 
+               A_(phi^(-1)(P)) edge(->, script(phi_P), #right) & B_P
+             $)
+    #set align(left)
+    On the other hand, the morphism of sheaf of rings $f^\#:cal(O)_A -> f_* cal(O)_B$ also has a local homomorphism $f^\#_P: cal(O)_(A, f(P))-> cal(O)_(B,P)$ (or, $f^\#_P:A_(f(P))-> B_P$), which is descended from the direct limit (where the direct limit contains open subset $Spec(B) in.rev P$ for $B_P$, and $Spec(A) in.rev f(P)$ for $A_(f(P))$), hence one also has the following commutative diagram:
+    #set align(center)
+    #diagram($
+               A edge("d",->) edge(->, script(phi)) & B edge("d", ->)\ 
+               A_(f(P)) edge(->, script(f^\#_P), #right) & B_P
+             $)
+    #set align(left)
+    Now, notie that this enforces $f(P) = phi^(-1)(P)$ (since if $f(P) != phi^(-1)(P)$, then there exists element lying in one but not the other; for definiteness, say there exists $a in phi^(-1)(P)\\f(P)$. Then, the image of $a$ in $B_P$ is not invertible, since $a in.not A\\phi^(-1)(P)$, which by the first diagram is not allowed to be inverted; on the other hand, $a$ in $B_P$ should be invertible, since $a in A\\f(P)$, which by the second diagram is being inverted, which causes a contradiction).
+
+    Then, this shows that $f:Spec(B)->Spec(A)$ coincides with the map induced by $phi:A->B$, which further follows that $f^\#$ must be induced by $phi$ also. Therefore, $(f,f^\#)$ is induced by a ring homomorphism $A->B$ (and the particular choice is $f^\#_(Spec(A)):A-> B$).
+]
+
+#pagebreak()
+
+= Affine Schemes and Schemes
+
+With all of these, one can make a definition of the most general object in Algebraic Geometry:
+#definition[Affine Schemes and Schemes][
+  An #text(weight: "bold")[Affine Scheme] is a locally ringed space $(X, cal(O)_X)$ that is isomorphic to $(Spec(A), cal(O)_A)$ for some commutative ring $A$ (as locally ringed spaces).
+
+  \ 
+
+  A #text(weight: "bold")[Scheme] is a locally ringed space $(X, cal(O)_X)$, such that every point has an affine neighborhood. More precisely, for every $x in X$, it has an open neighborhood $x in U subset.eq X$, so that the restriction of sheaves $cal(O)_X |_U$ satisfies $(U, cal(O)_X |_U)$ being an affine scheme.
+
+  (Equivalently, a Scheme is a locally ringed space with an affine cover).
+]
+
+Which, the morphism is restricted to morphism of locally ringed spaces, and an isomorphism is an isomorphism of locally ringed spaces, which s DIFFERENT from topological homeomorphism (EX: morphisms between spectrum of non-isomorphic fields).
+
+\ 
+
+Finally, before the end of the section, let's talk about some examples / definitions that'll be motivated:
+
+#definition[Affine $n$-Space][
+  Given $k$ a field, define $Spec(k[x_1,...,x_n]) =: AA^n_k$ as the #text(weight: "bold")[Affine $n$-Space]. For $n=1$, the space $AA^1_k = Spec(k[x])$ is called an #text(weight: "bold")[Affine Line].
+]
+As a side note, all commutative ring's spectrum is a "Spectral Space", which also has a unique "generic point" (with a point whose closure is the whole space). In these cases, the zero ideal is the generic point.
+
+Also, if $k$ is algebraically closed, then $AA^1_k\\{0}$ (removing the zero ideal) is classified by all maximal ideal $(x-a)$ (where $a in k$), which taking away the generaic point, the affine line has a one-to-one corerspondance with $k$ itself. Which creates an analogy to traditional affine $1$-space (each point corresponds to a maximal ideal in $k[x]$, and the whole space corresponds to the zero ideal).
+#example[Affine Plane][
+  By definition, $AA^2_k = Spec(k[x,y])$. Which, the point is closed $<==>$ it's maximal. If $k$ is algebraically closed, then Hilbert's Nullstellensatz guarantees a one-to-one correspondance of closed points in $AA^2_k$ and all maximal ideals. Which, with the induced topology, it's homeomorphic to $k^2$ (under Zariski Topology), via the map $C -> k^2$ of $(x-a, y-b) mapsto (a,b)$.
+
+  \ 
+  
+  As a bijection it's clear; given any algebraic set $Z subset k^2$, it's the zero of some polynomials $f_1,...,f_n in k[x,y]$, which take $V((f_1,...,f_n))$ and intersect with $C$ the closed points, it's precisely all maximal ideal $(x-a,y-b)$ containing $(f_1,...,f_n)$, and as a result all $f_i (a,b)=0$, or $(a,b ) in Z$, showing $(x-a,y-b)$ is in the preimage of $Z$, therefore the map is continuous.
+
+  Finally, the map is also a closed map, as if the collection of maximal ideals are precisely $V(I) sect C$ (closed in subspace topology of $C$), then every polynomial $f in I$ is contained in $(x-a,y-b)$ (if this ideal is in the intersection), as a result $f(a,b)=0$. So, $(a,b) in Z(I) subset k^2$; moreover, if $(a,b) in Z(I)$, then $(x-a), (y-b) in  sqrt(I)$ using Nullstellensatz, showing that $V(I) = V(sqrt(I)) in.rev (x-a,y-b)$. So, the image of $V(I) sect C$ is precisely $Z(I) subset k^2$, generating the homeomorphism.
+
+  \ 
+
+  Also, given any irreducible polynomial $f in k[x,y]$, since $V((f)) tilde.equiv Spec(k[x,y]\/(f))$ as topological space, notice that the zero ideal $0 in Spec(k[x,y])\/(f)$ has the closure being the whole space, as a result the corresponding prime ideal $(f) in V((f))$ is the generic point.
+
+  With $(f)$ being at least height $1$ (and $k[x,y]$ has height $2$), then any other distinct point from $(f)$ in $V((f))$ must be closed points (i.e. maximal ideals). So, one has $(f) in V((f))$ be a generic point (of the subspace topology of $V((f))$), whose closure contains only $(f)$ and other closed point (that as mximal ideal contains $(f)$).
+
+  (Note: Here $(f)$ is in fact THE generic point, as $Spec(k[x,y]\/(f))$ only has one generic point).
+]
+
+Finally, to construct a nicer structure, one would like a way of "gluing" schemes together to form new schemes. Using the categorical logic, when there are subschemes that are isomorphic, it's desirable to have fibre coproduct of them (by identifying the subschemes as the same).
+
+For the topological purpose, let's review some terminology from topology:
+#definition[Adjoint Space][
+  In the category of Topological Spaces, given two topological space $X,Y$, and their open subsets $U subset.eq X$, $V subset.eq Y$ are homeomorphic (via a map $phi:U arrow.tilde V$), then the adjoint space $X union.sq_phi Y$ is defined as $(X union.sq Y)\/tilde$, where every $a in U$ has $a tilde phi(a)$ in $X union.sq Y$.
+
+  The topology on the adjoint space $X union.sq_phi Y$ is the quotient topology of the disjoint union space $X union.sq Y$.
+]
+Notice that this is the fibre coproduct of the following diagram:
+#set align(center)
+#diagram($
+           U edge("hook->") edge("d", "hook->", script(phi)) & X edge("d", "hook->") edge("ddr", ->, script(i_X), bend: #20deg)\
+           Y edge("hook->") edge("drr", ->, script(i_Y), #right, bend: #(-20deg)) & X union.sq_phi Y edge("dr", "..>", script(exists ! i))\ 
+           && Z
+         $)
+#set align(left)
+Since if any topological space $Z$ with continuous maps $i_X:X -> Z$ and $i_Y:Y -> Z$ that satisfies $i_X compose iota:U -> Z$ and $i_y compose phi:U -> Z$ agrees, then any continuous map $i:X union.sq_phi Y -> Z$ lifts to a continuous map $overline(i):X union.sq Y -> Z$, such that the composition with inclusion $Y arrow.hook X union.sq Y$ and $X arrow.hook X union.sq Y$ recovers the map $i_Y, i_X$ respectively (using the property of disjoint union space).
+
+Which, for any $a in X\\U$, one must have $i(a) = i_X (a)$; for all $b in Y\\V$, one must have $i(b) = i_Y (b)$; and finally, for all $phi(c) tilde c in U$ (where $U tilde.equiv V$ via $phi$), one has $i(c) = i_X (c) = i_Y compose phi(c)$, showing the uniqueness of $i$ as a set map.
+
+And, the existence of $i$ (as continuous map) is based on the fact that any open subset $W subset.eq Z$ has preimage $i_X ^(-1)(W) subset.eq X$, $i_Y ^(-1)(W) subset.eq Y$ being open, so $(i_X^(-1)(W) union.sq i_Y ^(-1)(W)) subset.eq (X union.sq Y)$ is open. Hence, its quotient in $X union.sq_phi Y$ is also open (which is precisely the preimage under $i$). This shows the continuity of $i$.
+
+\ 
+
+Now, using such idea, we can construct "gluing of schemes":
+#theorem("Gluing of Schemes")[
+  Let $X,Y$ be two schemes (here we omit the structure sheaf for simplicity), and let $U subset.eq X$, $V subset.eq Y$ be two open subsets, such that there exists an isomorphism of schemes $(phi, phi^\#):(U, cal(O)_X|_U)arrow.tilde (V, cal(O)_Y|_V)$. Then, the adjoint space $X union.sq_phi Y$ has a natural scheme, together with morphisms of schemes $(iota_X, iota_X^\#):(X, cal(O)_X) -> (X union.sq_phi Y, cal(O)_phi)$ and $(iota_Y, iota_Y^\#):(Y,cal(O)_Y)-> (X union.sq_phi Y, cal(O)_phi)$, such that the following diagram commutes:
+  #set align(center)
+  #diagram($
+            U edge("hook->") edge("d", "hook->", script(phi)) & X edge("d", "hook->", script(iota_X), #left) edge("ddr", ->, script(i_X), bend: #20deg)\
+            Y edge("hook->", script(iota_Y), #right) edge("drr", ->, script(i_Y), #right, bend: #(-20deg)) & X union.sq_phi Y edge("dr", "..>", script(exists ! i))\ 
+            && Z
+          $)
+  #set align(left)
+  Where, all the arrows are morphism of schemes.
+][
+  It's clear that $X union.sq_phi Y$ is a topological space. So, the only task is to construct a suitable structure sheaf with the desired property.
+
+  Given any open subset $W subset.eq X union.sq_phi Y$, notice its preimage in $U$ (i.e. $W sec U = W sect V$ in $X union.sq_phi Y$, where $U$ is identified as a subspace of $X arrow.hook X union.sq_phi Y$, and similarly for $V$ as a subspace of $Y arrow.hook X union.sq_phi Y$). Say such preimage is $W' subset.eq U$, then one has the following diagram:
+  #set align(center)
+  #diagram($
+             cal(O)_U (W') edge("<-") & cal(O)_Y (W sect V)\ 
+             cal(O)_X (W sect U) edge("u", "->")
+           $)
+  #set align(left)
+  Hence, a natural choice for $cal(O)_phi (W)$ is the fibre product of the above diagram:
+  #set align(center)
+  #diagram($
+             cal(O)_U (W') edge("<-") & cal(O)_Y (W sect V)\ 
+             cal(O)_X (W sect U) edge("u", "->") & cal(O)_phi (W) edge("l", ->) edge("u", ->) edge("dr", "<..", script(exists ! i))\ 
+             && Z edge("uul", ->, script(i_Y^*), bend: #(-20deg)) edge("ull", ->, script(i_X^*), bend: #20deg)
+           $)
+  #set align(left)
+  In particular, $cal(O)_phi (W) = {(s_1, s_2) : s_1|_(W sect U) = s_2 |_(W sect V)}$ as product of rings.
+
+  Also, note that since $cal(O)_phi (W)$ is constructed as the kernel of a product map, which is preserved under direct limits. Then, in particular the stalk of any poin $x in U$, the induced stalk $cal(O)_(phi, x)$ is the fibre product of $cal(O)_(X, x)-> cal(O)_(U, x)$ and $cal(O)_(Y, x)-> cal(O)_(U, x)$, which is also a local ring (and has local homomorphisms to $cal(O)_(X,x)$ and $cal(O)_(Y, x)$ respectively), based on the following lemma:
+  #lemma[
+    Given $A,B,C$ three local rings, and $phi:A -> C$, $psi:B -> C$ two local homomorphisms, then the fibre product $A times_C B$ with the two canonical projections $pi_A:A times_C B -> A$, $pi_B:A times_C B -> B$ are local ring, and local homomorphisms.
+  ][
+    For simplicity, $A times_C B:= {(a,b) in A times B | phi(a)=psi(b)}$ is the set theoretic fibre product. 
+
+    Now, let $m_R subset.eq R$ ($R=A,B,C$) be the maximal ideal of $R$, we claim that the set $m_A times_C m_B := (m_A times m_B) sect (A times_C B)$ is the maximal ideal of $A times_C B$:
+
+    - First, since the inclusion $A times_C B arrow.hook A times B$ is a ring homomorphism, with $m_A times m_B$ being an ideal in $A times B$, its preimage under the inclusion (which is $m_A times_C m_B$) is automatically an ideal.
+
+    \ 
+
+    - Then, we claim that every element outside of $m_A times_C m_B$ is a unit (which automatically makes $m_A times_C m_B$ a maximal ideal). Take $(a,b) in A times_C B\\m_A times_C m_B$. As set element one has $a in A\\m_A$ and $b in B\\m_B$. By the property of local rings, $a in U(A)$ and $b in U(B)$, so $a^(-1) in A$ and $b^(-1) in B$ exists.
+
+      Now, notice the following equality:
+      $ phi(a^(-1)) = phi(a)^(-1) = psi(b)^(-1) = psi(b^(-1)) $
+      The middle equality is based on the fact that $(a,b) in A times_C B$ (so $phi(a)=psi(b)$). Hence, one has $(a^(-1),b^(-1)) in A times_C B$ serving as the inverse of $(a,b)$, proving the claim.
+
+    \ 
+
+    Finally, about the local homomorphism part, notice that $pi_A (m_A times_C m_B) subset.eq m_A$ and $pi_B (m_A times_C m_B) subset.eq m_B$ set wise, automatically making them local homomorphisms.
+  ]
+
+  This construction makes $(X union.sq_phi Y, cal(O)_phi)$ a locally ringed space.
+
+  \ 
+
+  Now, notice that for any point $a in X union.sq_phi Y$ (WLOG, say $a in X$), pick an affine neighborhood $W subset.eq X$, and embedd it to $X union.sq_phi Y$. Then, as a neighborhood one has that being a topological homeomorphism of the neighborhoods, which the fibre $cal(O)_phi (W)$ turns out to also be isomorphic to $cal(O)_X (W)$, proving that every point has an affine neighborhood.
+
+  \ 
+
+  Finally, the universal property is based on the fact that both the fibre product (in $CRing$) and adjoint space (in $Top$) has the corresponding universal property. And, the gathered morphism from $cal(O)_Z -> cal(O)_phi$ must be a morphism of presheaves, hence a morphism of sheaves.
+]
+Okay, this last part is a bit shaky...maybe I need to come back at some point.
+
+#pagebreak()
+
+= Projective Schemes
 
