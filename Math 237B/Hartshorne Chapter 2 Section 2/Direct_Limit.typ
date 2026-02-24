@@ -26,9 +26,15 @@
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
 
+Here, we'll fix $I$ as a directed set (a preorder + every two elements has an upper bound).
+
+= Abelian Category Structure of $[I,Ab]$
+
 Recall that for a directed system in $Ab$, one can take its direct limit. However, if fixing a direct system $I$, and consider the functor category $[I, Ab]$ (sometimes even stronger, $[I, CRing]$), it has a natural abelian category structure:
 
-#proof[
+#proposition[
+  $[I,Ab]$ has a natural Abelian Category structure.
+][
   1. #text(weight: "bold")[Zero Object:] 
   
     If taking the "zero system" $z:I -> Ab$ by $z(i) = 0$, and $z f_(i j): z(i)->z(j)$ to be the zero morphism, then for any other direct system $F:I -> Ab$, the only possible natural transformation from $z$, say $mu:z -> F$, is $mu(i) = 0:z(i)=0-> F(i)$; and the only possible natural transformation to $z$, say $rho:F -> z$, is $rho(i) = 0:F(i) -> z(i)=0$ (since $0$ the trivial group is both initial and final in $Ab$).
@@ -65,7 +71,7 @@ Recall that for a directed system in $Ab$, one can take its direct limit. Howeve
     #set align(center)
     #diagram($
                K(i) edge("d", ->, script(k_(i j))) edge("hook->", script(ker(phi)_i)) & F(i) edge("d",->, script(f_(i j))) edge(->, script(phi_i)) & G(i) edge("d",->, script(g_(i j)), #left) \
-               K(j) edge("hook->", script(ker(phi)_j)) & F(j) edge(->, script(phi_j)) & G(j)
+               K(j) edge("hook->", script(ker(phi)_j), #right) & F(j) edge(->, script(phi_j), #right) & G(j)
              $)
     #set align(left)
     Note the universality of kernels make $K:I -> F$ by $i mapsto K(i)$ and $K(i-> j) = k_(i j)$ as a functor (or a directed system over $I$).
@@ -90,7 +96,7 @@ Recall that for a directed system in $Ab$, one can take its direct limit. Howeve
 
     \ 
 
-  + #text(weight: "bold")[Equivalence of Monomorphism and Component-Wise Monomorphism:]
+  3. #text(weight: "bold")[Equivalence of Monomorphism and Component-Wise Monomorphism:]
 
     (#text(weight: "bold")[Note:] The dual notion is epimorphism and component-wise epimorphism, where the proof follows similarly.)
 
@@ -100,7 +106,7 @@ Recall that for a directed system in $Ab$, one can take its direct limit. Howeve
 
     \ 
 
-  + #text(weight: "bold")[Equivalence of Monomorphism and Kernel:]
+  4. #text(weight: "bold")[Equivalence of Monomorphism and Kernel:]
 
     (#text(weight: "bold")[Note:] The dual notion is epimorphism and cokernel, the proof also follows similarly).
 
@@ -110,7 +116,7 @@ Recall that for a directed system in $Ab$, one can take its direct limit. Howeve
 
     \ 
 
-  + #text(weight: "bold")[Existence of Finite Biproduct:]
+  5. #text(weight: "bold")[Existence of Product, Coproduct, and Finite Biproduct:]
 
     Given two direct systems $F,G in [I,Ab]$, for each index $i in I$, define the "biproduct" $(F plus.circle G)(i) := F(i) plus.circle G(i)$, which it naturally associates with projections $pi_(F,i):(F plus.circle G)(i) ->> F(i)$ and $pi_(G,i):(F plus.circle G)(i)->> G(i)$, also with inclusions $iota_(F,i):F(i) arrow.hook (F plus.circle G)(i)$ and $iota_(G,i):G(i) arrow.hook (F plus.circle G)(i)$.
 
@@ -118,7 +124,7 @@ Recall that for a directed system in $Ab$, one can take its direct limit. Howeve
     #set align(center)
     #diagram($
                F(i) edge("d", ->, script(f_(i j))) & (F plus.circle G)(i) edge("l",->>, script(pi_(F,i))) edge(->>, script(pi_(G,i))) edge("d", "..>", script(exists ! h_(i j))) & G(i) edge("d",->, script(g_(i j)), #left) \ 
-               F(j) & (F plus.circle G)(j) edge("l",->>, script(pi_(F,j))) edge(->>, script(pi_(G,j))) & G(j)
+               F(j) & (F plus.circle G)(j) edge("l",->>, script(pi_(F,j)), #left) edge(->>, script(pi_(G,j)), #right) & G(j)
              $)
     #set align(left)
     Where, the uniqueness of $h_(i j)$ is given by the two maps $f_(i j) compose pi_(F,i):(F plus.circle G)(i) -> F(j)$, $g_(i j) compose pi_(G,i):(F plus.circle G)(i)-> G(j)$, and the fact that $(F plus.circle G)(j)$ (with the two projections) is a product of $F(j),G(j)$ in $Ab$.
@@ -131,6 +137,104 @@ Recall that for a directed system in $Ab$, one can take its direct limit. Howeve
 
     Finally, we claim the universality of $F plus.circle G$ as a biproduct (which we'll prove the product part, as the coproduct part is with similar proof).
 
-    Change:
-    
+    Consider another direct system $L$ together with two morphisms $p_F:L -> F$ and $p_G: L->G$, then notice that component wise, the universlity of $(F plus.circle G)(i)$ as product of $F(i), G(i)$ guarantees a unique morphism $p_i:L(i)-> (F plus.circle G)(i)$ as follow:
+    #set align(center)
+    #diagram($
+               & L(i) edge("dl",->, script(p_(F,i))) edge("dr", ->, script(p_(G,i))) edge("d","..>", script(exists ! p_i))\ 
+               F(i) & (F plus.circle G)(i) edge("l",->>, script(pi_(F,i)), #left) edge(->>, script(pi_(G,i)), #right) & G(i)
+             $)
+    #set align(left)
+    Which, given any morphism $i-> j$, one has the following large "commutative tent":
+    #set align(center)
+    #diagram($
+               & L(i) edge("rrr",->, script(l_(i j))) edge("ddl", ->, script(p_(F,i))) edge("ddddr", ->, script(p_(G,i))) edge("ddd", ->, script(p_i)) &&& L(j) edge("ddl",->, script(p_(F,j))) edge("ddddr",->, script(p_(G,j))) edge("ddd",->, script(p_j), #left) \ 
+               \ 
+               F(i) edge("rrr",->, script(f_(i j))) &&& F(j)\ 
+               & (F plus.circle G)(i) edge("rrr",->, script(h_(i j)), #right) edge("ul", ->>, script(pi_(F,i)), #left) edge("dr",->>, script(pi_(G,i)), #right) &&& (F plus.circle G)(j) edge("ul",->>, script(pi_(F,j))) edge("dr",->>, script(pi_(G,j)))\ 
+               && G(i) edge("rrr",->, script(g_(i j)), #right) &&& G(j)
+             $)
+    #set align(left)
+    Which, notice the middle "verticle square" is also a naturality square, based on the following observation:
+    $ pi_(G,j) compose (h_(i j) compose p_i) &= g_(i j) compose (pi_(G,i) compose p_i) = g_(i j) compose p_(G,i)\ 
+    &= p_(G,j) compose l_(i j)= pi_(G,j) compose (p_j compose l_(i j)) $
+    Repeating similar proof for the other side of the tent, we also have the following:
+    $ pi_(F,j) compose (h_(i j) compose p_i) = pi_(F,j) compose (p_j compose l_(i j)) $
+    Where this is based on the fact that $p_F, p_G$  are natural transformations, and the product property of morphisms $h_(i j)$ and $p_i, p_j$.
+
+    Also, consider the fact that the morphism $p_(F,j) compose l_(i j):L(i)-> F(j)$ and $p_(G,j) compose l_(i j):L(i)-> G(j)$, they factor uniquely through $(F plus.circle G)(j)$, and the unique factored morphism has composition with the projections that recovers the two listed morphisms.
+
+    Then, based on (1.2), (1.3) two equations, we know that $p_j compose l_(i j), (h_(i j) compose p_i): L(i) -> (F plus.circle G)(j)$ both satisfy such requirement (since $pi_(F,j) compose (p_j compose l_(i j)) = p_(F,j) compose l_(i j)$, and $pi_(G,j) compose (p_j compose l_(i j)) = p_(G,j) compose l_(i j)$). Hence, this enforces $p_j compose l_(i j)=h_(i j) compose p_i$ using the universality of product. This proves the middle is a naturality square, or $p:L -> F plus.circle G$ is well-defined.
+
+    Finally, the morphism $p$ is unique, simply because component wise it must be realied as a product morphism, hence must be unique. This proves the universality of $F plus.circle G$ as a product in $[I,Ab]$. (Note: Repeat the proof with inclusions, and reverse the tent provides the case for coproduct :)
+
+    Using similar proof, one can also construct arbitrary small product and coproduct in similar sense (except over infinite direct systems they'll be different).
+
+  \ 
+
+  So, with all these conditions, $[I,Ab]$ is an abelian category.
+]
+
+#pagebreak()
+
+= Direct Limits and Exactness
+
+Given the Functor Category $[I,Ab]$, all direct system $F in [I,Ab]$ has direct limit $colim F$ (well-defined up to isomorphism), in particular we'll choose this to be the classical construction through direct sums and quotients. Now, we claim that similar ideas can be done on the morphisms:
+
+#proposition[
+  Given morphism $phi:F -> G$ in $[I,Ab]$, it descends to a homomorphism of direct limits, denoted as $overline(phi):colim F-> colim G$.
+][
+  Notice that every $i in I$ corresponds to a morphism $phi_i:F(i) -> G(i)$, composing with each inclusion $iota_(G,i): G(i) arrow.hook plus.circle.big_(i in I)G(i)$, one gathers a family of map $(iota_G compose phi)_i:F(i) -> plus.circle.big_(i in I)G(i)$. Hence, using the universality of biproduct, one gets $plus.circle phi:plus.circle.big_(i in I)F(i) -> plus.circle.big_(i in I)G(i)$ (intuitively, it's a component-wise map, each being the $phi_i$).
+
+  \ 
+
+  Now, given the direct limit is constructed as a suitable quotient, one has projection $pi_F: plus.circle.big_(i in I)F(i)->> colim F$ and $pi_G: plus.circle.big_(i in I)G(i)->> G$. Then, the composition of morphisms give the morphism $pi_G compose (plus.circle phi):plus.circle.big_(i in I)F(i) -> colim G$. The goal is to prove this uniquely factors through $colim F$.
+
+  \ 
+
+  Let's recall the equivalence relation for direct limit: Given $a_i in F(i)$ and $a_j in F(j)$, one has $a_i tilde a_j$ iff there exists an upper bound $k>= i,j$, such that $f_(i k)(a_i) = f_(j k)(a_j)$ in $F(k)$.
+
+  However, if $a_i tilde a_j$, then notice that $phi_i (a_i) in G(i)$ and $phi_j (a_j) in G(j)$ satisfies the following:
+  $ g_(i k) compose phi_i (a_i) = phi_k compose f_(i k)(a_i) = phi_k compose f_(j k)(a_j) = g_(j k) compose phi_j (a_j) $
+  This shows that $phi_i (a_i) tilde phi_j (a_j)$ in direct system $G$, or $pi_G (phi_i (a_i) - phi_j compose (a_j))=0$.
+
+  As a result, since $(plus.circle phi)(a_i - a_j) = phi_i (a_i)-phi_j (a_j)$ (since it's component-wise morphism), so $pi_G compose (plus.circle phi)(a_i-a_j)=0$, showing the subgroup of equivalence relation in direct system $F$ is inside the kernel of the map.
+
+  Hence, this uniquely factors through the quotient of $plus.circle.big_(i in I)F(i)$ with the equivalence relation, namely the direct limit $colim F$, which can be denoted as a morphism $overline(phi):colim F-> colim G$, such that $pi_G compose (plus.circle phi) = overline(phi) compose pi_F$.
+]
+
+\
+
+As a remark, this assignment $(phi:F->G) mapsto (overline(phi):colim F-> colim G)$ is functorial (because the composition of homomorphisms between direct sums of elements in the direct system, is equivalent to compose the morphisms betweenn direct systems first, then take the homomorphism between the direct sums). Hence, this generates a functor $D:[I,Ab]-> Ab$, by $F mapsto colim F$, and morphism $(phi:F->G) mapsto (overline(phi):colim F-> colim G)$.
+
+\ 
+
+Now, we wish to claim something even stronger, that $D$ not only is a functor, but also preserves additive structure, and exactness.
+#theorem[
+  $D:[I,Ab]-> Ab$ is an additive functor between abelian categories.
+][
+  There are two ways to approach: Either proving that $D$ preserves biproduct (the hard way), or do an element-wise proof. We'll choose the latter (simply because I'm lazy :)
+
+  \ 
+
+  Recall that given morphism $phi:F->G$, one has induced homomorphism $(plus.circle phi):plus.circle.big_(i in I)F(i)-> plus.circle.big_(i in I)G(i)$, and the induced homomorphism on direct limits $overline(phi):colim F-> colim G$ that satisfy the following commutative diagram:
+  #set align(center)
+  #diagram($
+             plus.circle.big_(i in I)F(i) edge("d",->>, script(pi_F), #right) edge(->, script(plus.circle phi)) & plus.circle.big_(i in I)G(i) edge("d",->>, script(pi_G), #left) \ 
+             colim F edge(->, script(overline(phi)), #right) & colim G
+           $)
+  #set align(left)
+  Now, given any $phi,psi:F->G$, notice that $phi+psi$ is a morphism that has addition component wise. Hence, the general homomorphism $(plus.circle (phi+psi)):plus.circle.big_(i in I)F(i)-> plus.circle.big_(i in I)G(i)$ in fact equals the addition $(plus.circle phi)+(plus.circle psi)$ (since the morphism generated between coproducts preserve the component wise addition). As a result, one has the following:
+  $ overline(phi+psi) compose pi_F &= pi_G compose (plus.circle(phi+psi)) = pi_G compose (plus.circle phi+plus.circle psi)\ 
+  &= pi_G compose (plus.circle phi)+pi_G compose (plus.circle psi) = overline(phi) compose pi_F + overline(psi) compose pi_F\ 
+  &= (overline(phi)+overline(psi)) compose pi_F $
+  Then, using the fact that $pi_F$ is an epimorphism (which is right-cancellative), one guarantees $overline(phi+psi)=overline(phi)+overline(psi)$. Hence, $D(phi+psi) = D phi+D psi $, proving the additive property of $D$.
+]
+
+\ 
+
+And, here is the claim on exactness:
+#theorem[
+  $D:[I,Ab]-> Ab$ as an additive function, is exact.
+][
+  Here, we'll also try and work with element-wise proof (the general categorical claim is too hard to be honest).
 ]
