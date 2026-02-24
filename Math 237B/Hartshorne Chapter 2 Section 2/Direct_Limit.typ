@@ -26,6 +26,8 @@
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
 
+#outline()
+
 Here, we'll fix $I$ as a directed set (a preorder + every two elements has an upper bound).
 
 = Abelian Category Structure of $[I,Ab]$
@@ -236,5 +238,89 @@ And, here is the claim on exactness:
 #theorem[
   $D:[I,Ab]-> Ab$ as an additive function, is exact.
 ][
-  Here, we'll also try and work with element-wise proof (the general categorical claim is too hard to be honest).
+  Here, we'll also try and work with element-wise proof (the general categorical claim is too hard to be honest). Here, let's fix two morphisms $phi:F->G$ and $psi:G->H$ in $[I,Ab]$. We'll still proceed with several smaller claims:
+
+  \ 
+
+  \
+
+  #text(weight: "bold")[I. Equivalence of Exactness and Component-Wise Exactness:]
+
+  For detail, we claim that the sequence $0->F->G->H->0$ is exact, iff every index $i in I$ has the homomorphisms $phi_i:F(i)->G(i)$ and $psi_i:G(i)->H(i)$ satisfy $0->F(i)->G(i)->H(i)->0$ being exact.
+
+  \ 
+
+  Notice that $0->F->G->H->0$ is exact $<==>$ $phi$ is monomorphism, $psi$ is epimorphism, and the morphisms $im(phi) = ker(psi)$.
+
+  However, notice that all of these are equivalent to component-wise properties:
+  - $phi$ is monomorphic $<==>$ each $phi_i$ is monomorphic.
+  - $psi$ is epimorphic $<==>$ each $psi_i$ is epimorphic.
+  - $im(phi)=ker(psi)$ $<==>$ each $im(phi_i) = ker(psi_i)$.
+  Which, all three conditions are equivalent to $0->F(i)->G(i)->H(i)->0$ being exact for all $i in I$.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[II. Equivalence of Component-Wise Exactness and Direct Sums' Exactness:]
+
+  (#text(weight: "bold")[Remark:] This statement is not true in any abelian category, only in Grothendieck Categories).
+
+  \ 
+
+  For detail, we claim that each index $i in I$ has $0->F(i)->G(i)->H(i)->0$ being exact $<==>$ the gathered homomorphisms $(plus.circle phi):plus.circle.big_(i in I)F(i)-> plus.circle.big_(i in I)G(i)$ and $(plus.circle psi):plus.circle.big_(i in I)G(i)->H(i)$ satisfy $0-> plus.circle.big_(i in I)F(i) -> plus.circle.big_(i in I)G(i)-> plus.circle.big_(i in I)H(i)->0$ being exact.
+
+  \ 
+
+  First, about $plus.circle phi$ being monomorphic, the set-theoretic side guarantees that if $(plus.circle phi)((a_i)_(i in I))= (phi_i (a_i))_(i in I)=0$ iff each $phi_i (a_i)=0$ iff each $a_i in ker(phi_i)$. So, $ker(plus.circle phi)=plus.circle.big_(i in I)ker(phi)$. Hence, $plus.circle phi$ is a monomorphism $<==>$ each direct summand (or each $ker(phi_i)$) is $0$, which is equivalent to component-wise monomorphism. This takes care of the left most part.
+
+  \ 
+
+  Then, about $plus.circle psi$ being epimorphic, again set-theoretic side guarantees that if each $psi_i$ is surjective, then $plus.circle psi$ is surjective (as all element $(b_i)_(i in I)$ in $plus.circle.big_(i in I)H(i)$, each has some $a_i in G(i)$, where $psi_i (a_i)=b_i$, so $(plus.circle psi)((a_i)_(i in I)) = (psi_i (a_i))_(i in I)=(b_i)_(i in I)$; this is well-defined because only finitely many $b_i!=0$, so only finitely many $a_i$ needs to be chosen as nonzero). On the other hand, if $plus.circle psi$ is surjective, then each $psi_i$ must also be surjective (since looking at any element $a_i in H(i) arrow.hook plus.circle.big_(i in I)H(i)$, it is mapped to by some $(a_i)_(i in I)$ in $plus.circle.big_(i in I)G(i)$, so in particular one has $psi_i (a_i)=b_i$). Hence, the epimorphism part is also equivalent.
+
+  \ 
+
+  Finally, about the middle part, since one has $ker(plus.circle psi) = plus.circle.big_(i in I)ker(psi_i)$, and $im(plus.circle phi) = plus.circle.big_(i in I)im(phi_i)$, then the two are equal $<==>$ each $im(phi_i)=ker(psi_i)$, happens iff it's exact at the middle of every component.
+
+  This finishes the proof of the equivalence.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[III. Direct Sum Exactness implies Direct Limit Exactness:]
+
+  Now, we know $0-> plus.circle.big_(i in I)F(i)-> plus.circle.big_(i in I)G(i)->plus.circle.big_(i in I)H(i)->0$ is exact (because $0->F->G->H->0$ is, and the previous two parts). Let's conclude it for the direct limits:
+
+  1. Given $(plus.circle psi):plus.circle.big_(i in I)G(i)->>plus.circle.big_(i in I)H(i)$ being surjective, consider this commutative diagram:
+    #set align(center)
+    #diagram($
+               plus.circle.big_(i in I)G(i) edge("d",->>, script(pi_G)) edge(->>, script(plus.circle psi)) & plus.circle.big_(i in I)H(i) edge("d",->>, script(pi_H), #left) \ 
+               colim G edge(->, script(overline(psi)), #right) & colim H
+             $)
+    #set align(left)
+    Which, $overline(psi) compose pi_G = pi_H compose (plus.circle psi)$, while the latter is surjective, this enforces $overline(psi)$ to be surjective.
+
+    \ 
+
+  2. Given $(plus.circle phi):plus.circle.big_(i in I)F(i) arrow.hook plus.circle.big_(i in I)H(i)$ being injective, consider the commutative diagram:
+    #set align(center)
+    #diagram($
+               plus.circle.big_(i in I)F(i) edge("d",->>, script(pi_F), #right) edge("hook->", script(plus.circle phi)) & plus.circle.big_(i in I)G(i) edge("d",->>, script(pi_G), #left) \ 
+               colim F edge(->, script(overline(phi)), #right) & colim G
+             $)
+    #set align(left)
+    Which, given any $overline(a) in ker(overline(phi))$, take a representative $a in plus.circle.big_(i in I)F(i)$, then one has $overline(phi) compose pi_F (a)=overline(phi)(overline(a))=0$, so $pi_G compose (plus.circle phi)(a) = overline(plus.circle phi(a))=0$, showing $(plus.circle phi)(a)$ is inside the subgroup generated by the equivalence relation in $G$.
+
+    Yet, notice that this enforces $a$ to also be in the subgroup generated by the equivalence relation in $F$ (which we'll check that the relations in $F$ must be precisely carried over to $G$, no new relations can be created in the image):
+
+    If $a_i, b_j$ in $F$ satisfies $phi_i (a_i) tilde phi_j (b_j)$ in $G$, then one has some upper bound $k>=i,j$ in $I$, such that $g_(i k) compose phi_i (a_i)=g_(j k) compose phi_j (a_j)$, using the naturality of $phi$, one gets $phi_k compose f_(i k)(a_i) = phi_k compose f_(j k)(a_j)$, then the injectivity of $phi_k$ implies $f_(i k)(a_i)=f_(j k)(a_j)$, or $a_i tilde a_j$.
+
+    Hence, if $(plus.circle phi)(a)$ lives in the subgroup generated by the equivalence relation of $G$, its preimage (namely $a$ only by injectivity) must live in the subgroup generated by the equivalence relation of $F$. Hence, one has $pi_F (a)=overline(a)=0$, proving the injectivity of $overline(phi)$.
+
+    \ 
+
+  3. Since the big commutative diagram commutes (i.e. $overline(psi) compose overline(phi) compose pi_F = overline(psi) compose pi_G compose (plus.circle phi) = pi_H compose (plus.circle psi) compose (plus.circle phi) = 0$, with $pi_F$ being epimorphic, then $overline(psi) compose overline(phi) = 0$).
+
+    On the other hand, any $overline(b) in ker(overline(psi))$ has its representative $b in plus.circle.big_(i in I)G(i)$ satisfies $0 = overline(psi)(overline(b)) = overline(psi) compose pi_G (b) = pi_H compose (plus.circle psi)(b) = overline(plus.circle psi(b))$, which $plus.circle psi(b)$ is in the equivalence generated by 
 ]
