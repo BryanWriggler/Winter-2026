@@ -8,12 +8,12 @@
 \begin{document}
 \maketitle
 
-\section*{1}
+\section*{1 D}
 \begin{ques}
 1 Perturbation Theory (Griffiths 5.15, 5.11 in second edition)
 
 \begin{itemize}
-    \item[(a)] Calculate $\left<\left(\frac{1}{|\br_1-\br_2}\right)\right>$ for the state $\psi_0 = \frac{8}{\pi a^3}e^{-2(r_1+r_2)/a}$.
+    \item[(a)] Calculate $\left<\frac{1}{|\br_1-\br_2|}\right>$ for the state $\psi_0 = \frac{8}{\pi a^3}e^{-2(r_1+r_2)/a}$.
     
     \emph{Hint:} Do the $d^3\br_2$ integral first, using spherical coordinates, and setting the polar axis along $\br_1$, so that $|\br_1-\br_2| = \sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2)}$. The $\theta_2$ integral is easy, but be careful to take the \emph{positive root}. You'll have to break the $r_2$ integral into two pieces, one ranging from $0$ to $r_1$, the other from $r_1$ to $\infty$. 
 
@@ -24,6 +24,73 @@
 \end{ques}
 
 \begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Because of the spherical symmetry of $\psi_0$ (in both $\br_1,\br_2$), then when doing the integration, we can integrate $\br_2$ first, and treat $\br_2$ as in a coordinate where $\br_1$ is in the polar axis:
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=60mm]{q1_a.jpg}
+        \end{figure}
+
+        As a result, using Law of Cosine, one has $\|\br_1-\br_2\| = \sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2)}$. So, the full integral can be expanded as follow:
+        \begin{align}
+            \left<\frac{1}{\|\br_1-\br_2\|}\right> &= \int_{\br_1}\int_{\br_2}\frac{64}{\pi^2a^6}\frac{1}{\sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2)}}e^{-4(r_1+r_2)/a}dV_2\ dV_1\\
+            &= \frac{64}{\pi^2a^6}\int_{\br_1}e^{-4r_1/a}\left(\int_{\br_2}\frac{1}{\sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2)}}e^{-4r_2/a}dV_2\right)dV_1
+        \end{align}
+        Let's do the integral of $\br_2$ first:
+        \begin{align}
+            I(r_1)&:=\int_{\br_2}\frac{1}{\sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2)}}e^{-4r_2/a}dV_2\\
+            &= \int_{r_2=0}^\infty\int_{\phi_2=0}^{2\pi}\int_{\theta_2=0}^{\pi}\frac{1}{\sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2)}}e^{-4r_2/a}r_2^2\sin(\theta_2)d\theta_2\ d\phi_2\ dr_2\\
+            &= 2\pi\int_{r_2=0}^{\infty}\int_{u=(r_1-r_2)^2}^{(r_1+r_2)^2}\frac{1}{\sqrt{u}}e^{-4r_2/a}\frac{r_2}{2r_1}du\ dr_2\\
+            &= \frac{2\pi}{r_1}\int_{0}^{\infty}r_2e^{-4r_2/a}\left(\sqrt{u}\bigg|_{(r_1-r_2)^2}^{(r_1+r_2)^2}\right)dr_2\\
+            &= \frac{2\pi}{r_1}\int_{0}^{\infty}r_2e^{-4r_2/a}((r_1+r_2)-|r_1-r_2|)dr_2
+        \end{align}
+        Here, there are two cases:
+        \begin{itemize}
+            \item First, if $r_1<r_2$, then $|r_1-r_2| = r_2-r_1$, so the sum in the paranthesis is $2r_1$. Which, this results in the following integral:
+            \begin{align}
+                I_<&= \frac{2\pi}{r_1}2r_1\int_{r_1}^{\infty}r_2e^{-4r_2/a}dr_2 = 4\pi\left(-\frac{a}{4}r_2 - \frac{a^2}{16}\right)e^{-4r_2/a}\bigg|_{r_1}^{\infty} = a\pi\left(r_1+\frac{a}{4}\right)e^{-4r_1/a}
+            \end{align}
+            \item Then, if $r_1\geq r_2$, then $|r_1-r_2|=r_1-r_2$, so the sum in the paranthesis is $2r_2$ instead. Which, this results in the following integral:
+            \begin{align}
+                I_\geq &= \frac{2\pi}{r_1}\int_{0}^{r_1}2r_2^2e^{-4r_2/a}dr_2 = \frac{4\pi}{r_1}\left(-\frac{a}{4}r_2^2-\frac{a^2}{8}r_2 - \frac{a^3}{32}\right)e^{-4r_2/a}\bigg|_{0}^{r_1}\\
+                &= \frac{a^3\pi}{8r_1}-a\pi\left(r_1+\frac{a}{2}+\frac{a^2}{8r_1}\right)e^{-4r_1/a} 
+            \end{align}
+        \end{itemize}
+        Which, the total $\br_2$ integral is:
+        \begin{align}
+            I(r_1) &= I_<+I_\geq = \frac{a^3\pi}{8r_1}-a\pi\left(\frac{a}{4}+\frac{a^2}{8r_1}\right)e^{-4r_1/a}
+        \end{align}
+        Then, returning to the original integral, one has the following:
+        \begin{align}
+            \left<\frac{1}{\|\br_1-\br_2\|}\right> &= \frac{64}{\pi^2a^6}\int_{\br_1}e^{-4r_1/a}I(r_1)dV_1\\
+            &= \frac{64}{\pi^2a^6}\int_{r_1=0}^\infty\int_{\theta_1=0}^{\pi}\int_{\phi_1=0}^{2\pi}\left(\frac{a^3\pi}{8r_1}e^{-4r_1/a}-a\pi\left(\frac{a}{4}+\frac{a^2}{8r_1}\right)e^{-8r_1/a}\right)r_1^2\sin(\theta_1)d\phi_1\ d\theta_1\ dr_1\\
+            &= \frac{2^8}{\pi a^6}\int_{0}^{\infty}\left(\frac{a^3\pi}{8}r_1e^{-4r_1/a}-\frac{a^2\pi}{4}r_1^2e^{-8r_1/a} - \frac{a^3\pi}{8}r_1e^{-8r_1/a}\right)dr_1\\
+            &= \frac{32}{a^3}\int_{0}^{\infty}\left(r_1e^{-4r_1/a}-\frac{2}{a}r_1^2e^{-8r_1/a}-r_1e^{-8r_1/a}\right)dr_1\\
+            &= \frac{32}{a^3}\left(\left(-\frac{a}{4}r_1-\frac{a^2}{16}\right)e^{-4r_1/a} - \frac{2}{a}\left(-\frac{a}{8}r_1^2-\frac{a^2}{32}r_1-\frac{a^3}{256}\right)e^{-8r_1/a}-\left(-\frac{a}{8}r_1-\frac{a^2}{64}\right)e^{-8r_1/a}\right)\bigg|_{0}^{\infty}\\
+            &= \frac{32}{a^3}\left(\frac{a^2}{16}-\frac{a^2}{128}-\frac{a^2}{64}\right) = \frac{1}{a}\left(2-\frac{1}{4}-\frac{1}{2}\right) = \frac{5}{4a}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] For Helium, since the Hamiltonian is given as:
+        \begin{align}
+            H &= \left(-\frac{\hbar^2}{2m}\nabla_1^2-\frac{1}{4\pi\epsilon_0}\frac{2e^2}{r_1}\right)+\left(-\frac{\hbar^2}{2m}\nabla_2^2-\frac{1}{4\pi\epsilon_0}\frac{2e^2}{r_2}\right)+\frac{1}{4\pi\epsilon_0}\frac{e^2}{\|\br_1-\br_2\|}
+        \end{align}
+        Which, the non-interacting part (the first two paranthesis) has an expectation value of $-109$ eV, then for the whole expectation value of $\psi_{1,0,0}$, we have:
+        \begin{align}
+            \left<H\right> = -109\text{ eV} + \frac{e^2}{4\pi\epsilon_0}\left<\frac{1}{\|\br_1-\br_2\|}\right> = -109\text{ eV} + \frac{5e^2}{16\pi\epsilon_0 a}
+        \end{align}
+        Which, recall that for Helium ($Z=2$), one has Bohr radius $\frac{a_0}{2}$ (where $a_0$ is hte bohr radius of hydrogen), then with electron charge $e = 1.609\cdot 10^{-19}$ C, and permitivity $\epsilon_0 = 8.854\cdot 10^{-12}$ C$^2\cdot$s$^2$/(kg$\cdot$m$^{-3}$), and $a = \frac{a_0}{2} = 2.646\cdot 10^{-11}$ m. As a result, one has the following:
+        \begin{align}
+            \frac{5e^2}{16\pi\epsilon_0 a} &= \frac{5\cdot(1.609)^2\cdot 10^{-38}}{16\pi\cdot 8.854\cdot 10^{-12}\cdot 2.646\cdot 10^{-11}}\text{ J}\approx 1.099\cdot 10^{-17}\text{ J} \approx 68.317 \text{ eV}
+        \end{align}
+        So, the actual result is $\left<H\right> \approx -109+68.317$ eV $=-40.683$ eV.
+
+        In comparison to the experimental value (which is about $-79$ eV), this is actually higher.
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -68,11 +135,54 @@ with spin 3/2?
 \end{ques}
 
 \begin{proof}
+    Here, recall that for a 2D harmonic oscillator, its energy $E_{n,m} = E_{x,n}+E_{y,m} = (n+m+1)\hbar w_0$ for $n,m\in\NN$. Which, for any $k \in \NN$, if $E_{n,m}=(k+1)\hbar w_0$, one needs $n+m=k$. Hence, for the $k$th energy level, the number of sublevels in position states $g_k$ = number of ways to partition $k$ into two natural numbers = $k+1$.
+
+    \hfil
+
+    \begin{enumerate}
+        \item If there's only a single particle with spin $0$ (which only has degeneracy 1 on spin state), then the first 6 levels are just about energies, given by $k=0$ (with degeneracy $g_0=1$), $k=1$ (with degeneracy $g_1=2$), and $k=2$ (with degeneracy $g_2 = 3$). Which, the corresponding energies are $\hbar w_0, 2\hbar w_0,3\hbar w_0$ respectively.
+        
+        \hfil
+
+        \item If the single particle has spin $\frac{1}{2}$ (which the spin state has degeneracy 2), then each energy level will have $2g_k$ sublevels if regarding spins. Hence, the first 12 levels are given by: $k=0$ (with degeneracy $2g_0 = 2$), $k=1$ (with degeneracy $2g_1=4$), and $k=2$ (with degeneracy $2g_2 = 6$). So, the corresponding energies are $\hbar w_0, 2\hbar w_0,3\hbar w_0$ respectively.
+        
+        \hfil
+
+        \item If the single particle has spin 1 (which the spin state has degeneracy 3), then each energy level will have $3g_k$ sublevels if regarding spins. Hence, the first 9 levels are given by: $k=0$ (with degeneracy $3g_0=3$), and $k=1$ (with degeneracy $3g_1=6$). So, the corresponding energies are $\hbar w_0$, and $2\hbar w_0$ respectively.
+        
+        \hfil
+
+        \item Given that the bosons are spin $0$ (spin state has degeneracy $0$), with $N=2$, since they can all be packed in the same energy level, so the ground state of the system has all of them with ground state $k=0$. Which, the degeneracy is in fact 1 (since ther's no choice on the energies or the states).
+        
+        \hfil
+
+        \item Given the bosons are spin 1 (spin state has degeneracy $3$), with $N=2$, since they can all be packed in the same energy level, so the ground state of the system has all of them with ground state $k=0$, hence the position side there's degeneracy $1$ (in particular, it's symmetric in position states). Now, this enforces the spin states to be symmetric also. If regarding the spin side, since for two $3$-dimensional Hilbert Space, the symmetric tensor has dimension $\frac{4\cdot 3}{2}=6$, so spin state has degeneracy $6$. Hence, the total degeneracy is $6$.
+        
+        \hfil
+
+        \item Given the particles are frmions with spin $\frac{1}{2}$ (spin state has degeneracy $2$), since the top wedge of a $2$-dimensional Hilbert Space can consist of only 2 elements (i.e. one can only have wedge-2 product, for wedge $n\geq 3$ the wedge product is $0$), each energy sublevel is only allowed with $2$ such fermions (since with position states being symmetric, the spin states are antisymmetric, which must be in the wedge product; the top wedge represents the number of particles one can put in the same energy sublevel and still maintain the antisymmetric property). 
+        
+        With $N=4$, the first two fermions can be put into the ground state $k=0$, and with the symmetric position states, their spin state is antisymmetric (for spin-$\frac{1}{2}$), which has degeneracy 1.
+        
+        For the last two fermions, since there are $g_1=2$ sublevels for energy level $k=1$, then it's posible to put all of them in energy level $k=1$. There are two cases: If both fermions are in the same sublevel, then the symmetric position state enforces antisymmetric spin states, which has degeneracy 1 (and since there are 2 distinct sublevels, there are 2 such cases); else, if the fermions are belonging two distinct sublevels, then each occupies a spin state of degeneracy $2$, hence has a total degeneracy of $2\cdot 2=4$. Then, the two fermions in energy level $k=1$ in fact has degeneracy $2+4=6$.
+
+        Combining all information, this system has ground state degeneracy of $6$.
+
+        \hfil
+
+        \item If the particles are fermions with spin $\frac{3}{2}$ (spin state has degeneracy $4$), since the top wedge of a $4$-dimensional Hilbert Space can consist of 4 elements (i.e. one can have wedge-4 product, and for wedge $n\geq 5$ the wedge product is $0$), each energy sublevel is allowed with 4 such fermions.
+        
+        With $N=6$, the first four fermions can be put into the ground state $k=0$, and with the symmetric position states, the spin state is antisymmetric (with 4 particles and spin-$\frac{3}{2}$), which again has degeneracy 1.
+
+        For the last two fermions, since there are $g_1=2$ sublevels for energy level $k=1$, it's possible to put the in $k=1$ energy level. There are two cases: If both fermions are in the same sublevel, the symmetric position state enforces antisymmetric spin states, with the spin state described by two 4-dimensional Hilbert Space, the wedge product has dimension $\frac{4\cdot 3}{2}=6$, hence it has degeneracy $6$ (and with two distinct sublevels, the total degeneracy is 12); else, if the fermions are belonging to two distinct sublevels, then each occupies a spin state of degeneracy 4, hence has a total degeneracy of $4\cdot 4=16$. Then, the two fermions in energy level $k=1$ in fact has degeneracy $12+16=28$.
+
+        Combining all information, this system has ground state degeneracy of $28$.
+    \end{enumerate}
 \end{proof}
 
 \newpage
 
-\section*{3}
+\section*{3 D}
 \begin{ques}
 3 Silver (modified Griffiths 5.21, 5.16 in second edition)
 
@@ -96,11 +206,46 @@ point of silver is 1235 K, solid silver is always cold.
 \end{ques}
 
 \begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Recall the Fermi Energy is $E_F := \frac{\hbar^2}{2m}k_F^2= \frac{\hbar^2}{2m}(3\rho \pi^2)^\frac{2}{3}$, and $\rho$ represents the number of electrons per unit volume (say in terms of $m^3$). After conversion of units, one has silver's density $10.49\cdot 10^6$ g/m$^3$, hence the silver density can also be written as $10.49\cdot 10^6/107.9$ mole/m$^3$.
+        
+        With each mole having $6.02\cdot 10^{23}$ atoms, there are total of $10.49\cdot 10^6\cdot 6.02\cdot 10^{23}/107.9$ number of silver atoms per m$^3$, which is about $5.853\cdot 10^{28}$ number of silver atoms per $m^3$; with silver having only one valence electron, this is also the number of free electrons in silver per $m^3$, or $\rho$.
+
+        Now, given that $\hbar = 1.055\cdot 10^{-34}$ kg$\cdot$m$^2$/s, and the mass of an electron $m_e = 9.109\cdot 10^{-31}$ kg. Pllugin to the Fermi Energy equation, we have:
+        \begin{align}
+            E_F &= \frac{(1.055\cdot 10^{-34})^2}{2\cdot 9.109\cdot 10^{-31}}(3\pi^2)^\frac{2}{3}(5.853\cdot 10^{28})^\frac{2}{3}\approx 8.816\cdot 10^{-19} J\approx 5.509 eV
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Suppose $E_F = \frac{1}{2}mv^2$, with $m_e = 9.109\cdot 10^{-31}$ kg, then the velocity becomes:
+        \begin{align}
+            v = \sqrt{\frac{2E_F}{m_e}} = \sqrt{\frac{2\cdot 8.816\cdot 10^{-19}}{9.109\cdot 10^{-31}}}\approx 1.936\cdot 10^6 \text{ m/s}
+        \end{align}
+        Which, this is approximately $0.6\%$ of light speed, it can possibly considered as relativistic.
+
+        \hfil
+
+        \item[(c)] Given the Boltzmann constant $k_B = 1.381\cdot 10^{-23}$ J/K, if temperature $T_F$ satisfies $E_F = k_B T_F$, then:
+        \begin{align}
+            T_F = \frac{E_F}{k_B} \approx \frac{8.816\cdot 10^{-19}}{1.381\cdot 10^{-23}} = 6.384\cdot 10^4 \text{ K}
+        \end{align}
+
+        \hfil
+
+        \item[(d)] Given the degeneracy pressure $P = \frac{2}{3}\frac{E_\text{tot}}{V} = \frac{(3\pi^2)^{2/3}\hbar^2}{5m}\rho^{5/3}$. Which, the detail of the formula provides:
+        \begin{align}
+            P &= \frac{(3\pi^2)^{2/3}(1.055\cdot 10^{-34})^2}{5\cdot 9.109\cdot 10^{-19}}(5.853\cdot 10^{28})^{5/3} \approx 0.0206 \text{ Pa}
+        \end{align}
+    \end{itemize}
 \end{proof}
 
 \newpage
 
-\section*{4}
+\section*{4 D}
 \begin{ques}
 4 2D Gas Model (Griffiths 5.30, 5.34 in the second edition)
 
@@ -108,11 +253,26 @@ Calculate the Fermi energy of the electrons in a two-dimensional infinite square
 \end{ques}
 
 \begin{proof}
+    Given a two-dimensional infinite square well where $x \in [0,L_x]$ and $y \in [0,L_y]$, then a single electron has allowed eigenstates being $\psi_{n_x,n_y}(x,y)=\sqrt{\frac{4}{L_x L_y}}\sin\left(\frac{n_x \pi x}{L_x}\right)\sin\left(\frac{n_y \pi y}{L_y}\right)$, which has energy $E = E_x+E_y = \frac{\hbar^2\pi^2}{2m}\left(\frac{n_x^2}{L_x^2}+\frac{n_y^2}{L_y^2}\right)$. Then, given wavevector $\bk = \left(\frac{\pi n_x}{L_x}, \frac{\pi n_y}{L_y}\right)$, one has energy $E = \frac{\hbar^2}{2m}k^2$, where $\|\bk\| = k$.
+
+    \hfil
+
+    Since every increment in $n_x$ or $n_y$ represents an allowed eigenstate, which $k_x = \frac{n_x\pi}{L_x}$ and $k_y=\frac{n_y \pi}{L_y}$ incremented by $\frac{\pi}{L_x}$ and $\frac{\pi}{L_y}$ respectively. Then, each eigenstate ``occupies'' a volume of $\frac{\pi}{L_x} \cdot \frac{\pi}{L_y} = \frac{\pi^2}{L_xL_y}$ inside the $\bk$-space. With the area of the well being $A:=L_xL_y$, each volume represents $\frac{\pi^2}{A}$.
+
+    \hfil
+
+    Now, for the minimized energy of electron gases in an infinite square well, in the $\bk$-space it reduces to a quarter circle (as the energy must have $k_x,k_y \geq 0$), hence for the number of occupied states (say $N$), one has $N \cdot \frac{\pi^2}{A}\approx \frac{1}{4}\pi k_F^2$ (where $k_F$ is the radius of the sphere that has the occupied states). Hence, $N \approx \frac{A}{4\pi^2}k_F^2$.
+    
+    Then, given many electrons, with the Pauli Exclusion Principle guaranteeing each eigenstate to have at most $2$ electrons, then the number of electrons, say $I$, satisfies $I \approx 2 N \approx \frac{A}{2\pi^2}k_F^2$. Hence, one derived that $k_F^2 \approx 4\pi^2 \frac{N}{A} = 4\pi^2 \sigma$ (since $\frac{N}{A}$ is the number of free electrons per unit area), so $k_F \approx 2\pi \sqrt{\sigma}$.
+
+    \hfil
+
+    As a result, the Fermi Energy $E_F := \frac{\hbar^2}{2m}k_F^2 = \frac{2\pi^2\hbar^2\sigma}{m}$. 
 \end{proof}
 
 \newpage
 
-\section*{5}
+\section*{5 D}
 \begin{ques}
 5 White Dwarfs (Griffiths 5.35 in both)
 
@@ -134,11 +294,80 @@ Certain cold stars (called \textbf{white dwarfs}) are stabilized against gravita
     \emph{Answer:} $R=7.6\times 10^{25}N^{-1/3}$ m.
 
     \item[(d)] Determine the radius, in kilometers, of a white dwarf with the mass of the sun.
-    \item[(e)] Determine the Fermi energy, in electron volts, for the white dwarf in (d), and compare it with the rest energy of an electron. Note taht this system is getting dangerously relativistic. 
+    \item[(e)] Determine the Fermi energy, in electron volts, for the white dwarf in (d), and compare it with the rest energy of an electron. Note that this system is getting dangerously relativistic. 
 \end{itemize}
 \end{ques}
 
 \begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given the radius of the white dwarf $R$, then the volume of a ball is $\frac{4}{3}\pi R^3$. Hence, $V^{-2/3} = \left(\frac{3}{4\pi}\right)^{2/3}\frac{1}{R^2}$. Therefore, the total energy is of this form:
+        \begin{align}
+            E_\text{tot} &= \frac{\hbar^2(3\pi^2 Nd)^{5/3}}{10\pi^2 m}V^{-2/3} = \frac{\hbar^2(3\pi^2 Nd)^{5/3}}{10\pi^2 m R^2}\left(\frac{3}{4\pi}\right)^{2/3}
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Fir a constant density $\rho$ for the ball of radius $R$. Given a spherical shell with radius $r$ and thickness $\Delta r$ (which has volume $\approx 4\pi r^2\Delta r$). Then with respect to the ball of constant mass in the middle (with volume $\frac{4}{3}\pi r^3$), the gravitational potential energy is given as follow:
+        \begin{align}
+            \Delta U &= \frac{G m_1 m_2}{r} = \frac{G}{r}\left(\rho\cdot 4\pi r^2\Delta r\right)\cdot\left(\rho \cdot \frac{4}{3}\pi r^3\right) = \frac{16\pi^2G\rho^2}{3}r^4\Delta r
+        \end{align}
+        Hence, the whole ball would obtain the following gravitational energy in terms of density:
+        \begin{align}
+            U = \int_{0}^{R}\frac{16\pi^2 G\rho^2}{3}r^4 dr = \frac{16\pi^2 G\rho^2}{15}R^5
+        \end{align}
+        Now, given the total volume $V=\frac{4}{3}\pi R^3$, if there are $N$ nucleons, with each nucleon taking mass $M$, then the density $\rho = \frac{N M}{V} = \frac{3N M}{4\pi R^3}$. Plugin to the equation, we get:
+        \begin{align}
+            U &= \frac{16\pi^2 G R^5}{15}\cdot \left(\frac{3N M}{4\pi R^3}\right)^2 = \frac{3 G N^2 M^2}{5R}
+        \end{align}
+        If consider gravity as negative potential, then $U = -\frac{3GN^2M^2}{5R}$ instead.
+    \end{itemize}
+
+    \hfil
+
+    \item[(c)] If consider the total energy, it's going to be of the form:
+    \begin{align}
+        E_\text{tot}+U = \frac{\hbar^2(3\pi^2 Nd)^{5/3}}{10\pi^2 m}\left(\frac{3}{4\pi}\right)^{2/3}\frac{1}{R^2} - \frac{3GN^2M^2}{5}\frac{1}{R}
+    \end{align}
+    For the minimum (given that $R>0$), it'll occur when the derivative is $0$:
+    \begin{align}
+        &\frac{d}{dR}(E_\text{tot}+U) = -\frac{\hbar^2(3\pi^2 N d)^{5/3}}{5\pi^2 m}\left(\frac{3}{4\pi}\right)^{2/3}\frac{1}{R^3}+\frac{3GN^2M^2}{5}\frac{1}{R^2} = 0\\
+        &\implies\frac{3GN^2M^2}{5}R = \frac{\hbar^2(3\pi^2Nd)^{5/3}}{5\pi^2 m}\left(\frac{3}{4\pi}\right)^{2/3}\\
+        &\implies R = \frac{\hbar^2(3\pi^2 Nd)^{5/3}}{3\pi^2 mGN^2M^2}\left(\frac{3}{4\pi}\right)^{2/3} = \left(\frac{9\pi}{4}\right)^{2/3}\frac{\hbar^2 d^{5/3}}{mGM^2N^{1/3}}
+    \end{align}
+    Which, given $d=\frac{1}{2}$, nucleon mass $M=1.67\cdot 10^{-27}$ kg, reduced Planck's constant $\hbar = 1.055\cdot 10^{-34}$ kg$\cdot$m$^2$/s, electron mass $m=9.109\cdot 10^{-31}$ kg, and universal gravitational constant $G = 6.674\cdot 10^{-11}$ m$^3$/(kg$\cdot$s$^2$), then the radius becomes:
+    \begin{align}
+        R &= \left(\frac{9\pi}{4}\right)^{2/3}\frac{(1.055)^2\cdot 10^{-68}\cdot 2^{-5/3}}{9.109\cdot 6.674 \cdot (1.67)^2\cdot 10^{-96}}\frac{1}{N^{1/3}} \approx \frac{7.616\cdot 10^{25}}{N^{1/3}} \text{ m}
+    \end{align}
+
+    \hfil
+
+    \item[(d)] Given total number of $N$ nucleons, with $d=\frac{1}{2}$ as assumption, then the total mass of the system is given as:
+    \begin{align}
+        M_\text{tot} &= N\left(M+\frac{1}{2}m\right) = N\left(1.67\cdot 10^{-27}+4.555\cdot 10^{-31}\right)\text{ kg}\approx 1.67045\cdot 10^{-27}\text{ kg}
+    \end{align}
+    If it's the mass of the sun, $M_\text{tot} = 1.989\cdot 10^{30}$ kg, then the number $N$ should be given as:
+    \begin{align}
+        N = \frac{M_\text{tot}}{1.67045\cdot 10^{-27}}\approx 1.191\cdot 10^{57}
+    \end{align}
+    Plugin to the radius formula, one yields:
+    \begin{align}
+        R \approx \frac{7.616\cdot 10^{25}}{(1.191\cdot 10^{57})^{1/3}}\text{ m}\approx 7184.938\text{ km}
+    \end{align}
+
+    \hfil
+
+    \item[(e)] Recall that the Fermi energy $E_F = \frac{\hbar^2}{2m}(3\rho\pi^2)^{2/3} = \frac{\hbar^2}{2m}\left(\frac{3\pi^2 Nd}{V}\right)^{2/3}$. Given $d=\frac{1}{2}$, $N \approx 1.191\cdot 10^{57}$, $\hbar = 1.055\cdot 10^{-34}$ J$\cdot$s, $m=9.109\cdot 10^{-31}$ kg, and $R\approx 7.184938 \cdot 10^6$ m. Then, the volume $V = \frac{4}{3}\pi R^3\approx 1.554\cdot 10^{21}$ m$^3$, and the resulting Fermi energy is:
+    \begin{align}
+        E_F = \frac{(1.055)^2\cdot 10^{-68}}{2\cdot 9.109\cdot 10^{-31}}\left(\frac{3\pi^2\cdot 1/2\cdot 1.191\cdot 10^{57}}{1.554\cdot 10^{21}}\right)^{2/3}\approx 3.085\cdot 10^{-14}\text{ J} \approx 1.928\cdot 10^5\text{ eV}
+    \end{align}
+    If comparing to the rest energy of an electron, one gets:
+    \begin{align}
+        E_\text{rest} = mc^2= (9.109\cdot 10^{-31})\cdot 9\cdot 10^16\approx 8.198\cdot 10^{-14}\text{ J}\approx 5.124\cdot 10^5\text{ eV}
+    \end{align}
+    So, the Fermi energy is slightly less than the rest mass energy, but they're about the same scale.
 \end{proof}
 
 \end{document}
