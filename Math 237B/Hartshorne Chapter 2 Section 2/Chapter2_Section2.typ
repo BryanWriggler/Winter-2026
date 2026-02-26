@@ -33,11 +33,11 @@ The goal for this section is to understand the notion of schemes - a generalizat
 = Prime Spectrum and its Structure
 
 Before starting, let's review some notion on the spectrum of a commutative ring:
-#definition[Spectrum of a Commutative Ring][
+#definition[Spectrum of a Commutative Ring and Closed Sets][
   Given a commutative ring $A$, its prime spectrum $Spec(A)$ is defined to be all the prime ideals $P subset.eq A$. Similarly, a maximal spectrum $upright("Max")Spec(A)$ is defined to be all the maximal ideals $M subset.eq A$.
-]
 
-#defn["Closed" Sets in Spectrum][
+  \
+  
   Given any ideal $I subset.eq A$, define the subset $V(I) subset.eq Spec(A)$ as all the prime ideals containing $I$.
 ]
 
@@ -566,8 +566,93 @@ Now, let's talk about ring homomorphisms for graded rings:
 ]
 As an observation, notice that it pulls back homogeneous ideals to homogeneous ideals (as $f^(-1)(I) = f^(-1)(plus.circle.big I sect T_n) = plus.circle.big f^(-1)(I sect T_n)$, due to the graded structure enforcing $f^(-1)(I sect T_n) subset.eq S_n$, and each $f^(-1)(I sect T_n)$ must precisely be $f^(-1)(I) sect S_n$).
 
-Hence, in particular if $f$ is surjective, its kernel is a homogeneous ideal, and one has $T tilde.equiv S\/ker(f) tilde.equiv plus.circle_(n in ZZ)S_n\/(ker(f) sect S_n)$ as abelian groups:
+Hence, in particular if $f$ is surjective, its kernel is a homogeneous ideal, and one has $T tilde.equiv S\/ker(f) tilde.equiv plus.circle.big_(n in ZZ)S_n\/(ker(f) sect S_n)$ as commutative rings:
 
 #proof[
 
+  If consider them as abelian groups, one first have each graded morphism $f_n:S_n -> T_n$ (which is surjective, because the map $f$ must be surjective component wise due to the graded structure), hence one has $T_n tilde.equiv S_n\/ker(f_n)$. Also, notice that $ker(f) = plus.circle.big ker(f_n)$ (because each $ker(f) sect S_n$ must lie in $ker(f_n)$, while the reverse direction is obviously true). Hence, one has the following (as isomorphism of abelian groups):
+  $ plus.circle.big (S_n\/ker(f) sect S_n)=plus.circle.big (S_n\/ker(f_n)) tilde.equiv plus.circle.big T_n = T tilde.equiv S\/ker(f) $
+  Now, it suffices to check the definition of multiplication on the newly created ring, say given $overline(a_n) in S_n\/ker(f_n)$ and $overline(a_m) in S_m\/ker(a_m)$, define $overline(a_n) dot overline(a_m):= overline(a_n a_m) in S_(n+m)\/ker(f_(n+m))$.
+
+  If $a_n,a_n' in S_n$ and $a_m,a_m' in S_m$ are the representatives of $overline(a_n), overline(a_m)$ respectively, then $a_n-a_n' in ker(f_n)$ and $a_m-a_m' in ker(f_m)$, in particular they're all in $ker(f)$.
+
+  As a result, one has $a_n' = k_n+a_n$ and $a_m' = k_m+a_m$ for some $k_n in ker(f_n)$ and $k_m in ker(f_m)$ (in particular, they're all in $ker(f)$). Hence, one has:
+  $ a_n' a_m' = k_n k_m + k_n a_m + k_m a_n + a_n a_m $
+  Where $k_n k_m, k_n a_m, k_m a_n in ker(f_(n+m))$ (because they all belong to $ker(f)$ and $S_(n+m)$, hence in the intersection $ker(f_(n+m))$). Therefore, $overline(a_n' a_m')=overline(a_n a_m)$, making it well-defined.
 ]
+
+\
+
+Finally, before starting the construction, let's define another useful tool:
+#definition[Graded Algebra of a Ring][
+  Given a commutative ring $R$ and an ideal $I subset.eq R$, define the ideal's Graded Algebra as:
+  $ Gr(I):= plus.circle.big_(n>=0)I^n\/I^(n+1) $
+  Which, $I^0 := R$ is a convention.
+]
+Notice that this is not only an $R$-algebra, but also an $R\/I$-algebra (as there is a natural inclusion).
+
+\ 
+
+With all these machineries, we can start our actual construction of projective schemes. As convention, we'll fix the ring $S$ to be $NN$-graded:
+#definition[Projective Space and Closed Subsets][
+  Given an $NN$-graded ring $S$, define the set $Proj(S):=$ all homogeneous prime ideals, that doesn't contain the #text(weight: "bold")[Irrelevant Ideal] $plus.circle.big_(n>0)S_n$.
+
+  \ 
+
+  Also, given any homogeneous ideal $I$, define $V(I) subset.eq Proj(S)$ to be all allowed homogeneous prime ideals that contains $I$.
+]
+The reason why Irrelevant Ideal is excluded is similar to the case of $PP^n$ before: if an ideal contains $(x_0,...,x_n)$ in $k[x_1,...,x_n]$, then it describes an empty set (as on $PP^n$ no coordinates can be completely $0$ everywhere). To prevent similar problem from arising, we first need to exclude this ideal (which corresponds to all positive gradings).
+
+\ 
+
+Of course, given the "closed sets", we need to verify its topology:
+#lemma("Closed Set Relation on Projective Space")[
+  Given an $NN$-graded ring $S$, and $Proj(S)$ all allowed prime spectrums.
+  1. If $I,J subset.eq S$ are two homogeneous ideals, then $V(I J) = V(I sect J) = V(I) union V(J)$.
+  2. If ${I_i}$ is a family of homogeneous ideals of $A$, then $V(sum_i I_i) = sect V(I_i)$
+  3. If $I,J$ are two homogeneous ideals, then $V(I) subset.eq V(J)$ iff $sqrt(I)supset.eq sqrt(J)$ 
+][
+  For most part, cf. the proof of the ordinary spectrum case on page 1 (most proofs can directly carry over).
+
+  To be careful though: The proof for $V(I J)=V(I) union V(J)$ will need the fact that homogeneous prime ideals only need to check with homogeneous elements. 
+
+  \
+  
+  Also, the proof for radicals requires the fact that radical of homogeneous ideal is still homogeneous (which we should give a proof here):
+
+  Given any $sum_n x_n in sqrt(I)$, since there exists $k in NN$ where $(sum_n x_n)^k  in I$, if $x_i$ is the lowest degree element, then the lowest degree element of $(sum_n x_n)^k$ is $x_i^k$. Hence, this shows that $x_i^k in I$ (because $I$ is homogeneous, each homogeneous summand of an element in $I$ should be in $I$). Hence, one has $x_i in sqrt(I)$. Then, since $sum_n x_n - x_i in sqrt(I)$, one can inductively prove that each homogeneous summand is inside $sqrt(I)$. This enforces $sqrt(I) = plus.circle.big sqrt(I) sect S_n$ (since each homogeneous summand must be in there), proving the homogeneity.
+]
+Hence, we can once define the "topology" of $Proj(S)$ based on these closed set relations. As a remark, at this point of the note, we know nothing about its relation with the Zariski Topology on $Spec(S)$ (since $Proj(S) subset.eq Spec(S)$, it also has a subspace topology. Are these equal?) We'll come back to the questions later.
+
+\ 
+
+Then, given this definition, we need to construct it structure sheaf also. Let's build up some definitions:
+#definition["Local Ring" of a Homogeneous Prime Ideal][
+  Given a homogeneous prime ideal $P in Proj(S)$, let $T$ be the collection of all homogeneous elements that're not in $P$ (which, the prime structure enforces $T$ to be multiplicatively closed), consider the ring $T^(-1)S$.
+  
+  Notice that $T^(-1)S = plus.circle.big_(n in ZZ)(T^(-1)S)_n$, where the degree $deg(s/t) = deg(s)-deg(t)$ for $s in S$ and $t in T$ (which is well-defined under localization, because if $s/f=s'/f'$, there exists $u in T$, such that $(s f'-s' f)u = 0$, causing $s f' u=s' f u$, or $deg(s)+deg(f')=deg(s f') = deg(s' f)=deg(s')+deg$). One can also check it's well-defined under addition and multiplication.
+
+  Now, define the "local ring" $S_((P)):= (T^(-1)S)_0$
+]
+Of course we need to check this:
+#proposition[
+  Given homogeneous prime ideal $P in Proj(S)$, then $S_((P))$ is a local ring, with maximal ideal $P^e sect (T^(-1)S)_0$.
+][
+  It's clear that $P^e$ is generated by all homogeneous elements $s/t$, where $s in P$ and $t in.not P$. As a result, $P^e sect (T^(-1)S)_0 = {s/f | s in P, f in T " homogeneous", deg(s)=deg(f)}$ (since one specifically need the degree to be $0$). More precisely, it should be the finite sum of them, but since sums preserve degree, it can be rewritten as the given form.
+
+  \ 
+
+  Now, to claim that this is the maximal ideal of $S_((P))$, it suffices to prove that other elements outside of this is a unit. But, this is basically by definition, since if $s/t in S_((P))\\(P^e sect (T^(-1)S)_0)$, one has $s in.not P$, so as a homogeneous element, one must have $s in.not P$, or $s in T$, showing $t/s$ is its inverse.
+]
+
+\ 
+
+With this, we can define the structure sheaf as follow:
+#definition[Structure Sheaf of $Proj(S)$][
+  Given $X=Proj(S)$, define the structure sheaf (sheaf of rings) $cal(O)_X:O(X)^op-> Ab$ as follow:
+
+  Given any open subset $U subset.eq X$, define $cal(O)_X (U):= {"functions "s:U -> union.sq.big_(P in U)S_((P))}$, that satisfies:
+  1. Any $P in U$ has $s(P) in S_((P))$.
+  2. Any $P in U$ has an open neighborhood $P in V subset.eq U$, such that there exits homogeneous elements $a, f in S$ with the same degree, and $f in.not Q$ for all $Q in V$, such that $s(Q) = a/f in S_((Q))$ for all $Q in V$.
+]
+Which, with restrictions as usual restrictions of domains, this is clearly a sheaf of abelian groups (and the image is clearly a ring). So, it remains to check the locally ringed space property on the stalk, and some other great nature:

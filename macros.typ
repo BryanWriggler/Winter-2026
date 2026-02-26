@@ -31,6 +31,8 @@
 #let coim = math.upright[coim] //coimage (homological algebra)
 #let im = math.upright[im] //image
 #let Spec = math.upright[Spec] //spectrum of a ring / vector space
+#let Gr = math.upright[Gr] //graded structure
+#let Proj = math.upright[Proj] //the projective space of graded rings
 #let coker = math.upright[coker] //cokernel
 #let Ker = math.upright[Ker] //the object as source of kernel morphism
 #let Cok = math.upright[Cok] //the object as target of cokernel morphism
