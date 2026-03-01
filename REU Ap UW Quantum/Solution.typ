@@ -123,7 +123,20 @@
 
     \ 
 
-  + Given $ket(u) = x ket(psi_0)+y ket(psi_1)$ WLOG, by multiplying suitable global phase, can assume $x>=0$. We'll also rewrite $y = r e^(i t)$, and $braket(psi_0,psi_1)=|braket(psi_0,psi_1)|e^(i s)$ for $r>=0$ and $t,s in RR$. Notice its norm is given as follow:
+    \ 
+
+  + There is one trivial case we'll deal with first (to prevent exception). Sppose $braket(psi_0,psi_1)=0$ (i.e. the two states are orthonormal), then choosing $ket(u):= ket(psi_1)$ (where if $ket(v) in V$ and $ket(w) in V^perp$ has $ket(u)=ket(v)+ket(w)$, then $ket(w)=0$ and $ket(v)=ket(u)$) has the above distinguishing success probability becomes the following:
+    $ (1/2"Pr"[0 | psi_0]+1/2"Pr"[1 | psi_1])_(ket(u)) &= 1/2 + 1/2(braket(psi_1,v)braket(v,psi_1)-braket(psi_0,v)braket(v,psi_0))\ 
+    &= 1/2+1/2(1-0) = 1 $
+    Which, the probability can be maximized to $1$, and it's definitely an optimal measurement.
+
+    \ 
+
+    \ 
+
+    Afterward, we'll assume $braket(psi_0,psi_1)!=0$. Which,  because $ket(psi_0),ket(psi_1)$ are normalized states which are linearly independent, so $|braket(psi_0,psi_1)|^2 < braket(psi_0)braket(psi_1)=1$ using Cauchy Schwartz, and it's strict inequality because of linear independence. Hence, one has $0<|braket(psi_0,psi_1)|<1$.
+  
+    Given $ket(u) = x ket(psi_0)+y ket(psi_1)$. WLOG, by multiplying suitable global phase, can assume $x>=0$. We'll also rewrite $y = r e^(i t)$, and $braket(psi_0,psi_1)=|braket(psi_0,psi_1)|e^(i s)$ for $r>=0$ and $t,s in RR$. Notice its norm is given as follow:
     $ braket(u) &= x^2braket(psi_0)+x y braket(psi_0,psi_1) + y^* x braket(psi_1,psi_0)+y^* y braket(psi_1)\ 
     &= x^2 + |y|^2 + 2x Re(y braket(psi_0,psi_1)) \ 
     &= x^2+r^2 + 2 x Re(r|braket(psi_0,psi_1)|e^(i(s+t)))\ 
@@ -147,99 +160,70 @@
 
     \ 
 
-    Now, let's fully write this in terms of $x$: Given the previous normalization condition, one can rewrite $r$ as a function of $x$ as follow:
-    $ &r^2 + r dot 2x|braket(psi_0,psi_1)|cos(s+t) + (x^2-1)=0\ 
-    &==> r = -x|braket(psi_0,psi_1)|cos(s+t) pm sqrt(x^2|braket(psi_0,psi_1)|^2 cos^2(s+t)-(x^2-1)) $
-    Since $r>=0$, one necessary condition is the term in the square root is nonnegative, namely $1-x^2(1-|braket(psi_0,psi_1)|^2 cos^2(s+t))>=0$, showing $x^2 <= 1/(1-|braket(psi_0,psi_1)|^2 cos^2(s+t))$ (Note: this is well defined, because $0<=|braket(psi_0,psi_1)|^2<1$ and $0<=cos^2(s+t)<=1$, so the denominator is strictly positive). Hence, with assumption $x>=0$, one has $0<=x<=1/(sqrt(1-|braket(psi_0,psi_1)|^2 cos^2(s+t)))$.
+    Now, we'll denote $theta := s+t$ (where $t$ is the changing variable, but for simplicity purpose), and also $a:= |braket(psi_0,psi_1)|$ to simplify the equation (where $0<a < 1$). 
     
-    With such condition being satisfied (which $r$ is real), one needs to consider $r>=0$ (as this is our assumption), hence one must work with the case where $+$ is in front of the square root (as a necessary condition, since for $r>=0$, maximizing $r^2-x^2$ with fixed $x$ meaning maximizing $r$). 
+    Then, the above question becomes: minimizing $f(r,x,theta)= r^2-x^2$, given the constraint $g(r,x,theta) = x^2+r^2+2x r a cos(theta)-1 = 0$. Hence, using Lagrange Multiplier, if $(x,r,theta)$ maximizes $f$ while satisfying the constraint, there exists a unique $lambda in RR$, such that $nabla f(x,r,theta) = lambda nabla g(x,r,theta)$. Which, we get the following equation:
+    $ (-2x, 2r, 0)=nabla f = lambda nabla g = lambda(2x+2r a cos(theta), 2r+2x a cos(theta), -2x r a sin(theta)) $
+    Since $ket(u)$ is assumed to be a nonzero state, one must have one of $x,r=|y|$ be nonzero. In particular, this forces $lambda !=0$ (as if $lambda = 0$, $nabla f = (-2x,2r,0)=0$, enforcing $x,r=0$, which is a contradiction).
+
+    Then, the third entry of the equality implies that $-2 lambda x r a sin(theta)=0$, or $x r sin(theta)=0$. There are three case to consider, either $x=0, r=0$, or $sin(theta)=0$:
+    - If $x=0$, $r!=0$ is being enforced. Plug it into $g$, one has the following equality:
+      $ g(r,x,theta) = x^2+r^2+2 x r a cos(theta)-1 = r^2=0 $
+      Which implies that $r=0$, but this is a contradiction to $r!=0$.
+
+      \ 
+
+    - If $r=0$, $x!=0$ is being enforced. Plug it into $g$, one has the following equality:
+      $ g(r,x,theta) = x^2+r^2+2 x r a cos(theta)-1 = x^2 = 0 $
+      Which implies that $x=0$, but this again contradicts with $x!=0$.
+
+      \ 
+
+    Hence, the only possibility is having $sin(theta)=0$ and $x,r!=0$, enforcing $cos(theta)=pm_1 1$. Plug this result into the first two entries of the Lagrange Multiplier, we get:
+    $ &-2x = lambda(2x pm_1 2r a), quad 2 r = lambda(2r pm_1 2x a) $
+    where the $pm$ is by $cos(theta)$ (which hasn't been determined yet). Then, the two equalities simplify to the following:
+    $ &-x = lambda x pm_1 lambda a r, quad r = lambda r pm_1 lambda a x $
+    Which, the second equality states $(1-lambda)r = pm_1 lambda a x$. With $lambda, a, r, x!=0$, this enforces $1-lambda !=0$ (or $lambda!=1$). Hence, one gets $r = pm (lambda a x)/(1-lambda)$. Plugin to the first equality (which shows $-(1+lambda)x = pm_1 lambda a r$, or $x = mp_1 (lambda a r)/(1+lambda)$), one has:
+    $ x = mp_1 (lambda a r)/(1+lambda) = -(lambda^2 a^2 x)/(1-lambda^2) $
+    Hence, $(1-lambda^2)x = -lambda^2 a^2 x$, or $(1-lambda^2(1-a^2))x=0$. With $x!=0$, this enforces $1-lambda^2(1-a^2)=0$, or $lambda = pm_2 1/sqrt(1-a^2)$.
+
+    \ 
+
+    Here, plug the two potential $lambda$'s back to the previous equation, we get:
+    $ cases(
+      (1pm_2 1/sqrt(1-a^2))x pm_1 (pm_2 a/sqrt(1-a^2))r = 0,
+      pm_1 (pm_2 a/sqrt(1-a^2))x +(pm_2 1/sqrt(1-a^2)-1)r=0
+    ) $
+    Because of the requirement $x,r!=0$, such linear system must have nontrivial solution. Which, for any $x>0$, the solution is $r = mp_1 (pm_2 sqrt(1-a^2)/a) (1 pm_2 1/sqrt(1-a^2))x$ (one can check this does satisfy the linear system). 
     
-    Now, for maximizing $r^2-x^2$, one will consider the case where $d/(d x)(r^2-x^2)=2r (d r)/(d x)-2 x=0$, and the boundary case $x=0. x=1/sqrt(1-|braket(psi_0,psi_1)|^2 cos^2(s+t))$.
+    Also, note that we have the restriction $r>=0$ initially. With $0<a<1$, one has $1-1/sqrt(1-a^2)<0$. Hence, for $r>0$ to happen, the only possible pairs are $(pm_1,pm_2) = (-,+), (-,-)$. In particular, one needs $cos(theta)=-1$ (so, in particular one can choose $theta=pi$).
 
-    - For $x=0$, then $r$ simplifies to $pm sqrt(1)$, so take $r>=0$ one has the probability being $1/2+1/2(1-|braket(psi_0,psi_1)|^2)(r^2-x^2) = 1-1/2|braket(psi_0,psi_1)|^2$.
+    Finally, the two cases are given as follow:
+    - For $pm_2 = +$ (or $lambda = 1/sqrt(1-a^2)$), the solution is $r=sqrt(1-a^2)/a (1+1/sqrt(1-a^2))x$. Plugin to the equation $g(x,r,theta)=0$, one has:
+      $ &g(x,r,theta) = 0 \ 
+      &==> x^2+(1-a^2)/a^2 (1+1/sqrt(1-a^2))^2 x^2-2 sqrt(1-a^2)(1+1/sqrt(1-a^2))x^2=1\ 
+      &==> x^2 = 1/2 a^2/(1-a^2)1/(1+sqrt(1-a^2))\ 
+      &==> r^2-x^2 = [(1-a^2)/a^2 (1+1/sqrt(1-a^2))^2-1]x^2 = 1/sqrt(1-a^2) $
+      Hence, the distinguishing success probability for this case is: 
+      $ 1/2+1/2(1-a^2)(r^2-x^2) = 1/2+1/2 sqrt(1-a^2) $
 
-    \ 
+      \ 
 
-    - For $x=1/sqrt(1-|braket(psi_0,psi_1)|^2 cos^2(s+t))$, the term in the square root becomes $1-x^2(1-|braket(psi_0,psi_1)|^2 cos^2(s+t)) = 0$, hence $r$ reduces to $-x|braket(psi_0,psi_1)|cos(s+t)$, which one has the probability being as follow:
-      $ 1/2+1/2(1-|braket(psi_0,psi_1)|^2)(r^2-x^2) &= 1/2+1/2(1-|braket(psi_0,psi_1)|^2)x^2(|braket(psi_0,psi_1)|^2 cos^2(s+t)-1)\ 
-    &= 1/2-1/2(1-|braket(psi_0,psi_1)|^2)\ 
-    &= 1/2|braket(psi_0,psi_1)|^2 $
-
-    \ 
-
-    - For the derivative being $0$, one has $r (d r)/(d x)-x=0$. Which, it becomes the following:
-      $ (-x|braket(psi_0,psi_1)|cos(s+t)pm sqrt(1-x^2(1-|braket(psi_0,psi_1))^2cos^2(s+t)))(-x|braket(psi_0,psi_1)|cos(s+t)) $
-
-
-
-/*
-  \
-
-  - Since $cal(H)^(times.circle n)$ is a $d$-dimensional inner product space, together with $ket(psi_0), ket(psi_1) in cal(H)^(times.circle n)$ be two distinct normalized states (in particular, the list ${ket(psi_0), ket(psi_1)}$ is linearly independent), hence one can extend it to a basis of $cal(H)^(times.circle n)$, say ${ket(psi_0), ket(psi_1),...,ket(psi_(d-1))} subset cal(H)^(times.circle n)$. By performing Gram-Schmidt process, we can form an orthonormal basis, say ${ket(phi_0),ket(phi_1),...,ket(phi_(d-1))} subset cal(H)^(times.circle n)$. Which, one has $ket(phi_0)=ket(psi_0)$, while the second component is given by:
-    $ ket(phi_1) &= (ket(psi_1)-braket(psi_0,psi_1)ket(psi_0))/(||ket(psi_1)-braket(psi_0,psi_1)ket(psi_0)||) = (ket(psi_1)-braket(psi_0,psi_1)ket(psi_0))/sqrt(1-|braket(psi_0,psi_1)|^2) $
-    Also, as a side note, for each index $k in {0,1,...,d-1}$, the Gram-Schmidt process guarantees $span{ket(psi_0),...,ket(psi_k)} = span{ket(phi_0),...,ket(phi_k)}$. Which, using the orthonormality of the $ket(phi_k)$'s, since $ket(psi_1) in span{ket(phi_0), ket(phi_1)}$ (which $ket(phi_0), ket(phi_1)$ are both orthonormal to all $ket(phi_k)$ with $k>=2$), then one has $ket(psi_1)$ being orthogonal to all $ket(phi_k)$ with $k>=2$, or $braket(phi_k, psi_1)=0$ for all $k>=2$.
-
-  \ 
-
-  - Let $ket(u)$ be a normalized state corresponding to the projection operator, we'll denote it as $ket(u) = sum_(k=0)^(d-1)a_k ket(phi_k)$, for $a_k in CC$ that satisfies $braket(u,u)=sum_(k=0)^(d-1)|a_k|^2 = 1$. WLOG, by multiplying a suitable global phase, one can assume $a_1>=0$. Then, the projection operator is of the following form:
-    $ ket(u)bra(u) = sum_(k=0)^(d-1)sum_(l=0)^(d-1)a_k a_l^* ket(phi_k)bra(phi_l) $
-    The measurement outcome $0$ will be read off from $II-ketbra(u)$, while the measurement outcome $1$ will be read off from $ketbra(u)$.
-
-  \
-
-  \ 
-
-  #text(weight: "bold")[II. Calculating Distinguishing Success Probability:]
-
-  To calculate $"Pr"[0 | psi_0], "Pr"[1 | psi_1]$, we have the following:
-  $ "Pr"[0 | psi_0] &= braket(psi_0, (II-ketbra(u)), psi_0) = 1-braket(psi_0,u)braket(u,psi_0)\
-  &=1-sum_(k=0)^(d-1)sum_(l=0)^(d-1)a_k a_l^* braket(phi_0,phi_k)braket(phi_l,phi_0)\ 
-  &= 1-sum_(k=0)^(d-1)sum_(l=0)^(d-1)a_k a_l^* delta_(0 k)delta_(0 l) = 1-a_0 a_0^* = 1-|a_0|^2 $
-  (Note: This is due to the Gram-Schmidt process, causing $ket(phi_0)=ket(psi_0)$).
-  $ "Pr"[1 | psi_1] =& braket(psi_1, u)braket(u, psi_1) = sum_(k=0)^(d-1)sum_(l=0)^(d-1)a_k a_l^* braket(psi_1,phi_k)braket(phi_l,psi_1)= sum_(k=0)^(1)sum_(l=0)^(1)a_k a_l^*braket(psi_1,phi_k)braket(phi_l,psi_1)\ 
-  =& |a_0|^2 dot |braket(psi_0,psi_1)|^2 + a_0 a_1^* braket(psi_1,psi_0)(braket(psi_1,psi_1)-|braket(psi_0,psi_1)|^2)/(sqrt(1-|braket(psi_0,psi_1)|^2)) \
-  &+ a_1a_0^* braket(psi_0,psi_1)(braket(psi_1,psi_1)-|braket(psi_0,psi_1)|^2)/(sqrt(1-|braket(psi_0,psi_1)|^2))+|a_1|^2 dot #eval(400%) (braket(psi_1,psi_1)-|braket(psi_0,psi_1)|^2)/(sqrt(1-|braket(psi_0,psi_1)|^2))#eval(400%)^2\ 
-  =& |a_0|^2 dot |braket(psi_0,psi_1)|^2 + sqrt(1-|braket(psi_0,psi_1)|^2)(a_0 a_1^* braket(psi_1,psi_0)+a_1 a_0^* braket(psi_0,psi_1))+|a_1|^2 dot (1-|braket(psi_0,psi_1)|^2) $
-  (Note: This relies on Gram-Schmidt again, where $ket(phi_1)=(ket(psi_1)-braket(psi_0,psi_1)ket(psi_0))/(sqrt(1-|braket(psi_0,psi_1))|^2)$)
-  
-  Which, if denote $braket(psi_0,psi_1) = r e^(i t)$ for $r = |braket(psi_0,psi_1)|$ (with $0<=r<1$) and $t in [0,2pi)$, $a_1 = |a_1| dot e^(i s)$ for $s in [0,2pi)$, and under the assumption $a_0>=0$, then the distinguishing success probability becomes:
-  $ &(1/2"Pr"[0 | psi_0] + 1/2"Pr"[1 | psi_1])_(ket(u))\ 
-  &= 1/2+1/2(1-r^2)(|a_1|^2-a_0^2)+ 1/2 a_0 sqrt(1-r^2)dot 2 Re(a_1 braket(psi_0,psi_1))\ 
-  &= 1/2+1/2(1-r^2)(|a_1|^2-a_0^2)+a_0 sqrt(1-r^2)cos(s+t) $
-  (Note: This formula is for arbitrary $ket(u) = sum_(k=0)^(d-1)a_k ket(phi_k)$ with $a_0>=0$),
-
-  \ 
-
-  \ 
-
-  #text(weight: "bold")[III. Solutions:]
-
-  + To show that one only needs to check $ket(u) in span{ket(psi_0), ket(psi_1)}$, we'll show that if $ket(u) in.not span{ket(psi_0), ket(psi_1)}$, there exists some other normalized state $ket(u') in span{ket(psi_0), ket(psi_1)}$, such that ${ketbra(u',u'), II-ketbra(u',u')}$ generates a higher distinguishing success probability.
-
-    Suppose $ket(u) in.not span{ket(psi_0), ket(psi_1)}$, this implies some $a_2,...,a_(d-1) in CC$ are nonzero, say $i_1,...,i_k in {2,...,d-1}$ are all distinct indices (other than indices $0,1$) such that each $a_(i_j)!=0$. This implies the following: 
-    $ 1 = braket(u,u) = sum_(j=0)^(d-1)|a_j|^2 = |a_0|^2+|a_1|^2 + sum_(j=1)^k |a_(i_j)|^2 $ 
-    since the remaining coefficients are $0$). 
+    - for $pm_2 = -$ (or $lambda = -1/(sqrt(1-a^2))$), the solution is $r=sqrt(1-a^2)/a (1/sqrt(1-a^2)-1)x$. Plugin to the equation $g(x,r,theta)=0$, one has:
+      $ &g(x,r,theta)=0\ 
+      &==> x^2+(1-a^2)/a^2 (1/sqrt(1-a^2)-1)^2 x^2 - 2 sqrt(1-a^2)(1/sqrt(1-a^2)-1)x^2=1\ 
+      &==> x^2 = 1/2 1/(1-sqrt(1-a^2)) a^2/(1-a^2)\ 
+      &==> r^2-x^2 = [(1-a^2)/a^2(1/sqrt(1-a^2)-1)^1-1]x^2 = -1/sqrt(1-a^2) $
+      Hence, the distinguishing success probability for this case is:
+      $ 1/2+1/2(1-a^2)(r^2-x^2)=1/2-1/2sqrt(1-a^2) $
     
-    Then, consider the state $ket(u') = (sqrt(|a_0|^2+sum_(j=1)^d|a_(i_j)|^2))ket(psi_0)+a_1 ket(psi_1)$. Which, $ket(u') in span{ket(psi_0),ket(psi_1)}$, and moreover it satisfies the following: 
-    $ braket(u',u') = #eval(400%)sqrt(|a_0|^2+sum_(j=1)^k|a_(i_j)|^2)#eval(400%)^2 + |a_1|^2 = |a_0|^2+|a_1|^2 + sum_(j=1)^k|a_(i_j)|^2 = 1 $
-    This shows that $ket(u')$ is perfectly normalized. On the other hand, notice that the distinguishing success probability of $ket(u')$ is given as follow:
-    $ (1/2 "Pr"[0 | psi_0]+1/2 "Pr"[1 | psi_1])_(ket(u')) &= 1/2+1/2(#eval(400%)sqrt(|a_0|^2+sum_(j=1)^k|a_(i_j)|^2)#eval(400%)^2 - |a_1|^2)\ 
-    &= 1/2+1/2(|a_0|^2+sum_(j=1)^k |a_(i_j)|^2 - |a_1|^2)\
-    &>1/2+1/2(|a_0|^2-|a_1|^2)\ 
-    &= (1/2 "Pr"[0 | psi_0]+1/2 "Pr"[1 | psi_1])_(ket(u)) $
-    This strict inequality holds because each $a_(i_j)!=0$, showing $|a_(i_j)|^2>0$. Which, this demonstrates that $ket(u') in span{ket(psi_0),ket(psi_1)}$ generates a higher distinguishing success probability than $ket(u)$, providing that $ket(u) in.not span{ket(psi_0), ket(psi_1)}$.
-
-    hence, we conclude that any $ket(u) in.not span{ket(psi_0),ket(psi_1)}$ CANNOT maximize the distinguishing success probability (since one can always choose some other normalized state with higher probability). Which, one only needs to check $ket(u)$ that lies in the span of $ket(psi_0),ket(psi_1)$.
-
     \ 
 
-    \ 
+    Hence, for $pm_2 = +$, one maximizes the the distinguishing success probability. Which, one has $x = a/(sqrt(2)sqrt(1-a^2)sqrt(1+sqrt(1-a^2)))$, and $r = sqrt(1+sqrt(1-a^2))/(sqrt(2)sqrt(1-a^2))$.
 
-  + Suppose $ket(u) = x ket(psi_0)+y ket(psi_1)$ is a normalized state maximizing the distinguishing success probability (which, $braket(u,u)=|x|^2+|y|^2=1$, showing $|x|,|y| in [0,1]$). WLOG, by multiplying with suitable global phase, one can assume $x in[0,1]$. 
-  
-    Then, notice that $|y|^2 = 1-|x|^2 =1-x^2$, which shows the following for the distinguishing success probability:
-    $ (1/2 "Pr"[0 | psi_0]+1/2 "Pr"[1 | psi_1])_(ket(u)) &= 1/2+1/2(|x|^2-|y|^2)\ 
-    &= 1/2+1/2(x^2-(1-x^2))\ 
-    &= x^2 $
-  */
+    Also, recall that we need $cos(theta) = cos(s+t)=-1$, in particular we chose $theta = pi$. Hence, one has $t = pi-s$ (where $s in RR$ satisfies $braket(psi_0,psi_1) = |braket(psi_0,psi_1)|e^(i s) = a e^(i s)$). So, the optimal measurement has state $ket(u)$ being the following (given that $braket(psi_0,psi_1) = a e^(i s)$ for some $0<a<1$ and $s in RR$):
+    $ ket(u) &= x ket(psi_0)+r e^(i t) ket(psi_1)\ 
+    &= a/(sqrt(2(1-a^2)(1+sqrt(1-a^2))))ket(psi_0) - sqrt(1+sqrt(1-a^2))/sqrt(2(1-a^2))e^(-i s)ket(psi_1) $
+    And, the maximum distinguishing success probability is $1/2+1/2sqrt(1-a^2)$ shown by the Lagrange Multiplier.
+
 ]
