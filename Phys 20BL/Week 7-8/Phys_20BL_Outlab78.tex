@@ -326,6 +326,7 @@ On the other hand, it's also predicted that both series and parallel arrangment 
 \newpage
 
 \subsection{Data}
+\subsubsection{Trial 1}
 For the series arrangement, plotting the data (with input and output voltage), and another plot with the comparison of the data versus the prediction, it shows the following two:
 
 \hfil
@@ -370,7 +371,7 @@ For the second and the third trial, we'll simply include the data points, the pr
 
 \newpage
 
-\subsection{Trial 2}
+\subsubsection{Trial 2}
 Series:
 
 \begin{figure}[h!]
@@ -404,7 +405,7 @@ Root mean square error of prediction: $\text{err}_\text{rms} \approx 5.014$ V.
 
 \newpage
 
-\subsection{Trial 3}
+\subsubsection{Trial 3}
 Series:
 
 \begin{figure}[h!]
@@ -438,7 +439,27 @@ Root mean square error of prediction: $\text{err}_\text{rms} \approx 5.016$ V.
 
 \newpage
 
-\subsection{Conclusion}
+\subsection{Conclusion (Week 8)}
+
+In all three trials of the LRC Circuit, the models are in general inaccurate for the prediction: Given the max voltage change is $20$ V, the root mean square errors of series / parallel in each trials are:
+\begin{itemize}
+    \item Series: $\text{err}_\text{rms}\approx 5.011, 4.422, 4.396$ V respectively, which are about $25.055\%, 22.110\%,21.980\%$ of the total change.
+    \item Parallel: $\text{err}_\text{rms}\approx 4.889, 5.014, 5.016$ V respectively, which are about $24.445\%, 25.070\%,25.080\%$ of the total change.
+\end{itemize}
+Quantitatively it's really inaccurate.
+
+However, when predicting the general decaying behavior, it's qualitatively right - one did observe that under series arrangement, the decay rate in all three trials are explicitly slower than the parallel arrangement.
+
+Finally, when comes to predicting the oscillatory behavior, it's qualitatively right for the parallel arrangement (as it does oscillate in all three cases), while inaccurate for the series arrangement (which is predicted to oscillate, but didn't in all three cases).
+
+\hfil
+
+About the potential sources of error causing large discrepency, here are a few:
+\begin{itemize}
+    \item Because the square wave mathematically is not continuous, there is a sudden change in current initially, causing the term $L\frac{dI}{dt}$ to not really be well-defined. This causes some difficulty when modeling the circuit, and may cause some deviation from what is assumed here (that the initial current is solely caused by the resistance, and not any other parts). This would mainly cause a difference in the initial condition, and change the calculated coefficients.
+    \item Another possibility is the actual value of $L,R,C$ are different fro the label: One flaw in the experimental process is there's no enough time to set a separate experiment for testing the actual values used in the lab. This may cause the coefficients to differ from what is predicted based on the given value.
+\end{itemize}
+In reality, it'll be better to put in extra time and test out the actual values for the circuit components used in the lab.
 
 
 \end{document}
