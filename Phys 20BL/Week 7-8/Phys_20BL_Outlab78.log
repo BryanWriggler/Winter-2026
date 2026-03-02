@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  1 MAR 2026 22:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  2 MAR 2026 07:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -800,12 +800,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<series.jpg, id=137, 1529.715pt x 497.86pt>
+<series.jpg, id=167, 1529.715pt x 497.86pt>
 File: series.jpg Graphic file (type jpg)
 <use series.jpg>
 Package pdftex.def Info: series.jpg  used on input line 127.
 (pdftex.def)             Requested size: 341.43306pt x 111.11725pt.
-<parallel.jpg, id=138, 1145.27875pt x 652.4375pt>
+<parallel.jpg, id=168, 1145.27875pt x 652.4375pt>
 File: parallel.jpg Graphic file (type jpg)
 <use parallel.jpg>
 Package pdftex.def Info: parallel.jpg  used on input line 138.
@@ -814,27 +814,79 @@ Package pdftex.def Info: parallel.jpg  used on input line 138.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4 <./series.jpg>] [5 <./parallel.jpg>] [6] [7] (./Phys_20BL_Outlab78.aux)
+[4 <./series.jpg>] [5 <./parallel.jpg>] [6]
+<RC 1.png, id=192, 602.25pt x 372.39125pt>
+File: RC 1.png Graphic file (type png)
+<use RC 1.png>
+Package pdftex.def Info: RC 1.png  used on input line 229.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7]
+<RC 2.png, id=199, 602.25pt x 372.39125pt>
+File: RC 2.png Graphic file (type png)
+<use RC 2.png>
+Package pdftex.def Info: RC 2.png  used on input line 241.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+<RC Log 2.png, id=200, 602.25pt x 372.39125pt>
+File: RC Log 2.png Graphic file (type png)
+<use RC Log 2.png>
+Package pdftex.def Info: RC Log 2.png  used on input line 247.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8 <./RC 1.png> <./RC 2.png>]
+<RC prediction.png, id=209, 602.25pt x 372.39125pt>
+File: RC prediction.png Graphic file (type png)
+<use RC prediction.png>
+Package pdftex.def Info: RC prediction.png  used on input line 264.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[9 <./RC Log 2.png>] [10 <./RC prediction.png>]
+Overfull \hbox (18.80376pt too wide) in paragraph at lines 313--314
+[]\OT1/cmr/m/n/10 For the par-al-lel one, the de-cay-ing con-stant $[] = [] = 1500$, while the ``fre-quency'' $\OML/cmm/m/it/10 w \OT1/cmr/m/n/10 = [] \OMS/cmsy/m/n/10 ^^Y
+ []
+
+
+Overfull \hbox (29.16856pt too wide) in paragraph at lines 313--314
+\OT1/cmr/m/n/10 5267\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 827\OML/cmm/m/it/10 i$\OT1/cmr/m/n/10 . Also, the two co-ef-fi-cients have $\OML/cmm/m/it/10 A \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 V[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 10$, and $\OML/cmm/m/it/10 B \OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10 V[] \OMS/cmsy/m/n/10 ^^Y [] [] ^^A
+ []
+
+[11] (./Phys_20BL_Outlab78.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-Package rerunfilecheck Info: File `Phys_20BL_Outlab78.out' has not changed.
-(rerunfilecheck)             Checksum: B8C0DCC20A2B588D975DB25FCA9FCEC1;1999.
+
+
+Package rerunfilecheck Warning: File `Phys_20BL_Outlab78.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Phys_20BL_Outlab78.out':
+(rerunfilecheck)             Before: 6FC2BDEE617DF78AAB5DFAFA278C117F;2897
+(rerunfilecheck)             After:  6C8B761D99016CC8902A9EE7A86472DD;3003.
  ) 
 Here is how much of TeX's memory you used:
- 31579 strings out of 474116
- 636546 string characters out of 5743681
- 1943187 words of memory out of 5000000
- 53390 multiletter control sequences out of 15000+600000
+ 31631 strings out of 474116
+ 637371 string characters out of 5743681
+ 1944187 words of memory out of 5000000
+ 53424 multiletter control sequences out of 15000+600000
  566267 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,12n,113p,605b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on Phys_20BL_Outlab78.pdf (7 pages, 327169 bytes).
+ 108i,12n,113p,637b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on Phys_20BL_Outlab78.pdf (11 pages, 413191 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 45 named destinations out of 1000 (max. 500000)
- 247 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 312 PDF objects out of 1000 (max. 8388607)
+ 232 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 315 words of extra memory for PDF output out of 10000 (max. 10000000)
 

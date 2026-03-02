@@ -166,6 +166,8 @@ Now, with the inhomogeneous part being constant $\frac{V_s}{LC}$, $V_p(t)=\frac{
 \begin{align}
     V(t)=V_s + e^{-Rt/(2L)}\left(Ae^{w t}+Be^{-wt}\right)
 \end{align}
+In general, the prediction of the data has $w\in i\RR$, hence the alternative form will be withh $A \cos(|w|t)+B\sin(|w|t)$.
+
 Finally, to obtain the voltage across the inductor, it's given as $LC \frac{d^2V}{dt^2}$, which can be solved once given all the coefficients.
 
 \hfil
@@ -180,22 +182,148 @@ For simplicity of model, we'll also assume that within a short amount of time ri
 
 As for solution, notice that plugin to the general solution, one has the fllowing:
 \begin{align}
-    0=V(0)=V_0 + A+B\ \implies\ A+B = -V_0
+    0=V(0)=V_0 + A\ \implies\ A = -V_0
 \end{align}
 \begin{align}
-    \frac{V_0}{RC}=\frac{dV}{dt}\bigg|_{t=0} = -\frac{R}{2L}(A+B)+w(A-B)\ \implies\ A-B = \frac{1}{w}\left(\frac{1}{RC}-\frac{R}{2L}\right)V_0
+    \frac{V_0}{RC}=\frac{dV}{dt}\bigg|_{t=0} = -\frac{R}{2L}A+|w| B\ \implies\ B = \frac{1}{|w|}\left(\frac{1}{RC}+\frac{R}{2L}\right)V_0
 \end{align}
 (Note: Here we assume $w\neq 0$, as for basically $100\%$ of the $L,R,C$ combinations, $w\neq 0$).
-
-Hence, one obtains the following two coefficients:
-\begin{align}
-    A = \frac{1}{2w}\left(\frac{1}{RC}-\frac{R}{2L}-w\right)V_0,\quad B = -\frac{1}{2w}\left(\frac{1}{RC}-\frac{R}{2L}+w\right)V_0
-\end{align}
-Which, if $w$ is imaginary, the solution for $V$ will be taken as the real portion.
 
 \newpage
 
 \section{Week 7 Portion - RC Circuit}
 
+In this part, we'll mainly be concerned with the Step responses. Which, under the assumption that capacitor is initially discharged, with the final voltage being $V_0$, the model is provided as $V(t)=V_0 (1-e^{-t/\tau_\text{step}})$, where $\tau_\text{step} = RC$ (under standard SI units for both $R,C$, then with unit of s).
+
+\hfil
+
+\subsection{Methods for Quantitative Assessment}
+
+For the Week 7 portion, as the purpose of the lab is to test the model for the voltage across the RC circuit, the methods I thought for quantitative assessment are the following (which we'll assume the data is collected over a certain bounded time interval):
+
+Given the bounded interval, to verify the distance between the given data and the model predicted data, which there are two possible ways to approach it:
+\begin{itemize}
+    \item Record the maximum difference across the interval. This is similar to the $L_\infty$ norm in function space (which is a common norm to see the convergence of funtions, and is also a good one to compare the ``closeness'' of the model prediction to the actual data on certain intervals). The idea is to detect the "largest" difference between the predicted model and the actual data.
+    
+    \textbf{Example:} Given the the time $t_1,...,t_n$, if $V_1,...,V_n$ represents the collected data of the voltage, then with $V(t)$ being the provided model, then this error is given by $\max_{1\leq i\leq n}|V(t_i)-V_i|$.
+
+    \hfil
+
+    \item Record the root mean square of the error. This is similar to the $L_2$-norm on a finite-dimensional vector space, which it views both the finite data point and the model prediction values as vectors, and takes the error as the scaled version of the $L_2$-norm. Which, it is more of detecting the ``average'' of all the errors between the data point and the predicted value. 
+    
+    \textbf{Example:} Still, using time $t_1,...,t_n$, data opints $V_1,...,V_n$, and $V(t)$ as the provided model, then this error is given by $\frac{1}{\sqrt{n}}\sqrt{\sum_{i=1}^n(V_i-V(t_i))^2}$.
+\end{itemize}
+
+\hfil
+
+For the purpose of this lab, I'd say the root mean square of the error is a better approach, as there could have some exceptional points within the data (that drastically diverge away from the model prediction), and the maximum difference method for error would easily been affected by these exceptional points. On the other hand, the maximum difference is mostly useful when one can guarantees a bounded behavior of the error, which is not as useful in general experiments (which could have large errors compared to theoretical calculations).
+
+\hfil
+
+\subsection{Data}
+
+Unfortunately, once the file is checked out of lab, only one out of the three trials had a distinct RC circuit response to the square wave; for the other two, the graphs of input and output voltage are nearly identical, as follow: 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130 mm]{RC 1.png}
+\end{figure}
+
+\newpage
+
+Which, actual analysis methods that should be used almost always failed here, and can't derive anymeaninful data. So, here we'll work with just 1 trial, and discuss the rest in the conclusion.
+
+\hfil
+
+For the remaining 1 trial, the graph of the input and output voltage is given as follow (which only includes the time after the voltage is switched):
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{RC 2.png}
+\end{figure}
+
+Corresponding to the voltage graph, the natural log of the difference generates the following graph:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{RC Log 2.png}
+\end{figure}
+
+\newpage
+
+Which, it has the line of best fit $y=-12038 x + 2.4$, and has slope $m=-12038$ corresponds to it.
+
+If consider the model $V(t)=V_0(1-e^{-t/\tau_\text{step}})$, then after the switch of voltage source, the input voltage is $V_0$, hence the difference between the input and output voltage is given by $V_0 e^{-t/\tau_\text{step}}$. Hence, when taking the natural log, one gets the function $\ln(V_0)-\frac{1}{\tau_\text{step}}t$. This shows the slope is $m=-\frac{1}{\tau_\text{step}}$, showing $\tau_\text{step} \approx 8.307\cdot 10^{-5}$ s.
+
+As a comparisont, for an RC circuit the step response time constance should be $\tau_\text{step} = RC$. Given that $R=10^4$ $\Omega$ and $C=10^4$ pF (or $10^{-8}$ F), then under the SI unit the step response time constant should be $10^{-4}$ s. In comparison to the calculated value $8.307\cdot 10^{-5}$ s, the percent error is about $20.380\%$, which is not low as of a percent error.
+
+\hfil
+
+Finally, If plug back to the model and graph it, one faces the following graph between the output voltage and the prediction:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{RC prediction.png}
+\end{figure}
+
+\newpage
+
+Which, calculating the root mean square of the error (over the 917 data points) is given by $\text{err}_\text{rms}\approx 0.251$ V. In comparison to the scale of $20$ V in the maximum change in voltage, the root mean square error is about $1.255\%$ of the theoretical total change, which can be considered as a great approximation.
+
+\hfil
+
+\subsection{Conclusion (Week 7)}
+
+Under the remaining 1 trial with analyzable data, the model shows a pretty good prediction of the voltage across the capacitor, with the root mean square error being $1.255\%$ of the total change in voltage, which can be considered as a good prediction.
+
+On the other hand, the predicted time constant is $\tau_\text{step} = 10^4$ s, while the best fit data shows the system has a time constant of $8.307\cdot 10^{-5}$ s. Since there's no other good data point for comparison, the only source is the percent error, which calculated to be $2-.38-\%$, which is not considered low.
+
+So, the model describes the observation very well, both qualitatively (on graph) and quantitatively (the root mean square error); however, because the lack of multiple trials with analyzable data, no other data points can be made for time constant comparison, and it diverged a bit larger away from the actual value.
+
+\hfil
+
+For improvement, next time it's desirable to put in specific time for data check (as copying the data from oscilloscope needs to open the file and check), and the time will be worth it as it prevents situations where the datas are not analyzable. 
+
+For the actual improvement of the experiment itself (about how good the model prediction is experimentally), it'll be desirable to change the resistance and/or capacitance in the circuit, and test the time constant for each of them, then make general comparison about how these value compared to the model prediciton, and get an experimental conclusion for more combinations of RC circuits rather than just one.
+
+
+\newpage
+
+\section{Week 8 Portion - LRC Ciruit}
+
+For this portion, we're mainly concerned about how the series and parallel arrangement of inductors affect the total inductance. We'll calculate the predicted inductance in each case, derive the prediction of the voltage, and compare to the actual data points (using the root mean square error again). 
+
+\hfil
+
+\subsection{Model Prediction}
+
+Here, the max voltage is $10$ V (after the switch of square wave). Also, there are three $10^4$ mH inductors that are involved. Hence, under each arrangement, here are the predicted total inductance:
+\begin{itemize}
+    \item For the one in series, the total inductance $L = 3\cdot 10^4$ mH = $30$ H.
+    \item For the one in parallel, the total inductance has $\frac{1}{L}=\frac{3}{10^4}$ 1/mH, hence $L = \frac{10^4}{3}$ mH = $\frac{10}{3}$ H.
+\end{itemize}
+Then, with fixed resistance and capacitance $R=10^4$ $\Omega$, $C=10^4$ pF = $10^{-8}$ F, plugin to the equations, one gets the following predicted coefficients for the model: 
+\begin{itemize}
+    \item For the series one, the decaying constant $\frac{R}{2L} = \frac{10^3}{6}$, while the ``frequency'' $w = \sqrt{\left(\frac{R}{2L}\right)^2-\frac{1}{LC}} = \sqrt{\frac{10^6}{36}-\frac{10^7}{3}}\approx 1818.119 i$. Also, the two coefficients have $A = -V_0 = -10$, and $B = \frac{1}{|w|}\left(\frac{1}{RC}+\frac{R}{2L}\right)V_0\approx \frac{1}{1818.119}\left(10^4+\frac{10^3}{6}\right)\cdot 10 \approx 55.919$, so the predicted solution is:
+    \begin{align}
+        V(t)=10+e^{-10^3t/6}\left(-10\cos(1818.119t)+55.919\sin(1818.119t)\right)
+    \end{align}
+    So, the voltage across the inductance is given as:
+    \begin{align}
+        V_L(t) = LC\frac{d^2V}{dt^2} = e^{-10^3t/6}\left(-0.333\cos(1818.119t)-56.859\sin(1818.119t)\right)
+    \end{align}
+    \item For the parallel one, the decaying constant $\frac{R}{2L}=\frac{3\cdot 10^3}{2}=1500$, while the ``frequency'' $w = \sqrt{\frac{9\cdot 10^6}{4}-3\cdot 10^7} \approx 5267.827 i$. Also, the two coefficients have $A=-V_0=-10$, and $B=\frac{1}{|w|}\left(\frac{1}{RC}+\frac{R}{2L}\right)V_0 \approx \frac{1}{5267.827}\left(10^4+2500\right)\cdot 10 \approx 21.831$, so the predicted solution is:
+    \begin{align}
+        V(t) = 10+e^{-1500t}\left(-10\cos(5267.827t)+21.831\sin(5267.827t)\right)
+    \end{align}
+    So, the voltage across the inductance is iven as:
+    \begin{align}
+        V_L(t) = LC\frac{d^2V}{dt^2}= e^{-1500t}\left(-3.000\cos(5267.827t)-23.824\sin(5267.827t)\right)
+    \end{align}
+\end{itemize}
+
+\hfil
+
+\subsection{Data}
+
+\subsubsection{Trial 1}
 
 \end{document}
