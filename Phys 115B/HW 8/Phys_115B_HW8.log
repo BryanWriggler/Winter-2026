@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  1 MAR 2026 17:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  1 MAR 2026 17:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -796,7 +796,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-Overfull \hbox (6.96295pt too wide) in paragraph at lines 166--168
+Overfull \hbox (6.96295pt too wide) in paragraph at lines 169--171
 \OT1/cmr/m/n/10 Which, take $\OML/cmm/m/it/10 z \OT1/cmr/m/n/10 = 1$, one ar-rives at $0 = ((\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1) + 1)[] = \OML/cmm/m/it/10 n\OT1/cmr/m/n/10 ! [][] []$, hence with $\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 ! \OMS/cmsy/m/n/10 6\OT1/cmr/m/n/10 = 0$, then $[][] [] =
  []
 
@@ -809,18 +809,18 @@ Package rerunfilecheck Info: File `Phys_115B_HW8.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 31610 strings out of 474116
- 637658 string characters out of 5743681
+ 31611 strings out of 474116
+ 637671 string characters out of 5743681
  1945187 words of memory out of 5000000
  53443 multiletter control sequences out of 15000+600000
  566669 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,13n,113p,675b,1004s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Phys_115B_HW8.pdf (5 pages, 208488 bytes).
+Output written on Phys_115B_HW8.pdf (5 pages, 209612 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
- 26 named destinations out of 1000 (max. 500000)
+ 185 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
  157 words of extra memory for PDF output out of 10000 (max. 10000000)
 
