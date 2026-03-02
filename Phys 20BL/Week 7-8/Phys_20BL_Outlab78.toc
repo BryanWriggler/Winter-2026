@@ -14,3 +14,6 @@
 \contentsline {section}{\numberline {4}Week 8 Portion - LRC Ciruit}{11}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Model Prediction}{11}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Data}{12}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Trial 2}{14}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Trial 3}{16}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Conclusion}{18}{subsection.4.5}%

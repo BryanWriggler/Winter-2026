@@ -348,8 +348,97 @@ Similarly, for the parallel arrangement, it shows the following two:
 
 \newpage
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{parallel 1.png}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{parallel 1 prediction.png}
+\end{figure}
+
+Similarly, the prediction diverges a lot from the actual data, with root mean square error $\text{err}_\text{rms}\approx 4.889$ V, which is also about $25\%$ of the maximum change in voltage. This also concludes to be a really inaccurate prediction.
+
+\hfil
+
+Now, if just compare the data, one can recognize that the parallel arrangement's voltage does decay a lot faster than the series arrangement, so the prediction in this part is right; on the other hand, the parallel arrangement has an oscillatory behavior, while it's not observable with naked eye for the series arrangement, hence the prediction is not as accurate for the oscillatory behavior.
+
+\hfil
+
+For the second and the third trial, we'll simply include the data points, the predictions, and the root mean square error of the prediction (as the results are similar to trial 1).
+
+\newpage
+
+\subsection{Trial 2}
+Series:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{series 2.png}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{series 2 prediction.png}
+\end{figure}
+
+Root mean square error of prediction: $\text{err}_\text{rms} \approx 4.422$ V.
 
 
+\newpage
+
+Parallel:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{parallel 2.png}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{parallel 2 prediction.png}
+\end{figure}
+
+Root mean square error of prediction: $\text{err}_\text{rms} \approx 5.014$ V.
+
+\newpage
+
+\subsection{Trial 3}
+Series:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{series 3.png}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{series 3 prediction.png}
+\end{figure}
+
+Root mean square error of prediction: $\text{err}_\text{rms} \approx 4.396$ V.
+
+
+\newpage
+
+Parallel:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{parallel 3.png}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{parallel 3 prediction.png}
+\end{figure}
+
+Root mean square error of prediction: $\text{err}_\text{rms} \approx 5.016$ V.
+
+\newpage
+
+\subsection{Conclusion}
 
 
 \end{document}

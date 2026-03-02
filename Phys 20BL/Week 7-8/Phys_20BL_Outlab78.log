@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  2 MAR 2026 09:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.22)  2 MAR 2026 10:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -800,12 +800,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<series.jpg, id=167, 1529.715pt x 497.86pt>
+<series.jpg, id=177, 1529.715pt x 497.86pt>
 File: series.jpg Graphic file (type jpg)
 <use series.jpg>
 Package pdftex.def Info: series.jpg  used on input line 127.
 (pdftex.def)             Requested size: 341.43306pt x 111.11725pt.
-<parallel.jpg, id=168, 1145.27875pt x 652.4375pt>
+<parallel.jpg, id=178, 1145.27875pt x 652.4375pt>
 File: parallel.jpg Graphic file (type jpg)
 <use parallel.jpg>
 Package pdftex.def Info: parallel.jpg  used on input line 138.
@@ -815,7 +815,7 @@ Package pdftex.def Info: parallel.jpg  used on input line 138.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4 <./series.jpg>] [5 <./parallel.jpg>] [6]
-<RC 1.png, id=192, 602.25pt x 372.39125pt>
+<RC 1.png, id=202, 602.25pt x 372.39125pt>
 File: RC 1.png Graphic file (type png)
 <use RC 1.png>
 Package pdftex.def Info: RC 1.png  used on input line 229.
@@ -825,12 +825,12 @@ Package pdftex.def Info: RC 1.png  used on input line 229.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [7]
-<RC 2.png, id=199, 602.25pt x 372.39125pt>
+<RC 2.png, id=209, 602.25pt x 372.39125pt>
 File: RC 2.png Graphic file (type png)
 <use RC 2.png>
 Package pdftex.def Info: RC 2.png  used on input line 241.
 (pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
-<RC Log 2.png, id=200, 602.25pt x 372.39125pt>
+<RC Log 2.png, id=210, 602.25pt x 372.39125pt>
 File: RC Log 2.png Graphic file (type png)
 <use RC Log 2.png>
 Package pdftex.def Info: RC Log 2.png  used on input line 247.
@@ -840,7 +840,7 @@ Package pdftex.def Info: RC Log 2.png  used on input line 247.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [8 <./RC 1.png> <./RC 2.png>]
-<RC prediction.png, id=209, 602.25pt x 372.39125pt>
+<RC prediction.png, id=219, 602.25pt x 372.39125pt>
 File: RC prediction.png Graphic file (type png)
 <use RC prediction.png>
 Package pdftex.def Info: RC prediction.png  used on input line 264.
@@ -860,37 +860,99 @@ Overfull \hbox (29.16856pt too wide) in paragraph at lines 313--314
  []
 
 [11]
-<series 1.png, id=230, 602.25pt x 372.39125pt>
+<series 1.png, id=240, 602.25pt x 372.39125pt>
 File: series 1.png Graphic file (type png)
 <use series 1.png>
 Package pdftex.def Info: series 1.png  used on input line 335.
 (pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
-<series 1 prediction.png, id=231, 602.25pt x 372.39125pt>
+<series 1 prediction.png, id=241, 602.25pt x 372.39125pt>
 File: series 1 prediction.png Graphic file (type png)
 <use series 1 prediction.png>
 Package pdftex.def Info: series 1 prediction.png  used on input line 340.
 (pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
- [12 <./series 1.png> <./series 1 prediction.png>] (./Phys_20BL_Outlab78.aux)
+ [12 <./series 1.png> <./series 1 prediction.png>]
+<parallel 1.png, id=250, 602.25pt x 372.39125pt>
+File: parallel 1.png Graphic file (type png)
+<use parallel 1.png>
+Package pdftex.def Info: parallel 1.png  used on input line 353.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+<parallel 1 prediction.png, id=251, 602.25pt x 372.39125pt>
+File: parallel 1 prediction.png Graphic file (type png)
+<use parallel 1 prediction.png>
+Package pdftex.def Info: parallel 1 prediction.png  used on input line 358.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+ [13 <./parallel 1.png> <./parallel 1 prediction.png>]
+<series 2.png, id=261, 602.25pt x 372.39125pt>
+File: series 2.png Graphic file (type png)
+<use series 2.png>
+Package pdftex.def Info: series 2.png  used on input line 378.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+<series 2 prediction.png, id=262, 602.25pt x 372.39125pt>
+File: series 2 prediction.png Graphic file (type png)
+<use series 2 prediction.png>
+Package pdftex.def Info: series 2 prediction.png  used on input line 383.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+ [14 <./series 2.png> <./series 2 prediction.png>]
+<parallel 2.png, id=271, 602.25pt x 372.39125pt>
+File: parallel 2.png Graphic file (type png)
+<use parallel 2.png>
+Package pdftex.def Info: parallel 2.png  used on input line 395.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+<parallel 2 prediction.png, id=272, 602.25pt x 372.39125pt>
+File: parallel 2 prediction.png Graphic file (type png)
+<use parallel 2 prediction.png>
+Package pdftex.def Info: parallel 2 prediction.png  used on input line 400.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+ [15 <./parallel 2.png> <./parallel 2 prediction.png>]
+<series 3.png, id=281, 602.25pt x 372.39125pt>
+File: series 3.png Graphic file (type png)
+<use series 3.png>
+Package pdftex.def Info: series 3.png  used on input line 412.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+<series 3 prediction.png, id=282, 602.25pt x 372.39125pt>
+File: series 3 prediction.png Graphic file (type png)
+<use series 3 prediction.png>
+Package pdftex.def Info: series 3 prediction.png  used on input line 417.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+ [16 <./series 3.png> <./series 3 prediction.png>]
+<parallel 3.png, id=291, 602.25pt x 372.39125pt>
+File: parallel 3.png Graphic file (type png)
+<use parallel 3.png>
+Package pdftex.def Info: parallel 3.png  used on input line 429.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+<parallel 3 prediction.png, id=292, 602.25pt x 372.39125pt>
+File: parallel 3 prediction.png Graphic file (type png)
+<use parallel 3 prediction.png>
+Package pdftex.def Info: parallel 3 prediction.png  used on input line 434.
+(pdftex.def)             Requested size: 369.88582pt x 228.72093pt.
+ [17 <./parallel 3.png> <./parallel 3 prediction.png>] [18] (./Phys_20BL_Outlab78.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-Package rerunfilecheck Info: File `Phys_20BL_Outlab78.out' has not changed.
-(rerunfilecheck)             Checksum: 6FC2BDEE617DF78AAB5DFAFA278C117F;2897.
+
+
+Package rerunfilecheck Warning: File `Phys_20BL_Outlab78.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Phys_20BL_Outlab78.out':
+(rerunfilecheck)             Before: 8F3A839B1A6A3BD019647DA2369C0F00;3089
+(rerunfilecheck)             After:  54B64ADE4B0B69ACFE5B0964334B05E6;3197.
  ) 
 Here is how much of TeX's memory you used:
- 31647 strings out of 474116
- 637732 string characters out of 5743681
+ 31738 strings out of 474116
+ 639807 string characters out of 5743681
  1944187 words of memory out of 5000000
- 53438 multiletter control sequences out of 15000+600000
+ 53510 multiletter control sequences out of 15000+600000
  566267 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,12n,113p,637b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on Phys_20BL_Outlab78.pdf (12 pages, 448866 bytes).
+Output written on Phys_20BL_Outlab78.pdf (18 pages, 648643 bytes).
 PDF statistics:
- 321 PDF objects out of 1000 (max. 8388607)
- 236 compressed objects within 3 object streams
- 65 named destinations out of 1000 (max. 500000)
- 325 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 391 PDF objects out of 1000 (max. 8388607)
+ 280 compressed objects within 3 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 391 words of extra memory for PDF output out of 10000 (max. 10000000)
 
