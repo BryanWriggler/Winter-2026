@@ -314,16 +314,42 @@ Then, with fixed resistance and capacitance $R=10^4$ $\Omega$, $C=10^4$ pF = $10
     \begin{align}
         V(t) = 10+e^{-1500t}\left(-10\cos(5267.827t)+21.831\sin(5267.827t)\right)
     \end{align}
-    So, the voltage across the inductance is iven as:
+    So, the voltage across the inductance is given as:
     \begin{align}
         V_L(t) = LC\frac{d^2V}{dt^2}= e^{-1500t}\left(-3.000\cos(5267.827t)-23.824\sin(5267.827t)\right)
     \end{align}
 \end{itemize}
+Which, it's expected that the series arrangement creates a higher inductance than the parallel arrangement. Hence, quantitatively it predicts a slower decay rate of voltage across the series of inductors, in comparison to the parallel arrangement.
+
+On the other hand, it's also predicted that both series and parallel arrangment would have an oscillatory behavior of the voltage, with the period of series arrangement being longer than the parallel arrangement (as the frequency of parallel arrangement is predicted to be higher).
+
+\newpage
+
+\subsection{Data}
+For the series arrangement, plotting the data (with input and output voltage), and another plot with the comparison of the data versus the prediction, it shows the following two:
 
 \hfil
 
-\subsection{Data}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{series 1.png}
+\end{figure}
 
-\subsubsection{Trial 1}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=130mm]{series 1 prediction.png}
+\end{figure}
+
+Which, the prediction diverges a lot from the actual data, with root mean quare error $\text{err}_\text{rms} \approx 5.011$ V, which is abot $25\%$ of the maximum change in voltage. This concludes to be a really inaccurate prediction.
+
+\hfil
+
+Similarly, for the parallel arrangement, it shows the following two:
+
+\newpage
+
+
+
+
 
 \end{document}
