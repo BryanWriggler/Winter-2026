@@ -1,0 +1,225 @@
+\documentclass{article}
+\usepackage{../../Self_Style}
+
+\title{Phys 115B HW 8}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1 D}
+
+\begin{ques}
+Consider a system with 2 $N$-state systems, with $N \gg 1$. For example, for the case where
+$N = 2$, you could imagine two spin 1/2 particles, or for a case with $N = 100$, two particles
+in a 1-D harmonic oscillator but confined to the lowest 100 levels. The point is you have
+only two particles, but they can fill up to $N$ levels. The system is assumed to be warm
+compared to $\Delta E$, so all states are occupied equally.
+
+\begin{itemize}
+    \item[(a)] What is the probability for finding the particles in the same state if they are distinguishable?
+
+    \item[(b)] What is the probability for finding the particles in the same state if they are fermions?
+
+    \item[(c)] What is the probability for finding the particles in the same state if they are bosons?
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+
+    Let's fix the notation, say $\mathcal{H}$ is the $N$-dimensional Hilbert Space describing the $N$-state system, and $\ket{\psi_1},...,\ket{\psi_N}$ are the allowed states upon observables.
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] If the two particles are distinguishable, then the Hilbert Space describing it is $\mathcal{H}\tensor \mathcal{H}$, so total of $N^2$-dimensional. Which, there are $N^2$ distinct states (i.e. all $\ket{\psi_i}\tensor \ket{\psi_j}$, where $i,j\in\{1,...,N\}$), while $N$ of them have both particles being in the same states (i.e. all $\ket{\psi_i}\tensor \ket{\psi_i}$, where $i\in\{1,...,N\}$). Hence, with each state being equally probable to observe, the probability the two distinguishable particles are in a same state is $\frac{N}{N^2} = \frac{1}{N}$.
+        
+        \hfil
+
+        \item[(b)] If the two particles are fermions, they're not allowed to be in the same state, hence the robability of finding two fermions in the same state is $0$.
+        
+        \hfil
+
+        \item[(c)] If the two particles are bosons, then the Hilbert Space describing it is $S^2\mathcal{H}$ the symmetric tensor subspace in $\mathcal{H}\tensor\mathcal{H}$. Which, there are $\frac{N(N+1)}{2}$ distinct states (i.e. all $\ket{\psi_i}\tensor \ket{\psi_j}+\ket{\psi_j}\tensor \ket{\psi_i}$ for $i,j\in\{1,...,N\}$), while $N$ of them have both particles being in the same states (i.e. all $\ket{\psi_i}\tensor \ket{\psi_i}$). Hence, with each state being equally probable to observe, the probability the two bosons are in a same state is $\frac{N}{N(N+1)/2} = \frac{2}{N+1}$.
+    \end{itemize}
+\end{proof}
+
+\newpage
+
+\section*{2}
+
+\begin{ques}
+Consider a free electron gas with unequal numbers of spin-up and spin-down particles ($N_+$
+and $N_-$ respectively). Such a gas would have a net magnetization (magnetic dipole
+moment per unit volume)
+
+\[
+M = -\frac{N_+ - N_-}{V} \mu_B \hat{k} = M \hat{k}
+\]
+
+where $\mu_B = \frac{e\hbar}{2m_e}$ is the Bohr magneton (The minus sign is there because the charge of
+the electron is negative).
+\begin{itemize}
+    \item[(a)] Assuming the electrons occupy the lowest energy levels consistent with the number of particles in each spin orientation, find $E_{\text{tot}}$. Check that your answer reduces to
+\[
+E_{\text{tot}} =
+\frac{\hbar^2 (3\pi^2)^{5/3} (2N)^{5/3}}
+{10\pi^2 m}
+V^{-2/3}
+\]
+when $N_+ = N_- = N$.
+    \item[(b)] Show that for $M/\mu_B \ll \rho \equiv (N_+ + N_-)/V$ (which is to say $|N_+ - N_-| \ll (N_+ + N_-)$), the energy density is
+\[
+\frac{1}{V} E_{\text{tot}} =
+\frac{\hbar^2 (3\pi^2 \rho)^{5/3}}
+{10\pi^2 m}
+\left[
+1 + \frac{5}{9}
+\left(
+\frac{M}{\rho \mu_B}
+\right)^2
+\right].
+\]
+The energy is a minimum for $M = 0$, so the ground state will have zero magnetization However, if the gas is placed in a magnetic field (or in the presence of interactions between the particles) it may be energetically favorable for the gas to magnetize.
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Let $N_\text{tot}:= N_++N_-$, and $N_\text{com}:= \min\{N_+,N_-\}$ (so, how many electrons in total, and how many pairs of opposit spin electrons, respectively). Another way to represent the numbers is $N_\text{com} = N_\text{tot}$
+        
+        Since each energy level allows two electrons with opposite spins, it's the most favoarable for the lowest energy levels to be filled with 
+        
+        \hfil
+
+        \item[(b)] 
+    \end{itemize}
+\end{proof}
+
+\newpage
+
+\section*{3}
+
+\begin{ques}
+The free electron gas model ignores the Coulomb repulsion between electrons. Because
+of the exchange force, Coulomb repulsion has a stronger effect on two electrons with anti-
+parallel spins (which behave in a way like distinguishable particles) than two electrons with
+parallel spins (whose position wave function must be antisymmetric - we saw this with the
+carbon atom). As a crude way to take into account Coulomb repulsion, pretend that every
+pair of electrons with opposite spin carry extra energy $U$, while electrons with the same
+spin do not interact at all; this adds $\Delta E = U N_+ N_-$ to the total energy of the electron
+gas. As you will show, above a critical value of $U$, it becomes energetically favorable for
+the gas to spontaneously magnetize ($N_+ \neq N_-$); the material becomes ferromagnetic.
+\begin{itemize}
+    \item[(a)] Rewrite $\Delta E$ in terms of the density $\rho$ and the magnetization $M$ from the previous
+problem.
+
+    \item[(b)] Assuming that $M/\mu_B \ll \rho$, for what minimum value of $U$ is a non-zero magnetization energetically favored?
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] 
+        
+        \hfil
+
+        \item[(b)] 
+    \end{itemize}
+\end{proof}
+
+\newpage
+
+\section*{4 D}
+
+\begin{ques}
+Show that for a Hermitian operator $\hat Q$, the operator $\hat U = e^{i\hat Q}$ is unitary. Hint: first prove
+that the adjoint is given by $\hat U^\dagger = e^{-i\hat Q}$; then prove that $\hat U^\dagger \hat U = 1$.
+\end{ques}
+
+\begin{proof}
+    Assume the exponentiation converges absolutely point wise (and that adjoint commutes with summation), then with $\hat{Q}$ being self adjoint (Hermitian), one have the following:
+    \begin{align}
+        \hat{U} = e^{i\hat{Q}} = \sum_{n=0}^\infty\frac{1}{n!}(i\hat{Q})^n
+    \end{align}
+    In particular, the adjoint is given as follow:
+    \begin{align}
+        \hat{U}^\dagger = \left(\sum_{n=0}^\infty\frac{1}{n!}(i\hat{Q})^n\right)^\dagger = \sum_{n=0}^\infty\frac{1}{n!}((i\hat{Q})^\dagger)^n = \sum_{n=0}^\infty \frac{1}{n!}(-i\hat{Q})^n = e^{-i\hat{Q}}
+    \end{align}
+    Which, the two operators composes to the following:
+    \begin{align}
+        \hat{U}^\dagger\hat{U} &= \sum_{n=0}^\infty \sum_{m=0}^\infty\frac{1}{(n!)(m!)}(-i\hat{Q})^n(i\hat{Q})^m = \sum_{n=0}^\infty\sum_{k=0}^n\frac{1}{(k!)((n-k)!)}(-i\hat{Q})^k(i\hat{Q})^{n-k}\\
+        &= \sum_{n=0}^\infty \left(\sum_{k=0}^n\frac{(-1)^k}{(k!)((n-k)!)}\right)(i\hat{Q})^n
+    \end{align}
+    Which, for $n=0$, the coefficient $\sum_{k=0}^n\frac{(-1)^k}{(k!)((n-k)!)}=1$; else if $n>0$, notice the following factor:
+    \begin{align}
+        \forall z\in\CC,\quad ((-1)+z)^n = \sum_{k=0}^{n}\begin{pmatrix}
+            n\\k
+        \end{pmatrix}(-1)^k z^{n-k} = \sum_{k=0}^{n}\frac{n!(-1)^k}{k!\ (n-k)!}z^{n-k}
+    \end{align} 
+    Which, take $z=1$, one arrives at $0 = ((-1)+1)^n = n!\sum_{k=0}^{n}\frac{(-1)^k}{k!\ (n-k)!}$, hence with $n!\neq 0$, then $\sum_{k=0}^{n}\frac{(-1)^k}{k!\ (n-k)!}=0$.
+
+    As a result, we have:
+    \begin{align}
+        \hat{U}^\dagger\hat{U}= \sum_{n=0}^\infty \left(\sum_{k=0}^n\frac{(-1)^k}{(k!)((n-k)!)}\right)(i\hat{Q})^n = (i\hat{Q})^0 = 1
+    \end{align}
+    Grinding out similar summation, one has $\hat{U}\hat{U}^\dagger = 1$, showing $\hat{U}^\dagger = \hat{U}^{-1}$, hence $\hat{U}$ is unitary.
+\end{proof}
+
+\newpage
+
+\section*{5 D}
+
+\begin{ques}
+When we first introduced Dirac notation, we fixed the inner product of position and mo-
+mentum eigenstates using our foreknowledge of the position-space representation of states
+of definite momentum, i.e. we asserted that
+
+\[
+\langle x|p\rangle = A e^{ipx/\hbar}
+\]
+
+where $A$ is a normalization factor. Now we can derive this using the properties of the
+translation operator $T(a)$. If the state $|p\rangle$ is one of well-defined momentum $p$, how would
+you characterize state $|p'\rangle = T(a)|p\rangle$? Show that the position-space wavefunctions of these
+states are related by
+
+\[
+\langle x|p'\rangle = \psi_{p'}(x) = e^{-iap/\hbar}\psi_p(x) = e^{-iap/\hbar} \langle x|p\rangle
+\]
+
+and
+
+\[
+\psi_{p'}(x) = \psi_p(x-a).
+\]
+
+Then conclude that
+
+\[
+\langle x|p\rangle = A e^{ipx/\hbar}.
+\]
+\end{ques}
+
+\begin{proof}
+    Assuming we know the relation $\braket{x}{\psi}=\psi(x)$, and $\bra{x}T(a)\ket{\psi} = \psi(x-a)$, while $T(a)^\dagger = T(a)^{-1}=T(-a)$. Also, one has $\hat{P}$ the momentum operator satisfies $T(a)=e^{-ia\hat{P}/\hbar} = \sum_{n=0}^{\infty}\frac{(-ia/\hbar)^n}{n!}\hat{P}^n$ (where $\hat{P}\ket{p} = p\ket{p}$ by definition of ``definite momentum'', which is an eigenvector of the momentum operator). Hence, one has the following:  
+    \begin{align}
+        \braket{x}{p'} &= \bra{x}(T(a)\ket{p}) = \bra{x}\left(\sum_{n=0}^{\infty}\frac{(-ia/\hbar)^n}{n!}\hat{P}^n\ket{p}\right)\\
+        &= \bra{x}\left(\sum_{n=0}^{\infty}\frac{(-ia/\hbar)^n}{n!}p^n\ket{p}\right) = \bra{x}\left(\sum_{n=0}^{\infty}\frac{1}{n!}\left(-\frac{iap}{\hbar}\right)^n\ket{p}\right)\\
+        &= \bra{x}\left(e^{-iap/\hbar}\ket{p}\right) = e^{-iap/\hbar}\braket{x}{p}
+    \end{align}
+    Hence, one derives that $\psi_p(x-a)=\psi_{p'}(x) = e^{-iap/\hbar}\psi_p(x)$ (given the definition $\bra{x}T(a)\ket{p} = \psi_p(x-a)$). As a result, take $u := -a$ (where $a\in\RR$ is arbitrary), and plugin $x=0$, one has the following:
+    \begin{align}
+        \psi_p(u) = \psi_p(0-a) = e^{-iap/\hbar}\psi_p(0) = \psi_p(0)e^{ipu/\hbar}
+    \end{align} 
+    Hence, with $A = \psi_p(0)$, so $\psi_p(u)=Ae^{ipu/\hbar}$ for all $u\in\RR$.
+\end{proof}
+
+\end{document}
