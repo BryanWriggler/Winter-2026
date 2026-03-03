@@ -58,6 +58,8 @@
 #let RAlg = math.sans[R-Alg] //cat of R-Alg
 #let PreSh = math.sans[PreSh] //cat of presheaves
 #let Sh = math.sans[Sh] //cat of sheaves
+#let AffSch = math.sans[AffSch] //cat of affine schemes
+#let Sch = math.sans[Sch]//cat of schemes
 #let Vect(k) = $#k -sans("Vect")$ //cat of k-vector space (not sure if this works though)
 #let Set(G) = $#G -sans("Set")$//G-action category
 #let Top = math.sans[Top] //cat of topological spaces

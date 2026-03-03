@@ -820,5 +820,76 @@ Finally, we can prove 2 in the theorem on the structure of Projective Space:
 
   Now, notice that one can construct an isomorphism between the two local rings: Since the homogeneous element $f in.not P$, there is an induced graded ring homomorphism $S_f -> T^(-1)S$ by $s/f^n mapsto s/f^n$ (where $T$ is the set of homogeneous elements not in $P$), and in particular the $0$-grading has a homomorphism $S_((f))-> S_((P))$, again by $s/f^n$. 
 
-  Then, since $phi(P) subset.eq S_((f))$ has all element of the form $p/f^n$ for homogeneous element $p in P$, such that $p/f^n$ has degree $0$, conversely $S_((f))\\phi(P)$ consists of $u/f^m$, where the homogeneous element $u in S\\P$ has $u/f^m$ with degree $0$. As a result, its image $u/f^m in S_((P))$ is invertible (since $u$ is in $S_((P))$)
+  Then, since $phi(P) subset.eq S_((f))$ has all element of the form $p/f^n$ for homogeneous element $p in P$, such that $p/f^n$ has degree $0$, so $p/f^n mapsto p/f^n in (P dot T^(-1)S) sect S_((P))$ (the maximal ideal of $S_((P))$); on the compliment, since $S_((f))\\phi(P)$ consists of $u/f^m$, where the homogeneous element $u in S\\P$ has $u/f^m$ with degree $0$, as a result its image $u/f^m in S_((P))$ is invertible (since $u in.not P dot T^(-1)S$, so $u/f^n in S_((P))$ is invertible). As a result, it descends to a map $(S_((f)))_(phi(P)) -> S_((P))$, which is in fact an isomorphism:
+  - one has $(s/f^n)/(u/f^m) = s/(u f^(m-n)) = 0$ in $S_((P))$ iff there exists homogeneous $t in S\\P$, such that $s t = 0$. As a result, since $s/f^n dot t^d/f^l = 0$ in $S_((f))$ (by taking suitable power so that $t^d/f^l in S_((f))$), then one has $s/f^n = 0$ in $(S_((f)))_(phi(P))$ (since $t^d/f^l in.not phi(P)$ based on the fact that $t in.not P$), showing injectivity.
+  - Given any $s/u in S_((P))$, since $s,u in S$ are homogeneous of the same degree, then any $(s/f^n)/(u/f^n) in (S_((f)))_(phi(P))$ should suffice.
+
+  Hence, on the stalk level two sheaves are isomorphic, in particular showing the two sheaves are isomorphic.
+
+  (Another way to see this, is about how $P$ intersects with ${f^n}_(n in NN)$ being empty, hence the localization at $f$ then localize at $P$ is the same the other way around, cf. 220B notes).
+]
+
+As a result, we have this:
+#corollary[
+  Given any $NN$-graded ring $S$, $(Proj(S), cal(O))$ is a scheme.
+][
+  First, we have $(Proj(S), cal(O))$ being locally ringed space, as each $P in Proj(S)$ has $cal(O)_P tilde.equiv S_((P))$ a local ring.
+
+  Also, each homogeneous element $f in S_+$ has the collection ${D_+(f)}$ covers $Proj(S)$, while $(D_+ (f),cal(O)|_(D_+(f))) tilde.equiv (X=Spec(S_((f))), cal(O)_X)$ as locally ringed space, hence every point has an affine open neighborhood, which is a scheme.
+]
+
+\ 
+
+Finally, we get to a definition of "morphism over a scheme":
+
+#definition[Scheme over other Schemes][
+  Let $Z$ be a scheme. A #emph[Scheme over] $Z$ is a scheme $X$, together with a morphism of scheme $X -> Z$. 
+  
+  Which, let $X,Y$ be schemes over $Z$, then a morphism of schemes from $X$ to $Y$ over $Z$, called #emph[$Z$-morphism], is a morphism of schemes $f:X -> Y$, such that the following commutative diagram commutes:
+  #set align(center)
+  #diagram($
+             X edge("dr",->)edge("rr",->, script(f)) && Y edge("dl",->)\ 
+             & Z
+           $)
+  #set align(left)
+  Which, the schemes over $Z$ forms a subcategory of $Sch$, also denoted as $Sch(Z)$.
+]
+
+As a side note, given a commutative ring $A$, one also denotes $Sch(A)$ as the category of schemes over $Spec(A)$.
+
+\ 
+
+The "typical example" of projective space is what we've seen before (or a scheme that relates to it):
+#example[Projective $n$-space of a Field $k$][
+  Given $k$ a field, let $S=k[x_0,...,x_n]$ be the ring with natural grading $deg(x_i)=0$ for all index $i$. Then, the #emph[Projective $n$-Space] $PP^n_k := Proj(S)$.
+
+  If $k$ is algebraically closed, similar to the case of $AA^n_k$ (where its closed points are naturally homeomorphic to traditional affine space $AA^n$), $PP^n_k$ has its closed points naturally homeomorphic to traditional projective space $PP^n$, via the mapping of "homogeneous prime ideals" $(a_i x_0 - a_0 x_i,...,a_i x_n-a_n x_i) mapsto [a_0,...,a_i,...,a_n]$ (where $a_i!= 0$).
+]
+#proof[
+  As a preliminary note, $PP^n_k$ contains no maximal ideal of $k[x_0,...,x_n]$ (which are all of the form $(x_0-b_0,...,x_n-b_n)$, hence not homogeneous if some $a_i!=0$; or the special case $(x_0,...,x_n)$, which is the irrelevant ideal of $S$). This implies any closed point in $PP^n_k$ corresponds to a homogeneous prime ideal of height $n$ but not $n+1$, because if $P$ is a homogeneous prime ideal with height $n$, then any $Q in V_+ (P)$ must have $Q=P$ (or else $P subset.neq Q$ implies $Q$ has height $>=n+1$, which is maximal; yet this contradicts the fact that $Q in Proj(S)$, which enforces it to not be maximal).
+
+  \ 
+
+  To show the homeomorphism, one needs to classify these prime ideals: First note that each $I=(a_i x_0-a_0 x_i,...,a_i x_n-a_n x_i)$ is homogeneous prime with height $n$, by considering the map $phi:k[x_0,...,x_n] -> k[x_i]$ by $x_j mapsto a_j/a_i x_i$. The, this map is surjective (because $k[x_i] arrow.hook k[x_0,...,x_n]$), so one has $k[x_0,...,x_n]\/ker(phi) tilde.equiv k[x_i]$.
+
+  Now, we have the generators $a_i x_j - a_j x_i mapsto a_i dot a_j/a_i x_i - a_j x_i = 0$, showing $a_i x_j-a_j x_i in ker(phi)$, or $I subset.eq ker(phi)$; to show the reverse direction, we'll try and rewrite each monomials as polynomial combinations of the generators + some polynomial with only indeterminate $x_i$. 
+  - First, let's look at the case of monomial with only one indeterminate: Given any $x_j^d$, notice that for $d=1$ one simply has $x_j = (x_j-a_j/a_i x_i)+a_j/a_i x_i$, which is a generator's multiple + a polynomial in $x_i$ only.
+
+    Now, given $d in NN$, if the logic applies to $x_j^(d-1)$, notice that for $x_j^d$ one has $x_j^(d-1)dot x_j = x_j^(d-1)((x_j -a_j/a_i x_i) + a_j/a_i x_i)$. Then, by induction hypothesis $x_j^(d-1) = sum g_l (x_l-a_l/a_i x_i) + f_(d-1)(x_i)$ for some $f_(d-i)(x_i) in k[x_i]$ and $g_l in S$, then one has: 
+    $ x_j^d = x_j^(d-1)dot x_j = sum x_j g_l (x_l-a_l/a_i x_i) + sum f_(d-1)(x_i)g_l (x_l-a_l/a_i x_i) + f_(d-1)(x_i) dot a_j/a_i x_i $
+    Where the first two terms sum up to polynomial combinations of $(x_l-a_l/a_i x_i)$, and the last term is a polynomial solely with indeterminate $x_i$, finishing the induction for all $x_j^d$.
+
+    \ 
+
+  - Now, let's induct on the number of indeterminates: Given $x_0^(d_0)...x_n^(d_n)$, one knows that $x_0^(d_0) = sum g_l (x_l-a_l/a_i x_i)+ f_0(x_i)$, where $g_l in S$ and $f_0 in k[x_i]$ (here, WLOG assume $i!=0$; if not switch to some other indeterminates); Then, after expanding we have the following:
+    $ x_0^(d_0)...x_n^(d_n) = sum x_1^(d_1)...x_n^(d_n) g_l (x_l-a_l/a_i x_i) + f_0(x_i) x_1^(d_1)...x_n^(d_n) $
+    Then, the first term is polynomial combinations of the generators, which is fine; the second part is a polynomial in terms of only $x_1,...,x_i,...,x_n$ (which the number of indeterminates decreased), hence by induction one can rewrite the second term as polynomial combinations of $(x_l-a_l/a_i x_i)$, and sum with a polynomial $f in k[x_i]$. This finishes the induction.
+
+    \ 
+
+  Now, suppose $f in ker(phi)$, notice that $f = sum g_l (x_l-a_l/a_i x_i)+f_i (x_i)$ for some $g_l in S$ and $f_i in k[x_i]$, as a result $phi(f)=0$ implies $phi(f_i) = 0$, so $f_i = 0$ (since $phi$ restricts to identity on $k[x_i]$). This shows that $f in (a_i x_0-a_0 x_i,...,a_i x_n-a_n x_i)$, or $ker(phi) = (a_i x_0-a_0 x_i,...,a_i x_n-a_n x_i)$.
+
+  \ 
+
+  Then, let 
 ]
