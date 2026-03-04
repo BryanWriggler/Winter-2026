@@ -35,7 +35,7 @@
 
   \ 
 
-  Consider th ring $R=ZZ\/6ZZ$, which it is semilocal ring because it only has finitely many maximal ideals (in fact, finitely many ideals since the ring is finite).
+  Consider the ring $R=ZZ\/6ZZ$, which it is semilocal ring because it only has finitely many maximal ideals (in fact, finitely many ideals since the ring is finite).
 
   Now, consider the canonical projection $pi_2:ZZ->> ZZ\/2ZZ$ and $pi_3:ZZ->>ZZ\/3ZZ$, notice that since $6ZZ = 2ZZ sect 3ZZ$, one has the ideal $6ZZ subset ker(pi_2) = 2ZZ$ and $6ZZ subset ker(pi_3) = 3ZZ$. Hence, by Generalized First Isomorphism Theorem, with the canonical projection $pi_6:ZZ->> ZZ\/6ZZ$, the above two maps uniquely factor into surjective maps $phi_2:ZZ\/6ZZ->>ZZ\/2ZZ$ and $phi_3:ZZ\/6ZZ->>ZZ\/3ZZ$ as follow:
   #set align(center)
@@ -126,7 +126,7 @@
   Hence, we found an exact sequence of $R$-modules $0->I arrow.hook R ->> R\/I -> 0$, such that the middle is finitely generated $R$-module, while the two sides are not guaranteed to be finitely generated (in particular, the left side is not guaranteed). This proves that the converse is in general false.
 ]
 
-\ 
+#pagebreak()
 
 = D//3
 #problem[
@@ -166,13 +166,17 @@
   As a result, since $phi_(K' M N), (f tensor id_M) tensor id_N,$ and $phi^(-1)_(K M N)$ are all injective, then their composition -- which results in $f tensor id_(M tensor_R N)$ -- is injective. Therefore, the functor $(\_)tensor_R (M tensor_R N)$ preserves injective maps, hence is exact. This shows that $M tensor_R N$ is a flat module.
 ]
 
-= ND//4
+#pagebreak()
+
+= D//4
 #problem[
   Let $phi:R->S$ be a ring homomorphism and let $M$ be a flat $R$-module. Prove or disprove that $M tensor_R S$ is a flat $S$-module.
 ][
   We'll prove that given $M$ is a flat $R$-module, then $M tensor_R S$ is a flat $S$-module.
 
   \ 
+
+  Since $(M tensor_R S)tensor_S (\_): sans("S-Mod")->sans("S-Mod")$ is right exact, one just needs to prove it preserves injective maps.
 
   For this, let's prove an exercise in Atiyah Macdonald Chapter 2:
   #exercise("2.15")[
@@ -200,6 +204,12 @@
     4. $ 1_B dot (m tensor_A n) = m tensor_A (n 1_B) = m tensor_A n $
     These are all the requirements for being a $B$-module, hence $M tensor_A N$ has a $B$-module structure (by its action on $N$).
 
+    As a side note, this in fact makes $M tensor_A N$ an $(A,B)$-bimodule structure, since for any $m tensor_A n in M tensor_A N$, $a in A$, and $b in B$, we have the following:
+    $ a dot (b dot (m tensor_A n)) &= a dot (m tensor_A (n b)) = m tensor_A (a(n b))\ 
+    &= m tensor_A ((a n)b) = b dot (m tensor_A (a n))\ 
+    &= b dot (a dot (m tensor_A n)) $
+    Which, the $A$-action and $B$-action commutes, showing the bimodule property.
+
     \ 
 
     \ 
@@ -208,21 +218,138 @@
 
     Similarly, define $A times (N tensor_B P)-> N tensor_B P$ by $a dot (n tensor_B p):= (a n) tensor_B p$. Based on similar reasonings in #text(weight: "bold")[I], it satisfies all the conditions for $A$-module, hence $N tensor_B P$ now can be realized as $A$-module.
 
+    Again, similar to the proof in #text(weight: "bold")[I], the computation shows that $N tensor_B P$ is an $(A,B)$-bimodule.
+
     \ 
 
     \ 
 
     #text(weight: "bold")[III. Isomorphism:]
 
-    We aim to show that $(M tensor_A N) tensor_B P$ and $M tensor_A (N tensor_B P)$ are isomorphic as both $A$ and $B$-module. For this, we'll construct a $B$-linear map $(M tensor_A N) tensor_B P -> $
+    We aim to show that $(M tensor_A N) tensor_B P$ and $M tensor_A (N tensor_B P)$ are isomorphic as both $A$ and $B$-module. For this, we'll construct a $B$-linear map $(M tensor_A N) tensor_B P -> M tensor_A (N tensor_B P)$, and another $A$-linear map $(M tensor_A N) tensor_B P <- M tensor_A (N tensor_B P)$, and prove that these two maps are isomorphism for abelian groups, while both maps are $A$-linear and $B$-linear, which will complete the isomorphism.
+
+    \ 
+
+    1. #text(weight: "bold")[$B$-linear map:]
+    
+      First, fix arbitrary $p in P$, and define a map $F_p:M times N-> M tensor_A (N tensor_B P)$ by $(m,n) mapsto m tensor_A (n tensor_B p)$ for all $(m,n) in M times N$. Note that this is $A$-bilinear, since for all $a,a' in A$, $m,m' in M$, and $n,n' in N$, we have the following:
+      $ F_p (a m+a' m', n) &= (a m + a' m') tensor_A (n tensor_B p)\ 
+      &= a dot (m tensor_A (n tensor_B p))+a' dot (m' tensor_A (n tensor_B p))\ 
+      &= a dot F_p (m,n) + a' dot F_p (m,n) $
+      $ F_p (m, a n+a' n')&= m tensor_A ((a n+a' n') tensor_B p)\ 
+      &= m tensor_A (a dot (n tensor_B p)+ a' dot (n' tensor_B p))\ 
+      &= a dot (m tensor_A (n tensor_B p))+a' dot (m tensor_A (n tensor_B p))\ 
+      &= a dot F_p (m,n)+a' dot F_p (m,n') $ 
+      Hence, this uniquely factors through the tensor product, as $overline(F)_p:M tensor_A N -> M tensor_A (N tensor_B P)$ by $overline(F)_p (m tensor_A n)= m tensor_A (n tensor_B p)$.
+
+      Now, let's define a map $G:(M tensor_A N) times P -> M tensor_A (N tensor_B P)$ as this: 
+      $ G(sum_(i=1)^k m_i tensor_A n_i " ", " " p):= overline(F)_p (sum_(i=1)^k m_i tensor_A n_i) $
+      We claim that $G$ is $B$-bilinear (which suffices to check each individual tensors). Given any $b,b' in B$, $(m tensor_A n), (m' tensor_A n') in M tensor_A N$, and $p,p' in P$, we have the following:
+      $ G(b dot (m tensor_A n)+b' dot (m' tensor_A n'),p) &= overline(F)_p (m tensor_A (n b)+m' tensor_A (n' b'))\ 
+      &= m tensor_A ((n b) tensor_B p) + m' tensor_A ((n' b') tensor_B p)\ 
+      &= m tensor_A ((n tensor_B p)b) + m' tensor_A ((n' tensor_B p)b')\ 
+      &= b dot (m tensor_A (n tensor_B p))+b' dot (m' tensor_A (n' tensor_B p))\ 
+      &= b dot overline(F)_p (m tensor_A n)+ b' dot overline(F)_p (m' tensor_A n')\ 
+      &= b dot G(m tensor_A n,p)+b' dot G(m' tensor_A n',p) $
+      $ G(m tensor_A n, b p+b' p') &= F_(b p+b' p')(m tensor_A n)\ 
+      &= m tensor_A (n tensor_B (b p+b' p'))\ 
+      &= m tensor_A (b dot (n tensor_B p)+b' dot (n tensor_B p'))\ 
+      &= b dot (m tensor_A (n tensor_B p)) + b' dot (m tensor_A (n tensor_B p'))\ 
+      &= b dot overline(F)_p (m tensor_A n)+b' dot overline(F)_(p')(m tensor_A n)\
+      &= b dot G(m tensor_A n, p)+b' dot G(m tensor_A n, p') $
+      Since $G$ is $B$-bilinear, there exists a unique $B$-linear map $overline(G): (M tensor_A N)tensor_B P -> M tensor_A (N tensor_B P)$ by $overline(G)((m tensor_A n) tensor_B p) = m tensor_A (n tensor_B p)$.
+
+      \ 
+
+    2. #text(weight: "bold")[$A$-linear map:]
+
+      Similarly, fix arbitrary $m in M$, and define a map $H_m: N times P -> (M tensor_A N) tensor_B P$ by $(n,p) mapsto (m tensor_A n) tensor_B p$ for all $(n,p) in N times P$. Using the same logic in the previous part, one can prove that $H_m$ is $B$-bilinear, hence inducing a unique $B$-linear map $overline(H)_m:N tensor_B P -> (M tensor_A N) tensor_B P$ by $overline(H)_m (n tensor_B p) = m tensor_A (n tensor_B p)$.
+
+      Then, one defines another map $L:M times (N tensor_B P)-> (M tensor_A N) tensor_B P$ as follow:
+      $ L(m, sum_(i=1)^k n_i tensor_B p_i) := overline(H)_m (sum_(i=1)^k n_i tensor_B p_i) $
+      Similar to the previous part, we in fact have $L$ being $A$-bilinear after running through the computation. Hence, this induces a unique $A$-linear map $overline(L):M tensor_A (N tensor_B P)-> (M tensor_A N) tensor_B P$ by $overline(L)(m tensor_A (n tensor_B p)) = (m tensor_A n) tensor_B p$.
+
+      \ 
+
+    3. #text(weight: "bold")[Isomorphism:]
+
+      Given the $B$-linear map $overline(G):(M tensor_A N) tensor_B P -> M tensor_A (N tensor_B P)$, and the $A$-linear map $overline(L):M tensor_A (N tensor_B P)-> (M tensor_A N) tensor_B P$, if we first look at the two modules' abelian group structure, one have this for all $m in M, n in N, p in P$:
+      $ &overline(L) compose overline(G)((m tensor_A n) tensor_B p) = overline(L)(m tensor_A (n tensor_B p))= (m tensor_A n) tensor_B p\ 
+      &overline(G) compose overline(L)(m tensor_A (n tensor_B p)) = overline(G)((m tensor_A n) tensor_B p) = m tensor_A (n tensor_B p) $
+      Hence, as homomorphism of abelian grouops, $overline(G), overline(L)$ are mutual inverses (since the compositions act as identity on all the generators of the two spaces, in the right composition order).
+
+      Now, it suffices to check that $overline(G), overline(L)$ are in fact both $A$-linear and $B$-linear. 
+      - For $overline(G)$, we've constructed it as a $B$-linear map, so it suffices to prove the $A$-linear structure (in particular, suffices to prove it preserves the $A$-action, since additivity is given by the fact that $overline(G)$ is a homomorphism of abelian group). Given any $a in A$, and $(m tensor_A n) tensor_B p in (M tensor_A N) tensor_B P$, one has the following:
+        $ overline(G)(a dot ((m tensor_A n) tensor_B p)) &= overline(G)((a dot (m tensor_A n)) tensor_B p)\ 
+      &= overline(G)(((a m) tensor_A n) tensor_B p)\ 
+      &= (a m) tensor_A (n tensor_B p)\ 
+      &= a dot (m tensor_A (n tensor_B p))\ 
+      &= a dot overline(G)((m tensor_A n) tensor_B p) $
+        (Note: Here we use the fact that $(M tensor_A N) tensor_B P$ has an $A$-module structure by letting $A$ act on $M tensor_A N$, which is proven in #text(weight: "bold")[I], because $M,N$ can be arbitrary).
+
+        Hence, $overline(G)$ preserves $A$-action, which is $A$-linear.
+
+      \ 
+
+      - Similarly, for $overline(L)$, it's constructed as an $A$-linear map, so it sufices to prove it preserves the $B$-action. Given any $b in B$, and $m tensor_A (n tensor_B p) in M tensor_A (N tensor_B P)$, one has the following:
+        $ overline(L)(b dot (m tensor_A (n tensor_B p))) &= overline(L)(m tensor_A (b dot (n tensor_B p)))\ 
+        &= overline(L)(m tensor_A (n tensor_B (b p)))\ 
+        &= (m tensor_A n) tensor_B (b p)\ 
+        &= b dot ((m tensor_A n) tensor_B p)\ 
+        &= b dot overline(L)(m tensor_A (n tensor_B p)) $
+        (Note: Again, we use the fact that $M tensor_A (N tensor_B P)$ has $B$-module structure by letting $B$ act on $N tensor_B P$, proven in #text(weight: "bold")[II]).
+
+        Hence, $overline(L)$ preserves $B$-action, which is a $B$-linear map.
+
+        \ 
+
+      This realizes $overline(G), overline(L)$ as mutual inverses as both $A$-linear and $B$-linear map, hence proving that $(M tensor_A N) tensor_B P tilde.equiv M tensor_A (N tensor_B P)$, as $(A,B)$-bimodule. In particular, an isomorphism (as both $A$ and $B$-module) between them that's constructed above, has the following form:
+      $ &phi_(M N P):(M tensor_A N) tensor_B P arrow.tilde M tensor_A (N tensor_B P)\ 
+      &phi_(M N P)((m tensor_A n) tensor_B p) = m tensor_A (n tensor_B p), quad forall m in M, n in N, p in P $
   ]
 
-  Since $S$ is a bimodule (where it's both an $R$-module and $S$-module, while any $r in R$, $s,t in S$ has $(r dot t)s = (phi(r)t) s = phi(r) (t s) = r dot (t s)$, where the dot $dot$ represents the $R$-action on $S$), then one has the following isomorphism, for any $S$-module $P$:
-  $ (M tensor_R S) tensor_S P tilde.equiv M tensor_R (S tensor_S P) $
-  Then, given any injective $S$-linear map $P arrow.hook P'$ between two $S$-modules, one has the following diagram:
+  \ 
+
+  Since $S$ is an $(R,S)$-bimodule (where it's both an $R$-module and $S$-module, while any $r in R$, $s,t in S$ has $(r dot t)s = (phi(r)t) s = phi(r) (t s) = r dot (t s)$, where the dot $dot$ represents the $R$-action on $S$), then one has the following isomorphism, for any $S$-module $P$:
+  $ phi_(M S P):(M tensor_R S) tensor_S P arrow.tilde M tensor_R (S tensor_S P), quad phi_(M S P)((m tensor_R s) tensor_S p) = m tensor_R (s tensor_S p) $
+  Now, given any injective $S$-linear map $f:P arrow.hook P'$ between two $S$-modules, one simply has $(id_S)tensor_S f: S tensor_B P arrow.hook S tensor_B P'$ be injective (since tensor an $S$-module over $S$ is isomorphic to the original module). 
+
+  However, $(id_S)tensor_S f$ is also an injective $R$-linear map, since it's additive, and for all $r in R$, $s in S$, and $p in P$, one has the following:
+  $ ((id_S)tensor_S f)(r dot (s tensor_B p)) &= ((id_S)tensor_S f)((r dot s) tensor_B p)\ 
+  &= (r dot s) tensor_B f(p)\ 
+  &= r dot (s tensor_B f(p))\ 
+  &= r dot ((id_S) tensor_S f)(s tensor_B p) $
+  Hence, with $M$ being a flat $R$-module, the $R$-linear map $id_M tensor_R ((id_S) tensor_S f):M tensor_R (S tensor_S P) arrow.hook M tensor_R (S tensor_S P')$ is also injective. 
+
+  Similar to the previous one, we also have $id_M tensor_R ((id_S) tensor_S f)$ being an injective $S$-linear map, since it's additive, for any $m in M$, $s,t in S$, and $p in P$, one has the following:
+  $ (id_M tensor_R ((id_S)tensor_S f))(s dot (m tensor_R (t tensor_S p))) &= (id_M tensor_R ((id_S)tensor_S f))(m tensor_R (s dot (t tensor_S p)))\ 
+  &= m tensor_R (((id_S)tensor_S f)((s t) tensor_S p))\ 
+  &= m tensor_R ((s t) tensor_S f(p))\ 
+  &= m tensor_R (s dot (t tensor_S f(p)))\ 
+  &= s dot (m tensor_R (t tensor_S f(p)))\ 
+  &= s dot [(id_M tensor_R ((id_S)tensor_S f))(m tensor_R (t tensor_S p))] $
+  For simplisity, let's define $psi:= id_M tensor_R ((id_S)tensor_S f)$ as the injective $S$-linear map.
+  
+  Finally, one has the following diagram:
+  #set align(center)
+  #diagram($
+             (M tensor_R S) tensor_S P edge("d","hook->>", phi_(M S P)) edge("rr",->, script((id_(M)tensor_R S) tensor_S f)) && (M tensor_R S) tensor_S P'\ 
+             M tensor_R (S tensor_S P) edge("rr","hook->", script(psi),#right) && M tensor_R (S tensor_S P') edge("u", "hook->>", phi_(M S P')^(-1))
+           $)
+  #set align(left)
+  Notice that this big diagram commutes, because for all $m in M$, $s in S$, and $p in P$, one has the following:
+  $ ((id_M tensor_R S) tensor_S f)((m tensor_R s)tensor_S p) = (m tensor_R s)tensor_S f(p) $
+  $ phi^(-1)_(M S P') compose psi compose phi_(M S P)((m tensor_R s)tensor_S p) &= phi^(-1)_(M S P') compose psi (m tensor_R (s tensor_S p))\ 
+  &= phi^(-1)_(M S P')(m tensor_R (s tensor_S f(p)))\ 
+  &= (m tensor_R s)tensor_S f(p) $
+  This shows that $phi^(-1)_(M S P') compose psi compose phi_(M S P) = (id_M tensor_R S)tensor_S f$ as $S$-linear maps. Hence, with each map on the LRS being injective, the RHS is also injective.
+
+  This shows that $(M tensor_R S)tensor_S (\_)$ is an exact functor (as it preserves injectivity), hence $M tensor_R S$ can be realized as a flat $S$-module.
 ]
 
-= ND//5
+#pagebreak()
+
+= D//5
 #problem[
   Let $phi:R-> S$ be a ring homomorphism such that $M$ is projective as an $R$-module. Prove or disprove that $M tensor_R S$ is projective as $S$-module.
 ][
@@ -230,30 +357,67 @@
 
   \ 
 
-  Since $M$ is projective as an $R$-module, there exists another $R$-module $N$, such that 
+  Since $M$ is projective as an $R$-module, there exists another $R$-module $N$, such that $M plus.circle N tilde.equiv plus.circle.big_(i in I) R e_i$ a free $R$-module (where each $R e_i tilde.equiv R$ as $R$-module). Then, since tensor product "commutes" with direct sum (up to isomorphism), hence one has the following isomorphism as $R$-modules:
+  $ (M tensor_R S) plus.circle (N tensor_R S) &tilde.equiv (M plus.circle N)tensor_R S tilde.equiv (plus.circle.big_(i in I)R e_i)tensor_R S tilde.equiv plus.circle.big_(i in I)(R e_i tensor_R S)  $
+  As a remark, all these isomorphism respects the $S$-module structure: Given any family of $R$-modules ${M_i}_(i in Lambda)$, the $R$-linear isomorphism $phi:(plus.circle.big_(i in Lambda)M_i)tensor_R S arrow.tilde plus.circle.big_(i in I)(M_i tensor_R S)$ is given as: 
+  $ phi(((m_i)_(i in Lambda)) tensor s) = (m_i tensor s)_(i in Lambda) $
+  Which, this map is also $S$-linear, as any $(m_i)_(i in Lambda) in plus.circle.big_(i in Lambda)M_i$, and $s,t in S$, satisfy the following:
+  $ phi(s dot ((m_i)_(i in Lambda) tensor t)) &= phi((m_i)_(i in Lambda) tensor (t s)) = (m_i tensor (t s))_(i in Lambda)\ 
+  &= (s dot (m_i tensor t))_(i in Lambda) = s dot (m_i tensor t)_(i in Lambda) $
+  Hence, $phi$ is also an $S$-linear isomorphism. Apply this logic to the 1st and 3rd isomorphism relation, they're isomorphic as $S$-module (the middle part is true because $S$ is preserved).
 
-  Not sure if this is right, but if $M plus.circle N = R^(plus.circle I)$, then if $R^I tensor_R S tilde.equiv (R tensor_R S)^(plus.circle I) tilde.equiv S^(plus.circle I)$ as $R$-module. Then, the question becomes: are the two structures compatible? Namely the 
+  \ 
+
+  Now, look at each $R e_i tilde.equiv R$, one has each $R e_i tensor_R S tilde.equiv S$ as $R$-module (and a specific $R$-linear isomorphism is given by $phi:R tensor_R S arrow.tilde S$, $phi(r tensor s) = r dot s = phi(r)s$).
+
+  However, notice that this $phi$ is also an $S$-linear map, because it's additive, and also every $r in R$ and $s,t in S$ satisfy the following:
+  $ phi(s dot (r tensor t)) &= phi(r tensor (t s)) = r dot (t s) = phi(r)(t s) = (phi(r)t)s = s dot (r dot t) = s dot phi(r tensor t) $
+  (Note: Here the $S$-module structure on $R tensor_R S$ is by letting $S$ act on $S$).
+
+  Hence, it's not only an $R$-linear isomorphism, but in fact an $S$-linear isomorphism. As a consequence, with the $S$-module structure on $R tensor_R S$ being isomorphic to $S$, one has:
+  $ (M tensor_R S)plus.circle (N tensor_R S) tilde.equiv plus.circle.big_(i in I)(R e_i tensor_R S) tilde.equiv plus.circle.big_(i in I)S $
+  Where the final part is a free $S$-module. This realizes $M tensor_R S$ as a direct summand of a free $S$-module, hence it's projective as $S$-module.
 ]
+
+#pagebreak()
 
 = ND//6
 #problem[
   Let $phi:R -> S$ be a ring homomorphism and let $M$ be an injective $R$-module such that $M tensor_R S != 0$. Prove or disprove that $M tensor_R S$ is injective $S$-module.
 ][
-  
+  Guess: $R=ZZ$, $S = ZZ_((p))$ for some prime $p$, choose $M=QQ$, then $M tensor_R S !=0$ I believe (even though it's fxxking hard to check). I think $M tensor_R S tilde.equiv M$ as $S$-module in this case (bc the description of $ZZ_((p))$ can be realized as a subring of $QQ$, and one can simply move all coefficients into $QQ$ by divisibility of $QQ$).
+
+  Is $QQ$ an injective $S$-mod? Yes, bc the fraction field of $S$ is $QQ$, and $S$ is a PID.
+
+  \ 
+
+  Maybe it's true then...
 ]
 
-= ND//7
+= HD (Type it up)//7
 #problem[
   Let $phi:R->S$ be a ring homomorphism such that $S$ is flat $R$-algebra. Prove or disprove that $phi$ is injective.
 ][
-  
+  We'll disprove it by providing a counterexample.
+
+  \ 
+
+  Consider the ring $R=ZZ\/6ZZ$, recall that it has a projection $phi:R->> ZZ\/3ZZ$ by $phi(overline(1)_6)=overline(1)_3$, this realizes $ZZ\/3ZZ$ as an $R$-algebra, while the map $phi$ is not injective (since $phi(overline(3)_6)=overline(3)_3 = 0$).
+
+  (Basically, the idea is that as $R$-modules, $ZZ\/6ZZ tilde.equiv ZZ\/2ZZ plus.circle ZZ\/3ZZ$ because the section $ZZ\/3ZZ-> ZZ\/6ZZ$ by $overline(1)_3 mapsto overline(2)_6$ splits, as a result $S=ZZ\/3ZZ$ is a projective $R$-mod, hence flat)..
 ]
 
 = ND//8
 #problem[
   Let $phi:R->S$ be an injective ring homomorphism such that $S$ is a field. Prove or disprove that $S$ is a flat $R$-algebra. 
 ][
-  
+  Notice that $R$ is a subring of a field, hence an integral domain. Given $K$ as fraction field of $R$, one realizes $S$ as a field extension of $K$, hence $S tilde.equiv plus.circle.big_(i in I)K$ as $K$-vector space. Notice that they're also isomorphic as $R$-modules (simply because a $K$-linear map is also an $R$-linear map, by restricting the scalars). So, it suffices to argue that $K$ is flat or not (since direct sum commutes with tensor).
+
+  \ 
+
+  If $R$ is a field then we're done (everything is flat).
+
+  If $R$ is not a field, how to characterize flatness? We know $K$ definitely can't be free, and there are cases where it's not projective (EX: $QQ$ over $ZZ_((p))$ covered in class). 
 ]
 
 = ND//9
@@ -267,21 +431,37 @@
 #problem[
   Let $R$ be a PID and let $M$ be a finitely generated flat $R$-module. Prove or disprove that $M$ is a free $R$-module.
 ][
-  Q: Over a PID, is there any flat module that's not projective?
+  Q: Over a PID, is there any flat module that's not projective? 
+
+  Guess: $k[x]$ as a $k[x^2]$-module (which $k[x^2]$ is a PID, since it's iso to $k[y]$). Then, as a module it's generated by $1$ and $x$ (since separate out the odd degree terms and even degree terms we're good). Oh shit but it's then free.
+
+  \ 
+
+  What happens if we consider minimal generating set? Say $x_1,...,x_n$ such that it's minimal, we find a surjection $F_R (x_1,...,x_n) ->> M$. 
 ]
 
-= ND//11
+= HD (Type it up)//11
 #problem[
-  Let $R$ be a PID and let $M$ be an $R$-module. Prove that $R$ is a submodule of an injective $R$-module.
+  Let $R$ be a PID and let $M$ be an $R$-module. Prove that $M$ is a submodule of an injective $R$-module.
 ][
-  The injective resolution problem...
+  Consider $K$ as the fraction field of $R$, then any $plus.circle.big_(i in I)K$ is injective (because it's divisible coordinate wise!)
+
+  For any $M$ an $R$-module, there exists free $R$-module $plus.circle.big_(i in J)R$ that surjects onto $M$, hence $M tilde.equiv (plus.circle.big_(i in J)R)\/L$ for some submodule $L$ of the free module.
+
+  Now, consider the inclusion of $R$-modules $L arrow.hook plus.circle.big_(i in J)R arrow.hook plus.circle.big_(i in J)K$, and the quotient $plus.circle.big_(i in J)K ->> (plus.circle.big_(i in J)K)\/L$. Then, then map $plus.circle.big_(i in J)R -> (plus.circle.big_(i in J)K)\/L$ has kernel precisely $L$, showing $(plus.circle.big_(i in J)R)\/L arrow.hook (plus.circle.big_(i in J)K)\/L$ by its natural identification.
+
+  So, $M$ injects into $(plus.circle.big_(i in J)K)\/L$, which is divisible (since it's a module theoretic quotient of $plus.circle.big_(i in J)K$ which is divisible).
 ]
 
-= ND//12
+= HD (type it up)//12
 #problem[
   Let $R$ be a commutative ring and let $m$ be a given maximal ideal of $R$. Suppose $m$ is an $R$-module such that $M_m = 0$. Prove or disprove that $M=0$.
 ][
-  
+  I guess we can take $R=ZZ$, $m = 2ZZ$, and $M = ZZ\/3ZZ$. Then, $M_m$ denotes all the elements of the form $overline(a)_3/d$, where $d in.not 2ZZ$ (i.e. we can divide by 3!) So in particular, one has the following:
+  $ 3 dot (1 dot overline(a)_3-1 dot overline(0)_3) = 3 dot overline(a)_3 = overline(0)_3 in M $
+  This shows that $overline(a)_3/1 = 0/1$ in $M_m$, showing $M_m=0$, while $M!=0$.
+
+  (But if swapping to all maximal ideal $m$ I think it's true).
 ]
 
 = ND//13
@@ -307,7 +487,7 @@
 
 = ND//16
 #problem[
-  Let $R xarrow(phi)S$ be ring homomorphism hich is flat. Let $M$ be an $R$-module such that $M tensor_R S$ is torsion-free $S$-module. Is $M$ torsion-free $R$-module?
+  Let $R xarrow(phi)S$ be ring homomorphism which is flat. Let $M$ be an $R$-module such that $M tensor_R S$ is torsion-free $S$-module. Is $M$ torsion-free $R$-module?
 ][
-  
+  The counterexample I can thought of are all not flat. I want to say it's true.
 ]
