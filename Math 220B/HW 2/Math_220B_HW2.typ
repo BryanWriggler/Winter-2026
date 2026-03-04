@@ -407,13 +407,19 @@
   (Basically, the idea is that as $R$-modules, $ZZ\/6ZZ tilde.equiv ZZ\/2ZZ plus.circle ZZ\/3ZZ$ because the section $ZZ\/3ZZ-> ZZ\/6ZZ$ by $overline(1)_3 mapsto overline(2)_6$ splits, as a result $S=ZZ\/3ZZ$ is a projective $R$-mod, hence flat)..
 ]
 
-= ND//8
+= HD (Type it up)//8
 #problem[
   Let $phi:R->S$ be an injective ring homomorphism such that $S$ is a field. Prove or disprove that $S$ is a flat $R$-algebra. 
 ][
   Notice that $R$ is a subring of a field, hence an integral domain. Given $K$ as fraction field of $R$, one realizes $S$ as a field extension of $K$, hence $S tilde.equiv plus.circle.big_(i in I)K$ as $K$-vector space. Notice that they're also isomorphic as $R$-modules (simply because a $K$-linear map is also an $R$-linear map, by restricting the scalars). So, it suffices to argue that $K$ is flat or not (since direct sum commutes with tensor).
 
   \ 
+
+  $K$ is injective: Consider any inclusion of ideals $I arrow.hook R$, w claim that $I tensor_R K -> R tensor_R K tilde.equiv K$ is injective:
+  - First, its image are characterized by finite sum of $a_i dot p_i/q_i$, where $a_i in I$ and $p_i/q_i in K$ (or, $p_i,q_i in R$). As a result, one has $a_i dot p_i/q_i in I K$ (the finite sum of products of elements in $I$ and elements in $K$).
+
+  - Now, notice that we have an inverse: Every element in $I K$ can be written as $a_i / q_i$ where $a_i in I$ and $q_i in R$, hence define the inverse by $a_i/q_i mapsto a_i tensor 1/q_i$. This is well-defined as multiplying by $r in R$ has: $r a_i/q_i mapsto a_i tensor r/q_i = r (a_i tensor 1/q_i)$. On the other hand, it can be checked that this is a mutual inverse.
+  So, $I arrow.hook R$ has $I tensor_R K arrow.hook R tensor_R K$, showing $K$ is flat.
 
   If $R$ is a field then we're done (everything is flat).
 
