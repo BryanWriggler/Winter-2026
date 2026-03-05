@@ -469,11 +469,19 @@
   (But if swapping to all maximal ideal $m$ I think it's true).
 ]
 
-= ND//13
+= HD (Type it up)//13
 #problem[
   Let $R xarrow(phi)S xarrow(psi)T$ be two ring homomorphisms such that $S$ is $R$-flat and $T$ is $S$-flat. Prove or disprove that $T$ is $R$-flat.
 ][
-   
+  Consider the following isomorphism as $(R,S)$-bimodules:
+  $ (R tensor_R S) tensor_S T tilde.equiv R tensor_R (S tensor_S T) tilde.equiv R tensor_R T tilde.equiv T $
+  As a result, if $I arrow.hook R$ is inclusion of ideal, one has the injection $I tensor_R S arrow.hook R tensor_R S tilde.equiv S$ as $R$-module (which is also an injective $S$-linear map, bc $S$ is an $(R,S)$-bimodule). This is by $R$-flatness of $S$.
+
+  As a result, one has the following injection:
+  $ (I tensor_R S)tensor_S T arrow.hook (R tensor_R S)tensor_S T tilde.equiv S tensor_S T tilde.equiv T $
+  Which, using the bimodule isomorphism proven in problem 2, we have:
+  $ I tensor_R T tilde.equiv I tensor_R (S tensor_S T) arrow.hook R tensor_R (S tensor_S T) tilde.equiv R tensor_R T $
+  Hence, $T$ is also $R$-flat.
 ]
 
 = HD (Type it up)//14
