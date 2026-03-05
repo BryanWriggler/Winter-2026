@@ -395,10 +395,11 @@
 
 ]
 
-= HD (Type it up)//7
+= D//7
 #problem[
   Let $phi:R->S$ be a ring homomorphism such that $S$ is flat $R$-algebra. Prove or disprove that $phi$ is injective.
 ][
+  /*
   We'll disprove it by providing a counterexample.
 
   \ 
@@ -406,13 +407,51 @@
   Consider the ring $R=ZZ\/6ZZ$, recall that it has a projection $phi:R->> ZZ\/3ZZ$ by $phi(overline(1)_6)=overline(1)_3$, this realizes $ZZ\/3ZZ$ as an $R$-algebra, while the map $phi$ is not injective (since $phi(overline(3)_6)=overline(3)_3 = 0$).
 
   (Basically, the idea is that as $R$-modules, $ZZ\/6ZZ tilde.equiv ZZ\/2ZZ plus.circle ZZ\/3ZZ$ because the section $ZZ\/3ZZ-> ZZ\/6ZZ$ by $overline(1)_3 mapsto overline(2)_6$ splits, as a result $S=ZZ\/3ZZ$ is a projective $R$-mod, hence flat)..
+  */
+  We'll disprove it by providing a counterexample.
+
+  \ 
+
+  Consider the ring $R=ZZ\/6ZZ$, recall that it has a projection $phi:R->> ZZ\/3ZZ$ by $phi(overline(1)_6)=overline(1)_3$, this realizes $ZZ\/3ZZ$ as an $R$-algebra, while the map $phi$ is not injective (since $phi(overline(3)_6)=overline(3)_3 = 0$).
+
+  Now, consider the ideal $I={overline(0)_6, overline(2)_6, overline(4)_6} subset R$, which it can be obtained using another projection $pi_2:ZZ\/6ZZ ->> ZZ\/2ZZ$ by $pi_2 (overline(n)_6) = overline(n)_2$. Which, $overline(n)_2 = overline(0)_2$ iff $n$ is odd iff $overline(n)_6 in {overline(0)_6, overline(2)_6, overline(4)_6}$, showing $ker(phi)=I$.
+
+  However, this ideal also has a ring structure: It's closed under multiplication by the ideal property, so it suffices to find the inverse. Consider the following multiplication relation:
+  $ overline(0)_6 dot overline(4)_6 = overline(0)_6, quad overline(2)_6 dot overline(4)_6 = overline(8)_6 = overline(2)_6, quad overline(4)_6 dot overline(4)_6 = overline(16)_6 = overline(4)_6 $
+  This shows that all $overline(a)_6 in I$ satisfies $overline(a)_6 dot overline(4)_6 = overline(a)_6$, which $overline(4)_6$ is the multiplicative identity of $I$.
+
+  \ 
+
+  Notice that $I$ as a ring with the above structure is isomorphic to $ZZ\/3ZZ$: As an additive abelian group because both $I$ and $ZZ\/3ZZ$ has order 3, they must be isomorphic, and one abelian group isomorphism can be considered as $j:ZZ\/3ZZ arrow.tilde I$, $j(overline(1)_3) = overline(4)_6$ (since both are cyclic with prime order, then any nonzero element is a generator).
+
+  Yet, $j$ is also a ring homomorphism, because of the following (for anything multiplied by zero, it's sent to zero by group homomorphism property, so we don't need to check):
+  $ j(overline(1)_3 dot overline(2)_3) = j(overline(2)_3) = overline(2)_6 = overline(4)_6 dot overline(2)_6 = j(overline(1)_3) dot j(overline(2)_3) $
+  $ j(overline(1)_3 dot overline(1)_3) = j(overline(1)_3) = overline(4)_6 = overline(4)_6 dot overline(4)_6 = j(overline(1)_3) dot j(overline(1)_3) $
+  $ j(overline(2)_3 dot overline(2)_3) = j(overline(1)_3) = overline(4)_6 = overline(2)_6 dot overline(2)_6 = j(overline(2)_3) dot j(overline(2)_3) $
+  Hence, this realizes $ZZ\/3ZZ tilde.equiv I$ as rings, and even stronger -- as $R$-algebras. This suffices to check the $R$-action on $overline(1)_3$ (as the rest follows directly by adding $overline(1)_3$ to itself):
+  $ &j(overline(1)_6 dot overline(1)_3)= j(overline(1)_3)=overline(4)_6 = overline(1)_6 dot overline(4)_6 = overline(1)_6 dot j(overline(1)_3)\
+  &j(overline(2)_6 dot overline(1)_3)= j(overline(2)_3)=overline(2)_6 = overline(2)_6 dot overline(4)_6 = overline(2)_6 dot j(overline(1)_3)\
+  &j(overline(3)_6 dot overline(1)_3)= j(overline(0)_3)=overline(0)_6 = overline(3)_6 dot overline(4)_6 = overline(3)_6 dot j(overline(1)_3)\
+  &j(overline(4)_6 dot overline(1)_3)= j(overline(1)_3)=overline(4)_6 = overline(4)_6 dot overline(4)_6 = overline(4)_6 dot j(overline(1)_3)\
+  &j(overline(5)_6 dot overline(1)_3)= j(overline(2)_3)=overline(2)_6 = overline(5)_6 dot overline(4)_6 = overline(1)_6 dot j(overline(1)_3) $
+  This proves the $R$-linearity of $j$, hence $j:ZZ\/3ZZ arrow.tilde I$ is in fact an $R$-linear isomorphism.
+
+  \ 
+
+  As a result, this is actually a section of the map $phi:R ->> ZZ\/3ZZ$ when viewed as an $R$-linear map:
+  $ phi compose j(overline(1)_3) = phi(overline(4)_6) = overline(1)_3 $
+  And, with $overline(1)_3$ being a generator of $ZZ\/3ZZ$ additive wise, this proes that $phi compose j = id_(ZZ\/3ZZ)$. Hence, the $R$-linear map $phi:R->>ZZ\/3ZZ$ splits, showing that $ZZ\/3ZZ$ is a direct summand of $R$ (which is a free $R$-module).
+  
+  This proves that $ZZ\/3ZZ$ is a projective $R$-module, which in particular is flat. However, as a flat $R$-algebra, the map $phi:R ->> ZZ\/3ZZ$ is not injective, which provides a counterexample to our statement.
 ]
 
-= HD (Type it up)//8
+#pagebreak()
+
+= D//8
 #problem[
   Let $phi:R->S$ be an injective ring homomorphism such that $S$ is a field. Prove or disprove that $S$ is a flat $R$-algebra. 
 ][
-  Notice that $R$ is a subring of a field, hence an integral domain. Given $K$ as fraction field of $R$, one realizes $S$ as a field extension of $K$, hence $S tilde.equiv plus.circle.big_(i in I)K$ as $K$-vector space. Notice that they're also isomorphic as $R$-modules (simply because a $K$-linear map is also an $R$-linear map, by restricting the scalars). So, it suffices to argue that $K$ is flat or not (since direct sum commutes with tensor).
+  /*Notice that $R$ is a subring of a field, hence an integral domain. Given $K$ as fraction field of $R$, one realizes $S$ as a field extension of $K$, hence $S tilde.equiv plus.circle.big_(i in I)K$ as $K$-vector space. Notice that they're also isomorphic as $R$-modules (simply because a $K$-linear map is also an $R$-linear map, by restricting the scalars). So, it suffices to argue that $K$ is flat or not (since direct sum commutes with tensor).
 
   \ 
 
@@ -424,8 +463,30 @@
 
   If $R$ is a field then we're done (everything is flat).
 
-  If $R$ is not a field, how to characterize flatness? We know $K$ definitely can't be free, and there are cases where it's not projective (EX: $QQ$ over $ZZ_((p))$ covered in class). 
+  If $R$ is not a field, how to characterize flatness? We know $K$ definitely can't be free, and there are cases where it's not projective (EX: $QQ$ over $ZZ_((p))$ covered in class). */
+  We'll prove that $S$ is a flat $R$-algebra.
+
+  \ 
+
+  First, since $phi:R arrow.hook S$ is injective, we can identify $R$ as a subring of $S$, and $phi$ as a simple inclusion. As a side note, $R$ is an integral domain.
+
+  Now, consider any inclusion of nonzero ideal $iota: I arrow.hook R$, and consider its map after tensoring with $S$ over $R$, say $iota tensor id_S:I tensor_R S -> R tensor_R S$. The goal is to proof this map is injective (in fact, we'll prove that it's an isomorphism): Consider the isomorphism as $R$-modules $R tensor_R S arrow.tilde S$ by $r tensor s mapsto r$. Then, $iota tensor id_S$ can also be identified as follow:
+  $ iota tensor id_S:I tensor_R S -> S, quad (iota tensor id_S)(a tensor s) = a s $
+  Which, fix a nonzero $a in I$, define the map $g: S -> I tensor_R S$ by $g(s) := a tensor s/a$. Notice that this is well-defined, as for any nonzero $a,b in I$ and any $s in S$, one has the following:
+  $ a tensor s/a = a tensor (b s)/(b a) = (a b) tensor s/(b a) = b tensor (a s)/(b a) = b tensor s/b $
+  Hence, the image is in fact independent of the choice in $I$. Now, notice that $g$ is also an $R$-linear map. For all $r in R$ and $s,t in S$, one has the following:
+  $ g(s+t) = a tensor (s+t)/a=a tensor (s/a+t/a) = a tensor s/a+a tensor t/a = g(s)+g(t) $
+  $ g(r dot s) = a tensor (r s)/a = r dot (a tensor s/a) = r dot g(s) $
+  Finally, recognize that $g$ is a mutual inverse of $iota tensor id_S$, as for all $s in S$ and $b in I$, one has the following;
+  $ g compose (iota tensor id_S)(b tensor s) = g(b s) = a tensor (b s)/a = (a b) tensor s/a = b tensor (a s)/a = b tensor s $
+  (Note: since $b in I$, then with $a b$ on the left one can factor out $a$, and still have $b tensor (a s)/a in I tensor_R S$).
+  $ (iota tensor id_S) compose g(s) = (iota tensor id_S)(a tensor s/a) = a dot s/a =s $
+  This shows that $iota tensor id_S$, $g$ are mutual inverses on the generators of $I tensor_R S$ and $S$, hence are mutual inverses on the two $R$-modules. 
+
+  This proves injectivity of $iota tensor id_S$. And, since $I arrow.hook R$ is arbitrary inclusion of nonzero ideals, preserving injectivity for all such inclusion of nonzero ideals under tensor implies $S$ is a flat $R$-algebra.
 ]
+
+#pagebreak()
 
 = ND//9
 #problem[
@@ -445,17 +506,24 @@
   However, $R\/I$ I don't think is flat in general...
 ]
 
+#pagebreak()
+
 = HD (Type it up)//11
 #problem[
   Let $R$ be a PID and let $M$ be an $R$-module. Prove that $M$ is a submodule of an injective $R$-module.
 ][
-  Consider $K$ as the fraction field of $R$, then any $plus.circle.big_(i in I)K$ is injective (because it's divisible coordinate wise!)
+  /*Consider $K$ as the fraction field of $R$, then any $plus.circle.big_(i in I)K$ is injective (because it's divisible coordinate wise!)
 
   For any $M$ an $R$-module, there exists free $R$-module $plus.circle.big_(i in J)R$ that surjects onto $M$, hence $M tilde.equiv (plus.circle.big_(i in J)R)\/L$ for some submodule $L$ of the free module.
 
   Now, consider the inclusion of $R$-modules $L arrow.hook plus.circle.big_(i in J)R arrow.hook plus.circle.big_(i in J)K$, and the quotient $plus.circle.big_(i in J)K ->> (plus.circle.big_(i in J)K)\/L$. Then, then map $plus.circle.big_(i in J)R -> (plus.circle.big_(i in J)K)\/L$ has kernel precisely $L$, showing $(plus.circle.big_(i in J)R)\/L arrow.hook (plus.circle.big_(i in J)K)\/L$ by its natural identification.
 
-  So, $M$ injects into $(plus.circle.big_(i in J)K)\/L$, which is divisible (since it's a module theoretic quotient of $plus.circle.big_(i in J)K$ which is divisible).
+  So, $M$ injects into $(plus.circle.big_(i in J)K)\/L$, which is divisible (since it's a module theoretic quotient of $plus.circle.big_(i in J)K$ which is divisible).*/
+  Recall that over $R$ a PID, injective and divisible modules are equivalent. In particular, let $K$ be the fraction field of $R$, then since $K$ is divisible as $R$-module, hence it's injective.
+
+  \ 
+
+  Given the inclusion $R arrow.hook K$, any index set $I$ generates an inclusion $plus.circle.big_(i in I)R arrow.hook plus.circle.big_(i in I)K$ by coordinate wise inclusion. In particular, notice that $plus.circle.big_(i in I)K$ is also divisible (since for any nonzero $r in R$, any $(x_i)_(i in I) in plus.circle.big_(i in I)K$ has $r dot (x_i/r)_(i in I)= (r dot x_i/r)_(i in I)= (x_i)_(i in I)$). So, $plus.circle.big_(i in I)K$ is an injective $R$-module also, for
 ]
 
 = HD (Type it up)//12
