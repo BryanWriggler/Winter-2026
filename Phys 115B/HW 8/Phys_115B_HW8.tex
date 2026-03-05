@@ -47,7 +47,7 @@ compared to $\Delta E$, so all states are occupied equally.
 
 \newpage
 
-\section*{2}
+\section*{2 D}
 
 \begin{ques}
 Consider a free electron gas with unequal numbers of spin-up and spin-down particles ($N_+$
@@ -55,7 +55,7 @@ and $N_-$ respectively). Such a gas would have a net magnetization (magnetic dip
 moment per unit volume)
 
 \[
-M = -\frac{N_+ - N_-}{V} \mu_B \hat{k} = M \hat{k}
+\mathbf{M} = -\frac{N_+ - N_-}{V} \mu_B \hat{k} = M \hat{k}
 \]
 
 where $\mu_B = \frac{e\hbar}{2m_e}$ is the Bohr magneton (The minus sign is there because the charge of
@@ -90,22 +90,69 @@ The energy is a minimum for $M = 0$, so the ground state will have zero magnetiz
     \hfil
 
     \begin{itemize}
-        \item[(a)] Let $N_\text{tot}:= N_++N_-$, and $N_\text{com}:= \min\{N_+,N_-\}$ (so, how many electrons in total, and how many pairs of opposit spin electrons, respectively). Another way to represent the numbers is $N_\text{com} = \frac{N_++N_- - |N_+-N_-|}{2}$.
-        
-        Since each energy level allows two electrons with opposite spins, it's the most favoarable for the lowest energy levels to be filled with electron pairs with opposite spins. Hence, for $N_\text{com}$ pairs of electrons, they can be treated as cases with no net magenetization, hence agrees with the formula derived. Or, the energy they occupied is:
-        \begin{align}
-            E_{\text{com}} &= \frac{\hbar^2 (3\pi^2)^{5/3}(2N_\text{com})^{5/3}}{10\pi^2 m}V^{-2/3} = \frac{\hbar^2}{}
-        \end{align}
+        \item[(a)] Here, it's easier to separate them into two systems: One with only spin up electrons, the other with only spin down electrons, and we intended to generate a lowest energy in both systems (which is fine, because under the lowest energy configuration, if any two particles from the two systems respectively occupied the same state, because of their opposite spin it doesn't violate the Pauli-Exclusion principle).
         
         \hfil
 
-        \item[(b)] 
+        Recall that for a state in the $\bk$-space, each state occupies a volume of $\frac{\pi^3}{V}$, and each state with ``radius'' $k$ has energy $\frac{\hbar^2}{2m}k^2$. Then, in each system (for definiteness, say the spin up system), if the lowest energy state gathers into an octant of a sphere (in the first octant, which is the only allowed position), it has some radius $K_+$; with $N_+ \gg 1$, each state occupies volume of $\frac{\pi^3}{V}$ (and each state only allows one electron, as every electron has the same spin), then one obtains the following equation regarding number of spin up electrons:
+        \begin{align}
+            N_+\cdot\frac{\pi^3}{V} = \frac{1}{8}\cdot\frac{4}{3}\pi K_+^3 \ \implies K_+ = \left(\frac{6 N_+ \pi^2}{V}\right)^\frac{1}{3}
+        \end{align}
+        Hence, with each unit $\frac{\pi^3}{V}$ allowing only one state, and the states only live in the first octant, the total energy of spin up states can be approximated using the following integral, given $N_+\gg 1$:
+        \begin{align}
+            E_{\text{tot},+} &= \frac{V}{\pi^3}\int_{k=0}^{K_+}\int_{\theta=0}^{\frac{\pi}{2}}\int_{\phi=0}^{\frac{\pi}{2}}\frac{\hbar^2}{2m}k^2 \cdot k^2\sin(\theta)\ d\phi\ d\theta\ dk\\
+            &= \frac{V\hbar^2}{2m\pi^3}\cdot\frac{\pi}{2}\int_{0}^{K_+}k^4 dk= \frac{V\hbar^2}{20m\pi^2}K_+^5\\
+            &= \frac{V\hbar^2 (3\pi^2)^{5/3}(2N_+)^{5/3}}{20m\pi^2 V^{5/3}} = \frac{\hbar^2(3\pi^2)^{5/3}(2N_+)^{5/3}}{20m\pi^2}V^{-2/3}
+        \end{align}
+        Similarly, swap everything with the spin down system (i.e. plugin ones for $N_-$ instead), we get the following:
+        \begin{align}
+            E_{\text{tot},-} = \frac{\hbar^2(3\pi^2)^{5/3}(2N_-)^{5/3}}{20m\pi^2}V^{-2/3}
+        \end{align}
+        As a result, the totwl energy is the two combined:
+        \begin{align}
+            E_\text{tot} = E_{\text{tot},+}+E_{\text{tot},-}=\frac{\hbar^2(3\pi^2)^{5/3}}{20m\pi^2V^{2/3}}((2N_+)^{5/3}+(2N_-)^{5/3})
+        \end{align}
+        Which, under the special case $N_+=N_-=N$, it reduces to the following:
+        \begin{align}
+            N_+=N_-=N\ \implies\ E_\text{tot} = \frac{\hbar^2(3\pi^2)^{5/3}(2N)^{5/3}}{10m\pi^2 V^{2/3}}
+        \end{align}
+        Which, it agrees with the original derivation.
+        
+        \hfil
+
+        \item[(b)] If rewrite the above energy in the intenged form, we get:
+        \begin{align}
+            \frac{1}{V}E_\text{tot} &= \frac{\hbar^2(3\pi^2)^{5/3}}{20m\pi^2 V^{5/3}}((2N_+)^{5/3}+(2N_-)^{5/3}) = \frac{\hbar^2(3\pi^2)^{5/3}}{20m\pi^2}\left(\left(\frac{2N_+}{V}\right)^{5/3}+\left(\frac{2N_-}{V}\right)^{5/3}\right)
+        \end{align}
+        WLOG, say $N_+>N_-$ (for the other one just flip the sign). Then, we have the following:
+        \begin{align}
+            &\left(\frac{2N_+}{V}\right)^{5/3} = \left(\frac{N_++N_-}{V} + \frac{(N_+-N_-)}{V}\right)^{5/3} = \left(\rho+\frac{|M|}{\mu_B}\right)^{5/3}\\
+            &\left(\frac{2N_-}{V}\right)^{5/3} = \left(\frac{N_++N_-}{V} - \frac{(N_+-N_-)}{V}\right)^{5/3} = \left(\rho-\frac{|M|}{\mu_B}\right)^{5/3}
+        \end{align}
+        Which, under the assumption $\frac{|M|}{\mu_B}\ll \rho$, one can use the second order approximation and get the following:
+        \begin{align}
+            &\left(\rho+\frac{|M|}{\rho_B}\right)^{5/3} \approx \rho^{5/3}+\frac{5}{3}\rho^{2/3}\frac{|M|}{\mu_B} + \frac{5}{9}\rho^{-1/3}\left(\frac{|M|}{\mu_B}\right)^2\\
+            &\left(\rho-\frac{|M|}{\rho_B}\right)^{5/3} \approx \rho^{5/3}-\frac{5}{3}\rho^{2/3}\frac{|M|}{\mu_B} + \frac{5}{9}\rho^{-1/3}\left(\frac{|M|}{\mu_B}\right)^2
+        \end{align}
+        Hence, the term becomes:
+        \begin{align}
+            \left(\left(\frac{2N_+}{V}\right)^{5/3}+\left(\frac{2N_-}{V}\right)^{5/3}\right)&\approx 2\rho^{5/3}+\frac{10}{9}\rho^{-1/3}\left(\frac{|M|}{\mu_B}\right)^2\\
+            &= 2\rho^{5/3}\left(1+\frac{5}{9}\rho^{-2}\left(\frac{M}{\mu_B}\right)^2\right)\\
+            &= 2\rho^{5/3}\left(1+\frac{5}{9}\left(\frac{M}{\rho\mu_B}\right)^2\right)
+        \end{align}
+        Hence, here is the approximation of total energy:
+        \begin{align}
+            \frac{1}{V}E_\text{tot} &\approx \frac{\hbar^2(3\pi^2)^{5/3}}{20m\pi^2}\cdot 2\rho^{5/3}\left(1+\frac{5}{9}\left(\frac{M}{\rho \mu_B}\right)^2\right)\\
+            &= \frac{\hbar^2(3\rho \pi^2)^{5/3}}{10m\pi^2}\left(1+\frac{5}{9}\left(\frac{M}{\rho \mu_B}\right)^2\right)
+        \end{align}
     \end{itemize}
 \end{proof}
 
-\newpage
+\hfil
 
-\section*{3}
+\hfil
+
+\section*{3 D}
 
 \begin{ques}
 The free electron gas model ignores the Coulomb repulsion between electrons. Because
@@ -130,11 +177,28 @@ problem.
     \hfil
 
     \begin{itemize}
-        \item[(a)] 
+        \item[(a)] Given $\rho=\frac{N_++N_-}{V}$ and $\frac{|M|}{\mu_B}=\frac{|N_+-N_-|}{V}$. WLOG, assume $N_+>N_-$ (for the other case, just flip all the signs in the equation, which turns out to not change the result). Then, the extra energy becomes the following:
+        \begin{align}
+            \Delta E &= U N_+ N_-\\ 
+            &= \frac{UV^2}{4} \left(\frac{N_++N_-}{V}+\frac{N_+-N_-}{V}\right)\left(\frac{N_++N_-}{V}-\frac{N_+-N_-}{V}\right)\\
+            &= \frac{UV^2}{4}\left(\rho+\frac{|M|}{\mu_B}\right)\left(\rho-\frac{|M|}{\mu_B}\right)\\
+            &= \frac{UV^2}{4}\left(\rho^2-\left(\frac{M}{\mu_B}\right)^2\right)
+        \end{align}
         
         \hfil
 
-        \item[(b)] 
+        \item[(b)] Given the energy that becomes $E_\text{tot}+\Delta E$, then under the assumption $\frac{|M|}{\mu_B}\ll \rho$, \textbf{Question 2} provides the following approximation:
+        \begin{align}
+            E_\text{tot}+\Delta E &\approx V\frac{\hbar^2(3\rho\pi^2)^{5/3}}{10m\pi^2}\left(1+\frac{5}{9}\left(\frac{M}{\rho \mu_B}\right)^2\right) + \frac{UV^2}{4}\left(\rho^2-\left(\frac{M}{\mu_B}\right)^2\right)\\
+            &= \frac{V\hbar^2(3\rho\pi)^{5/3}}{10m\pi^2}+\frac{UV^2\rho^2}{4} + \left(\frac{V\hbar^2(3\rho\pi^2)^{5/3}}{18m\pi^2\rho^2}-\frac{UV^2}{4}\right)\left(\frac{M}{\mu_B}\right)^2
+        \end{align}
+        Magnetization is favored when $M\neq 0$ causes a lower energy; in particular, since ther term $\left(\frac{M}{\mu_B}\right)^2>0$, it lowers energy when the coefficient is negative. Hence, the boundary value that favors magnetization (under this approximation) is as follow:
+        \begin{align}
+            &\frac{V\hbar^2(3\rho\pi^2)^{5/3}}{18m\pi^2\rho^2}-\frac{UV^2}{4}<0\\
+            &\implies \frac{V\hbar^2(3\rho\pi^2)^{5/3}}{18m\pi^2\rho^2}<\frac{UV^2}{4}\\
+            &= \frac{2\hbar^2(3\rho\pi^2)^{5/3}}{9m\pi^2\rho^2V}<U
+        \end{align}
+        So, $U=\frac{2\hbar^2(3\rho\pi^2)^{5/3}}{9m\pi^2\rho^2V}$ is the infimum where the system starts favoring magnetization (under this approximation).
     \end{itemize}
 \end{proof}
 
