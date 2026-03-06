@@ -27,6 +27,8 @@
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
 
+#outline(title: "Questions")
+
 = D//1
 #problem[
   Let $R$ be a semilocal ring and let $M$ and $N$ be two $R$-modules such that $M tensor_R N=0$. Prove or disprove that either $M=0$ or $N=0$.
@@ -381,19 +383,15 @@
 
 #pagebreak()
 
-= ND//6
+= HD (Type it up)//6
 #problem[
   Let $phi:R -> S$ be a ring homomorphism and let $M$ be an injective $R$-module such that $M tensor_R S != 0$. Prove or disprove that $M tensor_R S$ is injective $S$-module.
 ][
-  Guess: $R=ZZ$, $S = ZZ_((p))$ for some prime $p$, choose $M=QQ$, then $M tensor_R S !=0$ I believe (even though it's fxxking hard to check). I think $M tensor_R S tilde.equiv M$ as $S$-module in this case (bc the description of $ZZ_((p))$ can be realized as a subring of $QQ$, and one can simply move all coefficients into $QQ$ by divisibility of $QQ$).
-
-  Is $QQ$ an injective $S$-mod? Yes, bc the fraction field of $S$ is $QQ$, and $S$ is a PID.
-
-  \ 
-
-  Maybe it's true then...
+  Counterexample: $R=ZZ$, $S=ZZ[x]$, and $M=QQ$ injective $ZZ$-mod. Then, prove that $QQ tensor_ZZ ZZ[x] tilde.equiv QQ[x]$ as $ZZ$-algebra, and hence the $ZZ[x]$-module structure is given by $ZZ[x] arrow.hook QQ[x]$. But, $QQ[x]$ is not injective $ZZ[x]$-module, because it's not divisible.
 
 ]
+
+#pagebreak()
 
 = D//7
 #problem[
@@ -488,14 +486,23 @@
 
 #pagebreak()
 
-= ND//9
+= HD (Type it up)//9
 #problem[
   Let $R$ be a dedekind domain and let $I subset R$ be an ideal. Prove or disprove that $I$ is a flat $R$-module.
 ][
-  
+  Over a Dedekind Domain, a module is torsion free $<==>$ it's flat (look up how localization makes this work, it's in 3/5's notes).
+  Hence, any $I subset R$ ideal is torsion free, hence flat.
+
+  \ 
+
+  First, prove that under localization of a dedekind domain, every ideal must be some product of prime ideals (by pulling it back to the dedekind domain itself, and use the unique factorization property). Then, use the fact that in a dedekind domain, all nonzero prime ideal is actually maximal, hence this reduces the ideal to a power of the maximal ideal (in the localization).
+
+  Now, if $m^2=m$ ($m$ the maximal ideal), bc it's actually an $R$-module (with $m$ being the maximal ideal), then Nakayama's Lemma states that $m^2=m$ implies $m=0$, or $R$ is a field (i.e. localize at $0$).
+
+  Else if $m^2 subset.neq m$, find $r in m\\m^2$, we claim that $(r)=m$: It's clear $(r) subset.eq m$ by definition; for the reverse, 
 ]
 
-= ND//10
+= ND (Need other ways to get through the classification theorem)//10
 #problem[
   Let $R$ be a PID and let $M$ be a finitely generated flat $R$-module. Prove or disprove that $M$ is a free $R$-module.
 ][
@@ -503,12 +510,12 @@
 
   Which, the quotient is of the form $R^n plus.circle R/I_1 plus.circle...plus.circle R/I_l$. So, it suffices to prove that if $M$ is of such form, it must be free (or prove that some $R\/I$ over a PID can be flat).
 
-  However, $R\/I$ I don't think is flat in general...
+  However, $R\/I$ is not flat (since it's torsion), which implies it can't be in the direct summand, which must be just $R^n$, which is free.
 ]
 
 #pagebreak()
 
-= HD (Type it up)//11
+= D//11
 #problem[
   Let $R$ be a PID and let $M$ be an $R$-module. Prove that $M$ is a submodule of an injective $R$-module.
 ][
@@ -523,8 +530,23 @@
 
   \ 
 
-  Given the inclusion $R arrow.hook K$, any index set $I$ generates an inclusion $plus.circle.big_(i in I)R arrow.hook plus.circle.big_(i in I)K$ by coordinate wise inclusion. In particular, notice that $plus.circle.big_(i in I)K$ is also divisible (since for any nonzero $r in R$, any $(x_i)_(i in I) in plus.circle.big_(i in I)K$ has $r dot (x_i/r)_(i in I)= (r dot x_i/r)_(i in I)= (x_i)_(i in I)$). So, $plus.circle.big_(i in I)K$ is an injective $R$-module also, for
+  Given the inclusion $R arrow.hook K$, any index set $I$ generates an inclusion $plus.circle.big_(i in I)R arrow.hook plus.circle.big_(i in I)K$ by coordinate wise inclusion. In particular, notice that $plus.circle.big_(i in I)K$ is also divisible (since for any nonzero $r in R$, any $(x_i)_(i in I) in plus.circle.big_(i in I)K$ has $r dot (x_i/r)_(i in I)= (r dot x_i/r)_(i in I)= (x_i)_(i in I)$). So, any quotient of $plus.circle.big_(i in I)K$ (as $R$-module) is also divisible, which is injective.
+
+  \ 
+
+  Now, for any $R$-module $M$, we know there exists some index set $I$, such that the free $R$-module $plus.circle.big_(i in I)R$ has a surjection onto $M$ (for the most extreme case, choos $I:= M$, and associate each element of $M$ with a copy of $R$). Hence, one has $M tilde.equiv (plus.circle.big_(i in I)R) \/ L$ for some submodule $L arrow.hook plus.circle.big_(i in I)R$.
+
+  Then, consider the composition of inclusions $L arrow.hook plus.circle.big_(i in I)R  arrow.hook plus.circle.big_(i in I)K$, this realizes $L$ as a submodule of $plus.circle.big_(i in I)K$. Hence, one can consider the module theoretic quotient $(plus.circle.big_(i in I)K)\/L$. Which, this generates an $R$-linear map $phi: plus.circle.big_(i in I)R arrow.hook plus.circle.big_(i in I)K ->> (plus.circle.big_(i in I)K)\/L$. Notice that one has an element $(a_i)_(i in I) in ker(phi)$ iff $(a_i)_(i in I)in L$ (since when including into $plus.circle.big_(i in I)K$, it must lie in $L$), showing that $ker(phi) = L$. As a result, it factors uniquely to an injective $R$-linaer map $overline(phi):(plus.circle.big_(i in I)R)\/L arrow.hook (plus.circle.big_(i in I)K)\/L$:
+  #set align(center)
+  #diagram($
+             plus.circle.big_(i in I)R edge("dr",->>, script(pi), #right) edge("rr",->, script(phi)) && (plus.circle.big_(i in I)K)\/L\
+             & (plus.circle.big_(i in I)R)\/L edge("ur", "hook->", script(overline(phi)), #right)
+           $)
+  #set align(left)
+  And, with $M tilde.equiv (plus.circle.big_(i in I)R)\/L$, we have an inclusion of $M$ into the injective $R$-module $(plus.circle.big_(i in I)K)\/L$, finishing the desired claim.
 ]
+
+#pagebreak()
 
 = HD (Type it up)//12
 #problem[
@@ -566,9 +588,66 @@
   Look at 14 for counterexample, they apply to each other.
 ]
 
-= ND//16
+#pagebreak()
+
+= D//16
 #problem[
   Let $R xarrow(phi)S$ be ring homomorphism which is flat. Let $M$ be an $R$-module such that $M tensor_R S$ is torsion-free $S$-module. Is $M$ torsion-free $R$-module?
 ][
-  The counterexample I can thought of are all not flat. I want to say it's true.
+  We'll prove that $M$ is not necessarily a torsion-free $R$-module, by constructing a counterexample.
+
+  \ 
+
+  Consider the ring $R:= ZZ plus.circle QQ$ (with coordinate-wise addition and multiplication). Then, the projection onto the second coordinate $pi_2:R->> QQ$ defines $QQ$ as an $R$-algebra. Now, notice that as $R$-linear map, $pi_2$ has a section, given as $j:QQ -> R$ as $j(q)=(0,q)$. Let's verify it has $R$-linear structure:
+  $ forall q,r in QQ, quad j(q+r) = (0,q+r) = (0,q)+(0,r)=j(q)+j(r) $
+  $ forall (n,p) in R, quad j((n,p) dot q) j((pi_2 (n,p)) q) = j(p q) = (0, p q) = (n,p) dot (0,q) $
+  Hence, $j$ is indeed an $R$-linear map. And, notice that any $q in QQ$ satisfies $pi_2 compose j(q) = pi_2 (0,q) = q$, showing the projection $pi_2$ splits.
+
+  This realizes $QQ$ as a direct summand of $R$ when viewed as an $R$-module. Hence, $QQ$ is a direct summand of a free $R$-module, which is a projective $R$-module, in particular is flat. 
+  
+  Afterward, we'll denote $pi_2$ as $phi$, and $QQ$ as $S$, so $phi:R -> S$ defines $S$ as a flat $R$-module.
+
+  \ 
+
+  \
+
+  Now, consider $M:=ZZ\/2ZZ plus.circle QQ$ as a ring (with coordinate-wise addition and multiplication again), and another projection map $psi: R ->> M$ by $psi(n,p):= (overline(n),p)$ (where $overline(n) in ZZ\/2ZZ$ is the quotient of $n$). This again realizes $M$ as an $R$-module. 
+  
+  Notice that $M$ as an $R$-module is not torsion-free: Consider the element $(2,1) in R$, and $(overline(1),0) in M$. The former element is not a zero-divisor in $R$, as if any $(n,p) in R=ZZ plus.circle QQ$ satisfies $(2,1) dot (n,p) = (2n, p) = (0,0)$, one requires $p=0 in QQ$ and $2n=0 in ZZ$, which also implies $n=0 in ZZ$; on the other hand, $(overline(1),0) in M$ is a nonzero element. However, notice the action of $(2,1) in R$ on $(overline(1),0) in M$ is as follow:
+  $ (2,1) dot (overline(1),0) = (psi(2,1)) (overline(1),0) = (overline(2),1) (overline(1),0) = (overline(0),1)(overline(1),0)=(overline(0),0) $
+  So, the multiplication by $(2,1)$ (an element that's not zero-divisor) is not injective, showing $M$ has torsion elements as $R$-module.
+
+  \ 
+
+  \ 
+
+  Finally, we ought t prove that $M tensor_R S$ is a torsion-free $S$-module. For this, let's recall the map $psi:R->> M$ given by $psi(n,p) = (overline(n),p)$. Hence, one has $(n,p) in ker(phi)$ iff $overline(n)=0 in ZZ\/2ZZ$ and $p=0 in QQ$, which is equivalent to $n in 2ZZ$ and $p = 0 in QQ$. Therefore, $ker(phi) = {(2n,0) in R | n in ZZ}$.
+
+  Now, consider the following exact sequence of $R$-modules:
+  #set align(center)
+  #diagram($
+             0 edge(->) & ker(phi) edge("hook->", script(iota)) & R edge(->>, script(psi)) & M edge(->) & 0
+           $)
+  #set align(left)
+  where $iota$ is the inclusion of ideals. By the flatness of $S$ as an $R$-module proven before, we get the following exact sequence of $R$-modules:
+  #set align(center)
+  #diagram($
+             0 edge(->) & ker(phi) tensor_R S edge("hook->", script(iota tensor id_S)) & R tensor_R S edge(->>, script(psi tensor id_S)) & M tensor_R S edge(->) & 0
+           $)
+  #set align(left)
+  Here, we claim that $ker(phi) tensor_R S$ is $0$: From above, its generators are of the form $(2n,0) tensor p$, where $(2n,0) in ker(phi)$ (or $n in ZZ$) and $p in S=QQ$. But, based on the way we define their $R$-module structure, we have the following:
+  $ (2n,0) tensor p &= ((1,0) (2n,0)) tensor (1 p) = (1,0) dot_R ((2n,0) tensor (phi(0,1)p))\ 
+  &= (1,0) dot_R ((2,0) tensor ((0,1) dot_R p)) = (1,0) dot_R ((0,1) dot_R ((2n,0)tensor p))\ 
+  &= ((1,0)(0,1)) dot_R ((2n,0) tensor p) = (0,0) dot_R ((2n,0)tensor p) = 0 $
+  (Note: To prevent confusion, here the $R$-action is denoted using $dot_R$, while the regular multiplication in each ring is without a dot).
+
+  Which, all generators of $ker(phi) tensor_R S$ is $0$, showing that $ker(phi) tensor_R S=0$. As a result, one has $R tensor_R S xarrow(psi tensor id_S) M tensor_R S$ being an isomorphism by the exactness, and as $R$-module one has $R tensor_R S tilde.equiv S$, so $M tensor_R S tilde.equiv S$ as $R$-module.
+
+  Then, when realized as $S$-module, since $S=QQ$, then $M tensor_R S tilde.equiv S$ is in fact a $1$-dimensional $S$-vector space, which is torsion free as $S$-module.
+
+  \ 
+
+  \
+
+  Hence, the above example shows a ring homomorphism $R xarrow(phi) S$ which is flat, $M$ an $R$-module such that $M tensor_R S$ is torsion-free as an $S$-module, yet $M$ itself is not torsion-free as $R$-module. This provides a counterexample to the statement.
 ]
