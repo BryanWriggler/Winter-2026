@@ -8,7 +8,7 @@
 \begin{document}
 \maketitle
 
-\section*{1}
+\section*{1 D}
 \begin{ques}\label{q1}
 Consider the parity operator $\hat{\Pi}$ in three dimensions, such that $\hat{\Pi}\psi(\mathbf r)=\psi(-\mathbf r)$.
 
@@ -26,6 +26,38 @@ Consider the parity operator $\hat{\Pi}$ in three dimensions, such that $\hat{\P
 \end{ques}
 
 \begin{proof}
+    
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Given the parity operator has the coordinate change $\br \mapsto -\br$, one has the following on each component:
+        \begin{align}
+            &x: \quad r\sin(\theta)\cos(phi) \mapsto -r\sin(\theta)\cos(\phi) = r\sin(\pi-\theta)\cos(\phi+\pi)\\
+            &y: \quad r\sin(\theta)\sin(phi) \mapsto -r\sin(\theta)\sin(\phi) = -r\sin(\pi-\theta)\sin(\phi) = r\sin(\theta)\sin(\phi+\pi)\\
+            &z:\quad r\cos(theta) \mapsto -r\cos(\theta) = r\cos(\pi-\theta)
+        \end{align}
+        So, one transformation on the spherical coordinates that's compatible with the parity operator is $r\mapsto r$, $\theta\mapsto \pi-\theta$, and $\phi\mapsto \phi+\pi$.
+
+        Hence, using $r,\theta,\psi$ as the input, one has:
+        \begin{align}
+            \hat{\Pi}\psi(r,\theta,\phi) = \psi(r,\pi-\theta, \phi+\pi)
+        \end{align}
+
+        \hfil
+
+        \item[(b)] Since for $\psi_{nlm} = R_{n,l} (r) Y^m_l (\theta,\phi)$ in general, then the only one affected by the parity is $Y^m_l(\theta,\phi)$. 
+        
+        Recall the formula $Y^m_l(\theta,\phi) = e^{im\phi}P^m_l (\cos(\theta))$, where $P^m_l$ is given as follow:
+        \begin{align}
+            P^m_l (z)=(1-z^2)^{|m|/2}\left(\frac{d}{dz}\right)^{|m|}P_l (z), \quad P_l (z) := \frac{1}{2^l l!}\left(\frac{d}{dz}\right)^l (z^2-1)^l
+        \end{align}
+    \end{itemize}
+    Which, it can be shown inductively, that all $P_l (z)$ only contains the monomials with the degree of same parity with $l$; then, one can also inductively shown $\left(\frac{d}{dz}\right)^{|m|}P_l (z)$ has all monomial with degree of same parity with $l-|m|$, showing $P^m_l (-z) = (-1)^{l-|m|}P^m_l (z)$. Finally, one has $e^{im(\phi+\pi)} = (-1)^{|m|}e^{im\phi}$. Hence, with $\cos(\pi-\theta) = -\cos(\theta)$, one has the following:
+    \begin{align}
+        \hat{\Pi}\psi_{nlm} &= \psi_{nlm}(r,\pi-\theta, \phi+\pi) = R_{n,l}(r)e^{im(\phi+\pi)}P^m_l (\cos(\pi-\theta))\\
+        &= R_{n,l}(r)(-1)^{|m|}e^{im\phi}P^m_l (-cos(\theta))= R_{n,l} (-1)^{|m|}e^{im\phi}(-1)^{l-|m|}P^m_l (\cos(\theta))\\
+        &= (-1)^l R_{n,l}e^{im\phi}P^m_l (\cos(\theta))= (-1)^l\psi_{nlm}(r,\theta,\phi)
+    \end{align} 
 \end{proof}
 
 \newpage
@@ -57,6 +89,44 @@ and pseudo-vectors satisfy
 \end{ques}
 
 \begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[(a)] Let's first recall some tools, for instance $\braket{x}{p}=e^{ipx/\hbar}$. Then, we have the following:
+        \begin{align}
+            \hat{Pi}^\dagger \hat{x} \hat{\Pi} \ket{x} = \hat{\Pi}\hat{x}\ket{-x} = -x\hat{Pi}\ket{-x} = -x\ket{x}
+        \end{align}
+        Since above is true for all $x\in\RR$, it shows $\hat{\Pi}^\dagger\hat{x}\hat{\Pi}=-\hat{x}$.
+
+        Similarly, we have the following:
+        \begin{align}
+            \hat{\Pi}\ket{p} &= \int \hat{\Pi}\ket{x}\braket{x}{p}dx = \int e^{ipx/\hbar}\ket{-x}dx\\
+            &= \int e^{i(-p)u/\hbar}\ket{u}du = \ket{-p}
+        \end{align}
+        (Note: Here $u:=-x$).
+
+        Hence, the full relation on momentum is:
+        \begin{align}
+            \hat{\Pi}^\dagger\hat{p}\hat{\Pi}\ket{p} = \hat{\Pi}\hat{p}\ket{-p} = -p\hat{\Pi}\ket{-p} = -p\ket{p}
+        \end{align}
+        Since above is true for all $p \in\RR$, it shows $\hat{\Pi}^\dagger\hat{p}\hat{\Pi}=-\hat{p}$.
+
+        \hfil
+
+        \item[(b)] For scalar operators we have the following:
+        \begin{align}
+            \hat{\Pi}^\dagger \hat{Q}_s \hat{\Pi} = \hat{Q}_s \implies \hat{Q}_s \hat{\Pi} = \hat{\Pi}\hat{Q}_s \implies [\hat{\Pi},\hat{Q}_s]=0
+        \end{align}
+        For pseudo-scalar operators we have the following:
+        \begin{align}
+            \hat{\Pi}^\dagger\hat{Q}_s\hat{\Pi}=-\hat{Q}_s \implies \hat{Q}_s \hat{\Pi}=-\hat{\Pi}\hat{Q}_s \implies \{\hat{\Pi},\hat{Q}_s\}=0
+        \end{align}
+
+        \hfil
+
+        \item[(c)]
+    \end{itemize}
 \end{proof}
 
 \newpage
