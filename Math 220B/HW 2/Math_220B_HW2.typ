@@ -29,6 +29,12 @@
 
 #outline(title: "Questions")
 
+\ 
+
+All content starts on page 2.
+
+#pagebreak()
+
 = D//1
 #problem[
   Let $R$ be a semilocal ring and let $M$ and $N$ be two $R$-modules such that $M tensor_R N=0$. Prove or disprove that either $M=0$ or $N=0$.
@@ -63,7 +69,7 @@
   Hence, this proves that $ZZ\/2ZZ tensor_R ZZ\/3ZZ=0$. Yet, each $ZZ\/2ZZ, ZZ\/3ZZ != 0$ as $R$-module, which is a desired counterexample for the problem. 
 ]
 
-\ 
+#pagebreak()
 
 = D//2
 #problem[
@@ -542,7 +548,7 @@
 
 #pagebreak()
 
-= HD (Type it up)//9
+= D//9
 #problem[
   Let $R$ be a dedekind domain and let $I subset R$ be an ideal. Prove or disprove that $I$ is a flat $R$-module.
 ][
@@ -562,7 +568,7 @@
 
   Recall that flatness is a local property, given any $R$-module $M$, one has $M$ being $R$-flat $<==>$ $M_P$ is $R_P$-flat for all prime ideal $P subset.eq R$. 
   
-  For this, let's recall some important properties for dedekind domain, that all proper ideal factors into primes, and every prime ideal is maximal. Using these two properties, one has the following:
+  For this, let's recall some important properties for dedekind domain, that its Noetherian, all proper ideal factors into primes, and every prime ideal is maximal. Using these two properties, one has the following:
   #lemma[
     Given $R$ a dedekind domain, any prime ideal $P subset.eq R$ has the localization $R_P$ being a PID.
   ][
@@ -575,8 +581,20 @@
     \ 
 
     Then, since $P^e subset.eq R_P$ is the maximal ideal, the above shows all ideals of $R_P$ is a power of its maximal ideal. Hence, it suffices to prove the maximal ideal $P^e$ is principal (as $P^e = (a)$ implies $(P^e)^l = (a^l)$ for any $l in NN$). There are two cases to consider:
-    - If $(P^e)^2 = P^e$, then when realizing $P^e$ as an $R_P$-module ()
+    - If $(P^e)^2 = P^e$, then when realizing $P^e$ as an $R_P$-module (which is finitely generated, since $P subset.eq R$ is finitely generated). Apply Nakayama's Lemma, because $R_P$ is a local ring with maximal ideal $P^e$, $(P^e)^2 = P^e$ forces $P^e=0$. Hence, $R_P$ is a field, which is trivially a PID.
+
+    \  
+
+    - Else if $(P^e)^2 subset.neq P^e$, then $P^e!=R$. Take any $r in P^e\\(P^e)^2$, we claim that $(r)=P^e$: By the factorization above, $(r)=(P^e)^n$ for some $n in NN$, however if $n>=2$ one has $(r)=(P^e)^n subset.eq (P^e)^2$, contradicting the assumption $r in.not (P^e)^2$. Also, $n!=0$ as $(r)=(P^e)^0 = R$ is another contradiction to $(r) subset.eq P^e$ (since $P^e$ is not unit ideal). So, $n=1$, and $(r)=P^e$. This shows that $P^e$ is a principal ideal, implying $R_P$ is a PID.
   ]
+
+  \ 
+
+  Now, notice that for any ideal $I subset.eq R$, one has the localization $I_P$ being  the extension $I^e$ under the map $phi:R -> R_P$, which $I^e = (a/s)$ for some $a/s in R_P$ by the previous lemma. Hence, as $R$-module $I^e = (a/s) tilde.equiv R$ via the map $I^e -> R$ by $a/s mapsto 1$, showing $I^e$ is a free $R$-module, hence flat.
+
+  \ 
+
+  This shows the localization $I_P$ around any prime ideal is flat, hence $I$ itself must be flat.
 ]
 
 #pagebreak()
@@ -600,7 +618,7 @@
 
   \
 
-  For the base case $n=1$, if $M = R x_1$, then there exists a surjective $R$-linear map $phi: R->> M$, given by $phi(r) := r x_1$. Then, as $R$-module, one has $R\/ ker(phi) tilde.equiv M = R x_1$, given by $overline(r) mapsto r x_1$. However, based on the flatness of $M$, this enforces $ker(phi)=0$: Suppose the contrary $ker(phi)!=0$, there exists nonzero element $a in ker(phi)$, as a consequence all $r in R$ has $a x_i = 0$ (since under the map $R\/ker(phi)-> M$, one has $overline(0)=overline(a) mapsto a x_1$). Then, the multiplication map $a dot (\_): M -> M$ is not injective, showing $M$ is torsion. Yet, this contradicts the flatness condition of $M$, hence one must have $ker(phi)=0$, further implying $M tilde.equiv R\/ker(phi) tilde.equiv R$. So, $M$ is a free $R$-module with rank $1$.
+  For the base case $n=1$, if $M = R x_1$, then there exists a surjective $R$-linear map $phi: R->> M$, given by $phi(r) := r x_1$. Then, as $R$-module, one has $R\/ ker(phi) tilde.equiv M = R x_1$, given by $overline(r) mapsto r x_1$. However, based on the flatness of $M$, this enforces $ker(phi)=0$: Suppose the contrary $ker(phi)!=0$, there exists nonzero element $a in ker(phi)$, as a consequence $a x_1 = 0$ (since under the map $R\/ker(phi)-> M$, one has $overline(0)=overline(a) mapsto a x_1$). Then, the multiplication map $a dot (\_): M -> M$ is not injective, showing $M$ is torsion. Yet, this contradicts the flatness condition of $M$, hence one must have $ker(phi)=0$, further implying $M tilde.equiv R\/ker(phi) tilde.equiv R$. So, $M$ is a free $R$-module with rank $1$.
 
   \ 
 
@@ -616,31 +634,32 @@
   
   Suppose the contrary that the intersection is nonzero, there exists some $a in R$, such that $a x_n in N$ (and with $x_n in.not N$, $a$ is non-unit). Define the ideal $I := {a in R | a x_n in N}$, then by the PID property, one has $I = (b)$ for some nonzero $b in R$. On the other hand, $I$ is not the unit ideal.
 
-  Then, define the multiplication map $f = b dot (\_):M arrow.hook M$. Since any $m in M$ has $f(m) = b m in I M$, $f(M) subset.eq I M$, with the assumption $M$ is finitely generated, one can apply "Cayley-Hamilton Theorem" covered in class, there exists some $k in NN$, and some $c_1,...,c_k in R$ (or $c_1 b,...,c_k b in I=(b)$), such that the endomorphism $f^k + c_1 b f^(k-1)+...+c_k b=0$ on $M$. In particular, one can choose $k$ to be the minimum natural number with such property. 
+  Then, define the multiplication map $f = b dot (\_):M -> M$. Since any $m in M$ has $f(m) = b m in I M$, $f(M) subset.eq I M$, with the assumption $M$ is finitely generated, one can apply "Cayley-Hamilton Theorem" covered in class, there exists some $k in NN$, and some $c_1,...,c_k in R$ (or $c_1 b,...,c_k b in I=(b)$), such that the endomorphism $f^k + c_1 b f^(k-1)+...c_(k-1)b f+c_k b=0$ on $M$. In particular, one can choose $k$ to be the minimum natural number with such property. 
   
   Here, recognize the endomorphism $0=f^k + c_1 b f^(k-1)+..+c_k b$ is given by a multiplication map:
-  $ forall m in M, quad (f^k + c_1 b f^(k-1)+..+c_k b)(m) = (b^k + c_1 b^(k)+...+c_k b)m = 0 $
-  Since $M$ is flat (in particular, torsion-free), then all nonero element $r in R$ must have the multiplication map be injective (since $R$ is an integral domain). Hence, the above multiplication map is $0$ implies $b^k + c_1 b^k + ... + c_k b = b(b^(k-1) + c_1 b^(k-1)+...+c_k)=0$. With the assumption $b!=0$, one has $b^(k-1) + c_1 b^(k-1)+...+c_k=0$.
+  $ forall m in M, quad (f^k + c_1 b f^(k-1)+... c_(k-1) b f+c_k b)(m) &= (b^k + c_1 b^(k)+...+c_(k-1)b^2+c_k b)m\  
+  &= 0 $
+  Since $M$ is flat (in particular, torsion-free), then all nonzero element $r in R$ must have the multiplication map be injective (since $R$ is an integral domain). Hence, the above multiplication map is $0$ implies $b^k + c_1 b^k + ... c_(k-1)b^2 + c_k b = b(b^(k-1) + c_1 b^(k-1)+...+c_(k-1)b+c_k)=0$. With the assumption $b!=0$, one has $b^(k-1) + c_1 b^(k-1)+...+c_(k-1)b+c_k=0$.
   In particular, this implies the following:
   $ b^(k-1)+c_1 b^(k-1)+...+c_(k-1)b = -c_k $
-  Which implies that $c_k in (b)$.
+  Which implies that $c_k in (b) = I$.
 
-  Now, let's consider the endomorphism $f^(k-1)+c_1 b f^(k-2)+...+c_(k-1)b + c_k$: Notice that it's monic, together with all coefficient $c_1 b,..., c_(k-1)b, c_k in I$, and any $m in M$ satisfies the following:
+  Now, let's consider the endomorphism $f^(k-1)+c_1 b f^(k-2)+...+c_(k-1)b + c_k$: Notice that it's monic (a polynomial of $f$), together with all non-leading coefficients $c_1 b,..., c_(k-1)b+c_k in I$. Also, any $m in M$ satisfies the following:
   $ (f^(k-1)+c_1 b f^(k-1)+...+c_(k-1)b+c_k)m &= (b^(k-1)+c_1 b^(k-1)+...+c_(k-1)b+c_k)m \
   &= 0 dot m=0 $
-  Which, $f^(k-1)+c_1 b f^(k-1)+...+c_(k-1)b+c_k$ is a monic polynomial with coefficients in $I$, such that it evaluates to be $0$ on $M$. This contradicts the assumption that $k$ is the smallest natural number with such polynomial exists, hence reaches a contradiction. 
-
-  As a result, one must have $N sect R x_n = 0$, showing $M = N plus.circle R x_n$.
+  Which, $f^(k-1)+c_1 b f^(k-1)+...+c_(k-1)b+c_k$ is a monic polynomial with coefficients in $I$, such that it evaluates to be $0$ on $M$. This contradicts the assumption that $k$ is the smallest natural number with such polynomial exists; as a result, one must have $N sect R x_n = 0$, showing $M = N plus.circle R x_n$.
 
   \ 
 
   Finally, since $M$ is flat, then all of its direct summand must be flat. Hence, $R x_n$ is flat (implying $R x_n tilde.equiv R$ with our base case), and $N = sum_(i=1)^(n-1)R x_i$ is flat. Which, since $N$ only requires $<= n-1$ generators, our induction hypothesis guarantees $N$ to be free, or $N tilde.equiv plus.circle.big_(i=1)^l R$ for some $l in NN$.
 
-  This proves that $M tilde.equiv plus.circle.big_(i=1)^(l+1)R$, which is a free $R$-module. This finishes our induction.
+  This proves that $M tilde.equiv plus.circle.big_(i=1)^(l+1)R$, which is a free $R$-module, and finishes our induction.
   
   \
+
   \
-  Hence, over $R$ a PID, any finitely generated flat $R$-module $M$ must be a free $R$-module with finite rank.
+
+  Hence, over $R$ a PID, any finitely generated flat $R$-module $M$ must be a free $R$-module.
 ]
 
 #pagebreak()
@@ -700,9 +719,9 @@
   Hence, this is an example where $m subset.eq R$ is a maximal ideal, $M!=0$, but $M_m = 0$, which is a desired counterexample to the statement.
 ]
 
-\ 
+#pagebreak()
 
-= HD (check the wording)//13
+= D//13
 #problem[
   Let $R xarrow(phi)S xarrow(psi)T$ be two ring homomorphisms such that $S$ is $R$-flat and $T$ is $S$-flat. Prove or disprove that $T$ is $R$-flat.
 ][
@@ -719,17 +738,22 @@
 
   \ 
 
-  #text(weight: "bold")[verify the bimodule structure on S,T]
+  Let's first verify the $(R,S)$-bimodule structure on both $S,T$:
+
+  Given any $r in R$, $s,s' in S$ and $t in T$, one has the following:
+  $ r dot (s dot s') = phi(r)(s s') = (phi(r)s)s' = (s phi(r))s' = s dot (phi(r) s') = s dot (r dot s') $
+  $ r dot (s dot t) = psi(phi(r))(psi(s)t) = psi(phi(r)s)t = psi(s phi(r))t - psi(s)(psi(phi(r))t) - s dot (r dot t) $
+  Since the actions of $R,S$ commutes (if assuming they're commutative, under most cases we work with), these realize $S,T$ as $(R,S)$-bimodules, hence the isomorphism can be used.
 
   \ 
 
-  If consider $T$ and $S$ both as $(R,S)$-bimodule, then we have the following isomorphism:
+  Now, we have the following isomorphism as borh $R$ and $S$-module:
   $ T arrow.tilde S tensor_S T, quad t mapsto 1_S tensor_S t $
-  Which, for any inclusion of ideals $iota: I arrow.hook R$, based on the $R$-flatness of $S$, we have $I tensor_R S arrow.hook R tensor_R S$ being injective. Then, when viewed this as an $S$-linear map, the $S$-flatness of $T$ guarantees the map $(I tensor_R S) tensor_S T arrow.hook (R tensor_R S) tensor_S T$ being injective.
+  Also, for any inclusion of ideals $iota: I arrow.hook R$, based on the $R$-flatness of $S$, we have $I tensor_R S arrow.hook R tensor_R S$ being injective. Then, when viewed this as an $S$-linear map, the $S$-flatness of $T$ guarantees the map $(I tensor_R S) tensor_S T arrow.hook (R tensor_R S) tensor_S T$ being injective.
 
   \ 
 
-  Finally, notice that $R tensor_R S tilde.equiv S$ as $R$-module, hence as $(R,S)$-bimodule one has $T tilde.equiv S tensor_S T tilde.equiv (R tensor_R S) tensor_S T$. Hence, when consider the inclusion of ideals $iota: I arrow.hook R$, it's tensor with $T$ generates the following commutative diagram (based on all isomorphisms mentioned above):
+  Finally, notice that $R tensor_R S tilde.equiv S$ as both $R$ and $S$-module, hence as $(R,S)$-bimodule one has $T tilde.equiv S tensor_S T tilde.equiv (R tensor_R S) tensor_S T$. So, when consider the inclusion of ideals $iota: I arrow.hook R$, it's tensor with $T$ generates the following commutative diagram (based on all isomorphisms mentioned above):
   #set align(center)
   #diagram($
             I tensor_R T edge("d","hook->>") edge(->, script(iota tensor id_T)) & R tensor_R T \ 
@@ -737,25 +761,52 @@
             (I tensor_R S) tensor_S T edge("hook->", script((iota tensor_R id_S) tensor_S id_T)) & (R tensor_S S) tensor_S T edge("u", "hook->>")
            $)
   #set align(left)
+
+  \ 
+
   As a result, since $I tensor_R T tilde.equiv(I tensor_R S)tensor_S T$, $(R tensor_S S) tensor_S T tilde.equiv R tensor_R T$, and the flatness conditions on $S,T$ provides the injection $(I tensor_R S)tensor_S T arrow.hook (R tensor_R S)tensor_S T$, one has the map $iota tensor_R id_T: I tensor_R T -> R tensor_R T$ also be injective.
 
   With the inclusion $iota:I arrow.hook R$ be arbitrary ideal of $R$, this shows that $T$ is $R$-flat, proving the statement.
 ]
 
-\ 
+#pagebreak()
 
-= HD (Type it up)//14
+= D//14
 #problem[
   Let $R xarrow(phi)S xarrow(psi)T$ be ring homomorphisms such that $T$ is $R$-flat. Prove or disprove that $phi$ can not be surjective.
 ][
-  Consider the isomorphism $ZZ\/30ZZ tilde.equiv ZZ\/2ZZ plus.circle ZZ\/3ZZ tilde.equiv ZZ\/5ZZ$, I think this is also a $ZZ\/30ZZ$-mod. Then, take successive quotient we're good.
+  /*Consider the isomorphism $ZZ\/30ZZ tilde.equiv ZZ\/2ZZ plus.circle ZZ\/3ZZ tilde.equiv ZZ\/5ZZ$, I think this is also a $ZZ\/30ZZ$-mod. Then, take successive quotient we're good.*/
+  We'll disprove it by providing a counterexample.
+
+  \
+
+  Consider the rings $R=ZZ\/2ZZ plus.circle ZZ\/3ZZ plus.circle ZZ\/5ZZ$, $S=ZZ\/2ZZ plus.circle ZZ\/3ZZ$, and $T=ZZ\/2ZZ$ (each with coordinate-wise addition and multiplication). For the homomorphisms, consider $phi:R->>S$ as the projection onto the first two coordinates $phi(overline(a)_2,overline(b)_3,overline(c)_5) = (overline(a)_2,overline(b)_3)$, and $psi:S->> T$ as the projection onto the first coordinate $psi(overline(a)_2,overline(b)_3) = overline(a)_2$.
+
+  Notice the composition $psi compose phi:R ->> T$ is the projection onto the first factor $psi compose phi(overline(a)_2,overline(b)_3, overline(c)_5)=psi(overline(a)_2,overline(b)_3)=overline(a)_2$. Meanwhile, if viewing $T$ as an $R$-module, notice $psi compose phi$ as $R$-linear map has a section: Define $j:T -> R$ by $j(overline(a)_2)=(overline(a)_2,overline(0)_3,overline(0)_5)$. Let's verify it's $R$-linear:
+  $ &forall overline(a)_2,overline(b)_2 in T, quad j(overline(a)_2+overline(b)_2)=(overline(a_2)+overline(b)_2,0,0)=(overline(a)_2,0,0)+(overline(b)_2,0,0)=j(overline(a)_2)+j(overline(b)_2) $
+  $ forall (overline(a)_2,overline(b)_3,overline(c)_5) in R," " overline(d)_2 in T, quad &j((overline(a)_2,overline(b)_3,overline(c)_5) dot overline(d)_2) = j(psi compose phi(overline(a)_2,overline(b)_3,overline(c)_5) overline(d)_2)\ 
+  &= j(overline(a)_2 overline(d)_2) = (overline(a)_2 overline(d)_2,0,0) = (overline(a)_2,overline(b)_3,overline(c)_5) (overline(d)_2,0,0)\ 
+  &= (overline(a)_2,overline(b)_3,overline(c)_5) j(overline(d)_2) $
+  These verified $j$ is $R$-linear. And, consider the composition $(psi compose phi) compose j:T-> T$, we get:
+  $ forall overline(a)_2 in T, quad (psi compose phi) compose j(overline(a)_2) = (psi compose phi)(overline(a)_2,0,0)=overline(a)_2 $
+  Hence, $j$ is indeed a section of $psi compose phi:R->>T$, showing this surjection splits. As a consequence, it realizes $T$ as a direct summand of $R$, hence $T$ is projective as $R$-module, which is flat.
+
+  \ 
+
+  This is a counterexample to the statement, as $T$ is $R$-flat under $psi compose phi: R->>T$, while $phi:R->>S$ is a projection, which is surjective.
 ]
 
-= HD (Type it up)//15
+= D//15
 #problem[
   Let $R xarrow(phi)S xarrow(psi)T$ be ring homomorphisms such that $T$ is $R$-flat. Prove or disprove that $psi$ can not be surjective.
 ][
-  Look at 14 for counterexample, they apply to each other.
+  We'll disprove the statement by using the same counterexample in #text(weight: "bold")[Problem 14].
+
+  \ 
+
+  In the previous problem we constructed $R=ZZ\/2ZZ plus.circle ZZ\/3ZZ plus.circle ZZ\/5ZZ$, $S=ZZ\/2ZZ plus.circle Z\/3ZZ$, and $T=ZZ\/2ZZ$; the homomorphisms are projections $phi:R->>S$ and $psi:S->>T$. 
+
+  Then, $T$ is projective as $R$-module (as it's a direct summand of $R$), hence $R$-flat. However, the second map $psi:S->>T$ here is a projection, hence surjective. It's a desired counterexample to the statement.
 ]
 
 #pagebreak()
