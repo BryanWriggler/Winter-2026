@@ -721,7 +721,7 @@ All content starts on page 2.
 
 #pagebreak()
 
-= D//13
+= D (Referred to Problem 2)//13
 #problem[
   Let $R xarrow(phi)S xarrow(psi)T$ be two ring homomorphisms such that $S$ is $R$-flat and $T$ is $S$-flat. Prove or disprove that $T$ is $R$-flat.
 ][
