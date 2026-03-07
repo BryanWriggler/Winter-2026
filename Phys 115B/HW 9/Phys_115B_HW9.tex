@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{../../Self_Style}
+
+\title{Phys 115B HW 9}
+\author{Zih-Yu Hsieh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1}
+\begin{ques}\label{q1}
+Consider the parity operator $\hat{\Pi}$ in three dimensions, such that $\hat{\Pi}\psi(\mathbf r)=\psi(-\mathbf r)$.
+
+\begin{itemize}
+\item[(a)] Show that for states $\psi$ expressed in polar coordinates, the action of the parity operator can be written as
+\[
+\hat{\Pi}\psi(r,\theta,\phi)=\psi(r,\pi-\theta,\phi+\pi)
+\]
+
+\item[(b)] Show that for hydrogenic energy eigenstates $\psi_{nlm}(r,\theta,\phi)$ we have
+\[
+\hat{\Pi}\psi_{nlm}=(-1)^l\psi_{nlm}(r,\theta,\phi)
+\]
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\section*{2}
+\begin{ques}\label{q2}
+We can classify operators depending on how they transform under parity, $\hat{Q}\rightarrow \hat{\Pi}^\dagger \hat{Q}\hat{\Pi}$ (see example 6.2 or Table 6.1 in the book can be useful).
+
+\begin{itemize}
+\item[(a)] In one dimension, show that position and momentum are odd under parity.
+
+\item[(b)] In three dimensions, operators that are invariant under parity and commute with $\hat L$ are called scalar operators, $\hat{\Pi}^\dagger \hat Q_s \hat{\Pi}=\hat Q_s$. Operators that flip sign under parity and commute with $\hat L$ are called pseudo-scalar operators, $\hat{\Pi}^\dagger \hat Q_s \hat{\Pi}=-\hat Q_s$. Show that scalar operators satisfy $[\hat{\Pi},\hat Q_s]=0$, while pseudoscalar operators satisfy
+\[
+\{\hat{\Pi},\hat Q_s\}=0
+\]
+(where the curly brackets denote the anti-commutator).
+
+\item[(c)] Operators that flip sign under parity and whose commutators with $\hat L$ are like those of $\hat L$ are called vector operators, such that $\hat{\Pi}^\dagger \hat Q_v \hat{\Pi}=-\hat Q_v$. Operators that are invariant under parity and whose commutators with $\hat L$ are like those of $\hat L$ are called pseudovector or axial vector operators, $\hat{\Pi}^\dagger \hat Q_a \hat{\Pi}=\hat Q_a$. Show that vector operators satisfy
+\[
+\{\hat{\Pi},\hat Q_v\}=0
+\]
+and pseudo-vectors satisfy
+\[
+[\hat{\Pi},\hat Q_a]=0.
+\]
+
+\item[(d)] Give an example of a scalar operator, pseudoscalar operator, a vector operator and an axial or pseudo vector operator (feel free to Google or use the book).
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\section*{3}
+\begin{ques}\label{q3}
+Consider a particle of mass $m$ and charge $q$ confined to a circular ring in the $x$-$y$ plane, with radius $r$. The system will be driven by an electric field $E_x$ in the $x$ direction (which can stimulate photon induced transitions). It is natural to work in polar coordinates for this problem, with $x=r\cos\theta$.
+
+\begin{itemize}
+\item[(a)] What are the first five energies of the system with $E_x=0$?
+
+\item[(b)] What are the first five eigenfunctions $\psi(\theta)$? Please normalize them, and pick your basis such that the eigenfunctions are also eigenfunctions of $L_z$.
+
+\item[(c)] Explicitly write out a $3\times3$ matrix for the Hamiltonian
+\[
+H' = E_x q x = E q r \cos\theta
+\]
+This matrix will use the three lowest states above. Extrapolate this result to write a concise selection rule that tells what transitions are allowed for any state.
+
+\item[(d)] What frequencies are absorbed by a “gas” of such rings if they are cold enough to be initially in the ground state?
+
+\item[(e)] What additional frequencies are absorbed by rings initially in the first excited state?
+\end{itemize}
+\end{ques}
+
+\begin{proof}
+\end{proof}
+
+\newpage
+
+\end{document}
