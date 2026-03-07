@@ -383,12 +383,68 @@
 
 #pagebreak()
 
-= HD (Type it up)//6
+= D//6
 #problem[
   Let $phi:R -> S$ be a ring homomorphism and let $M$ be an injective $R$-module such that $M tensor_R S != 0$. Prove or disprove that $M tensor_R S$ is injective $S$-module.
 ][
-  Counterexample: $R=ZZ$, $S=ZZ[x]$, and $M=QQ$ injective $ZZ$-mod. Then, prove that $QQ tensor_ZZ ZZ[x] tilde.equiv QQ[x]$ as $ZZ$-algebra, and hence the $ZZ[x]$-module structure is given by $ZZ[x] arrow.hook QQ[x]$. But, $QQ[x]$ is not injective $ZZ[x]$-module, because it's not divisible.
+  /*Counterexample: $R=ZZ$, $S=ZZ[x]$, and $M=QQ$ injective $ZZ$-mod. Then, prove that $QQ tensor_ZZ ZZ[x] tilde.equiv QQ[x]$ as $ZZ$-algebra, and hence the $ZZ[x]$-module structure is given by $ZZ[x] arrow.hook QQ[x]$. But, $QQ[x]$ is not injective $ZZ[x]$-module, because it's not divisible.*/
+  We'll disprove the statement, by providing a counterexample.
 
+  \ 
+
+  Consider the ring $R=ZZ$, $S=ZZ[x]$, and the ring homomorphism $phi:ZZ arrow.hook ZZ[x]$ as the inclusion. Let $M:= QQ$ be the injective $ZZ$-module (by the divisibility, and the equivalence of divisible and injective modules over $ZZ$, a PID). Here, we claim that $QQ tensor_ZZ ZZ[x]$ is not an injective $ZZ[x]$-module.
+
+  \ 
+
+  Consider the fact that tensor product of two commutative $R$-algebra serves as fibre coproduct in the category of commutative rings, in this category we have the following diagram:
+  #set align(center)
+  #diagram($
+             ZZ edge("d","hook->", script(iota_x))edge("hook->", script(iota_QQ)) & QQ edge("d", "hook->", script(alpha))\ 
+             ZZ[x] edge("hook->", script(beta)) & QQ tensor_ZZ ZZ[x]
+           $)
+  #set align(left)
+  Where, any $q in QQ$ satisfies $alpha(q) = q tensor 1$, and any integer polynomial $f(x) in ZZ[x]$ satisfies $beta(f(x))= 1 tensor f(x)$.
+
+  Then, consider the ring $QQ[x]$, we claim that as $ZZ$-algebra it's isomorphic to $QQ tensor_ZZ ZZ[x]$: It has two inclusions $iota_1:QQ arrow.hook QQ[x]$, and $iota_2:ZZ[x] arrow.hook QQ[x]$. Then, using the universality of fibre coproduct, one realizes a unique $ZZ$-algebra homomorphism $h:QQ tensor_ZZ ZZ[x] -> QQ[x]$, such that the following holds:
+  #set align(center)
+  #diagram($
+             ZZ edge("d","hook->", script(iota_x))edge("hook->", script(iota_QQ)) & QQ edge("ddr", "hook->", script(iota_1), bend: #20deg) edge("d", "hook->", script(alpha))\ 
+             ZZ[x] edge("drr", "hook->", script(iota_2), bend: #(-20deg)) edge("hook->", script(beta)) & QQ tensor_ZZ ZZ[x] edge("dr", "..>", script(exists ! h))\ 
+             && QQ[x]
+           $)
+  #set align(left)
+  In particular, the description is given by $h(q tensor f(x)) = iota_1 (q) iota_2 (f(x)) = q f(x)$. 
+  
+  \ 
+  
+  Now, let's construct an inverse: Define a map $j:QQ[x] - QQ tensor_ZZ ZZ[x]$, such that every monomial $q x^n in QQ[x]$ has $j(q x^n):= q tensor x^n$, and for general polynomials $f(x)=sum_(i=0)^n q_i x^i$, it satisfies $j(f(x)):= sum_(i=0)^n q_i tensor x^i$. To verify this is a well-defined $ZZ$-algebra homomorphism, given any $f(x)=sum_(i=0)^n q_i x^i$ and $g(x) = sum_(j=0)^m p_j x^j$ in $QQ[x]$ (WLOG, say $n>=m$), one has the following:
+  $ j(f(x)+g(x)) &= j(sum_(j=0)^m (q_j+p_j)x^j + sum_(i=m+1)^n q_i x^i)\ 
+  &= sum_(j=0)^m (q_j+p_j) tensor x^j + sum_(i=m+1)^n q_i tensor x^i\ 
+  &= sum_(i=0)^m q_i tensor x^i + sum_(i=m+1)^n q_i tensor x^i + sum_(j=0)^m p_j tensor x^j\ 
+  &= sum_(i=0)^n q_i tensor x^i + sum_(j=0)^m p_j tensor x^j\ 
+  &= j(f(x))+j(g(x)) $
+  This proves the additivity of $j$. Also, we have the following:
+  $ j(f(x) g(x)) &= j(sum_(i=0)^n sum_(j=0)^m q_i p_j x^(i+j))\ 
+  &= sum_(i=0)^n sum_(j=0)^m (q_i p_j) tensor x^(i+j)\ 
+  &= sum_(i=0)^n sum_(j=0)^m (q_i tensor x^i) dot (p_j tensor x^j)\ 
+  &= (sum_(i=0)^n q_i tensor x^i)(sum_(j=0)^m p_j tensor x^j)\ 
+  &= j(f(x)) dot j(g(x)) $
+  This proves $j$ is multiplicative, hence it's a well-defined $ZZ$-algebra homomorphism.
+
+  Now, notice that $h,j$ are mutual inverses of each other: Given any $q tensor x^n in QQ tensor_ZZ ZZ[x]$, and $q x^n in QQ[x]$ (the generators of each algebra), one has the following:
+  $ j compose h(q tensor x^n) = j (q x^n) = q tensor x^n, quad h compose j(q x^n) = h(q tensor x^n) = q x^n $
+  Since both compositions act as identity on the generators of each algebra, they're mutual inverses. Hence, it proves $QQ tensor_ZZ ZZ[x] tilde.equiv QQ[x]$ as $ZZ$-algebra. Moreover, it's $ZZ[x]$-module structure is given bny the inclusion $iota_2: ZZ[x] arrow.hook QQ[x]$.
+
+  \ 
+
+  Finally, realize that $QQ[x]$ is not an injective $ZZ[x]$-module: Given the element $x in ZZ[x]$, the multiplication map $x dot (\_): QQ[x] -> QQ[x]$ has all $f(x) in QQ[x]$
+  satisfies $f(x) mapsto x f(x)$. In particular, if $f(x)!=0$, one has $deg(x f(x))>= deg(x)>=1$. Hence, the image of $x dot (\_)$ doesn't contain any degree 0 / constant polynomial, showing it's not surjective.
+
+  Hence, as a $ZZ[x]$-module, $QQ[x] tilde.equiv QQ tensor_ZZ ZZ[x]$ is not divisible, hence not injective.
+
+  \ 
+
+  With $R=ZZ$, $S=ZZ[x]$ (with module structure induced by inclusion $phi: ZZ arrow.hook ZZ[x]$), and $M=QQ$ an injective $ZZ$-module, we have $M tensor_R S tilde.equiv QQ[x]$ as $R$-algebra. Yet, $M tensor_R S tilde.equiv QQ[x]$ is not an injective $S$-module, which provides a counterexample to the statement.
 ]
 
 #pagebreak()
@@ -490,7 +546,7 @@
 #problem[
   Let $R$ be a dedekind domain and let $I subset R$ be an ideal. Prove or disprove that $I$ is a flat $R$-module.
 ][
-  Over a Dedekind Domain, a module is torsion free $<==>$ it's flat (look up how localization makes this work, it's in 3/5's notes).
+  /*Over a Dedekind Domain, a module is torsion free $<==>$ it's flat (look up how localization makes this work, it's in 3/5's notes).
   Hence, any $I subset R$ ideal is torsion free, hence flat.
 
   \ 
@@ -499,18 +555,92 @@
 
   Now, if $m^2=m$ ($m$ the maximal ideal), bc it's actually an $R$-module (with $m$ being the maximal ideal), then Nakayama's Lemma states that $m^2=m$ implies $m=0$, or $R$ is a field (i.e. localize at $0$).
 
-  Else if $m^2 subset.neq m$, find $r in m\\m^2$, we claim that $(r)=m$: It's clear $(r) subset.eq m$ by definition; for the reverse, 
+  Else if $m^2 subset.neq m$, find $r in m\\m^2$, we claim that $(r)=m$: It's clear $(r) subset.eq m$ by definition; for the reverse, */
+  We'll prove that $I$ is a flat $R$-module.
+
+  \ 
+
+  Recall that flatness is a local property, given any $R$-module $M$, one has $M$ being $R$-flat $<==>$ $M_P$ is $R_P$-flat for all prime ideal $P subset.eq R$. 
+  
+  For this, let's recall some important properties for dedekind domain, that all proper ideal factors into primes, and every prime ideal is maximal. Using these two properties, one has the following:
+  #lemma[
+    Given $R$ a dedekind domain, any prime ideal $P subset.eq R$ has the localization $R_P$ being a PID.
+  ][
+    Let's fix a prime ideal $P subset.eq R$, take any ideal $J subset.eq R_P$. Recall that $J^(c e) = J$ (the property of localization in general).
+
+    Look at the ideal $J^c subset.eq R$, by the ideal factorization property of dedekind domain, one has $J^c = Q_1...Q_n$, where each $Q_i subset.eq R$ is a prime (hence maximal) ideal. Then, since extension of ideals under localization preserves products of ideals, one has the following:
+    $ J = J^(c e) = (Q_1...Q_n)^e = Q_1^e ... Q_n^e $
+    Now, notice that for any ideal $I subset.eq R$, one has $I^e != R_P$ iff $I sect R\\P=emptyset$, or $I^e$ is not unit ideal iff $I subset.eq P$. Hence, for any prime ideal $Q_i$ mentioned above, one has $Q_i^e != R_P$ iff it's a prime ideal contained in $P$; yet, since all prime ideals in $R$ is maximal, $Q_i^e != R_P$ iff $Q_i subset.eq P$ iff $Q_i=P$. So, one has $J = (P^e)^k$ for some $k in NN$ (where $k$ indicates the number of prime ideals $Q_i = P$).
+
+    \ 
+
+    Then, since $P^e subset.eq R_P$ is the maximal ideal, the above shows all ideals of $R_P$ is a power of its maximal ideal. Hence, it suffices to prove the maximal ideal $P^e$ is principal (as $P^e = (a)$ implies $(P^e)^l = (a^l)$ for any $l in NN$). There are two cases to consider:
+    - If $(P^e)^2 = P^e$, then when realizing $P^e$ as an $R_P$-module ()
+  ]
 ]
 
-= ND (Need other ways to get through the classification theorem)//10
+#pagebreak()
+
+= D//10
 #problem[
   Let $R$ be a PID and let $M$ be a finitely generated flat $R$-module. Prove or disprove that $M$ is a free $R$-module.
 ][
-  Known information: All submodules of a finitely generated free module over $R$ (a PID) is finitely generated and free. 
+  /*Known information: All submodules of a finitely generated free module over $R$ (a PID) is finitely generated and free. 
 
   Which, the quotient is of the form $R^n plus.circle R/I_1 plus.circle...plus.circle R/I_l$. So, it suffices to prove that if $M$ is of such form, it must be free (or prove that some $R\/I$ over a PID can be flat).
 
-  However, $R\/I$ is not flat (since it's torsion), which implies it can't be in the direct summand, which must be just $R^n$, which is free.
+  However, $R\/I$ is not flat (since it's torsion), which implies it can't be in the direct summand, which must be just $R^n$, which is free.*/
+  We'll prove that $M$ is a free $R$-module.
+
+  \ 
+
+  Given that $M$ is a finitely generated flat $R$-module, define $n:=$ minimum number of generators needed for $M$, and use $x_1,...,x_n in M$ to denote a set of generators of $M$ with minimum length. We'll do induction on the number $n$.
+
+  \ 
+
+  \
+
+  For the base case $n=1$, if $M = R x_1$, then there exists a surjective $R$-linear map $phi: R->> M$, given by $phi(r) := r x_1$. Then, as $R$-module, one has $R\/ ker(phi) tilde.equiv M = R x_1$, given by $overline(r) mapsto r x_1$. However, based on the flatness of $M$, this enforces $ker(phi)=0$: Suppose the contrary $ker(phi)!=0$, there exists nonzero element $a in ker(phi)$, as a consequence all $r in R$ has $a x_i = 0$ (since under the map $R\/ker(phi)-> M$, one has $overline(0)=overline(a) mapsto a x_1$). Then, the multiplication map $a dot (\_): M -> M$ is not injective, showing $M$ is torsion. Yet, this contradicts the flatness condition of $M$, hence one must have $ker(phi)=0$, further implying $M tilde.equiv R\/ker(phi) tilde.equiv R$. So, $M$ is a free $R$-module with rank $1$.
+
+  \ 
+
+  \
+
+  Now, suppose for all case $k<n$, $M$ having minimum number of $k$ generators implies $M$ is a free $R$-module, then consider the case for $n$, one has $M = sum_(i=1)^n R x_i$. Define $N:= sum_(i=1)^(n-1)R x_i$, by the minimality of number of generators, one must have $x_n in.not N$ (or else $M = N$ and hence only needs $(n-1)$ number of generators, contradicting the minimality of $n$). 
+
+  \
+
+  Here, we claim that $R x_n sect N = 0$, and hence $M tilde.equiv N plus.circle R x_n$: 
+
+  \
+  
+  Suppose the contrary that the intersection is nonzero, there exists some $a in R$, such that $a x_n in N$ (and with $x_n in.not N$, $a$ is non-unit). Define the ideal $I := {a in R | a x_n in N}$, then by the PID property, one has $I = (b)$ for some nonzero $b in R$. On the other hand, $I$ is not the unit ideal.
+
+  Then, define the multiplication map $f = b dot (\_):M arrow.hook M$. Since any $m in M$ has $f(m) = b m in I M$, $f(M) subset.eq I M$, with the assumption $M$ is finitely generated, one can apply "Cayley-Hamilton Theorem" covered in class, there exists some $k in NN$, and some $c_1,...,c_k in R$ (or $c_1 b,...,c_k b in I=(b)$), such that the endomorphism $f^k + c_1 b f^(k-1)+...+c_k b=0$ on $M$. In particular, one can choose $k$ to be the minimum natural number with such property. 
+  
+  Here, recognize the endomorphism $0=f^k + c_1 b f^(k-1)+..+c_k b$ is given by a multiplication map:
+  $ forall m in M, quad (f^k + c_1 b f^(k-1)+..+c_k b)(m) = (b^k + c_1 b^(k)+...+c_k b)m = 0 $
+  Since $M$ is flat (in particular, torsion-free), then all nonero element $r in R$ must have the multiplication map be injective (since $R$ is an integral domain). Hence, the above multiplication map is $0$ implies $b^k + c_1 b^k + ... + c_k b = b(b^(k-1) + c_1 b^(k-1)+...+c_k)=0$. With the assumption $b!=0$, one has $b^(k-1) + c_1 b^(k-1)+...+c_k=0$.
+  In particular, this implies the following:
+  $ b^(k-1)+c_1 b^(k-1)+...+c_(k-1)b = -c_k $
+  Which implies that $c_k in (b)$.
+
+  Now, let's consider the endomorphism $f^(k-1)+c_1 b f^(k-2)+...+c_(k-1)b + c_k$: Notice that it's monic, together with all coefficient $c_1 b,..., c_(k-1)b, c_k in I$, and any $m in M$ satisfies the following:
+  $ (f^(k-1)+c_1 b f^(k-1)+...+c_(k-1)b+c_k)m &= (b^(k-1)+c_1 b^(k-1)+...+c_(k-1)b+c_k)m \
+  &= 0 dot m=0 $
+  Which, $f^(k-1)+c_1 b f^(k-1)+...+c_(k-1)b+c_k$ is a monic polynomial with coefficients in $I$, such that it evaluates to be $0$ on $M$. This contradicts the assumption that $k$ is the smallest natural number with such polynomial exists, hence reaches a contradiction. 
+
+  As a result, one must have $N sect R x_n = 0$, showing $M = N plus.circle R x_n$.
+
+  \ 
+
+  Finally, since $M$ is flat, then all of its direct summand must be flat. Hence, $R x_n$ is flat (implying $R x_n tilde.equiv R$ with our base case), and $N = sum_(i=1)^(n-1)R x_i$ is flat. Which, since $N$ only requires $<= n-1$ generators, our induction hypothesis guarantees $N$ to be free, or $N tilde.equiv plus.circle.big_(i=1)^l R$ for some $l in NN$.
+
+  This proves that $M tilde.equiv plus.circle.big_(i=1)^(l+1)R$, which is a free $R$-module. This finishes our induction.
+  
+  \
+  \
+  Hence, over $R$ a PID, any finitely generated flat $R$-module $M$ must be a free $R$-module with finite rank.
 ]
 
 #pagebreak()
@@ -548,22 +678,35 @@
 
 #pagebreak()
 
-= HD (Type it up)//12
+= D//12
 #problem[
   Let $R$ be a commutative ring and let $m$ be a given maximal ideal of $R$. Suppose $M$ is an $R$-module such that $M_m = 0$. Prove or disprove that $M=0$.
 ][
-  I guess we can take $R=ZZ$, $m = 2ZZ$, and $M = ZZ\/3ZZ$. Then, $M_m$ denotes all the elements of the form $overline(a)_3/d$, where $d in.not 2ZZ$ (i.e. we can divide by 3!) So in particular, one has the following:
+  /*I guess we can take $R=ZZ$, $m = 2ZZ$, and $M = ZZ\/3ZZ$. Then, $M_m$ denotes all the elements of the form $overline(a)_3/d$, where $d in.not 2ZZ$ (i.e. we can divide by 3!) So in particular, one has the following:
   $ 3 dot (1 dot overline(a)_3-1 dot overline(0)_3) = 3 dot overline(a)_3 = overline(0)_3 in M $
   This shows that $overline(a)_3/1 = 0/1$ in $M_m$, showing $M_m=0$, while $M!=0$.
 
-  (But if swapping to all maximal ideal $m$ I think it's true).
+  (But if swapping to all maximal ideal $m$ I think it's true).*/
+  We'll disprove the statement by providing a counterexample.
+
+  \ 
+
+  Consider the ring $R=ZZ$, its maximal ideal $m= 2ZZ$, and consider the $ZZ$-module $M=ZZ\/3ZZ$. It's clear that $M!=0$. However, $M_m = 0$, since one of the descripction of $M_m$ is all element $m/s$, where $m in M$ and $s in ZZ\\2ZZ$ (or, $s$ is an odd number). Hence, recall that $3 dot m=0$ for all $m in M=ZZ\/3ZZ$, then one has the following:
+  $ forall m in M," " s in ZZ\\2ZZ, quad m/s = (3 dot m)/(3 s) = 0/(3 s)=0 $
+  The reason is because $3 in ZZ\\2ZZ$, so the multiplication $3 s in ZZ\\2ZZ$ makes sense. As a result, $M_m = 0$.
+
+  \ 
+
+  Hence, this is an example where $m subset.eq R$ is a maximal ideal, $M!=0$, but $M_m = 0$, which is a desired counterexample to the statement.
 ]
 
-= HD (Type it up)//13
+\ 
+
+= HD (check the wording)//13
 #problem[
   Let $R xarrow(phi)S xarrow(psi)T$ be two ring homomorphisms such that $S$ is $R$-flat and $T$ is $S$-flat. Prove or disprove that $T$ is $R$-flat.
 ][
-  Consider the following isomorphism as $(R,S)$-bimodules:
+  /*Consider the following isomorphism as $(R,S)$-bimodules:
   $ (R tensor_R S) tensor_S T tilde.equiv R tensor_R (S tensor_S T) tilde.equiv R tensor_R T tilde.equiv T $
   As a result, if $I arrow.hook R$ is inclusion of ideal, one has the injection $I tensor_R S arrow.hook R tensor_R S tilde.equiv S$ as $R$-module (which is also an injective $S$-linear map, bc $S$ is an $(R,S)$-bimodule). This is by $R$-flatness of $S$.
 
@@ -571,8 +714,35 @@
   $ (I tensor_R S)tensor_S T arrow.hook (R tensor_R S)tensor_S T tilde.equiv S tensor_S T tilde.equiv T $
   Which, using the bimodule isomorphism proven in problem 2, we have:
   $ I tensor_R T tilde.equiv I tensor_R (S tensor_S T) arrow.hook R tensor_R (S tensor_S T) tilde.equiv R tensor_R T $
-  Hence, $T$ is also $R$-flat.
+  Hence, $T$ is also $R$-flat.*/
+  We'll prove that $T$ is also $R$-flat, via the isomorphism proved in #text(weight: "bold")[Problem 2], i.e. the isomorphism $(M tensor_R N) tensor_S P tilde.equiv M tensor_R (N tensor_S P)$, where $M in RMod$, $P in sans("S-Mod")$, and $N$ an $(R,S)$-bimodule.
+
+  \ 
+
+  #text(weight: "bold")[verify the bimodule structure on S,T]
+
+  \ 
+
+  If consider $T$ and $S$ both as $(R,S)$-bimodule, then we have the following isomorphism:
+  $ T arrow.tilde S tensor_S T, quad t mapsto 1_S tensor_S t $
+  Which, for any inclusion of ideals $iota: I arrow.hook R$, based on the $R$-flatness of $S$, we have $I tensor_R S arrow.hook R tensor_R S$ being injective. Then, when viewed this as an $S$-linear map, the $S$-flatness of $T$ guarantees the map $(I tensor_R S) tensor_S T arrow.hook (R tensor_R S) tensor_S T$ being injective.
+
+  \ 
+
+  Finally, notice that $R tensor_R S tilde.equiv S$ as $R$-module, hence as $(R,S)$-bimodule one has $T tilde.equiv S tensor_S T tilde.equiv (R tensor_R S) tensor_S T$. Hence, when consider the inclusion of ideals $iota: I arrow.hook R$, it's tensor with $T$ generates the following commutative diagram (based on all isomorphisms mentioned above):
+  #set align(center)
+  #diagram($
+            I tensor_R T edge("d","hook->>") edge(->, script(iota tensor id_T)) & R tensor_R T \ 
+            I tensor_R (S tensor_S T) edge("d","hook->>") edge(->, script(iota tensor id_(S tensor_S T))) & R tensor_R (S tensor_S T) edge("u", "hook->>")\ 
+            (I tensor_R S) tensor_S T edge("hook->", script((iota tensor_R id_S) tensor_S id_T)) & (R tensor_S S) tensor_S T edge("u", "hook->>")
+           $)
+  #set align(left)
+  As a result, since $I tensor_R T tilde.equiv(I tensor_R S)tensor_S T$, $(R tensor_S S) tensor_S T tilde.equiv R tensor_R T$, and the flatness conditions on $S,T$ provides the injection $(I tensor_R S)tensor_S T arrow.hook (R tensor_R S)tensor_S T$, one has the map $iota tensor_R id_T: I tensor_R T -> R tensor_R T$ also be injective.
+
+  With the inclusion $iota:I arrow.hook R$ be arbitrary ideal of $R$, this shows that $T$ is $R$-flat, proving the statement.
 ]
+
+\ 
 
 = HD (Type it up)//14
 #problem[
