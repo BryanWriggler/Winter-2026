@@ -430,7 +430,158 @@ With this, we can define the fibre product over affine schemes:
 
 \ 
 
-To show it works for general schemes, it's similar to before: Restrict them to affine neighborhoods, construct fibre product neighborhood-wise, then glue all of them together. For this, we need some machineries of gluging morphisms:
-#lemma("Gluing of Morphisms")[
+To show it works for general schemes, it's similar to before: Restrict them to affine neighborhoods, construct fibre product neighborhood-wise, then glue all of them together. Where, the gluing of morphisms of schemes is done as follow: Given $f_i:U_i -> Y$ and $f_j:U_j -> Y$ two morphism of schemes (where $U_i,U_j subset.eq X$ are open), then if $f_i, f_j$ agrees on $U_i sect U_j$ as topological maps, they glue together as $f:U_i union U_j -> Y$ as topological maps. About the sheaves, for any open subset $V subset.eq Y$, its preimage $f^(-1)(V) = f_i^(-1)(V) union f_j^(-1)(V)$, which has the ring corresponding to the following fibre product diagram:
+#set align(center)
+#diagram($
+           cal(O)(U_i union U_j) edge("d",->) edge(->) & cal(O)(U_i) edge("d",->, script(rho_(i,i j)), #left) \ 
+           cal(O)(U_j) edge(->, script(rho_(j,i j)), #right) & cal(O)(U_i sect U_j)
+         $)
+#set align(left)
+Which, since $f_i,f_j$ induces the ring homomorphisms $f_i^*:cal(O)_Y (V) -> cal(O)(f_i^(-1)(V))$ and $f_j^*:cal(O)_Y (V) -> cal(O)(f_j^(-1)(V))$, then the fibre product property guarantees the following:
+#set align(center)
+#diagram($
+           cal(O)_Y (V) edge("rrd", ->, script(f_i^*), bend: #20deg) edge("ddr", ->, script(f_j^*), #right, bend: #(-20deg)) edge("dr", "..>", script(exists ! f^*))\
+           &cal(O)(U_i union U_j) edge("d",->) edge(->) & cal(O)(U_i) edge("d",->, script(rho_(i,i j)), #left) \ 
+           &cal(O)(U_j) edge(->, script(rho_(j,i j)), #right) & cal(O)(U_i sect U_j)
+         $)
+#set align(left)
+Where, the $f^*$ commutes with other ring homomorphisms in a desirable way, which can be treated as the ring homomorphism associated to $f:f_i^(-1)(V) union f_j^(-1)(V) -> V$ after the restriction. This generates a morphism of locally ringed space, because the fibre product of local homomorphisms is a local homomorphism (and same applies to the gluing of morphisms, since the maximal ideal of the fibre product is the intersection of the product maximal ideal in the product ring, with the subring identified as fibre product).
+
+\ 
+
+Now, let's talk about the most general case:
+
+#theorem("Fibre Product of Schemes")[
+  Given arbitrary scheme $Z$, and two schemes $X,Y$ over $Z$ (with morphisms $f:X->Z$ and $g:Y->Z$), then the fibre product in $Sch$ exists.
+][
+  Let's break it down to several steps:
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[I. The Fibre Product of Open Subschemes:]
+
+  Let's temporarily assume fibre product $X times_Z Y$ exists, we wish to see how it decomposes to open subsets. So, assume we have this fibre product diagram in $Sch$:
+  #set align(center)
+  #diagram($
+             Z & X edge("l",->, script(f)) \ 
+             Y edge("u",->, script(g), #left) & X times_Z Y edge("l",->, script(f'), #left) edge("u",->, script(g'))\ 
+             && W edge("ull",->, script(d_B), #left, bend: #(20deg)) edge("uul",->, script(d_C), bend:#(-20deg)) edge("ul","..>", script(exists ! h))
+           $)
+  #set align(left)
+  Given any open subscheme $U subset.eq X$, consider the open subscheme $g'^(-1)(U) subset.eq X times_Z Y$, we claim that it's the fibre product $U times_Z Y$: 
   
-][]
+  Restrict the morphism $f$ to $f|_U:U -> Z$, for any scheme $W$ together with morphisms $d_B:W -> Y$ and $d_C:W -> X$ such that the image $im(d_C) subset.eq U subset.eq X$, and $f|_U compose d_C = g compose d_B$, then notice without the restriction $f compose d_C = g compose d_B$, then using the fibre product property of $X times_Z Y$, we get the unique morphism $h:W -> X times_Z Y$ satisfying the above diagram.
+
+  However, if consider $W=d_C^(-1)(U) = h^(-1)(g'^(-1)(U))$, this implies $h(W) subset.eq g'^(-1)(U)$, generating the morphism as desired:
+  #set align(center)
+  #diagram($
+             Z & U edge("l",->, script(f|_U)) \ 
+             Y edge("u",->, script(g), #left) & g'^(-1)(U) edge("l",->, script(f'|_(g'^(-1)(U))), #left) edge("u",->, script(g'|_(g'^(-1)(U))))\ 
+             && W edge("ull",->, script(d_B), #left, bend: #(40deg)) edge("uul",->, script(d_C), bend:#(-40deg)) edge("ul","..>", script(exists ! h))
+           $)
+  #set align(left)
+  Finally, the reason $h$ must be unique, is because any other $h':W -> g'^(-1)(U)$ with such property can also be embedded into the fibre product diagram of $X times_Z Y$, and the universality there enforces it to be the same as $h$. Hence, we get that $g'^(-1)(U) = U times_Z Y$ as schemes.
+
+  As a last note, given extra $V subset.eq Y$ open subschemes, repeating the argument using $g'^(-1)(U) = U times_Z Y$, we get the fibre product $U times_Z V = f'^(-1)(V) sect g'^(-1)(U)$ as open subschemes:
+  #set align(center)
+  #diagram($
+             Z & U edge("l",->, script(f|_U)) \ 
+             V edge("u",->, script(g|_V), #left) & f'^(-1)(V) sect g'^(-1)(U) edge("l",->, script(f'|_(sect)), #left) edge("u",->, script(g'|_(sect)), #right)\ 
+             && W edge("ull",->, script(d_B), #left, bend: #(40deg)) edge("uul",->, script(d_C), bend:#(-40deg)) edge("ul","..>", script(exists ! h))
+           $)
+  #set align(left)
+  This asserts that fibre product is a "local property", meaning restriction of fibre products onto open subsets of $X,Y$ will necessarily generate a fibre product of the open subsets. Hence, with the gluing property of schemes, it suggests we can construct fibre products locally, then glue them together (once we guaranteed their compatibility).
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[II. Gluing of Local Fibre Products:]
+
+  This subsection will develop the compatibility locally. Given ${X_i}$ an open cover of $X$, and suppose that for each $i$, $X_i times_Z Y$ exists, we claim $X times_Z Y$ exists (more precisely, they can glue together to form $X times_Z Y$). We first assert the existence of this diagram:
+  #set align(center)
+  #diagram($
+             Z & X_i edge("l",->, script(f|_(X_i))) \ 
+             Y edge("u",->, script(g), #left) & X_i times_Z Y edge("l",->, script(f'_i), #left) edge("u",->, script(g'_i))\ 
+             && W edge("ull",->, script(d_B), #left, bend: #(40deg)) edge("uul",->, script(d_C), bend:#(-40deg)) edge("ul","..>", script(exists ! h))
+           $)
+  #set align(left)
+
+  For each indices $i,j$, let $X_(i j):= X_i sect X_j$ open subscheme of $X$, we know $g'_i^(-1)(X_(i j)) = X_(i j) times_Z Y$ in $X_i times_Z Y$ by #text(weight: "bold")[I], but simillarly $g'_j^(-1)(X_(i j)) = X_(i j) times_Z Y$ in $X_j times_Z Y$, while both are open. This identifies an isomorphism of open subschemes $g'_i^(-1)(X_(i j)) tilde.equiv g'_j^(-1)(X_(i j))$ between $X_i times_Z Y$ and $X_j times_Z Y$, and hence the two glues together (including their morphisms, since these two restrictions must be compatible with the original morphisms $f,g$).
+
+  Let $P$ denotes the gluing of all $X_i times_Z Y$ via the above isomorphisms, with $f':P -> Y$ and $g':P -> X$ that is the gluing of all $f'_i$ and $g'_j$'s respectively, we have the following commutative diagram:
+  #set align(center)
+  #diagram($
+             Z & X edge("l",->, script(f))\ 
+             Y edge("u", ->, script(g), #left) & P edge("u", ->, script(g'), #right) edge("l",->, script(f'), #left)
+           $)
+  #set align(left)
+  Such diagram commutes, because restricting to each $X_i times_Z Y$ (with $f'_i, g'_i$ in the position of $f',g'$ respectively) the diagram commutes, hence globally it also commutes.
+
+  Also, it satisfies the fibre product property: Given any scheme $W$ with $d_B:W -> Y$ and $d_C:W -> X$ two morphisms of schemes which satisfies $f compose d_C = g compose d_B$, let $W_i := d_C^(-1)(X_i)$ for each $i$, then it satisfies the following property:
+  #set align(center)
+  #diagram($
+             Z & X_i edge("l",->, script(f_i))\ 
+             Y edge("u", ->, script(g), #left) & X_i times_Z Y edge("u", ->, script(g'_i), #right) edge("l",->, script(f'_i), #left)\ 
+             && W_i edge("ull",->, script(d_(B,i)), #left, bend: #(20deg)) edge("uul",->, script(d_(C,i)), #right, bend: #(-20deg)) edge("ul","..>", script(exists ! h_i))
+           $)
+  #set align(left)
+  Where, the $h_i:W_i -> X_i times_Z Y arrow.hook P$ is a morphism of schemes that agrees on each $W_(i j):= W_i sect W_j$ (since it's the preimage of $X_(i j)$ under $d_C$), so they should be compatible within $X_(i j) times_Z Y$ (which is the intersection of $X_i times_Z Y$ and $X_j times_Z Y$). When including each portion of the fibre square into the original space, it also satisfies the fibre product diagram.
+
+  Then, using the gluing property, there exists a unique $h:W-> P$, such that the following diagram commutes:
+  #set align(center)
+  #diagram($
+             Z & X edge("l",->, script(f))\ 
+             Y edge("u", ->, script(g), #left) & P edge("u", ->, script(g'), #right) edge("l",->, script(f'), #left)\ 
+             && W edge("ull",->, script(d_(B)), #left, bend: #(20deg)) edge("uul",->, script(d_(C)), #right, bend: #(-20deg)) edge("ul","..>", script(exists ! h))
+           $)
+  #set align(left)
+  The uniqueness of $h$ is guaranteed, since its restriction onto each $W_i$ must be $h_i$ using the universal property of fibre product. Notice that each statement can also be applied on $Y$ (when $X$ is swapped with $X_i$), hence as long as we have open covers ${X_i}$ of $X$ and ${Y_j}$ of $Y$, such that each $X_i times_Z Y_j$ exists, then fire product globally exists.
+
+  So, we've proven fibre product exists, once it locally exists.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[III. Case when $Z$ is Affine:]
+
+  If $Z$ is affine, choose an affine cover ${X_i}$ of $X$, ${Y_i}$ of $Y$, then the restriction $f_i:X_i -> Z$ and $g_i:Y_i -> Z$ has fibre product $X_i times_Z Y_i$ (since they're all affine), and they agree on the intersection as before. So, they must glue to fibre product of $X$ and $Y$ by #text(weight: "bold")[II].
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[IV. General case for $Z$:]
+
+  Finaly, If $Z$ is arbitrary, let ${Z_i}$ be an affine cover of $Z$, and take ${X_i:= f^(-1)(Z_i)}$ and ${Y_i := g^(-1)(Z_i)}$ be the covering, then the restriction has $f_i:X_i -> Z_i$ and $g_i:Y_i -> Z_i$, so #text(weight: "bold")[III] guarantees the existence of $X_i times_(Z_i) Y_i$. Now, we claim that it's the same as $X_i times_Z Y$: Given any scheme $W$ together with morphisms $d_B: W-> Y$ and $d_C: W->X_i$, such that $f_i compose d_C=g compose d_B$. Then, notice that $f_i compose d_C (W) subset.eq f_i (X_i) subset.eq Z_i$, showing that $im(d_B) subset.eq g^(-1)(im(g compose d_B)) subset.eq Y_i$. Hence, restricting $g$ to $Y_i$ makes sense, we have a unique map $h_i:W -> X_i times_Z_i Y_i$, such that the diagram commutes (when involving $X_i,Y_i$).
+
+  But, since the map need no restriction, then it in fact satisfies the following commutative diagram:
+  #set align(center)
+  #diagram($
+             Z & X_i edge("l",->, script(f_i))\ 
+             Y edge("u",->, script(g), #left) & X_i times_(Z_i)Y_i edge("l",->, script(g'), #left) edge("u",->, script(f'_i))\ 
+             && W edge("ull",->, script(d_B), #left, bend: #20deg) edge("uul",->, script(d_C), #right, bend: #(-20deg)) edge("ul","..>", script(exists ! h_i))
+           $)
+  #set align(left)
+  So, $X_i times_(Z_i)Y_i = X_i times_Z Y$, then by #text(weight: "bold")[II], this guarantees the existence of $X times_Z Y$, finishing the proof.
+]
+
+\ 
+
+This again shows the general nature of algebraic geometry: restricting the situation to a smaller subset where one can guarantee nice behaviors (for instance, over affine schemes), and glue the local properties all together to a global one.
+
+\ 
+
+Also, the above has the following corollary:
+#corollary("Product of Schemes")[
+  In the category $Sch$, product exists.
+][
+  Since $Spec(ZZ)$ is final in $AffSch$, together with Affinization, it's also final in $Sch$. Take the fibre product over $Spec(ZZ)$, we get the desired product.
+]
+
+#pagebreak()
+
+
