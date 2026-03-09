@@ -584,4 +584,62 @@ Also, the above has the following corollary:
 
 #pagebreak()
 
+= Fibre and Parameter Space
 
+A general study of morphisms often includes its fibres. But, we do want to realize fibre not only as set theoretic definition, but also some geometric nature. With the existence of fibre product, we can then define such notion:
+
+#definition[Residue Field of a Point][
+  Given a scheme $Y$ and any point $y in Y$, let $cal(O)_(Y,y)$ be its corresponding local ring. Then, the #text(weight: "bold")[residue field] of $y$ is the residue field of $cal(O)_(Y,y)$, denoted as $k(y)$.
+]
+Here, we claim there is a natural morphism $Spec(k(y))-> Y$, given by $* mapsto y$:
+
+#proof[
+  Choose an affine neighborhoos $Y supset.eq U in.rev y$, then with $U tilde.equiv Spec(A)$, the local ring $cal(O)_(Y,y) tilde.equiv A_y$ (since here $y$ represents a prime ideal). Hence, one has a natural composition $A -> A_y = cal(O)_(Y,y) ->> k(y)$ (the first one is localization map, the second one is projection onto the residue field).
+
+  Then, this generates a natural morphism $Spec(k(y))-> Spec(A)=U$, by $* mapsto y$ (as $*$ is the zero ideal in $k(y)$, it pulls back to the maximal ideal of $A_y$, or $y^e$ under localization; hence, it futher pulls back to $y subset.eq A$).
+
+  Which, with the inclusion morphism $U arrow.hook Y$, we naturally gets $Spec(k(y))-> Y$ by $* mapsto y$.
+
+  As a side note, this is independent of the affine neighborhood, as the local ring is only dependent on the structure sheaf $cal(O)_Y$.
+]
+
+\ 
+
+Now, here's the formal definition of fibre:
+#definition[Fibre of a Morphism][
+  Given a morphism of schemes $f:X -> Y$, and $y in Y$ be a point. Let $k(y)$ be the residue field of $y$, and $Spec(k(y))-> Y$ be the natural morphism. Then, the #text(weight: "bold")[fibre] of $f$ over the point $y$ is the scheme:
+  $ X_y:= X times_Y Spec(k(y)) $
+  which is given as the following fibre product diagram:
+  #set align(center)
+  #diagram($
+             X times_Y Spec(k(y)) edge("d",->) edge(->, script(f')) & Spec(k(y)) edge("d",->)\ 
+             X edge(->, script(f), #right) & Y
+           $)
+  #set align(left)
+]
+Intuitively, as topological spaces one must have the fibre product here to be $f^(-1)(y)$ (since one of the space is one point, hence it shouldn't change the product structure). But, here there are extra algebraic structures one needs to worry about. Let's prove this claim:
+
+#proof[
+  When constructing the morphism $Spec(k(y))-> Y$, we've already used the existence of affine neighborhood of $y in Y$, so here WLOG we'll say $Y=Spec(A)$ is affine (by restricting $X$ to suitable preimage, and $Y$ to the affine neighborhood).
+
+  Now, let ${U_i}$ be an affine cover of $X$, each with a morphism $f_i:U_i -> Y$. We'll first prove that the fibre product $U_i times_Y Spec(k(y))$ is homeomorphic to $f^(-1)(y) sect U_i$.
+
+  \ 
+
+  Since $U_i,Y$ are now affine, say $U_i = Spec(B_i)$, one realizes $U_i times_Y Spec(k(y)) = Spec(B_i tensor_A k(y))$, where the morphisms are as follow (left in $Sch$, right in $CRing$):
+  #set align(center)
+  #diagram($
+             Spec(B_i tensor_A k(y)) edge(->) edge("d",->) & Spec(k(y)) edge("d",->) && B_i tensor_A k(y) & k(y) edge("l","hook->")\ 
+             Spec(B_i) edge(->)& Spec(A) && B_i edge("u",->) & A edge("l",->) edge("u",->)
+           $)
+  #set align(left)
+  Which, realizing $y subset.eq A$ as a prime ideal the problem translates to: Is there a homeomorphism between ${"prime ideals "P subset.eq B_i "that contracts to y"}$ and ${"prime ideals "Q subset.eq B_i tensor_A k(y)}$.
+
+  Recall that $k(y) := A_y\/(y A_y)$ (where $A_y$ is the localization at prime ideal $y$, and $y A_y$ is the associated prime ideal). Then, given the exact sequence $0-> y A_y -> A_y -> k(y)->0$, tensoring with $B_i$ realizes the following right exact sequence:
+  $ B_i tensor_A (y A_y) -> B_i tensor_A A_y tilde.equiv (B_i)_y -> B_i tensor_A k(y) -> 0 $
+  Where $(B_i)_y$ is viewed as localization of $B_i$ at $y$ as $A$-module (which itself has an algebra structure). Then, the image of $B_i tensor_A (y A_y)$ in $(B_i)_y$ is precisely $y (B_i)_y$ (the extension of $y$ in $(B_i)_y$), so one has $B_i tensor_A k(y) tilde.equiv (B_i)_y\/y (B_i)_y$.
+
+  Hence, the prime ideals of $B_i tensor_A k(y)$ is precisely all prime ideals in $(B_i)_y$ that contains $y (B_i)_y$, and these must contract to $y$ (as it contains image of $y$, while the contraction can't be anything larger than $y$, or else the contraction then extension will be the unit ideal).
+
+  Finally, these prime ideals in $B_i\/y B_i$
+]
