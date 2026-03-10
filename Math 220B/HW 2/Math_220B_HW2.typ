@@ -27,14 +27,6 @@
   date: datetime.today().display("[month repr:long] [day], [year]"),
 )
 
-#outline(title: "Questions")
-
-\ 
-
-All content starts on page 2.
-
-#pagebreak()
-
 = D//1
 #problem[
   Let $R$ be a semilocal ring and let $M$ and $N$ be two $R$-modules such that $M tensor_R N=0$. Prove or disprove that either $M=0$ or $N=0$.
@@ -43,7 +35,7 @@ All content starts on page 2.
 
   \ 
 
-  Consider the ring $R=ZZ\/6ZZ$, which it is semilocal ring because it only has finitely many maximal ideals (in fact, finitely many ideals since the ring is finite).
+  Consider the ring $R=ZZ\/6ZZ$, which is semilocal ring because it only has finite maximal ideals.
 
   Now, consider the canonical projection $pi_2:ZZ->> ZZ\/2ZZ$ and $pi_3:ZZ->>ZZ\/3ZZ$, notice that since $6ZZ = 2ZZ sect 3ZZ$, one has the ideal $6ZZ subset ker(pi_2) = 2ZZ$ and $6ZZ subset ker(pi_3) = 3ZZ$. Hence, by Generalized First Isomorphism Theorem, with the canonical projection $pi_6:ZZ->> ZZ\/6ZZ$, the above two maps uniquely factor into surjective maps $phi_2:ZZ\/6ZZ->>ZZ\/2ZZ$ and $phi_3:ZZ\/6ZZ->>ZZ\/3ZZ$ as follow:
   #set align(center)
@@ -54,8 +46,6 @@ All content starts on page 2.
   #set align(left)
   Hence, $ZZ\/2ZZ, ZZ\/3ZZ$ can be realized as $R$-module, via the map $phi_2$ and $phi_3$ (in particular, one has $phi_2(overline(1)_6)=overline(1)_2$ and $phi_3(overline(1)_6)=overline(1)_3$ as the map, based on the above commutative diagrams).
 
-  \ 
-
   Now, consider the tensor $ZZ\/2ZZ tensor_R ZZ\/3ZZ$, we claim that it is $0$: Recall that $2,3 in ZZ$ are coprime, with Bezout's Lemma there exists integers $s,t in ZZ$, such that $1=2s+3t$. Then, under the projection map $pi_6:ZZ->>ZZ\/6ZZ$, one knows there exists $overline(s)_6,overline(t)_6 in ZZ\/6ZZ$, such that the following holds:
   $ overline(1)_6 = overline(2)_6 dot overline(s)_6+overline(3)_6 dot overline(t)_6 $
   Then, for any $overline(a)_2 in ZZ\/2ZZ$ and $overline(b)_3 in ZZ\/3ZZ$, one has the following:
@@ -64,7 +54,7 @@ All content starts on page 2.
   &= overline(s)_6 dot ((overline(0)_2 overline(a)_2) tensor overline(b)_3) + overline(t)_6 dot (overline(a)_2 tensor (overline(0)_3 overline(b)_3))\ 
   &= overline(s)_6 dot (overline(0)_2 tensor overline(b)_3)+overline(t)_6 dot (overline(a)_2 tensor overline(0)_3)\ 
   &= 0  $
-  (Note: By definition, one has $overline(2)_6 dot overline(a)_2 := phi_2 (overline(2)_6) overline(a)_2 = overline(0)_2 overline(a)_2 = overline(0)_2$, and same idea for $ZZ\/3ZZ$).
+  //(Note: By definition, one has $overline(2)_6 dot overline(a)_2 := phi_2 (overline(2)_6) overline(a)_2 = overline(0)_2 overline(a)_2 = overline(0)_2$, and same idea for $ZZ\/3ZZ$).
 
   Hence, this proves that $ZZ\/2ZZ tensor_R ZZ\/3ZZ=0$. Yet, each $ZZ\/2ZZ, ZZ\/3ZZ != 0$ as $R$-module, which is a desired counterexample for the problem. 
 ]
