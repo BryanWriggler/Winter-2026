@@ -83,9 +83,9 @@ All content starts on page 2.
 
   #text(weight: "bold")[I. Proof of Statement:]
 
-  Given the given sequence is exact, then it implies $M' xarrow(u) M$ is injective, hence $M' tilde.equiv im(u) subset M$, WLOG we'll denote $im(u)$ as $M'$, and $M' xarrow(u) M$ as an inclusion map, and recognize all elements in $M'$ as in $M$ also.
+  Given the sequence is exact, then it implies $M' xarrow(u) M$ is injective, hence $M' tilde.equiv im(u) subset M$, WLOG we'll denote $im(u)$ as $M'$, and $M' xarrow(u) M$ as an inclusion map, and recognize all elements in $M'$ as in $M$ also.
 
-  Since $M', M''$ are finitely-generated, there exists $x_1,...,x_n in M'$ and $y_1,...,y_m in M''$, such that $M'= sum_(i=1)^n R x_i$ and $M'' = sum_(j=1)^m R y_j$. Then, choose $z_1,...,z_m in M$, such that for each index $j in {1,...,m}$, one has $v(z_j)=y_j$. We claim that the collection ${x_1,...,x_n, z_1,...,z_m}$ generates $M$.
+  Since $M', M''$ are finitely-generated, there exists $x_1,...,x_n in M'$ and $y_1,...,y_m in M''$, such that $M'= sum_(i=1)^n R x_i$ and $M'' = sum_(j=1)^m R y_j$. Then, by the exactness we have $M xarrow(v)M''$ being surjective, hence we can choose $z_1,...,z_m in M$, such that for each index $j in {1,...,m}$, one has $v(z_j)=y_j$. We claim that the collection ${x_1,...,x_n, z_1,...,z_m}$ generates $M$.
 
   \ 
 
@@ -93,9 +93,9 @@ All content starts on page 2.
   $ v(x) = sum_(j=1)^m b_j y_j = sum_(j=1)^m b_j v(z_j) = v(sum_(j=1)^m b_j z_j) $
   As a result, one has $v(x-sum_(j=1)^m b_j z_j)=0$, or $x-sum_(j=1)^m b_j z_j in ker(v)$. 
 
-  Now, using exactness of the sequence, one gets $ker(v)=im(u)=M'$, hence there exists $a_1,...,a_n in R$, such that $x-sum_(j=1)^m b_j z_j = sum_(i=1)^n a_i x_i$ by the finitely generated property of $M'$.
+  Again, using exactness of the sequence, one gets $ker(v)=im(u)=M'$, hence there exists $a_1,...,a_n in R$, such that $x-sum_(j=1)^m b_j z_j = sum_(i=1)^n a_i x_i$ by the finitely generated property of $M'$.
 
-  As a result, we have $x = sum_(i=1)^n a_i x_i + sum_(j=1)^m b_j z_j$, hence all element $x in M$ can be expressed with some $R$-linear combination of ${x_1,...,x_n,z_1,...,z_m}$, showing $M$ is finitely generated.
+  So, we have $x = sum_(i=1)^n a_i x_i + sum_(j=1)^m b_j z_j$, hence all element $x in M$ can be expressed as some $R$-linear combination of ${x_1,...,x_n,z_1,...,z_m}$, showing $M$ is finitely generated using these elements.
 
   \ 
 
@@ -121,9 +121,9 @@ All content starts on page 2.
 
   Suppose the contrary that $I$ is a finitely generated $R$-module, then there exists $f_1,...,f_n in I$, such that $I=sum_(i=1)^n R f_i=(f_1,...,f_n)$ as ideal. Based on our definition, there are only finitely many indeterminates involved in $f_1,...,f_n$, say $S={x_(i_1),...,x_(i_k)}$ (and say it's ordered such that $i_1<...<i_k$).
 
-  Then, consider the element $x_(i_k+1) in I$: By our assumption, there exists polynomials $g_1,...,g_n in R$, such that $x_(i_k +1) = sum_(i=1)^n g_i f_i$. Which, let $T = {x_(j_1),...,x_(j_l)}$ be the (finite) indeterminates involved in the polynomials $g_1,...,g_n$. Which, if consider the set of indeterminates $S union T union {x_(i_k+1)} = {x_(i_k+1),x_(m_1),...,x_(m_p)}$ after reordering, one can realize the elements $x_(i_k+1),f_1,...,f_n,g_1,...,g_n $ as elements in $ k[x_(i_k+1),x_(m_1),...,x_(m_p)] arrow.hook k[x_1,x_2,...]$, and inside this smaller subring, the equality $x_(i_k+1)=sum_(i=1)^n g_i f_i$ still holds.
+  Then, consider the element $x_(i_k+1) in I$: By our assumption, there exists polynomials $g_1,...,g_n in R$, such that $x_(i_k +1) = sum_(i=1)^n g_i f_i$. Which, let $T = {x_(j_1),...,x_(j_l)}$ be the (finite) indeterminates involved in the polynomials $g_1,...,g_n$. Which, if consider the set of indeterminates $S union T union {x_(i_k+1)} = {x_(i_k+1),x_(m_1),...,x_(m_p)}$ after reordering, one can realize the elements $x_(i_k+1),f_1,...,f_n,g_1,...,g_n $ as elements in the subring $ k[x_(i_k+1),x_(m_1),...,x_(m_p)] arrow.hook k[x_1,x_2,...]$, and inside this smaller subring, the equality $x_(i_k+1)=sum_(i=1)^n g_i f_i$ still holds.
 
-  Now, consider the evaluation map $k[x_(i_k+1),x_(m_1),...,x_(m_p)] -> k$, by $x_(i_k+1) mapsto 1$, and all $x_(m_r) mapsto 0$: Since we've chosen $x_(i_k+1)$, such that it's distinct from all $x_(i_j)$ ($1<=j<=k$), then one has $x_(i_j)$ being some of the $x_(m_r)$, hence $x_(i_j) mapsto 0$. Also, notice that since each $f_i in I$, then it has no constant term (since one has $f_i = h_1 x_1+...$ for $h_i in R$, such that finitely many $h_i!=0$; then, all the constant terms in $h_i$ are multiplied with $x_i$, which is no longer with constant term). Hence, with each $x_(i_j) mapsto 0$, $f_i mapsto 0$ also (since it's a polynomial involving only $x_(i_1),...,x_(i_k)$, and with no constant term).
+  Now, consider the evaluation map $k[x_(i_k+1),x_(m_1),...,x_(m_p)] -> k$, by $x_(i_k+1) mapsto 1$, and all $x_(m_r) mapsto 0$: Since we've chosen $x_(i_k+1)$, such that it's distinct from all $x_(i_j)$ ($1<=j<=k$), then one has $x_(i_j)$ being some of the $x_(m_r)$, hence $x_(i_j) mapsto 0$. Also, notice that since each $f_i in I$, then it has no constant term (since one has $f_i = h_1 x_1+...$ for $h_i in R$, such that finitely many $h_i!=0$; then, all the constant terms in $h_i$ are multiplied with $x_i$, which is with constant term $0$). Hence, with each $x_(i_j) mapsto 0$, $f_i mapsto 0$ also (since it's a polynomial involving only $x_(i_1),...,x_(i_k)$, and with no constant term).
 
   As a result, one has the following:
   $ x_(i_k+1) = sum_(i=1)^n g_i f_i mapsto 0 $
@@ -131,7 +131,7 @@ All content starts on page 2.
 
   \ 
 
-  Hence, we found an exact sequence of $R$-modules $0->I arrow.hook R ->> R\/I -> 0$, such that the middle is finitely generated $R$-module, while the two sides are not guaranteed to be finitely generated (in particular, the left side is not guaranteed). This proves that the converse is in general false.
+  Thus, we found an exact sequence of $R$-modules $0->I arrow.hook R ->> R\/I -> 0$, such that the middle is finitely generated $R$-module, while the two sides are not guaranteed to be finitely generated (in particular, the left side is not finitely generated). This proves that the converse is in general false.
 ]
 
 #pagebreak()
@@ -253,7 +253,8 @@ All content starts on page 2.
       Now, let's define a map $G:(M tensor_A N) times P -> M tensor_A (N tensor_B P)$ as this: 
       $ G(sum_(i=1)^k m_i tensor_A n_i " ", " " p):= overline(F)_p (sum_(i=1)^k m_i tensor_A n_i) $
       We claim that $G$ is $B$-bilinear (which suffices to check each individual tensors). Given any $b,b' in B$, $(m tensor_A n), (m' tensor_A n') in M tensor_A N$, and $p,p' in P$, we have the following:
-      $ G(b dot (m tensor_A n)+b' dot (m' tensor_A n'),p) &= overline(F)_p (m tensor_A (n b)+m' tensor_A (n' b'))\ 
+      $ G(b dot (m tensor_A n)+b' dot (m' tensor_A n'),p)&= G(m tensor_A (n b)+m' tensor_A (n' b'), p) \
+      &= overline(F)_p (m tensor_A (n b)+m' tensor_A (n' b'))\ 
       &= m tensor_A ((n b) tensor_B p) + m' tensor_A ((n' b') tensor_B p)\ 
       &= m tensor_A ((n tensor_B p)b) + m' tensor_A ((n' tensor_B p)b')\ 
       &= b dot (m tensor_A (n tensor_B p))+b' dot (m' tensor_A (n' tensor_B p))\ 
@@ -329,14 +330,14 @@ All content starts on page 2.
   &= r dot ((id_S) tensor_S f)(s tensor_B p) $
   Hence, with $M$ being a flat $R$-module, the $R$-linear map $id_M tensor_R ((id_S) tensor_S f):M tensor_R (S tensor_S P) arrow.hook M tensor_R (S tensor_S P')$ is also injective. 
 
-  Similar to the previous one, we also have $id_M tensor_R ((id_S) tensor_S f)$ being an injective $S$-linear map, since it's additive, for any $m in M$, $s,t in S$, and $p in P$, one has the following:
+  Similar to the previous one, we also have $id_M tensor_R ((id_S) tensor_S f)$ being an injective $S$-linear map, since it's additive, and also for any $m in M$, $s,t in S$, and $p in P$, one has the following:
   $ (id_M tensor_R ((id_S)tensor_S f))(s dot (m tensor_R (t tensor_S p))) &= (id_M tensor_R ((id_S)tensor_S f))(m tensor_R (s dot (t tensor_S p)))\ 
   &= m tensor_R (((id_S)tensor_S f)((s t) tensor_S p))\ 
   &= m tensor_R ((s t) tensor_S f(p))\ 
   &= m tensor_R (s dot (t tensor_S f(p)))\ 
   &= s dot (m tensor_R (t tensor_S f(p)))\ 
   &= s dot [(id_M tensor_R ((id_S)tensor_S f))(m tensor_R (t tensor_S p))] $
-  For simplisity, let's define $psi:= id_M tensor_R ((id_S)tensor_S f)$ as the injective $S$-linear map.
+  For simplicity, let's define $psi:= id_M tensor_R ((id_S)tensor_S f)$ as the injective $S$-linear map.
   
   Finally, one has the following diagram:
   #set align(center)
@@ -350,7 +351,7 @@ All content starts on page 2.
   $ phi^(-1)_(M S P') compose psi compose phi_(M S P)((m tensor_R s)tensor_S p) &= phi^(-1)_(M S P') compose psi (m tensor_R (s tensor_S p))\ 
   &= phi^(-1)_(M S P')(m tensor_R (s tensor_S f(p)))\ 
   &= (m tensor_R s)tensor_S f(p) $
-  This shows that $phi^(-1)_(M S P') compose psi compose phi_(M S P) = (id_M tensor_R S)tensor_S f$ as $S$-linear maps. Hence, with each map on the LRS being injective, the RHS is also injective.
+  This shows that $phi^(-1)_(M S P') compose psi compose phi_(M S P) = (id_M tensor_R S)tensor_S f$ as $S$-linear maps. Hence, with each map on the LRS being injective, the RHS $(id_M tensor_R S)tensor_S f$ is also injective.
 
   This shows that $(M tensor_R S)tensor_S (\_)$ is an exact functor (as it preserves injectivity), hence $M tensor_R S$ can be realized as a flat $S$-module.
 ]
@@ -372,7 +373,7 @@ All content starts on page 2.
   Which, this map is also $S$-linear, as any $(m_i)_(i in Lambda) in plus.circle.big_(i in Lambda)M_i$, and $s,t in S$, satisfy the following:
   $ phi(s dot ((m_i)_(i in Lambda) tensor t)) &= phi((m_i)_(i in Lambda) tensor (t s)) = (m_i tensor (t s))_(i in Lambda)\ 
   &= (s dot (m_i tensor t))_(i in Lambda) = s dot (m_i tensor t)_(i in Lambda) $
-  Hence, $phi$ is also an $S$-linear isomorphism. Apply this logic to the 1st and 3rd isomorphism relation, they're isomorphic as $S$-module (the middle part is true because $S$ is preserved).
+  Hence, $phi$ is also an $S$-linear isomorphism. Apply this logic to the 1st and 3rd isomorphism relation, $(M tensor_R S) plus.circle (N tensor_R S) tilde.equiv plus.circle.big_(i in I)(R e_i tensor_R S)$ as $S$-module.
 
   \ 
 
@@ -406,12 +407,12 @@ All content starts on page 2.
   #set align(center)
   #diagram($
              ZZ edge("d","hook->", script(iota_x))edge("hook->", script(iota_QQ)) & QQ edge("d", "hook->", script(alpha))\ 
-             ZZ[x] edge("hook->", script(beta)) & QQ tensor_ZZ ZZ[x]
+             ZZ[x] edge("hook->", script(beta), #right) & QQ tensor_ZZ ZZ[x]
            $)
   #set align(left)
   Where, any $q in QQ$ satisfies $alpha(q) = q tensor 1$, and any integer polynomial $f(x) in ZZ[x]$ satisfies $beta(f(x))= 1 tensor f(x)$.
 
-  Then, consider the ring $QQ[x]$, we claim that as $ZZ$-algebra it's isomorphic to $QQ tensor_ZZ ZZ[x]$: It has two inclusions $iota_1:QQ arrow.hook QQ[x]$, and $iota_2:ZZ[x] arrow.hook QQ[x]$. Then, using the universality of fibre coproduct, one realizes a unique $ZZ$-algebra homomorphism $h:QQ tensor_ZZ ZZ[x] -> QQ[x]$, such that the following holds:
+  Then, consider the ring $QQ[x]$, we claim that as $ZZ$-algebra it's isomorphic to $QQ tensor_ZZ ZZ[x]$: It has two inclusions $iota_1:QQ arrow.hook QQ[x]$, and $iota_2:ZZ[x] arrow.hook QQ[x]$, and both inclusions preserve $ZZ$ element wise (hence $iota_1 compose iota_QQ = iota_2 compose iota_x$). Then, using the universality of fibre coproduct, one realizes a unique $ZZ$-algebra homomorphism $h:QQ tensor_ZZ ZZ[x] -> QQ[x]$, such that the following holds:
   #set align(center)
   #diagram($
              ZZ edge("d","hook->", script(iota_x))edge("hook->", script(iota_QQ)) & QQ edge("ddr", "hook->", script(iota_1), bend: #20deg) edge("d", "hook->", script(alpha))\ 
@@ -439,18 +440,18 @@ All content starts on page 2.
 
   Now, notice that $h,j$ are mutual inverses of each other: Given any $q tensor x^n in QQ tensor_ZZ ZZ[x]$, and $q x^n in QQ[x]$ (the generators of each algebra), one has the following:
   $ j compose h(q tensor x^n) = j (q x^n) = q tensor x^n, quad h compose j(q x^n) = h(q tensor x^n) = q x^n $
-  Since both compositions act as identity on the generators of each algebra, they're mutual inverses. Hence, it proves $QQ tensor_ZZ ZZ[x] tilde.equiv QQ[x]$ as $ZZ$-algebra. Moreover, it's $ZZ[x]$-module structure is given bny the inclusion $iota_2: ZZ[x] arrow.hook QQ[x]$.
+  Since both compositions act as identity on the generators of each algebra, they're mutual inverses. Hence, it proves $QQ tensor_ZZ ZZ[x] tilde.equiv QQ[x]$ as $ZZ$-algebra. Moreover, it's $ZZ[x]$-module structure is given by the inclusion $iota_2: ZZ[x] arrow.hook QQ[x]$.
 
   \ 
 
   Finally, realize that $QQ[x]$ is not an injective $ZZ[x]$-module: Given the element $x in ZZ[x]$, the multiplication map $x dot (\_): QQ[x] -> QQ[x]$ has all $f(x) in QQ[x]$
-  satisfies $f(x) mapsto x f(x)$. In particular, if $f(x)!=0$, one has $deg(x f(x))>= deg(x)>=1$. Hence, the image of $x dot (\_)$ doesn't contain any degree 0 / constant polynomial, showing it's not surjective.
+  satisfies $f(x) mapsto x f(x)$. In particular, if $f(x)!=0$, one has $deg(x f(x))>= deg(x)>=1$. Hence, the image of $x dot (\_)$ doesn't contain any nonzero constant polynomial, showing it's not surjective.
 
   Hence, as a $ZZ[x]$-module, $QQ[x] tilde.equiv QQ tensor_ZZ ZZ[x]$ is not divisible, hence not injective.
 
   \ 
 
-  With $R=ZZ$, $S=ZZ[x]$ (with module structure induced by inclusion $phi: ZZ arrow.hook ZZ[x]$), and $M=QQ$ an injective $ZZ$-module, we have $M tensor_R S tilde.equiv QQ[x]$ as $R$-algebra. Yet, $M tensor_R S tilde.equiv QQ[x]$ is not an injective $S$-module, which provides a counterexample to the statement.
+  With $R=ZZ$, $S=ZZ[x]$ (with module structure induced by inclusion $phi: ZZ arrow.hook ZZ[x]$), and $M=QQ$ an injective $ZZ$-module, we have $M tensor_R S tilde.equiv QQ[x]$ as $R$-algebra. Yet, it is not an injective $S$-module, which provides a counterexample to the statement.
 ]
 
 #pagebreak()
@@ -476,13 +477,13 @@ All content starts on page 2.
 
   Now, consider the ideal $I={overline(0)_6, overline(2)_6, overline(4)_6} subset R$, which it can be obtained using another projection $pi_2:ZZ\/6ZZ ->> ZZ\/2ZZ$ by $pi_2 (overline(n)_6) = overline(n)_2$. Which, $overline(n)_2 = overline(0)_2$ iff $n$ is odd iff $overline(n)_6 in {overline(0)_6, overline(2)_6, overline(4)_6}$, showing $ker(phi)=I$.
 
-  However, this ideal also has a ring structure: It's closed under multiplication by the ideal property, so it suffices to find the inverse. Consider the following multiplication relation:
+  However, this ideal also has a ring structure: It's closed under addition and multiplication by the ideal property, so it suffices to find the multiplicative identity. Consider the following multiplication relation:
   $ overline(0)_6 dot overline(4)_6 = overline(0)_6, quad overline(2)_6 dot overline(4)_6 = overline(8)_6 = overline(2)_6, quad overline(4)_6 dot overline(4)_6 = overline(16)_6 = overline(4)_6 $
   This shows that all $overline(a)_6 in I$ satisfies $overline(a)_6 dot overline(4)_6 = overline(a)_6$, which $overline(4)_6$ is the multiplicative identity of $I$.
 
   \ 
 
-  Notice that $I$ as a ring with the above structure is isomorphic to $ZZ\/3ZZ$: As an additive abelian group because both $I$ and $ZZ\/3ZZ$ has order 3, they must be isomorphic, and one abelian group isomorphism can be considered as $j:ZZ\/3ZZ arrow.tilde I$, $j(overline(1)_3) = overline(4)_6$ (since both are cyclic with prime order, then any nonzero element is a generator).
+  Notice that $I$ as a ring with the above structure is isomorphic to $ZZ\/3ZZ$: As an additive abelian group because both $I$ and $ZZ\/3ZZ$ has order 3, they must be isomorphic, and one abelian group isomorphism can be considered as $j:ZZ\/3ZZ arrow.tilde I$, $j(overline(1)_3) = overline(4)_6$ (since both are cyclic with prime order, then any nonzero element is a generator), implying $j(overline(2)_3)=overline(2)_6$.
 
   Yet, $j$ is also a ring homomorphism, because of the following (for anything multiplied by zero, it's sent to zero by group homomorphism property, so we don't need to check):
   $ j(overline(1)_3 dot overline(2)_3) = j(overline(2)_3) = overline(2)_6 = overline(4)_6 dot overline(2)_6 = j(overline(1)_3) dot j(overline(2)_3) $
@@ -500,7 +501,7 @@ All content starts on page 2.
 
   As a result, this is actually a section of the map $phi:R ->> ZZ\/3ZZ$ when viewed as an $R$-linear map:
   $ phi compose j(overline(1)_3) = phi(overline(4)_6) = overline(1)_3 $
-  And, with $overline(1)_3$ being a generator of $ZZ\/3ZZ$ additive wise, this proes that $phi compose j = id_(ZZ\/3ZZ)$. Hence, the $R$-linear map $phi:R->>ZZ\/3ZZ$ splits, showing that $ZZ\/3ZZ$ is a direct summand of $R$ (which is a free $R$-module).
+  And, with $overline(1)_3$ being a generator of $ZZ\/3ZZ$ additive wise, this proves that $phi compose j = id_(ZZ\/3ZZ)$. Hence, the $R$-linear map $phi:R->>ZZ\/3ZZ$ splits, showing that $ZZ\/3ZZ$ is a direct summand of $R$ (which is a free $R$-module).
   
   This proves that $ZZ\/3ZZ$ is a projective $R$-module, which in particular is flat. However, as a flat $R$-algebra, the map $phi:R ->> ZZ\/3ZZ$ is not injective, which provides a counterexample to our statement.
 ]
@@ -543,7 +544,7 @@ All content starts on page 2.
   $ (iota tensor id_S) compose g(s) = (iota tensor id_S)(a tensor s/a) = a dot s/a =s $
   This shows that $iota tensor id_S$, $g$ are mutual inverses on the generators of $I tensor_R S$ and $S$, hence are mutual inverses on the two $R$-modules. 
 
-  This proves injectivity of $iota tensor id_S$. And, since $I arrow.hook R$ is arbitrary inclusion of nonzero ideals, preserving injectivity for all such inclusion of nonzero ideals under tensor implies $S$ is a flat $R$-algebra.
+  This proves injectivity of $iota tensor id_S$. And, since $I arrow.hook R$ is arbitrary inclusion of nonzero ideals (while the zero ideal case is trivial), this implies $S$ is a flat $R$-algebra.
 ]
 
 #pagebreak()
@@ -585,16 +586,12 @@ All content starts on page 2.
 
     \  
 
-    - Else if $(P^e)^2 subset.neq P^e$, then $P^e!=R$. Take any $r in P^e\\(P^e)^2$, we claim that $(r)=P^e$: By the factorization above, $(r)=(P^e)^n$ for some $n in NN$, however if $n>=2$ one has $(r)=(P^e)^n subset.eq (P^e)^2$, contradicting the assumption $r in.not (P^e)^2$. Also, $n!=0$ as $(r)=(P^e)^0 = R$ is another contradiction to $(r) subset.eq P^e$ (since $P^e$ is not unit ideal). So, $n=1$, and $(r)=P^e$. This shows that $P^e$ is a principal ideal, implying $R_P$ is a PID.
+    - Else if $(P^e)^2 subset.neq P^e$, take any $r in P^e\\(P^e)^2$, we claim that $(r)=P^e$: By the factorization above, $(r)=(P^e)^n$ for some $n in NN$, however if $n>=2$ one has $(r)=(P^e)^n subset.eq (P^e)^2$, contradicting the assumption $r in.not (P^e)^2$. Also, $n!=0$ as $(r)=(P^e)^0 = R$ is another contradiction to $(r) subset.eq P^e$ (since $P^e$ is not unit ideal). So, $n=1$, and $(r)=P^e$. This shows that $P^e$ is a principal ideal, implying $R_P$ is a PID.
   ]
 
-  \ 
+  Now, notice that for any ideal $I subset.eq R$, one has the localization $I_P$ being  the extension $I^e$ under the map $phi:R -> R_P$, which $I^e = (a/s)$ for some $a/s in R_P$ by the previous lemma. Hence, as $R$-module $I^e = (a/s) tilde.equiv R_P$ via the map $I^e -> R_P$ by $a/s mapsto 1$, showing $I^e$ is a free $R_P$-module, hence flat $R_P$-module.
 
-  Now, notice that for any ideal $I subset.eq R$, one has the localization $I_P$ being  the extension $I^e$ under the map $phi:R -> R_P$, which $I^e = (a/s)$ for some $a/s in R_P$ by the previous lemma. Hence, as $R$-module $I^e = (a/s) tilde.equiv R$ via the map $I^e -> R$ by $a/s mapsto 1$, showing $I^e$ is a free $R$-module, hence flat.
-
-  \ 
-
-  This shows the localization $I_P$ around any prime ideal is flat, hence $I$ itself must be flat.
+  This shows the localization $I_P$ around any prime ideal is flat $R_P$-module, hence $I$ itself must be flat $R$-module.
 ]
 
 #pagebreak()
@@ -636,7 +633,7 @@ All content starts on page 2.
 
   Then, define the multiplication map $f = b dot (\_):M -> M$. Since any $m in M$ has $f(m) = b m in I M$, $f(M) subset.eq I M$, with the assumption $M$ is finitely generated, one can apply "Cayley-Hamilton Theorem" covered in class, there exists some $k in NN$, and some $c_1,...,c_k in R$ (or $c_1 b,...,c_k b in I=(b)$), such that the endomorphism $f^k + c_1 b f^(k-1)+...c_(k-1)b f+c_k b=0$ on $M$. In particular, one can choose $k$ to be the minimum natural number with such property. 
   
-  Here, recognize the endomorphism $0=f^k + c_1 b f^(k-1)+..+c_k b$ is given by a multiplication map:
+  Here, recognize the endomorphism $0=f^k + c_1 b f^(k-1)+...+c_(k-1)b f+c_k b$ is given by a multiplication map:
   $ forall m in M, quad (f^k + c_1 b f^(k-1)+... c_(k-1) b f+c_k b)(m) &= (b^k + c_1 b^(k)+...+c_(k-1)b^2+c_k b)m\  
   &= 0 $
   Since $M$ is flat (in particular, torsion-free), then all nonzero element $r in R$ must have the multiplication map be injective (since $R$ is an integral domain). Hence, the above multiplication map is $0$ implies $b^k + c_1 b^k + ... c_(k-1)b^2 + c_k b = b(b^(k-1) + c_1 b^(k-1)+...+c_(k-1)b+c_k)=0$. With the assumption $b!=0$, one has $b^(k-1) + c_1 b^(k-1)+...+c_(k-1)b+c_k=0$.
@@ -644,7 +641,7 @@ All content starts on page 2.
   $ b^(k-1)+c_1 b^(k-1)+...+c_(k-1)b = -c_k $
   Which implies that $c_k in (b) = I$.
 
-  Now, let's consider the endomorphism $f^(k-1)+c_1 b f^(k-2)+...+c_(k-1)b + c_k$: Notice that it's monic (a polynomial of $f$), together with all non-leading coefficients $c_1 b,..., c_(k-1)b+c_k in I$. Also, any $m in M$ satisfies the following:
+  Now, let's consider the endomorphism $f^(k-1)+c_1 b f^(k-2)+...+c_(k-1)b + c_k$: Notice that it's monic (as polynomial of $f$), together with all non-leading coefficients $c_1 b,..., c_(k-1)b+c_k in I$. Also, any $m in M$ satisfies the following:
   $ (f^(k-1)+c_1 b f^(k-1)+...+c_(k-1)b+c_k)m &= (b^(k-1)+c_1 b^(k-1)+...+c_(k-1)b+c_k)m \
   &= 0 dot m=0 $
   Which, $f^(k-1)+c_1 b f^(k-1)+...+c_(k-1)b+c_k$ is a monic polynomial with coefficients in $I$, such that it evaluates to be $0$ on $M$. This contradicts the assumption that $k$ is the smallest natural number with such polynomial exists; as a result, one must have $N sect R x_n = 0$, showing $M = N plus.circle R x_n$.
@@ -683,7 +680,7 @@ All content starts on page 2.
 
   \ 
 
-  Now, for any $R$-module $M$, we know there exists some index set $I$, such that the free $R$-module $plus.circle.big_(i in I)R$ has a surjection onto $M$ (for the most extreme case, choos $I:= M$, and associate each element of $M$ with a copy of $R$). Hence, one has $M tilde.equiv (plus.circle.big_(i in I)R) \/ L$ for some submodule $L arrow.hook plus.circle.big_(i in I)R$.
+  Now, for any $R$-module $M$, we know there exists some index set $I$, such that the free $R$-module $plus.circle.big_(i in I)R$ has a surjection onto $M$ (for the most extreme case, choose $I:= M$, and associate each element of $M$ with a copy of $R$). Hence, one has $M tilde.equiv (plus.circle.big_(i in I)R) \/ L$ for some submodule $L arrow.hook plus.circle.big_(i in I)R$.
 
   Then, consider the composition of inclusions $L arrow.hook plus.circle.big_(i in I)R  arrow.hook plus.circle.big_(i in I)K$, this realizes $L$ as a submodule of $plus.circle.big_(i in I)K$. Hence, one can consider the module theoretic quotient $(plus.circle.big_(i in I)K)\/L$. Which, this generates an $R$-linear map $phi: plus.circle.big_(i in I)R arrow.hook plus.circle.big_(i in I)K ->> (plus.circle.big_(i in I)K)\/L$. Notice that one has an element $(a_i)_(i in I) in ker(phi)$ iff $(a_i)_(i in I)in L$ (since when including into $plus.circle.big_(i in I)K$, it must lie in $L$), showing that $ker(phi) = L$. As a result, it factors uniquely to an injective $R$-linaer map $overline(phi):(plus.circle.big_(i in I)R)\/L arrow.hook (plus.circle.big_(i in I)K)\/L$:
   #set align(center)
@@ -716,7 +713,7 @@ All content starts on page 2.
 
   \ 
 
-  Hence, this is an example where $m subset.eq R$ is a maximal ideal, $M!=0$, but $M_m = 0$, which is a desired counterexample to the statement.
+  Hence, we have $m subset.eq R$ is a maximal ideal, $M!=0$, but $M_m = 0$, which is a desired counterexample to the statement.
 ]
 
 #pagebreak()
@@ -738,22 +735,22 @@ All content starts on page 2.
 
   \ 
 
-  Let's first verify the $(R,S)$-bimodule structure on both $S,T$:
+  Let's first verify the $(R,S)$-bimodule structure on both $S,T$.
 
   Given any $r in R$, $s,s' in S$ and $t in T$, one has the following:
   $ r dot (s dot s') = phi(r)(s s') = (phi(r)s)s' = (s phi(r))s' = s dot (phi(r) s') = s dot (r dot s') $
-  $ r dot (s dot t) = psi(phi(r))(psi(s)t) = psi(phi(r)s)t = psi(s phi(r))t - psi(s)(psi(phi(r))t) - s dot (r dot t) $
+  $ r dot (s dot t) = psi(phi(r))(psi(s)t) = psi(phi(r)s)t = psi(s phi(r))t = psi(s)(psi(phi(r))t) = s dot (r dot t) $
   Since the actions of $R,S$ commutes (if assuming they're commutative, under most cases we work with), these realize $S,T$ as $(R,S)$-bimodules, hence the isomorphism can be used.
 
   \ 
 
-  Now, we have the following isomorphism as borh $R$ and $S$-module:
+  Now, we have the following isomorphism as both $R$ and $S$-module:
   $ T arrow.tilde S tensor_S T, quad t mapsto 1_S tensor_S t $
   Also, for any inclusion of ideals $iota: I arrow.hook R$, based on the $R$-flatness of $S$, we have $I tensor_R S arrow.hook R tensor_R S$ being injective. Then, when viewed this as an $S$-linear map, the $S$-flatness of $T$ guarantees the map $(I tensor_R S) tensor_S T arrow.hook (R tensor_R S) tensor_S T$ being injective.
 
   \ 
 
-  Finally, notice that $R tensor_R S tilde.equiv S$ as both $R$ and $S$-module, hence as $(R,S)$-bimodule one has $T tilde.equiv S tensor_S T tilde.equiv (R tensor_R S) tensor_S T$. So, when consider the inclusion of ideals $iota: I arrow.hook R$, it's tensor with $T$ generates the following commutative diagram (based on all isomorphisms mentioned above):
+  Finally, when consider the inclusion of ideals $iota: I arrow.hook R$, it's tensor with $T$ generates the following commutative diagram (based on all isomorphisms mentioned above):
   #set align(center)
   #diagram($
             I tensor_R T edge("d","hook->>") edge(->, script(iota tensor id_T)) & R tensor_R T \ 
@@ -806,7 +803,7 @@ All content starts on page 2.
 
   In the previous problem we constructed $R=ZZ\/2ZZ plus.circle ZZ\/3ZZ plus.circle ZZ\/5ZZ$, $S=ZZ\/2ZZ plus.circle Z\/3ZZ$, and $T=ZZ\/2ZZ$; the homomorphisms are projections $phi:R->>S$ and $psi:S->>T$. 
 
-  Then, $T$ is projective as $R$-module (as it's a direct summand of $R$), hence $R$-flat. However, the second map $psi:S->>T$ here is a projection, hence surjective. It's a desired counterexample to the statement.
+  Then, $T$ is projective as $R$-module (as it's a direct summand of $R$), hence $R$-flat. However, the second map $psi:S->>T$ here is a projection, hence surjective. It's a desired counterexample to this statement also.
 ]
 
 #pagebreak()
@@ -819,7 +816,7 @@ All content starts on page 2.
 
   \ 
 
-  Consider the ring $R:= ZZ plus.circle QQ$ (with coordinate-wise addition and multiplication). Then, the projection onto the second coordinate $pi_2:R->> QQ$ defines $QQ$ as an $R$-algebra. Now, notice that as $R$-linear map, $pi_2$ has a section, given as $j:QQ -> R$ as $j(q)=(0,q)$. Let's verify it has $R$-linear structure:
+  Consider the ring $R:= ZZ plus.circle QQ$ (with coordinate-wise addition and multiplication). Then, the projection onto the second coordinate $pi_2:R->> QQ$ defines $QQ$ as an $R$-algebra. Now, notice that as $R$-linear map, $pi_2$ has a section, given by $j:QQ -> R$ as $j(q)=(0,q)$. Let's verify it has $R$-linear structure:
   $ forall q,r in QQ, quad j(q+r) = (0,q+r) = (0,q)+(0,r)=j(q)+j(r) $
   $ forall (n,p) in R, quad j((n,p) dot q) j((pi_2 (n,p)) q) = j(p q) = (0, p q) = (n,p) dot (0,q) $
   Hence, $j$ is indeed an $R$-linear map. And, notice that any $q in QQ$ satisfies $pi_2 compose j(q) = pi_2 (0,q) = q$, showing the projection $pi_2$ splits.
@@ -842,7 +839,7 @@ All content starts on page 2.
 
   \ 
 
-  Finally, we ought t prove that $M tensor_R S$ is a torsion-free $S$-module. For this, let's recall the map $psi:R->> M$ given by $psi(n,p) = (overline(n),p)$. Hence, one has $(n,p) in ker(phi)$ iff $overline(n)=0 in ZZ\/2ZZ$ and $p=0 in QQ$, which is equivalent to $n in 2ZZ$ and $p = 0 in QQ$. Therefore, $ker(phi) = {(2n,0) in R | n in ZZ}$.
+  Finally, we ought to prove that $M tensor_R S$ is a torsion-free $S$-module. For this, let's recall the map $psi:R->> M$ given by $psi(n,p) = (overline(n),p)$. Hence, one has $(n,p) in ker(phi)$ iff $overline(n)=0 in ZZ\/2ZZ$ and $p=0 in QQ$, which is equivalent to $n in 2ZZ$ and $p = 0 in QQ$. Therefore, $ker(phi) = {(2n,0) in R | n in ZZ}$.
 
   Now, consider the following exact sequence of $R$-modules:
   #set align(center)
