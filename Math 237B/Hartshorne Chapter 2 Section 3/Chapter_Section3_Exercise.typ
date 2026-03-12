@@ -166,3 +166,43 @@
 #problem[
   (Noetherian Induction). Let $X$ be a Noetherian topological space, and let $cal(P)$ be a property of closed subsets of $X$. Assume that for any closed subset $Y$ of $X$, if $cal(P)$ holds for every proper closed subset of $Y$, then $cal(P)$ holds for $Y$ (in particular, $cal(P)$ hold for the empty set). Then, $cal(P)$ holds for $X$.
 ][]
+
+\ 
+
+= 3.17 (ND)
+#problem[
+  A topological space $X$ is a "Zariski Space" if it is Noetherian and every (nonempty) closed irreducible subset has a unique generic point.
+
+  EX: $R$ a discrete valuation ring, and $T=Spec(R) = {x_0,x_1}$, then zero ideal $x_1$ is its generic point, the maximal ideal $x_0$ is its closed point. 
+  + Show that if $X$ is a Noetherian Scheme, then $X$ is a Zariski Space.
+  + Show that any minimal nonempty closed subset of a Zariski Space consists of one point, called "closed points".
+  + Show that Zariski space satisfies the $T_0$ axioms: Given any two distinct points of $X$, there is an open set containing one but not the other.
+  + If $X$ is an irreducible Zariski space, then its generic point is contained in every nonempty open subset of $X$.
+  + If $x_0,x_1 in X$, and if $x_0 in overline({x_1})$, then we say that $x_1$ specializes $x_0$, or $x_0$ is a "specialization" of $x_1$ (or $x_1$ is a "generalization" of $x_0$). 
+
+    Let $X$ be a Zariski space, show tha tthe minimal points, for the partial ordering determined by $x_1>x_0$ iff $x_1$ specializes $x_0$, are closed points, and the maximal points are the generic points of the irreducible components of $X$. Show also that the closed subset contains every specialization of any of its point (Note: Closed sets are "stable under specialization", and open subsets are "stable under generization"). 
+][
+  + If $X$ is a Noetherian Scheme, 
+
+    \ 
+
+  + If a closed subset $T$ is minimal and nonempty, it is automatically irreducible. Hence, by definition it contains a generic point $t$ (such that its closure is the whole set). But, if $T$ is not singleton, we can find some other point $x in T$, since it's not generic, then $overline({x}) subset.neq T$ is proper, contradicting the minimality of $T$ as closed subsets.
+
+    \ 
+
+  + If the two point chosen (say $x,y$) has one point being a closed point (say $x$), then take the complement of the closed point $X\\{x}$, it's an open subset containing $y$, but not $x$.
+
+    \ 
+
+    Now, if both are not closed point, consider $overline({x})$: If this doesn't contain $y$, then $X\\overline({x})$ provides the open subset of $y$ not containing $x$; else if it contains $y$, since $x$ is irreducible, its closure $overline({x})$ is also irreducible. By the Zariski Space axiom, $x$ is the unique generic point of $overline({x})$, hence showing $overline({y}) subset.neq overline({x})$ is proper, in particular $x in.not overline({y})$. Then, $X\\overline({y})$ is an open subset of $x$ not containing $y$.
+
+    This proves the $T_0$ separation axiom.
+
+    \
+
+  + This one can be easily deduced by contradiction: Suppose there exists a nonempty open subset $U subset.eq X$ such that the generic point $t in.not U$, then $t in X\\U$, so $X=overline({t}) subset.eq X\\U subset.neq X$ which is a contradiction. So, $t$ must be inside all open subset.
+
+    \ 
+
+  + 
+]
