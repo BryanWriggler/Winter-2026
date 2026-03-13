@@ -52,7 +52,9 @@
   #line(length: 100%)
 
   \ 
-][]
+][
+  I think the idea should be false, take $X=Y=PP^1_k$ and $S=Spec(k)$ (for any field $k$, for simplicity say $k=overline(k)$), then the fibre product $X times_S Y$ should be $PP^1_k times_k PP^1_k$, which is not projective I believe (if tere exists a closed immersion into $PP^n_k$)
+]
 
 #pagebreak()
 
@@ -89,7 +91,9 @@
 = ND//5
 #problem[
   Let $f:X->Y$ be a surjective morphism between two schemes which are finite type and separated integral schemes over a field. Assume that $X$ is an affine scheme. Prove or disprove that $Y$ is an affine scheme if and only if it is a quasi-affine scheme.
-][]
+][
+  It's clear that affine $==>$ quasi-affine (regardless of the situation). So, the converse is the actual nontrivial part to prove / disprove
+]
 
 
 
