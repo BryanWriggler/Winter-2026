@@ -111,13 +111,13 @@
   Furthermore, with the universal property of $(Z' times_Z Y) times_Y X$, the equality $f compose p_1 = h' compose phi$ guarantees a unique morphism of schemes $psi:W-> (Z' times_Z Y) times_Y X$, such that $phi = f' compose psi$ and $p_1 = h'' compose psi$, as follow:
   #set align(center)
   #diagram($
-             W edge("dddr", ->, script(p_2), #right, bend: #(-20deg)) edge("drr",->, script(p_1), bend:#30deg) edge("ddr","..>", script(exists ! phi), #right, bend: #(-10deg)) edge("dr","..>", script(exists ! psi))\
+             W edge("dddr", ->, script(p_2), #right, bend: #(-40deg)) edge("drr",->, script(p_1), bend:#30deg) edge("ddr","..>", script(exists ! phi), #right, bend: #(-20deg)) edge("dr","..>", script(exists ! psi))\
              &(Z' times_Z Y) times_Y edge("d",->>, script(f'), #right) edge(->, script(h'')) X & X edge("d",->>, script(f), #left)\
              &Z' times_Z Y edge(->, script(h')) edge("d",->, script(g'), #right) & Y edge("d",->, script(g), #left)\
              &Z' edge(->, script(h), #right) & Z
            $)
   #set align(left)
-  This proves both the existence and the uniqueness of the morphism $psi:W-> (Z' times_Z Y)times_Y X$, such that $p_2 = g' compose phi = (g' compose f') compose psi$, and $p_1 = h'' compose psi$. So, $(Z' times_Z Y) times_Y X$ indeed satisfies the universal property of $Z' times_Z X$, showing that $g' compose f'$ is the base change of the morphism $(g compose f):X->Z$. Which, since $g compose f$ is proper, $g' compose f'$ is closed.
+  This proves both the existence and the uniqueness of the morphism $psi:W-> (Z' times_Z Y)times_Y X$, such that $p_2 = g' compose phi = (g' compose f') compose psi$, and $p_1 = h'' compose psi$ (as any $psi':W->(Z' times_Z Y) times_Y X$ with such property is enforced to be equal to $psi$, based on individual fibre product's property). So, $(Z' times_Z Y) times_Y X$ indeed satisfies the universal property of $Z' times_Z X$, showing that $g' compose f'$ is the base change of the morphism $(g compose f):X->Z$. Which, since $g compose f$ is proper, $g' compose f'$ is closed.
 
   \ 
 
@@ -140,7 +140,7 @@
 
 #pagebreak()
 
-= ND//2
+= ND (finish the segre embedding)//2
 
 #problem[
   Let $f:X->S$ and $g:Y->S$ be projective morphisms. Prove or disprove that the projection map $X times_S Y -> S$ is projective.
@@ -151,9 +151,81 @@
 
   \ 
 ][
-  I think the idea should be false, take $X=Y=PP^1_k$ and $S=Spec(k)$ (for any field $k$, for simplicity say $k=overline(k)$), then the fibre product $X times_S Y$ should be $PP^1_k times_k PP^1_k$, which is not projective I believe (if tere exists a closed immersion into $PP^n_k$)
+  We'll show that $X times_S -> S$ is projective. We'll prove the following two statements:
+  + Base change of projective morphisms are projective.
+  + Composition of projective morphisms are projective.
 
-  Fxxk I forgot the Segre Embedding.
+  Then, the two will help conclude the desired result.
+
+  \ 
+
+  \
+
+  #text(weight: "bold")[Proof of (a):]
+
+  First, we'll show that base change preserves projective spaces: More precisely, given any $n in NN$, with morphisms $g:Y->S$, the projective $n$-space over $S$, $pi:PP^n_S -> S$ has fibre product $Y times_S PP^n_S$ satisfies the universal property of $PP^n_Y$.
+
+  Indeed, with the definition of $PP^n_S := S times_Spec(ZZ) PP^n_ZZ$, we form the following commutative diagram:
+  #set align(center)
+  #diagram($
+             Y times_S PP^n_S edge("d",->, script(pi')) edge(->, script(g')) & PP^n_S edge(->, script(s')) edge("d",->, script(pi), #left) & PP^n_ZZ edge("d",->, script(phi))\
+             Y edge(->, script(g), #right) & S edge(->, script(s), #right) & Spec(ZZ)
+           $)
+  #set align(left)
+  Where, both small squares are fibre product diagrams. Also, the morphism $s compose g:Y -> Spec(ZZ)$ is the unique morphism based on the terminal property of $Spec(ZZ)$ in the category of schemes.
+  
+  Now, given any scheme $W$ together with two morphisms $p_1:W->PP^n_ZZ$ and $p_2:W->Y$, such that $phi compose p_1=(s compose g) compose p_2$, then the universal property of $PP^n_S$ generates a unique morphism $psi:W -> PP^n_S$, such that $p_1 = s' compose psi$, and $g compose p_2 = pi compose psi$, as follow:
+  #set align(center)
+  #diagram($
+            W edge("ddr",->, script(p_2), #right, bend: #(-20deg)) edge("drrr",->, script(p_1), bend: #40deg) edge("drr","..>", script(exists ! psi), bend: #20deg)\
+             &Y times_S PP^n_S edge("d",->, script(pi')) edge(->, script(g')) & PP^n_S edge(->, script(s')) edge("d",->, script(pi), #left) & PP^n_ZZ edge("d",->, script(phi), #left)\
+             &Y edge(->, script(g), #right) & S edge(->, script(s), #right) & Spec(ZZ)
+           $)
+  #set align(left)
+  Then, with the universal property of $Y times_S PP^n_S$, the second equality $g compose p_2 = pi compose psi$ guarantees a unique morphism $rho:W -> Y times_S PP^n_S$, such that $psi = g' compose rho$, and $p_2=pi' compose rho$, as follow:
+  #set align(center)
+  #diagram($
+            W edge("ddr",->, script(p_2), #right, bend: #(-20deg)) edge("drrr",->, script(p_1), bend: #40deg) edge("drr","..>", script(exists ! psi), bend: #20deg) edge("dr", "..>", script(exists ! rho))\
+             &Y times_S PP^n_S edge("d",->, script(pi')) edge(->, script(g')) & PP^n_S edge(->, script(s')) edge("d",->, script(pi), #left) & PP^n_ZZ edge("d",->, script(phi), #left)\
+             &Y edge(->, script(g), #right) & S edge(->, script(s), #right) & Spec(ZZ)
+           $)
+  #set align(left)
+  Again, this proves both the existence and the uniqueness of the morphis $rho:W -> Y times_S PP^n_S$, such that $p_1 = s' compose psi = (s' compose g') compose rho$, and $p_2 = pi' compose rho$. Hence, $Y times_S PP^n_S$ satisfies the universal property of $PP^n_Y := Y times_Spec(ZZ) PP^n_ZZ$, showing $Y times_S PP^n_S tilde.equiv PP^n_Y$.
+
+  \ 
+
+  Now, we'll prove that base change preserves projective morphisms, again by the universality argument: Given a projective morphism $f:X->S$, and another morphism $g:Y->S$, we know there exists a suitable $n in NN$, such that there exists a closed immersion $iota:X arrow.hook PP^n_S$ and the projection $pi:PP^n_S -> S$, such that $f = pi compose iota$. 
+
+  Which, based on the previous argument, we'll simply denote $Y times_S PP^n_S$ as $PP^n_Y$. Together with the previous diagrams, we have the following:
+  #set align(center)
+  #diagram($
+             X times_(PP^n_S) PP^n_Y edge("d","hook->",script(iota')) edge(->, script(g'')) & X edge("d","hook->", script(iota), #left)\
+             PP^n_Y edge("d",->, script(pi'), #right) edge(->, script(g')) & PP^n_S edge(->, script(s')) edge("d",->, script(pi), #left) & PP^n_ZZ edge("d",->, script(phi))\
+             Y edge(->, script(g), #right) & S edge(->, script(s), #right) & Spec(ZZ)
+           $)
+  #set align(left)
+  Which, we took the fibre product $X times_(PP^n_S) PP^n_Y$, and the morphism $iota':X times_(PP^n_S) PP^n_Y arrow.hook PP^n_Y$ is the pullback of the closed immersion $iota:X arrow.hook PP^n_S$, hence $iota'$ is also a closed immersion.
+  
+  Now, we claim that it satisfies the universal property of $X times_S Y$: In general, the above proof of preserving projective spaces shows that successive fibre product preserves fibre product in the full generality. By modifying the labels / objects a bit, we indeed get a proof that $X times_(PP^n_S) PP^n_Y$ satisfies the universal property of $X times_S Y$ as fibre product, hence $X times_(PP^n_S) PP^n_Y tilde.equiv X times_S Y$.
+
+  \ 
+
+  Finally, by denoting $X times_(PP^n_S) PP^n_Y$ as $X times_S Y$, the above diagram reduces to the following fibre product diagram:
+  #set align(center)
+  #diagram($
+             X times_S Y edge(->, script(g'')) edge("d","hook->", script(iota')) & X edge("d",->, script(iota), #left) edge("dd",->, script(f), #left, bend:#40deg)\ 
+             PP^n_Y edge("d",->, script(pi'), #right)  & PP^n_S edge("d",->, script(pi), #left)\ 
+             Y edge(->, script(g), #right) & S
+           $) 
+  #set align(left)
+  Which, the pullback of $f$ is $pi' compose iota':X times_S Y-> Y$, which is precisely a closed immersion into $PP^n_Y$, then a projection onto $Y$. This shows that the pullback of $f$ is still projective, hence projective morphisms are preserved under base change.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[Proof of (b):]
+
 ]
 
 #pagebreak()
@@ -187,7 +259,7 @@
              && S
            $)
   #set align(left)
-  Or, $phi_X = phi_Y compose f$, which implies $phi_X compose iota = phi_Y compose (f compose iota)$. Since $phi_X compose iota$ is proper, with $phi_Y$ being separated, we have $f compose iota$ being proper also. With $Z$ being closed in itself, $f compose iota(Z) = f(Z) subset.eq Y$ is closed.
+  Or, $phi_X = phi_Y compose f$, which implies $phi_X compose iota = phi_Y compose (f compose iota)$. Since $phi_X compose iota$ is proper, with $phi_Y$ being separated, we have $f compose iota$ being proper also. With $Z$ being closed in itself, $f compose iota(Z) = f(Z) subset.eq Y$ is closed. This finishes our proof.
 ]
 
 #pagebreak()
