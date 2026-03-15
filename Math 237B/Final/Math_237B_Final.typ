@@ -4,7 +4,7 @@
 #import "@preview/rubber-article:0.4.1": *
 #import "@preview/ergo:0.2.0": *
 #import "@preview/fletcher:0.5.5" as fletcher: *
-#import "@preview/xarrow:0.4.0": *
+#import "@preview/xarrow:0.4.0": * 
 
 //basic template setup
 #show: article.with(
@@ -138,7 +138,7 @@
 
 #pagebreak()
 
-= ND (finish the segre embedding)//2
+= D //2 (at this point I don't care if I can finish the segre embedding or not...)
 
 #problem[
   Let $f:X->S$ and $g:Y->S$ be projective morphisms. Prove or disprove that the projection map $X times_S Y -> S$ is projective.
@@ -223,6 +223,91 @@
   \ 
 
   #text(weight: "bold")[Proof of (b):]
+
+  Let $rho:T->U$ and $phi:U->V$ be two projective morphisms, then there exists $n,m in NN$, such that there exists open immersion $iota_T: T arrow.hook PP^n_U$ and $iota_U:U arrow.hook PP^m_V$, together with projections $pi_(U,n):PP^n_U -> U$ and $pi_(V,m):PP^m_V -> V$, such that the following diagram commutes:
+  #set align(center)
+  #diagram($
+             PP^n_U edge("dr",->, script(pi_(U,n))) & PP^m_V edge("dr",->, script(pi_(V,m)))\ 
+             T edge(->, script(rho), #right) edge("u","hook->", script(iota_T), #left) & U edge(->, script(phi), #right) edge("u","hook->", script(iota_U), #right) & V
+           $)
+  #set align(left)
+  Now, let's use some information from part (a): Recall that given any morphism $Y -> S$ and the projection $PP^n_S -> S$, the fibre product $Y times_S PP^n_S tilde.equiv PP^n_Y$ (and it's true for arbitrary $Y,S$ and $n in NN$, as the proof is universal); then, from the above diagram, consider $phi:U->V$ as the composition $U xarrow(iota_U) PP^m_V xarrow(pi_(V,m))V$, and consider the projection $pi_(V,n):PP^n_V -> V$. Notice by the previous statementment, we can construct the projective space $PP^n_(PP^m_V) tilde.equiv PP^m_V times_V PP^n_V$, as follow:
+  #set align(center)
+  #diagram($
+             & PP^n_(PP^m_V) edge(->, script((pi_(V,m))')) edge("d",script((pi_(V,n))')) & PP^n_V edge("d",->, script(pi_(V,n)), #left)\
+             U edge("hook->", script(iota_U), #right) & PP^m_V edge(->, script(pi_(V,m)),#right) & V
+           $)
+  #set align(left)
+  Which, the same argument shows that $PP^n_U tilde.equiv U times_(PP^m_V) PP^n_(PP^m_V)$, as follow:
+  #set align(center)
+  #diagram($
+             PP^n_U edge("hook->", script((iota_U)')) edge("d",->, script(pi_(U,n))) & PP^n_(PP^m_V) edge(->, script((pi_(V,m))')) edge("d",->, script((pi_(V,n))')) & PP^n_V edge("d",->, script(pi_(V,n)), #left)\
+             U edge("hook->", script(iota_U), #right) & PP^m_V edge(->, script(pi_(V,m)),#right) & V
+           $)
+  #set align(left)
+  Which, notice that $(iota_U)':PP^n_U arrow.hook PP^n_(PP^m_V)$ is a base change of the closed immerrsion $iota_U:U arrow.hook PP^m_V$, hence is still a closed immersion; composing with the closed immersion $iota_T: T arrow.hook PP^n_U$, we get a closed immesion $(iota_U)' compose iota_T:T arrow.hook PP^n_(PP^m_V) tilde.equiv PP^m_V times_V PP^n_V$, and with the projections $pi_(V,n) compose (pi_(V,m))':PP^n_(PP^m_V) -> V$, they compose to be the original morphism $T xarrow(rho) U xarrow(phi) V$.
+
+  \ 
+
+  Hence, to prove the composition $phi compose rho:T->V$ is projective, it suffices to show that $PP^n_(PP^m_V) tilde.equiv PP^m_V times_V PP^n_V$ embedds into some $PP^N_V$, and the projection backs to $VV$ recovers $phi compose rho$.
+
+  Let's first show that there exists a morphism $p:PP^m_V times_V PP^n_V -> PP^m_ZZ times_(Spec(ZZ))PP^n_ZZ$. Consider the following diagram:
+  #set align(center)
+  #diagram($
+             PP^m_V times_V PP^n_V edge("d",->, script((pi_(V,n))'), #right) edge(->, script((pi_(V,m))')) & PP^n_V edge("d",->, script(pi_(V,n)), #left) edge(->) & PP^n_ZZ edge("dd",->)\
+             PP^m_V edge("d",->) edge(->, script(pi_(V,m)), #right) & V edge("dr",->)\
+             PP^m_ZZ edge("rr",->) && Spec(ZZ)
+           $)
+  #set align(left)
+  Which, with each "square" (two are deformed a bit) being fibre squares, the above diagram commutes. Hence, by the universal property of $PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$ guarantees a unique morphism $P:PP^m_V times_V PP^n_V -> PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$.
+
+  Now, assume we know the existence of Segre Embedding for projective spaces of $ZZ$ (suggested in Hartshorne), say $s: PP^m_ZZ times_(Spec(ZZ))PP^n_ZZ arrow.hook PP^(n m+n+m)_(ZZ)$, the with $N:= n m+n+m$ consider the following commutative diagram:
+  #set align(center)
+  #diagram($
+             PP^m_V times_V PP^n_V edge("d", "..>", script(exists ! s')) edge("dd",->, script(pi_(V,n) compose (pi_(V,m))'), bend: #(-60deg)) edge(->, script(p)) & PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ edge("d","hook->", script(s), #left)\
+             PP^(N)_V edge("d",->,script(pi_(V,N))) edge(->) & PP^(N)_ZZ edge("d",->)\
+             V edge(->) & Spec(ZZ)
+           $)
+  #set align(left)
+  Then, the universality of $PP^(N)_V = V times_(Spec(ZZ)) PP^(N)_(ZZ)$ guarantees a unique morphism $s':PP^m_V times_V PP^n_V -> PP^(N)_V$. Finally, we claim that $s'$ is a closed immersion:
+
+  Notice in the abov diagram, the tall rectangle involving $PP^m_V times_V PP^n_V, PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ, V, Spec(ZZ)$ forms a fibre square by diagram chase. 
+  
+  Then, this in fact enforces $PP^m_V times_V PP^n_V tilde.equiv PP^(N)_V times_(PP^(N)_ZZ) (PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ)$: Indeed, given any scheme $W$ together with two morphisms $w_1:W->PP^N_V$ and $w_2:W -> PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$, such that the following holds:
+  #set align(center)
+  #diagram($
+              W edge("ddr",->, script(w_1), bend: #(-20deg)) edge("rrd", ->, script(w_2), bend:#20deg) edge("dr", "..>", script(exists ! w))\
+             &PP^m_V times_V PP^n_V edge("d", "..>", script(exists ! s')) edge(->, script(p)) & PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ edge("d","hook->", script(s), #left)\
+             &PP^(N)_V edge("d",->,script(pi_(V,N))) edge(->) & PP^(N)_ZZ edge("d",->)\
+             &V edge(->) & Spec(ZZ)
+           $)
+  #set align(left)
+  Which, the existence and uniqueness of $w:W-> PP^m_V times_V PP^n_V$ is guaranteed by the tall fibre rectangle, showing the top square is a fibre square. Since this characterizes $PP^m_V times_V PP^n_V$ as the fibre product $PP^N_V times_(PP^N_ZZ) (PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ)$, then $s':PP^m_V times_V PP^n_V-> PP^N_V$ is a base change of $s:PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ arrow.hook PP^N_ZZ$ (by the morphism $PP^N_V -> PP^N_ZZ$), showing $s'$ is a closed immersion (since $s$ is).
+
+  \ 
+
+  Finally, we get this massive commutative diagram:
+  #set align(center)
+    #diagram($
+               T edge("d",->, script(rho), #right) edge("hook->", script(iota_T)) & PP^n_U edge("dl",->, script(pi_(U,n))) edge("hook->", script((iota_U)')) & PP^n_(PP^m_V) tilde.equiv PP^m_V times_V PP^n_V edge("dl", ->, script((pi_(V,n))'), #left) edge("hook->", script(s')) & PP^N_V edge("ddlll",->, script(pi_(V,N)), bend: #20deg)\ 
+               U edge("d",->, script(phi), #right) edge("hook->", script(iota_U)) & PP^m_V edge("dl",->, script(pi_(V,m)), #left)\ 
+               V
+             $)
+  #set align(left)
+  Which, $iota_T, (iota_U)', s'$ are all constructed as closed immersions, hence the composition $T arrow.hook PP^N_V$ is also a closed immersion. This realizes $phi compose rho:T -> V$ as a projective morphism, hence composition of projective morphisms are still projective.
+
+  \ 
+
+  \ 
+
+  Finally, back to the original problem, given $f:X->S$ and $g:Y->S$ two projective morphisms, (a) guarantees their pullbacks to be projective morphisms also. So, $f':X times_S Y -> Y$ and $g':X times_S Y-> X$ are projective morphisms, satisfying the following fibre square:
+  #set align(center)
+  #diagram($
+             X times_S Y edge("d", ->, script(g'), #right) edge(->, script(f')) & Y edge("d",->, script(g), #left)\
+             X edge(->, script(f), #right) & S
+           $)
+  #set align(left)
+  Then, (b) guarantees the composition of projective morphisms to be projective, hence $f compose g' = g compose f':X times_S Y -> S$ is projective, finishing our statement.
 
 ]
 
@@ -375,7 +460,7 @@
 
 #pagebreak()
 
-= ND//5
+= ND (finish the open subscheme part)//5
 #problem[
   Let $f:X->Y$ be a surjective morphism between two schemes which are finite type and separated integral schemes over a field. Assume that $X$ is an affine scheme. Prove or disprove that $Y$ is an affine scheme if and only if it is a quasi-affine scheme (recall that quasi-affine means open subscheme of an affine scheme).
 
@@ -385,7 +470,7 @@
 
   \ 
 ][
-  It's clear that affine $==>$ quasi-affine (regardless of the situation). So, the converse is the actual nontrivial part to prove / disprove
+  /*It's clear that affine $==>$ quasi-affine (regardless of the situation). So, the converse is the actual nontrivial part to prove / disprove
 
   \ 
 
@@ -393,7 +478,97 @@
 
   Assume we now know that there is an open immersion $Y arrow.hook Spec(A)$, since $Spec(A)$ is Noetherian integral (the ring is Noetherian + integral), then $Y$ in particular is irreducible, dense, and quasi-compact. Hence, the morphism $X=Spec(B)-> Spec(A)$ is dense (since the image is $Y subset.eq Spec(A)$ dense), then the generated homomorphism $f^\#:A arrow.hook B$ is injective.
 
-  Finally, choose some closed point in $Spec(A)\\Y$ (suppose that $Y$ is not the whole $Spec(A)$), then the closed point should correspond to a maximal ideal in $A$, which its image and contraction should return the maximal ideal itself, which is a contradiction (since then the closed point / maximal ideal should belong to the image, while it should not).
+  Finally, choose some closed point in $Spec(A)\\Y$ (suppose that $Y$ is not the whole $Spec(A)$), then the closed point should correspond to a maximal ideal in $A$, which its image and contraction should return the maximal ideal itself, which is a contradiction (since then the closed point / maximal ideal should belong to the image, while it should not).*/
+  We'll prove that $Y$ is affine $<==>$ $Y$ is quasi-affine.
+
+  \ 
+
+  $==>:$
+
+  Suppose $Y$ is affine, then it's an open subscheme of $Y$ (an affine scheme), hence $Y$ is quasi-affine.
+
+  \ 
+
+  \ 
+
+  $<==:$
+
+  Suppose that $Y$ is quasi-affine. Here, we'll denote the global section of $Y$ as $A := cal(O)_Y (Y)$, and let $B$ be a commutative ring satisfies $X tilde.equiv Spec(B)$ (which, $X,Y$ being integral schemes implies $A,B$ are integral domains). Let $k$ be a field where $X,Y$ are finite type and separated integral schemes over it. Which, given $phi_X:X->Spec(k)$, $phi_Y:Y-> Spec(k)$ as the corresponding morphisms, $phi_X,phi_Y$ are finite type and separated morphisms that satisfy the following diagram:
+  #set align(center)
+  #diagram($
+             X = Spec(B) edge("dr",->, script(phi_X), #right) edge("rr",->>, script(f)) && Y edge("dl",->, script(phi_Y), #left)\
+             & Spec(k)
+           $)
+  #set align(left)
+  Then, on the global section level, this reverses to the following diagram of ring homomorphisms:
+  #set align(center)
+  #diagram($
+             B && cal(O)_Y (Y) = A edge("ll",->, script(f^\#))\
+             & k edge("ul", "hook->", script(phi_X ^\#), #left) edge("ur", "hook->", script(phi_Y ^\#), #right)
+           $)
+  #set align(left)
+
+  \ 
+
+  Now, we claim the following statements in order:
+  + $Y$ can be realized as open subschemes of $Spec(A)$.
+  + $Y$ is affine, in particular $Y tilde.equiv Spec(A)$.
+  Then, we'll use these to patch up more results.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[Proof of (a):]
+
+  Since $Y$ is assumed to be quasi-affine, there exists an open immersion $iota_Y:Y arrow.hook Spec(R)$ for some commutative ring $R$. Then, since the affinization of $Y$, say $"Aff"_Y = Spec(A)$, with the natural morphism of schemes $i_Y:Y -> "Aff"_Y$, there exists a unique morphism of schemes $psi_Y: "Aff"_Y -> Spec(R)$, such that the following commutative diagram holds:
+  #set align(center)
+  #diagram($
+             Y edge("dr", "hook->", script(iota_Y), #right) edge("rr", ->, script(i_Y)) && "Aff"_Y edge("dl", "..>", script(exists ! psi_Y), #left)\ 
+             & Spec(R)
+           $)
+  #set align(left)
+  Which, since $iota_Y$ is injective (as set map), this enforces $i_Y$ to also be injective also. 
+
+  \ 
+
+  Now, consider the ring homomorphism $psi_Y^\#:R -> A$. For any $P in Y arrow.hook Spec(R)$, there exists some element $f in R$, such that $P in D(f) subset.eq Y$ (since $Y$ is open subscheme of $Spec(R)$). Then, denote $f' := phi_Y^\# (f) in A$. Using the Hartshorne Notation, we can consider the subset $Y_(f') subset.eq Y$ (denoting all points $y in Y$, such that the localization $f'_y in cal(O)_(Y,y)$ is invertible, or not in the maximal ideal $frak(m)_y subset.eq cal(O)_(Y,y)$). Notice that this set is precisely $Y_(f')=D(f)$: Given the ring homomorphism $phi_Y^\#:R-> A$ that sends $phi_y^\# (f)=f'$, then compose with the localization, ...
+  
+  as a result, one has $R_f tilde.equiv cal(O)_(Spec(R)) (D(f)) = cal(O)_Y (D(f))=cal(O)_Y (Y_(f')) = cal(O)_Y (D(f')) tilde.equiv A_(f')$, showing that $P in D(f) subset.eq Y$ has an affine neighorhood $D(f) tilde.equiv D(f') tilde.equiv Spec(A_(f'))$ in $Y$. 
+
+  This shows that $i_Y: Y arrow.hook Spec(A)$ is actually an open immersion (as any point in $Y$ has an open neighborhood in $Y$, such that it's scheme-isomorphic to a fundamental open subset of $Spec(A)$). So, $Y$ is an open subscheme of $Spec(A)$.
+
+  \ 
+
+  \ 
+
+  #text(weight: "bold")[Proof of (b):]
+
+  Now, together with the open immersion $i_Y: Y arrow.hook Spec(A)$, the morphism $phi_Y:Y-> Spec(k)$ uniquely factors through some morphism $rho:Spec(A) -> Spec(k)$ (since $Spec(A) = "Aff"_Y$ the affinization), which we have the following commutative diagram of morphisms:
+  #set align(center)
+  #diagram($
+             X edge("dr",->, script(phi_X), #right) edge(->>, script(f)) & Y edge("d",->, script(phi_Y)) edge("hook->", script(i_Y)) & Spec(A) edge("dl", "..>", script(exists ! rho), #left)\ 
+             & Spec(k)
+           $)
+  #set align(left)
+  Which, on the level of global section, we have the following commutative diagram:
+  #set align(center)
+  #diagram($
+             B & A edge("l",->, script(f^\#)) & A edge("l", "hook->>", script(id_A))\ 
+             & k edge("ul","hook->", script(phi_X^\#), #left) edge("u","hook->", script(phi_Y^\#)) edge("ur","hook->", script(rho^\#), #right)
+           $)
+  #set align(left)
+  Where the middle $A$ is given by the global section of $Y$, $A=cal(O)_Y (Y)$. 
+
+  Then, this implies that the morphism $i_Y compose f:X=Spec(B) -> Spec(A)$ is induced by the ring homomorphism $f^\# compose id_A = f^\#:A-> B$; and, for the diagram to commute, $f^\#$ is in fact a $k$-algebra homomorphism. 
+  
+  Now, notice that $i_Y compose f$ is a dominant morphism: Because $A$ is an integral domain, then $Spec(A)$ is irreducible, hence $Y subset.eq Spec(A)$ as a open subscheme is dense and irreducible (or $overline(Y) = Spec(A)$). With $f$ being surjective, one has $f(X)=Y$, hence $overline(i_Y compose f(X)) = overline(i_Y (Y)) = overline(Y) = Spec(A)$.
+
+  \ 
+
+  Finally, we claim that $Y = Spec(A)$: Suppose not, then since $Spec(A)\\Y$ is closed nonempty subset (by openness of $Y$), there exists ideal $I subset.eq A$, such that $V(I) = Spec(A)\\Y$ (and $I$ must be proper for $V(I)$ to be nonempty). Now, choose a maximal ideal $frak(m) subset.eq A$ such that $I subset.eq frak(m)$, then $frak(m) in V(I)$ is a point not containing in the image of $i_Y compose f$ by our choice.
+
+  However, if consider $f^\# (frak(m))B$ as an idea
 ]
 
 
