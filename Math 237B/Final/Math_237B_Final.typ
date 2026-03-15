@@ -221,6 +221,7 @@
   \ 
 
   \ 
+  
 
   #text(weight: "bold")[Proof of (b):]
 
@@ -261,7 +262,7 @@
   #set align(left)
   Which, with each "square" (two are deformed a bit) being fibre squares, the above diagram commutes. Hence, by the universal property of $PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$ guarantees a unique morphism $P:PP^m_V times_V PP^n_V -> PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$.
 
-  Now, assume we know the existence of Segre Embedding for projective spaces of $ZZ$ (suggested in Hartshorne), say $s: PP^m_ZZ times_(Spec(ZZ))PP^n_ZZ arrow.hook PP^(n m+n+m)_(ZZ)$, the with $N:= n m+n+m$ consider the following commutative diagram:
+  Now, assume we know the existence of Segre Embedding for projective spaces of $ZZ$ (suggested in Hartshorne Chapter 2 Section 4 Exercise 4.9), say $s: PP^m_ZZ times_(Spec(ZZ))PP^n_ZZ arrow.hook PP^(n m+n+m)_(ZZ)$, the with $N:= n m+n+m$ consider the following commutative diagram:
   #set align(center)
   #diagram($
              PP^m_V times_V PP^n_V edge("d", "..>", script(exists ! s')) edge("dd",->, script(pi_(V,n) compose (pi_(V,m))'), bend: #(-60deg)) edge(->, script(p)) & PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ edge("d","hook->", script(s), #left)\
@@ -295,6 +296,8 @@
              $)
   #set align(left)
   Which, $iota_T, (iota_U)', s'$ are all constructed as closed immersions, hence the composition $T arrow.hook PP^N_V$ is also a closed immersion. This realizes $phi compose rho:T -> V$ as a projective morphism, hence composition of projective morphisms are still projective.
+
+  \ 
 
   \ 
 
@@ -347,7 +350,7 @@
 
 #pagebreak()
 
-= ND ((a) remaining)//4
+= D//4
 #problem[
   Let $k$ be a field and let $R=k[X,Y,Z]\/I$, where $I=(X-Y Z,X Z-Y^2)$. Let $W=Spec(R)$.
   + Is $W$ a reduced scheme? Justify your answer.
@@ -414,7 +417,50 @@
 
   \
 
-  + #text(weight: "bold")[Not done yet.]
+  + Here, we claim that $W$ is reduced, by proving that $R$ is reduced. In particular, we'll show that $I=P sect Q$ to show that it's a radical.
+
+    \ 
+
+    It's clear that $I subset.eq P sect Q$ based on the previous calculation. To show that $P sect Q subset.eq I$, we'll consider the algorithm used when proving $k[X,Y,Z]\/Q tilde.equiv k[T]$.
+
+    First, for any polynomial $s in P sect Q$, since $s in P=(X,Y)$, so it can be written in the form $s = v_1 X+v_2 Y$ for some $v_1,v_2 in k[X,Y,Z]$.
+
+    Then, perform the algorithm for $Q$ on $v_1,v_2$, there exists $f_1,f_2,g_1,g_2 in k[X,Y,Z]$, and $h_1(Z), h_2(Z) in k[Z]$, such that the following holds:
+    $ s &= v_1 X+v_2 Y\ 
+    &å= (f_1 (X-Z^3)+g_1 (Y-Z^2)+h_1 (Z))X + (f_2 (X-Z^3)+g_2 (Y-Z^2)+h_2 (Z))Y\
+    &= f_1 (X-Z^3)X+g_1(Y-Z^2)X+ f_2 (X-Z^3)Y + g_2 (Y-Z^2)Y + h_1 (Z)X+ h_2 (Z)Y $
+    Which, the first four terms in the sum is in $P Q$ (since they're multiples of products of the generators of $P = (X,Y),Q=(X-Z^3, Y-Z^2)$). So, in case for $s in P sect Q$, one needs $h_1 (Z)X+h_2 (Z)Y in P sect Q$.
+
+    It's true that $h_1 (Z) X + h_2 (Z) Y in P$, hence the only condition is $h_1 (Z)X+h_2 (Z)Y in Q$. Which, we can rewrie it as follow:
+    $ h_1 (Z)X + h_2 (Z)Y &= h_1 (Z)((X-Z^3)+Z^3)+h_2 (Z)((Y-Z^2)+Z^2)\ 
+    &= h_1 (Z)(X-Z^3)+h_2 (Z)(Y-Z^2) + (h_1 (Z)Z^3+h_2 (Z)Z^2) $
+    Which, one requires $h_1 (Z)Z^3 + h_2 (Z)Z^2 in Q=(X-Z^3,Y-Z^2)$. Then, this imposes that $h_1 (Z)Z^3+h_2 (Z)Z^2 = 0$ (as it's independent from $X,Y$). So, one has $Z^2(h_1 (Z)Z+h_2 (Z))=0$, showing $h_2(Z) = -h_1(Z)Z$.
+
+    \ 
+
+    As a result, the term $h_1(Z)X+h_2(Z)Y$ becomes the following:
+    $ h_1(Z)X-h_1(Z)Y Z= h_1(Z)(X-Y Z) in I $
+    So, this shows that the last tw terms in $s = f_1 (X-Z^3)X+g_1(Y-Z^2)X+ f_2 (X-Z^3)Y + g_2 (Y-Z^2)Y + h_1 (Z)X+ h_2 (Z)Y$ is contained in $I$. To show $s in I$, one simply needs the first four terms to be in $I$ also.
+
+    Since $P Q = (X,Y)(X-Z^3, Y-Z^2) = ((X-Z^3)X, (Y-Z^2)X, (X-Z^3)Y, (Y-Z^2)Y)$, it suffices to prove these generators are in $I$:
+    - $ (X-Z^3)X &= X^2 - (X Z)Z^2 = X^2 - (X Z)Z^2 + -Y^2Z^2+Y^2Z^2\ 
+    &= (X^2-(Y Z)^2) - Z^2 (X Z-Y^2)\ 
+    &= (X+Y Z)(X-Y Z)=Z^2(X Z-Y^2) in I $
+    \
+    - $ (Y-Z^2)X&= X Y-(X Z)Z = X Y-(X Z)Z + Y^2 Z-Y^2Z\ 
+    &= Y(X-Y Z) - Z(X Z-Y^2) in I $
+    \
+    - $ (X-Z^3)Y&=X Y-Y Z^3 + X Z^2 - X Z^2\ 
+    &= Z^2(X-Y Z) + X Y-X Z^2 - Y^2 Z+ Y^2Z\ 
+    &= Z^2(X-Y Z)+Y(X-Y Z) - Z(X Z-Y^2)\ 
+    &= (Z^2+y)(X-Y Z)-Z(X Z-Y^2) in I $
+    \
+    - $ (Y-Z^2)Y &= Y^2 - Y Z^2 - X Z+X Z\ 
+    &= Z(X-Y Z)-(X Z-Y^2) in I $
+    \
+    This shows the generators of $P Q$ are in $I$, hence $P Q subset.eq I$. As a consequence, the first four terms of $s=f_1 (X-Z^3)X+g_1(Y-Z^2)X+ f_2 (X-Z^3)Y + g_2 (Y-Z^2)Y + h_1 (Z)X+ h_2 (Z)Y$ is also in $I$.
+
+    This proves $s in I$, showing $P sect Q subset.eq I$. Hence, $I=P sect Q$, showing it's a radical. This shows that $R=k[X,Y,Z]\/I$ is reduced, hence $W=Spec(R)$ is also reduced.
 
     \ 
 
