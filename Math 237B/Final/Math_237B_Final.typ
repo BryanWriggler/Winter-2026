@@ -68,15 +68,13 @@
 
   #text(weight: "bold")[Proof of (b):]
 
-  First, let's show $g$ is locally of finite type: Using the diagram in part (a), since $pi:Y'->Z$ is projective, it is proper (hence of finite type), so for any open affine subset $U subset.eq Z$ (say $U tilde.equiv Spec(A)$), such that $pi^(-1)(U) = union.big_(i=1)^n V_i$, where each $V_i$ is affine open subset, and $V_i tilde.equiv Spec(B_i)$ for some $B_i$ that's finitely generated $A$-algebra.
+  Let's show $g$ is of finite type: Using the diagram in part (a), since $pi:Y'->Z$ is projective, it is proper (hence of finite type), so for any open affine subset $U subset.eq Z$ (say $U tilde.equiv Spec(A)$), such that $pi^(-1)(U) = union.big_(i=1)^n V_i$, where each $V_i$ is affine open subset, and $V_i tilde.equiv Spec(B_i)$ for some $B_i$ that's finitely generated $A$-algebra.
 
   Then, with open immersion $iota:Y arrow.hook Y'$, one has $iota^(-1)(pi^(-1)(V)) = Y sect f^(-1)(V) = union.big_(i=1)^n Y sect V_i$. Since $Y$ is open in $Y'$, each $Y sect V_i$ is an open subset of $V_i$ under its subspace topology, hence each $Y sect V_i = union.big_(j in J_i)D(f_(i j))$ for some $f_(i j) in B_i$ (running over some index set $J_i$). Because each $D(f_(i j)) tilde.equiv Spec((B_i)_(f_(i j)))$ (which $(B_i)_(f_(i j))$ is a finitely generated $B_i$-algebra), then with $B_i$ being a finitely generated $A$-algebra, $(B_i)_(f_(i j))$ is a finitely generated $A$-algebra also.
 
-  As a result, one has $g^(-1)(U)=iota^(-1)(pi^(-1)(U)) = union.big_(i=1)^n Y sect B_i = union.big_(i=1)^n union.big_(j in J_i)D(f_(i j))$, where each $D(f_(i j)) tilde.equiv Spec((B_i)_(f_(i j)))$ has $(B_i)_(f_(i j))$ being a finitely generated $A$-algebra. Since $U subset.eq Z$ is arbitrary affine open subset, this shows $g$ is locally of finite type.
-
-  \ 
-
-  Then, let's show $g$ is of finite type: Use the previous notation, since $g compose f$ is finite type, it's quasi-compact, hence with affine open subset $U subset.eq Z$, one has $(g compose f)^(-1)(U) = f^(-1)(g^(-1)(U))$ being quasi-compact. However, since $f$ is surjective, one has $g^(-1)(U) = f(f^(-1)(g^(-1)(U)))$. Because it's an image of a quasi-compact set under continuous map, $g^(-1)(U)$ is quasi-compact. Hence, the previous cover for locally of finite type property, say $g^(-1)(U) = union.big_(i=1)^n union.big_(j in J_i)D(f_(i j))$, can be chosen as finite. This shows that $g$ is of finite type.
+  As a result, one has $g^(-1)(U)=iota^(-1)(pi^(-1)(U)) = union.big_(i=1)^n Y sect B_i = union.big_(i=1)^n union.big_(j in J_i)D(f_(i j))$, where each $D(f_(i j)) tilde.equiv Spec((B_i)_(f_(i j)))$ has $(B_i)_(f_(i j))$ being a finitely generated $A$-algebra. 
+  
+  Finally, since $g compose f$ is finite type, it's quasi-compact, hence with affine open subset $U subset.eq Z$, one has $(g compose f)^(-1)(U) = f^(-1)(g^(-1)(U))$ being quasi-compact. However, since $f$ is surjective, one has $g^(-1)(U) = f(f^(-1)(g^(-1)(U)))$. Because it's an image of a quasi-compact set under continuous map, $g^(-1)(U)$ is quasi-compact. Hence, the previous cover for $g^(-1)(U)$, say $g^(-1)(U) = union.big_(i=1)^n union.big_(j in J_i)D(f_(i j))$, can be chosen as finite. This shows that $g$ is of finite type.
 
   \
 
@@ -264,12 +262,12 @@
 
 #pagebreak()
 
-= ND (Type some ideal up, fxxk you localization)//4
+= ND ((a) remaining)//4
 #problem[
   Let $k$ be a field and let $R=k[X,Y,Z]\/I$, where $I=(X-Y Z,X Z-Y^2)$. Let $W=Spec(R)$.
   + Is $W$ a reduced scheme? Justify your answer.
   + Is $W$ irreducible? If not, what are its irreducible components?
-  + Prove or disprove that $W$ has infinitely many rational points if $k$ is infinite (recall that a point $x in W$ is called rational point if the canonical map $k->k(x)$ is an isomorphism, where $k(x)$ is the residue field of the local ring $cal(O)_(X,x)$).
+  + Prove or disprove that $W$ has infinitely many rational points if $k$ is infinite (recall that a point $x in W$ is called rational point if the canonical map $k->k(x)$ is an isomorphism, where $k(x)$ is the residue field of the local ring $cal(O)_(W,x)$).
 
   \ 
 
@@ -277,11 +275,102 @@
 
   \ 
 ][
-  + This is kind of fucked (look at localization at $(X,Y)$, I believe this causes $Y$ to be zero divisor, as we have $X=Y Z = Y^2/Z$, so $Y^2 = Y Z^2$, or $Y(Y-Z^2)=0$).
+  /*+ This is kind of fucked (look at localization at $(X,Y)$, I believe this causes $Y$ to be zero divisor, as we have $X=Y Z = Y^2/Z$, so $Y^2 = Y Z^2$, or $Y(Y-Z^2)=0$).
 
   + Also kind of fucked (classically the solutions are $(X,Y,Z)=(t^3,t^2,t)$, corresponding to ideal $(X-Z^3, Y-Z^2)$ prime, refer to 237A HW about twisted cubics; the other one is $(X,Y,Z)=(0,0,t)$, corresponding to ideal $(X,Y)$ also prime). Hence, a natural guess here is $V((X-Z^3, Y-Z^2))$ and $V((X,Y))$ should cover up the space (while both irreducible components). Here, I guess we can use prime avoidance theorem / prime inclusion theorem in a suitable way.
 
-  + If $k$ is infinite, then consider the stalks of $(x,y,z-t)$ for all $t in k$, and/or $(x-t^3,y-t^2,z-t)$, I believe these two do the job (in particular, because they're maximal ideals, which corresopnds to closed point in all ring). Here, I believe it uses the fact that localization preserves surjectivity, and the fact that they're local homomorphisms (so by taking infinite maximal ideals containing $I$, the quotient should form an isomorphism, bc. the residue field of a maximal ideal containing $I$ should be $k$).
+  + If $k$ is infinite, then consider the stalks of $(x,y,z-t)$ for all $t in k$, and/or $(x-t^3,y-t^2,z-t)$, I believe these two do the job (in particular, because they're maximal ideals, which corresopnds to closed point in all ring). Here, I believe it uses the fact that localization preserves surjectivity, and the fact that they're local homomorphisms (so by taking infinite maximal ideals containing $I$, the quotient should form an isomorphism, bc. the residue field of a maximal ideal containing $I$ should be $k$).*/
+  For the sake of working through all subproblems, we'll first do some calculations regarding two ideals of $k[X,Y,Z]$, defined by $P=(X,Y)$ and $Q = (X-Z^3, Y-Z^2)$. In particular, we claim that they're prime ideals that contains $I$:
+  - For $P=(X,Y)$, it's clear that $k[X,Y,Z]\/PP tilde.equiv k[Z]$, hence it's prime; one the other hand, one has $X,Y in P$ implies $Y Z, X Z, Y^2 in P$, hence $X-Y Z, X Z-Y^2 in P$, showing $I subset.eq P$.
+
+  \ 
+
+  - For $Q$, we'll show that $k[X,Y,Z]\/Q tilde.equiv k[T]$ also: Consider the ring homomorphism $phi:k[X,Y,Z]-> k[T]$ by $phi(f(X,Y,Z)) = f(T^3,T^2,T)$. Which, this morphism is surjective, as any polynomial $f(T) in k[T]$ also appears in $k[X,Y,Z]$ (say denotes as $f(Z)$), then $phi(f(Z))= f(T)$. This shows that $k[X,Y,Z]\/ker(phi) tilde.equiv k[T]$.
+
+    Now, we show that $Q = ker(phi)$: For the generators of $Q$, we have $phi(X-Z^3) = T^3-(T)^3 = 0$, and $phi(Y-Z^2) = T^2 - (T)^2 = 0$, hence $Q subset.eq ker(phi)$ (as its generators are contained in ther kernel).
+
+    \  
+    
+    For the converse, we claim that all polynomials can be expressed in the form $f dot (X-Z^3)+g dot (Y-Z^2)+h(Z)$ for some $f,g in k[X,Y,Z]$, and $h(Z) in k[Z]$: Given any monomial $X^n Y^m Z^p$, we can rewrite it as the following:
+    $ X^n Y^m Z^p &= ((X-Z^3)+Z^3)^n ((Y-Z^2)+Z^2)^m Z^p\ 
+    &= (sum_(k=0)^n mat(n;k)(X-Z^3)^k (Z^3)^(n-k))(sum_(l=0)^m mat(m;l)(Y-Z^2)^l (Z^2)^(m-l))Z^p\ 
+    &= (Z^(3n)+sum_(k=1)^n mat(n;k)(X-Z^3)^k (Z^3)^(n-k))(Z^(2m)+sum_(l=1)^m (Y-Z^2)^l (Z^2)^(m-l))Z^p $
+    Which, define $f:= sum_(k=1)^n mat(n;k)(X-Z^3)^(k-1)(Z^3)^(n-k)$, and $g:= sum_(l=1)^m (Y-Z^2)^(l-1)(Z^2)^(m-l)$, the above can be rewritten as follow:
+    $ X^n Y^m Z^p &= (Z^(3n)+f dot (X-Z^3))(Z^(2m)+g dot (Y-Z^2))Z^p\ 
+    &= (f g (Y-Z^2)Z^p) dot (X-Z^3) + (g Z^(3n+p)) dot (Y-Z^2) + Z^(3n+2m+p) $
+    This shows that each monomial can be written as some $f dot (X-Z^3)+g dot (Y-Z^2)+Z^q$. Hence, with all polynomials being finite $k$-linaer combinations of the monomials, they can all be written in the form of $f dot (X-Z^3)+g dot (Y-Z^2)+h(Z)$ for $f,g in k[X,Y,Z]$ and $h(Z) in k[Z]$.
+
+    As a consequence, for any polynomial $ell(X,Y,Z) in ker(phi)$, since there exists $f,g in k[X,Y,Z]$ and $h(Z) in k[Z]$, such that $ell(X,Y,Z)=f dot (X-Z^3)+g dot (Y-Z^2)+h(Z)$, then the evaluation by $phi$ gives the following:
+    $ phi(ell(X,Y,Z)) = phi(f dot (X-Z^3))+phi(g dot (Y-Z^2))+phi(h(Z)) = h(T) = 0 $
+    (Note: recall that $X-Z^3, Y-Z^2 in ker(phi)$ are verified). Hence, one must have $h(T)=0$, or $h(Z)=0$, showing that $ell(X,Y,Z)=f dot (X-Z^3)+g dot (Y-Z^2) in Q$. This proves that $ker(phi) subset.eq Q$, finishing the proof of $ker(phi)=Q$.
+
+    \ 
+
+    Then, since $k[X,Y,Z]\/Q tilde.equiv k[T]$ based on the homomorphism $phi$, then $Q$ is a prime ideal. 
+    
+    Finally, to say $I subset.eq Q$, use the algorithm proposed above, some calculation shows the following:
+    - $ X-Y Z = X-((Y-Z^2)+Z^2)Z = (X-Z^3)+Z(Y-Z^2) in Q $
+    - $ X Z-Y^2 &= X Z-((Y-Z^2)+Z^2)^2 \
+    &= X Z - ((Y-Z^2)^2+2Z^2 (Y-Z^2)+Z^4)\ 
+    &= X Z - Z^4 - ((Y-Z^2)+2Z^2)(Y-Z^2) \
+    &= Z(X-Z^3)+(Y+Z^2)(Y-Z^2) in Q $
+    Hence, the generators of $I$ are in $Q$, showing $I subset.eq Q$.
+
+  \ 
+
+  \ 
+
+  \ 
+
+  Now, since $W=Spec(R) tilde.equiv V(I)$ as closed subschemes of $Spec(k[X,Y,Z])$, we'll work in this regime. 
+  #text(weight: "bold")[Here are the solutions to the subproblems:] 
+
+  \ 
+
+  \
+
+  + #text(weight: "bold")[Not done yet.]
+
+    \ 
+
+    \ 
+
+  + /*Consider the element $Z(X-Y Z)-(X Z-Y^2) = Y^2-Y Z^2 = Y(Y-Z^2)$. For any prime containing it, it must contain either $Y$ or $(Y-Z^2)$:
+    - If containing $Y$, it contains $Y Z$, hence if containing $I$ also, it contains $(X-Y Z)+Y Z = X$, so $(X,Y)$ is contained in it.
+    - Else if containing $Y-Z^2$, then it contains $X-Y Z + Z(Y-Z^2) = X-Z^3$, containig $(X-Z^3, Y-Z^2)$.*/We show that $W$ is reducible, in particular that $W=V(I) = V(P) union V(Q)$, where $V(P), V(Q)$ are its irreducible components.
+
+    \ 
+
+    First, since $I subset.eq P$ and $I subset.eq Q$, it's clear that $V(P),V(Q) subset.eq V(I)$, hence $V(P) union V(Q) subset.eq V(I)$; to claim the reverse inclusion, we'll consider the following element: 
+    $ Z(X-Y Z)-(X Z-Y^2) = X Z-Y Z^2-X Z+Y^2 = Y(Y-Z^2) in I $
+    Suppose $K in V(I)$ is a prime ideal containing $I$, then $Y(Y-Z^2) in K$, which the prime property guarantees $Y in K$ or $(Y-Z^2) in K$.
+      - If $Y in K$, then since $X-Y Z in I subset.eq K$, one has $X = (X-Y Z)+Y Z in K$, showing $P = (X,Y) subset.eq K$, or $K in V(P)$.
+      - Else if $Y-Z^2 in K$, then since $X-Y Z in I subset.eq K$ again, one has $X-Z^3 = (X-Y Z)+(Y Z - Z^3) = (X-Y Z)+Z(Y-Z^2) in K$, showing $Q=(X-Z^3,Y-Z^2) subset.eq K$, or $K in V(Q)$.
+    Hence, in either case $K in V(P) union V(Q)$, showing $W=V(I)=V(P) union V(Q)$.
+
+    \ 
+
+    To show that $W$ is reducible, we'll show that $V(P), V(Q)$ are proper closed subsets of $W$: Suppose the contrary that one of them is not proper closed subset of $W$, there are two cases:
+      - If $V(P)=W$, this shows that $V(Q) subset.eq V(P)$; with $P,Q$ being prime (which both are radicals), this shows that $Q supset.eq P$. However, if consider the ring homomorphism $psi:k[X,Y,Z]->>k$ by $psi(X,Y,Z) = psi(1,1,1)$, notice that $psi(X-Z^3)=1-1^3 = 0$ and $psi(Y-Z^2)=1-1^2=0$, showing $Q=(X-Z^3,Y-Z^2) subset.eq ker(psi)$; yet, if plugin the generators of $P$, we get $psi(X) = psi(Y)=1!=0$, showing $P subset.eq.not ker(psi)$, which contradicts our construction that $ker(phi) supset.eq Q supset.eq P$.
+      - Else if $V(Q)=W$, this shows that $V(P) subset.eq V(Q)$, which implies $P supset.eq Q$. Howeve, consider the ring homomorphism $rho:k[X,Y,Z]->>k$ by $rho(f(X,Y,Z))=f(0,0,1)$, notice that $rho(X)=rho(Y)=0$, showing $P = (X,Y) subset.eq ker(rho)$; yet, if plugin the generators of $Q$, we get $rho(X-Z^3)=0-1^3=-1!=0$, showing $Q subset.eq.not ker(rho)$, again this contradicts our construction that $ker(rho) supset.eq P supset.eq Q$.
+
+      Since in either case we get a contradiction, then $V(P),V(Q)$ cannot be the whole $W$, showing they're proper closed subsets, which proves that $W=V(P) union V(Q)$ is reducible.
+
+      \ 
+
+    Finally, to show $V(P),V(Q)$ are its irreducible components, consider any other irreducible subsets $W' subset.eq W=V(I)$, since $W'$ is also closed in $Spec(k[X,Y,Z])$ (by the closeness of $V(I)$ in it), then $W' = V(K)$ for some ideal $K subset.eq k[X,Y,Z]$. Which, the irreducibility of $W'$ guarantees $K$ to be a prime ideal. However, if $V(K) subset.eq V(I)$, one has $I subset.eq sqrt(I) subset.eq K$ (by primeness, it is a radical), showing that $K in V(I) = V(P) union V(Q)$. This implies that either $K in V(P)$ ($P subset.eq K$, or $V(P) supset.eq V(K)$), or $K in V(Q)$ ($Q subset.eq K$, or $V(Q) supset.eq V(K)$), showing that $W' = V(K)$ is contained in $V(P)$ or $V(Q)$. Hence, these two must be the irreducible components of $W$.
+
+    \ 
+
+    \ 
+
+  + /*Consider the infinite family $(X,Y,Z-t)$ or $(X-t^3,Y-t^2,Z-t)$ for all $t in k$, claim that the residue field of these must be $k$ (because of their maximality, and some suitable quotient argument).*/ With $k$ being infinite, we'll show that there are infinitely rational points in $W$. For any $t in k$, consider the maximal ideal $frak(m)_t:=(X,Y, Z-t) subset k[X,Y,Z]$. Notice that it contains $I$, since $X-Y Z, X Z-Y^2 in frak(m)_t$ by the fact that $X,Y in frak(m)_t$. Hence, $x:= frak(m)_t$ can be realized as a maximal ideal in $R = k[X,Y,Z]\/I$ by descending to the quotient, which is realized as a closed point in $W=Spec(R)$.
+
+    To compute its residue field, let $overline(frak(m))_t subset.eq R$ denotes the quotient of $frak(m)_t$. Then, its corresponding residue field is as follow:
+    $ k(overline(frak(m))_t) = (R_(overline(frak(m))_t))/(overline(frak(m))_t R_(overline(frak(m))_t)) tilde.equiv (R/(overline(frak(m))_t))_(overline(frak(m))_t) tilde.equiv k $
+    Note thaat since $I subset.eq frak(m)_t$, then the composition of projections $phi:k[X,Y,Z]->> R ->> R\/overline(frak(m))_t$ has the kernel being precisly $phi^(-1)(overline(frak(m))_t)= frak(m)_t$, hence $k tilde.equiv k[X,Y,Z]\/frak(m)_t tilde.equiv R\/overline(frak(m))_t$ (where, the first isomorphism can be realized by the evaluation $e:k[X,Y,Z]->> k$ by $e(f(X,Y,Z))=f(0,0,t)$, where the kernel is precisely $frak(m)_t=(X,Y,Z-t)$).
+
+    Hence, with $k$ being infinite, there are infinitely many $t in k$, with $overline(frak(m))_t subset.eq R$ being a maximal ideal (or a closed point in $W=Spec(R)$), such that the residue field is isomorphic to $k$. Hence, $W$ has infinitely many rational points.
 ]
 
 #pagebreak()
@@ -297,6 +386,14 @@
   \ 
 ][
   It's clear that affine $==>$ quasi-affine (regardless of the situation). So, the converse is the actual nontrivial part to prove / disprove
+
+  \ 
+
+  My intuition tells me this should be a proof: Let $A=cal(O)_Y (Y)$, and $X = Spec(B)$. The condition states that $A,B$ are finitely generated integral $k$-algebra (over some field $k$), together with a $k$-algebra homomorphism $f^\#:A -> B$.
+
+  Assume we now know that there is an open immersion $Y arrow.hook Spec(A)$, since $Spec(A)$ is Noetherian integral (the ring is Noetherian + integral), then $Y$ in particular is irreducible, dense, and quasi-compact. Hence, the morphism $X=Spec(B)-> Spec(A)$ is dense (since the image is $Y subset.eq Spec(A)$ dense), then the generated homomorphism $f^\#:A arrow.hook B$ is injective.
+
+  Finally, choose some closed point in $Spec(A)\\Y$ (suppose that $Y$ is not the whole $Spec(A)$), then the closed point should correspond to a maximal ideal in $A$, which its image and contraction should return the maximal ideal itself, which is a contradiction (since then the closed point / maximal ideal should belong to the image, while it should not).
 ]
 
 
