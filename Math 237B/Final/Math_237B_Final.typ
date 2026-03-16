@@ -127,7 +127,7 @@
 
   \
 
-  With $g'$ being based change of $g$ over arbitrary morphism of schemes $h:Z'->Z$, this shows that $g$ is universally closed.
+  With $g'$ being base change of $g$ over arbitrary morphism of schemes $h:Z'->Z$, this shows that $g$ is universally closed.
 
   \
 
@@ -149,7 +149,7 @@
 
   \ 
 ][
-  We'll show that $X times_S -> S$ is projective. We'll prove the following two statements:
+  We'll show that $X times_S Y-> S$ is projective. We'll prove the following two statements:
   + Base change of projective morphisms are projective.
   + Composition of projective morphisms are projective.
 
@@ -204,7 +204,7 @@
   #set align(left)
   Which, we took the fibre product $X times_(PP^n_S) PP^n_Y$, and the morphism $iota':X times_(PP^n_S) PP^n_Y arrow.hook PP^n_Y$ is the pullback of the closed immersion $iota:X arrow.hook PP^n_S$, hence $iota'$ is also a closed immersion.
   
-  Now, we claim that it satisfies the universal property of $X times_S Y$: In general, the above proof of preserving projective spaces shows that successive fibre product preserves fibre product in the full generality. By modifying the labels / objects a bit, we indeed get a proof that $X times_(PP^n_S) PP^n_Y$ satisfies the universal property of $X times_S Y$ as fibre product, hence $X times_(PP^n_S) PP^n_Y tilde.equiv X times_S Y$.
+  Now, we claim that it satisfies the universal property of $X times_S Y$: In general, the above proof of preserving projective spaces shows that two consecutive fibre products (consecutive fibre squares in the diagram) generates fibre product for the larger diagram (the large rectangle). By modifying the labels / objects a bit, we indeed get a proof that $X times_(PP^n_S) PP^n_Y$ satisfies the universal property of $X times_S Y$ as fibre product, hence $X times_(PP^n_S) PP^n_Y tilde.equiv X times_S Y$.
 
   \ 
 
