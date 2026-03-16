@@ -29,7 +29,7 @@
 
 #set enum(numbering: "(a)")
 
-= D//1
+= //1
 #problem[
   Let $X xarrow(f) Y xarrow(g) Z$ be morphisms of schemes such that $g compose f$ is proper, $g$ is quasi-projective and $f$ is surjective. Prove or disprove that $g$ is proper.
 
@@ -138,7 +138,7 @@
 
 #pagebreak()
 
-= D //2 (at this point I don't care if I can finish the segre embedding or not...)
+=  //2 (at this point I don't care if I can finish the segre embedding or not...)
 
 #problem[
   Let $f:X->S$ and $g:Y->S$ be projective morphisms. Prove or disprove that the projection map $X times_S Y -> S$ is projective.
@@ -327,7 +327,7 @@
 
 #pagebreak()
 
-= D//3
+= //3
 
 #problem[
   Let $f:X->Y$ be a morphism of separated scheme of finite type over a Noetherian scheme $S$. Let $Z subset X$ be a closed subscheme which is proper over $S$. Show that $f(Z)$ is closed in $Y$.
@@ -361,7 +361,7 @@
 
 #pagebreak()
 
-= D//4
+= //4
 #problem[
   Let $k$ be a field and let $R=k[X,Y,Z]\/I$, where $I=(X-Y Z,X Z-Y^2)$. Let $W=Spec(R)$.
   + Is $W$ a reduced scheme? Justify your answer.
@@ -517,7 +517,7 @@
 
 #pagebreak()
 
-= D//5
+= //5 fxxk yeah I didn't finish the last part, I can only write down 
 #problem[
   Let $f:X->Y$ be a surjective morphism between two schemes which are finite type and separated integral schemes over a field. Assume that $X$ is an affine scheme. Prove or disprove that $Y$ is an affine scheme if and only if it is a quasi-affine scheme (recall that quasi-affine means open subscheme of an affine scheme).
 
