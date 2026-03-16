@@ -92,7 +92,7 @@
   #set align(left)
   Which:
   - $g':Z' times_Z Y->Z'$ denotes the base change of $g:Y->Z$ by $h:Z' -> Z$.
-  - $f':(Z' times_Z Y) times_Y X->> Z' times_Z Y$ denotes the base change of $f:X->>Y$ by $h':Z' times_Z Y-> Y$ (the pullback of $h:Z'->Z$), which the surjectivity of $f$ ensures the surjectivity of $f'$. And, since part (a) shows $f$ is proper (whic is universally closed), then $f'$ is closed.
+  - $f':(Z' times_Z Y) times_Y X->> Z' times_Z Y$ denotes the base change of $f:X->>Y$ by $h':Z' times_Z Y-> Y$ (the pullback of $h:Z'->Z$), which the surjectivity of $f$ ensures the surjectivity of $f'$. And, since part (a) shows $f$ is proper (which is universally closed), then $f'$ is closed.
 
   \ 
 
@@ -188,7 +188,7 @@
              &Y edge(->, script(g), #right) & S edge(->, script(s), #right) & Spec(ZZ)
            $)
   #set align(left)
-  Again, this proves both the existence and the uniqueness of the morphis $rho:W -> Y times_S PP^n_S$, such that $p_1 = s' compose psi = (s' compose g') compose rho$, and $p_2 = pi' compose rho$. Hence, $Y times_S PP^n_S$ satisfies the universal property of $PP^n_Y := Y times_Spec(ZZ) PP^n_ZZ$, showing $Y times_S PP^n_S tilde.equiv PP^n_Y$.
+  Again, this proves both the existence and the uniqueness of the morphism $rho:W -> Y times_S PP^n_S$, such that $p_1 = s' compose psi = (s' compose g') compose rho$, and $p_2 = pi' compose rho$. Hence, $Y times_S PP^n_S$ satisfies the universal property of $PP^n_Y := Y times_Spec(ZZ) PP^n_ZZ$, showing $Y times_S PP^n_S tilde.equiv PP^n_Y$.
 
   \ 
 
@@ -246,7 +246,7 @@
              U edge("hook->", script(iota_U), #right) & PP^m_V edge(->, script(pi_(V,m)),#right) & V
            $)
   #set align(left)
-  Which, notice that $(iota_U)':PP^n_U arrow.hook PP^n_(PP^m_V)$ is a base change of the closed immerrsion $iota_U:U arrow.hook PP^m_V$, hence is still a closed immersion; composing with the closed immersion $iota_T: T arrow.hook PP^n_U$, we get a closed immesion $(iota_U)' compose iota_T:T arrow.hook PP^n_(PP^m_V) tilde.equiv PP^m_V times_V PP^n_V$, and with the projections $pi_(V,n) compose (pi_(V,m))':PP^n_(PP^m_V) -> V$, they compose to be the original morphism $T xarrow(rho) U xarrow(phi) V$.
+  Which, notice that $(iota_U)':PP^n_U arrow.hook PP^n_(PP^m_V)$ is a base change of the closed immersion $iota_U:U arrow.hook PP^m_V$, hence is still a closed immersion; composing with the closed immersion $iota_T: T arrow.hook PP^n_U$, we get a closed immesion $(iota_U)' compose iota_T:T arrow.hook PP^n_(PP^m_V) tilde.equiv PP^m_V times_V PP^n_V$, and with the projections $pi_(V,n) compose (pi_(V,m))':PP^n_(PP^m_V) -> V$, they compose to be the original morphism $T xarrow(rho) U xarrow(phi) V$ (as $(pi_(V,n) compose (pi_(V,m))') compose ((iota_U)' compose iota_T) = (pi_(V,m) compose iota_U) compose (pi_(U,n) compose iota_T) = phi compose rho$ based on the diagrams).
 
   \ 
 
@@ -262,7 +262,18 @@
   #set align(left)
   Which, with each "square" (two are deformed a bit) being fibre squares, the above diagram commutes. Hence, by the universal property of $PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$ guarantees a unique morphism $P:PP^m_V times_V PP^n_V -> PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$.
 
-  Now, assume we know the existence of Segre Embedding for projective spaces of $ZZ$ (suggested in Hartshorne Chapter 2 Section 4 Exercise 4.9), say $s: PP^m_ZZ times_(Spec(ZZ))PP^n_ZZ arrow.hook PP^(n m+n+m)_(ZZ)$, the with $N:= n m+n+m$ consider the following commutative diagram:
+  Now, consider the Segre Embedding that is suggested in Hartshorne: Given $PP^m_ZZ = Proj(ZZ[x_0,x_1,...,x_m])$ and $PP^n_ZZ = Proj(ZZ[y_0,y_1,...,y_n])$, we cover the fibre product $PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$ by the open affine subsets $D_+ (x_i) times_(Spec(ZZ)) D_+ (y_j)$ for $0<=i<=m$ and $0<=j<=n$. Which, with each $D_+ (x_i) tilde.equiv Spec(ZZ[x_0/x_i,x_1/x_i,...,x_m/x_i])$ and $D_+ (y_j) tilde.equiv Spec(ZZ[y_0/y_j,y_1/y_j,...,y_n/y_j])$. Hence, their fibre product over $Spec(ZZ)$ are given as follow:
+  $ D_+ (x_i) times_(Spec(ZZ)) D_+ (y_j) &tilde.equiv Spec(ZZ[x_0/x_i,...,x_m/x_i] tensor_ZZ ZZ[y_0/y_j,...,y_n/y_j])\ 
+  &tilde.equiv Spec(ZZ[x_0/x_i,...,x_m/x_i,y_0/y_j,...,y_n/y_j]) $
+  Then, with $N:=n m+n+m$, consider $PP^N_ZZ = Proj(ZZ[z_0,...,z_(i j),...,z_N])$. For any indeterminate $z_(i j)$, consider its fundamental open subset $D_+ (z_(i j)) = Spec(ZZ[z_0/z_(i j),...,z_N/z_(i j)])$, and a ring homomorphism $psi_(i j):ZZ[z_0/z_(i j),...,z_N/z_(i j)] -> ZZ[x_0/x_i,...,x_m/x_i,y_0/y_j,...,y_n/y_j]$ as follow:
+  $ psi_(i j)(z_(i' j')/z_(i j)) = x_i'/x_i y_j'/y_j $
+  Notice that any $x_i'/x_i$ satisfies $psi_(i j)(z_(i' j)/z_(i j)) = x_(i')/x_i y_j/y_j = x_(i')/x_i$, and any $y_j'/y_j$ satisfies $psi_(i j)(z_(i j')/z_(i j)) = x_i/x_(i) y_j'/y_j = y_j'/y_j$. So, it maps onto all the generators of $ZZ[x_0/x_i,...,x_m/x_i,y_0/y_j,...,y_n/y_j]$, showing $psi_(i j)$ is surjective.
+
+  Which, this defines a closed immersion $psi_(i j)^*:Spec(ZZ[x_0/x_i,...,x_m/x_i,y_0/y_j,...,y_n/y_j]) = D_+ (x_i) times_(Spec(ZZ))D_+ (y_j) arrow.hook Spec(ZZ[z_0/z_(i j),...,z_N/z_(i j)]) = D_+ (z_(i j))$ (as the ring homomorphism inducing it is surjective). Upon gluing the morphisms using the structure of $PP^N_ZZ$, this guarantees a closed immersion $PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ arrow.hook PP^N_(ZZ)$ (where $N=n m+n+m$).
+
+  \ 
+  
+  With the existence of Segre Embedding for projective spaces of $ZZ$, say $s: PP^m_ZZ times_(Spec(ZZ))PP^n_ZZ arrow.hook PP^(n m+n+m)_(ZZ)$ (a closed immersion specifically), then with $N:= n m+n+m$ consider the following commutative diagram:
   #set align(center)
   #diagram($
              PP^m_V times_V PP^n_V edge("d", "..>", script(exists ! s')) edge("dd",->, script(pi_(V,n) compose (pi_(V,m))'), bend: #(-60deg)) edge(->, script(p)) & PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ edge("d","hook->", script(s), #left)\
@@ -272,9 +283,9 @@
   #set align(left)
   Then, the universality of $PP^(N)_V = V times_(Spec(ZZ)) PP^(N)_(ZZ)$ guarantees a unique morphism $s':PP^m_V times_V PP^n_V -> PP^(N)_V$. Finally, we claim that $s'$ is a closed immersion:
 
-  Notice in the abov diagram, the tall rectangle involving $PP^m_V times_V PP^n_V, PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ, V, Spec(ZZ)$ forms a fibre square by diagram chase. 
+  Notice in the above diagram, the tall rectangle involving $PP^m_V times_V PP^n_V, PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ, V, Spec(ZZ)$ forms a fibre square by suitable diagram chase.
   
-  Then, this in fact enforces $PP^m_V times_V PP^n_V tilde.equiv PP^(N)_V times_(PP^(N)_ZZ) (PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ)$: Indeed, given any scheme $W$ together with two morphisms $w_1:W->PP^N_V$ and $w_2:W -> PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$, such that the following holds:
+  Then, this in fact enforces $PP^m_V times_V PP^n_V tilde.equiv PP^(N)_V times_(PP^(N)_ZZ) (PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ)$: Given any scheme $W$ together with two morphisms $w_1:W->PP^N_V$ and $w_2:W -> PP^m_ZZ times_(Spec(ZZ)) PP^n_ZZ$, such that the following holds:
   #set align(center)
   #diagram($
               W edge("ddr",->, script(w_1), bend: #(-20deg)) edge("rrd", ->, script(w_2), bend:#20deg) edge("dr", "..>", script(exists ! w))\
@@ -385,7 +396,7 @@
     &= (Z^(3n)+sum_(k=1)^n mat(n;k)(X-Z^3)^k (Z^3)^(n-k))(Z^(2m)+sum_(l=1)^m (Y-Z^2)^l (Z^2)^(m-l))Z^p $
     Which, define $f:= sum_(k=1)^n mat(n;k)(X-Z^3)^(k-1)(Z^3)^(n-k)$, and $g:= sum_(l=1)^m (Y-Z^2)^(l-1)(Z^2)^(m-l)$, the above can be rewritten as follow:
     $ X^n Y^m Z^p &= (Z^(3n)+f dot (X-Z^3))(Z^(2m)+g dot (Y-Z^2))Z^p\ 
-    &= (f g (Y-Z^2)Z^p) dot (X-Z^3) + (g Z^(3n+p)) dot (Y-Z^2) + Z^(3n+2m+p) $
+    &= (f(Z^(2m)+ g (Y-Z^2))Z^p) dot (X-Z^3) + (g Z^(3n+p)) dot (Y-Z^2) + Z^(3n+2m+p) $
     This shows that each monomial can be written as some $f dot (X-Z^3)+g dot (Y-Z^2)+Z^q$. Hence, with all polynomials being finite $k$-linaer combinations of the monomials, they can all be written in the form of $f dot (X-Z^3)+g dot (Y-Z^2)+h(Z)$ for $f,g in k[X,Y,Z]$ and $h(Z) in k[Z]$.
 
     As a consequence, for any polynomial $ell(X,Y,Z) in ker(phi)$, since there exists $f,g in k[X,Y,Z]$ and $h(Z) in k[Z]$, such that $ell(X,Y,Z)=f dot (X-Z^3)+g dot (Y-Z^2)+h(Z)$, then the evaluation by $phi$ gives the following:
@@ -440,7 +451,7 @@
 
     As a result, the term $h_1(Z)X+h_2(Z)Y$ becomes the following:
     $ h_1(Z)X-h_1(Z)Y Z= h_1(Z)(X-Y Z) in I $
-    So, this shows that the last tw terms in $s = f_1 (X-Z^3)X+g_1(Y-Z^2)X+ f_2 (X-Z^3)Y + g_2 (Y-Z^2)Y + h_1 (Z)X+ h_2 (Z)Y$ is contained in $I$. To show $s in I$, one simply needs the first four terms to be in $I$ also.
+    So, this shows that the last two terms in $s = f_1 (X-Z^3)X+g_1(Y-Z^2)X+ f_2 (X-Z^3)Y + g_2 (Y-Z^2)Y + h_1 (Z)X+ h_2 (Z)Y$ is contained in $I$. To show $s in I$, one simply needs the first four terms to be in $I$ also.
 
     Since $P Q = (X,Y)(X-Z^3, Y-Z^2) = ((X-Z^3)X, (Y-Z^2)X, (X-Z^3)Y, (Y-Z^2)Y)$, it suffices to prove these generators are in $I$:
     - $ (X-Z^3)X &= X^2 - (X Z)Z^2 = X^2 - (X Z)Z^2 + -Y^2Z^2+Y^2Z^2\ 
@@ -489,7 +500,7 @@
 
       \ 
 
-    Finally, to show $V(P),V(Q)$ are its irreducible components, consider any other irreducible subsets $W' subset.eq W=V(I)$, since $W'$ is also closed in $Spec(k[X,Y,Z])$ (by the closeness of $V(I)$ in it), then $W' = V(K)$ for some ideal $K subset.eq k[X,Y,Z]$. Which, the irreducibility of $W'$ guarantees $K$ to be a prime ideal. However, if $V(K) subset.eq V(I)$, one has $I subset.eq sqrt(I) subset.eq K$ (by primeness, it is a radical), showing that $K in V(I) = V(P) union V(Q)$. This implies that either $K in V(P)$ ($P subset.eq K$, or $V(P) supset.eq V(K)$), or $K in V(Q)$ ($Q subset.eq K$, or $V(Q) supset.eq V(K)$), showing that $W' = V(K)$ is contained in $V(P)$ or $V(Q)$. Hence, these two must be the irreducible components of $W$.
+    Finally, to show $V(P),V(Q)$ are its irreducible components, consider any other irreducible subsets $W' subset.eq W=V(I)$, since $W'$ is also closed in $Spec(k[X,Y,Z])$ (by the closeness of $V(I)$ in it), then $W' = V(K)$ for some ideal $K subset.eq k[X,Y,Z]$. Which, the irreducibility of $W'$ guarantees $K$ to be a prime ideal. However, if $V(K) subset.eq V(I)$, one has $I subset.eq sqrt(I) subset.eq K$ (by primeness, it is a radical), showing that $K in V(I) = V(P) union V(Q)$. This implies that either $K in V(P)$ (implying $P subset.eq K$, or $V(P) supset.eq V(K)$), or $K in V(Q)$ (implying $Q subset.eq K$, or $V(Q) supset.eq V(K)$), showing that $W' = V(K)$ is contained in $V(P)$ or $V(Q)$. Hence, these two must be the irreducible components of $W$.
 
     \ 
 
@@ -499,14 +510,14 @@
 
     To compute its residue field, let $overline(frak(m))_t subset.eq R$ denotes the quotient of $frak(m)_t$. Then, its corresponding residue field is as follow:
     $ k(overline(frak(m))_t) = (R_(overline(frak(m))_t))/(overline(frak(m))_t R_(overline(frak(m))_t)) tilde.equiv (R/(overline(frak(m))_t))_(overline(frak(m))_t) tilde.equiv k $
-    Note thaat since $I subset.eq frak(m)_t$, then the composition of projections $phi:k[X,Y,Z]->> R ->> R\/overline(frak(m))_t$ has the kernel being precisly $phi^(-1)(overline(frak(m))_t)= frak(m)_t$, hence $k tilde.equiv k[X,Y,Z]\/frak(m)_t tilde.equiv R\/overline(frak(m))_t$ (where, the first isomorphism can be realized by the evaluation $e:k[X,Y,Z]->> k$ by $e(f(X,Y,Z))=f(0,0,t)$, where the kernel is precisely $frak(m)_t=(X,Y,Z-t)$).
+    Note that since $I subset.eq frak(m)_t$, then the composition of projections $phi:k[X,Y,Z]->> R ->> R\/overline(frak(m))_t$ has the kernel being precisly $phi^(-1)(overline(frak(m))_t)= frak(m)_t$, hence $k tilde.equiv k[X,Y,Z]\/frak(m)_t tilde.equiv R\/overline(frak(m))_t$ (where, the first isomorphism can be realized by the evaluation $e:k[X,Y,Z]->> k$ by $e(f(X,Y,Z))=f(0,0,t)$, where the kernel is precisely $frak(m)_t=(X,Y,Z-t)$).
 
     Hence, with $k$ being infinite, there are infinitely many $t in k$, with $overline(frak(m))_t subset.eq R$ being a maximal ideal (or a closed point in $W=Spec(R)$), such that the residue field is isomorphic to $k$. Hence, $W$ has infinitely many rational points.
 ]
 
 #pagebreak()
 
-= ND (finish the open subscheme part)//5
+= D//5
 #problem[
   Let $f:X->Y$ be a surjective morphism between two schemes which are finite type and separated integral schemes over a field. Assume that $X$ is an affine scheme. Prove or disprove that $Y$ is an affine scheme if and only if it is a quasi-affine scheme (recall that quasi-affine means open subscheme of an affine scheme).
 
@@ -535,11 +546,19 @@
 
   \ 
 
-  \ 
-
   $<==:$
 
-  Suppose that $Y$ is quasi-affine. Here, we'll denote the global section of $Y$ as $A := cal(O)_Y (Y)$, and let $B$ be a commutative ring satisfies $X tilde.equiv Spec(B)$ (which, $X,Y$ being integral schemes implies $A,B$ are integral domains). Let $k$ be a field where $X,Y$ are finite type and separated integral schemes over it. Which, given $phi_X:X->Spec(k)$, $phi_Y:Y-> Spec(k)$ as the corresponding morphisms, $phi_X,phi_Y$ are finite type and separated morphisms that satisfy the following diagram:
+  Suppose that $Y$ is quasi-affine. Here, we'll denote the global section of $Y$ as $A := cal(O)_Y (Y)$, and let $B$ be a commutative ring satisfies $X tilde.equiv Spec(B)$ (which, $X,Y$ being integral schemes implies $A,B$ are integral domains). 
+
+    \
+
+  Let's first deal with a special case: Suppose $B$ is a field, then $X=Spec(B)$ is a one point scheme, hence with $f:X->>Y$ being surjective, $Y$ must be a one point scheme also. Take any affine neighborhood of the only point of $Y$, it must be $Y$ itself, showing that $Y = Spec(A')$ for some ring $A'$ (in particular, $A'=cal(O)_Y (Y)=A$). So, $Y$ is affine.
+
+  From now one, we'll assume $B$ (the global section of $X$) is not a field.
+
+  \ 
+  
+  Let $k$ be a field where $X,Y$ are finite type and separated integral schemes over it. Which, given $phi_X:X->Spec(k)$, $phi_Y:Y-> Spec(k)$ as the corresponding morphisms, $phi_X,phi_Y$ are finite type and separated morphisms that satisfy the following diagram:
   #set align(center)
   #diagram($
              X = Spec(B) edge("dr",->, script(phi_X), #right) edge("rr",->>, script(f)) && Y edge("dl",->, script(phi_Y), #left)\
@@ -559,7 +578,6 @@
   Now, we claim the following statements in order:
   + $Y$ can be realized as open subschemes of $Spec(A)$.
   + $Y$ is affine, in particular $Y tilde.equiv Spec(A)$.
-  Then, we'll use these to patch up more results.
 
   \ 
 
@@ -578,9 +596,9 @@
 
   \ 
 
-  Now, consider the ring homomorphism $psi_Y^\#:R -> A$. For any $P in Y arrow.hook Spec(R)$, there exists some element $f in R$, such that $P in D(f) subset.eq Y$ (since $Y$ is open subscheme of $Spec(R)$). Then, denote $f' := phi_Y^\# (f) in A$. Using the Hartshorne Notation, we can consider the subset $Y_(f') subset.eq Y$ (denoting all points $y in Y$, such that the localization $f'_y in cal(O)_(Y,y)$ is invertible, or not in the maximal ideal $frak(m)_y subset.eq cal(O)_(Y,y)$). Notice that this set is precisely $Y_(f')=D(f)$: Given the ring homomorphism $phi_Y^\#:R-> A$ that sends $phi_y^\# (f)=f'$, then compose with the localization, ...
+  Now, consider the ring homomorphism $psi_Y^\#:R -> A$. For any $P in Y arrow.hook Spec(R)$, there exists some element $f in R$, such that $P in D(f) subset.eq Y$ (since $Y$ is open subscheme of $Spec(R)$). Then, denote $f' := phi_Y^\# (f) in A$. Using the Hartshorne Notation, we can consider the subset $Y_(f') subset.eq Y$ (denoting all points $y in Y$, such that the localization $f'_y in cal(O)_(Y,y)$ is invertible, or not in the maximal ideal $frak(m)_y subset.eq cal(O)_(Y,y)$). Notice that this set is precisely $Y_(f')=D(f)$, since when passing to the stalk, any $P in D(f)$ has $cal(O)_(Y,P)$ has $f$ being an invertible element, hence with $f'$ being the image of $f$ in $A$, under localization it's also invertible.
   
-  as a result, one has $R_f tilde.equiv cal(O)_(Spec(R)) (D(f)) = cal(O)_Y (D(f))=cal(O)_Y (Y_(f')) = cal(O)_Y (D(f')) tilde.equiv A_(f')$, showing that $P in D(f) subset.eq Y$ has an affine neighorhood $D(f) tilde.equiv D(f') tilde.equiv Spec(A_(f'))$ in $Y$. 
+  As a result, one has $R_f tilde.equiv cal(O)_(Spec(R)) (D(f)) = cal(O)_Y (D(f))=cal(O)_Y (Y_(f')) = cal(O)_Y (D(f')) tilde.equiv A_(f')$, showing that $P in D(f) subset.eq Y$ has an affine neighorhood $D(f) tilde.equiv D(f') tilde.equiv Spec(A_(f'))$ in $Y$. 
 
   This shows that $i_Y: Y arrow.hook Spec(A)$ is actually an open immersion (as any point in $Y$ has an open neighborhood in $Y$, such that it's scheme-isomorphic to a fundamental open subset of $Spec(A)$). So, $Y$ is an open subscheme of $Spec(A)$.
 
@@ -597,7 +615,7 @@
              & Spec(k)
            $)
   #set align(left)
-  Which, on the level of global section, we have the following commutative diagram:
+  Where the morphism $i_Y compose f$ is separated (as it's morphism between affine schemes). Which, on the level of global section, we have the following commutative diagram:
   #set align(center)
   #diagram($
              B & A edge("l",->, script(f^\#)) & A edge("l", "hook->>", script(id_A))\ 
@@ -606,15 +624,17 @@
   #set align(left)
   Where the middle $A$ is given by the global section of $Y$, $A=cal(O)_Y (Y)$. 
 
-  Then, this implies that the morphism $i_Y compose f:X=Spec(B) -> Spec(A)$ is induced by the ring homomorphism $f^\# compose id_A = f^\#:A-> B$; and, for the diagram to commute, $f^\#$ is in fact a $k$-algebra homomorphism. 
+  Then, this implies that the morphism $i_Y compose f:X=Spec(B) -> Spec(A)$ is induced by the ring homomorphism $f^\# compose id_A = f^\#:A-> B$; and, for the diagram to commute, $f^\#$ is in fact a $k$-algebra homomorphism. Moreover, $f^\#$ is of finite type, as $B$ is a finitely generated $k$-algebra, and the morphism is a $k$-algebra homomorphism. This realizes $B$ as a finitely generated $A$-algebra also.
   
-  Now, notice that $i_Y compose f$ is a dominant morphism: Because $A$ is an integral domain, then $Spec(A)$ is irreducible, hence $Y subset.eq Spec(A)$ as a open subscheme is dense and irreducible (or $overline(Y) = Spec(A)$). With $f$ being surjective, one has $f(X)=Y$, hence $overline(i_Y compose f(X)) = overline(i_Y (Y)) = overline(Y) = Spec(A)$.
+  Now, notice that $i_Y compose f$ is a dominant morphism: Because $A$ is an integral domain, then $Spec(A)$ is irreducible, hence $Y subset.eq Spec(A)$ as a open subscheme is dense and irreducible (or $overline(Y) = Spec(A)$). With $f$ being surjective, one has $f(X)=Y$, hence $overline(i_Y compose f(X)) = overline(i_Y (Y)) = overline(Y) = Spec(A)$. Hence, with the morphism $i_Y compose f$ being dominant, the induced ring homomorphism $f^\#$ is injective.
 
   \ 
 
-  Finally, we claim that $Y = Spec(A)$: Suppose not, then since $Spec(A)\\Y$ is closed nonempty subset (by openness of $Y$), there exists ideal $I subset.eq A$, such that $V(I) = Spec(A)\\Y$ (and $I$ must be proper for $V(I)$ to be nonempty). Now, choose a maximal ideal $frak(m) subset.eq A$ such that $I subset.eq frak(m)$, then $frak(m) in V(I)$ is a point not containing in the image of $i_Y compose f$ by our choice.
+  Finally, we claim that $Y = Spec(A)$: Since $Y subset.eq Spec(A)$ is open, there exists $a_i in A$ (where $i in I$ for some index set), such that $Y = union.big_(i in I)D(a_i)$. Since $phi_Y:Y-> Spec(k)$ is of finite type (which is quasi-compact), with $Spec(k)$ being quasi-compact, this implies $Y=phi_Y^(-1)(Spec(k))$ is quasi-compact. Hence, one can choose the cover to be finite, say $a_1,...,a_n in A$ satisfies $Y = union.big_(i=1)^n D(a_i)$.
 
-  However, if consider $f^\# (frak(m))B$ as an idea
+  Then, with $f:X->>Y$ and the induced ring homomorphism $f^\#:A arrow.hook B$ , one has $Spec(B)=X=f^(-1)(Y) = union.big_(i=1)^n f^(-1)(D(a_i)) = union.big_(i=1)^n D(f^\# (a_i))$. So, since $D(f^\# (a_i))$ forms an open cover of $Spec(B)$, this implies $B = (f^\# (a_1),...,f^\# (a_n))$.
+
+  At this point I was aiming for $A = (a_1,...,a_n)$ (currently in progress), then with $union.big_(i=1)^n D(a_i) = Spec(A)$ based on this argument, it'll finish the proof that $Y=Spec(A)$, or showing $Y$ is affine.
 ]
 
 
