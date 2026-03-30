@@ -619,4 +619,58 @@ Which, this satisfies Zorn's Lemma's criterion (by taking union of rings in a ch
   Suppose the contrary that  there exists $x in K$, such that $frak(m)[x]=B[x]$, and $frak(m)[x^(-1)]=B[x^(-1)]$. Then, there exists $u_0,...,u_n,v_0,...,v_m in frak(m)$, such that the following holds:
   $ 1 = u_n x^n + ... + u_0 = v_m x^(-m)+...+v_0 $
   Here, choose $m,n$ to be the minimal integers such that the above holds.
+
+  \ 
+
+  Now, suppose $n>=m$ (for the other case invert everything), multiply the second term by $x^m$:
+  $ x^m = v_m + ... + v_1 x^(m-1) + v_0 x^m, quad (1-v_0)x^m = v_1 x^(m-1)+...+v_m $
+  Because $v_0 in frak(m)$ (the only maximal ideal in $B$), then $1-v_0 in B$ is invertible. Hence, mulitply by its inverse, one gets the following equation for $w_i:= (1-v_0)^(-1)v_i$:
+  $ x^m = w_1 x^(m-1)+...+w_m $
+  As a result, one can replace the $x^n = x^m (x^(n-m))$ (with its $x^m$ term) by the above term, which reduces the exponent by certain degree. This contradicts the minimality of $n$.
+
+  So, the assumption must be false, hence the desired statement holds.
+]
+
+\ 
+
+Using the above tools, we can conclude the following:
+#theorem[
+  $B$ is a valuation ring of the field $K$.
+][
+  It suffices to prove that all nonzero $x in K$ has either $x in B$ or $x^(-1) in B$.
+
+  \
+
+  Using the previous lemma, we can assume that $frak(m)[x] subset.neq B[x]$ (if not, then switch to its inverse). Then, given the ring inclusion $B arrow.hook B[x]$, let $frak(m)' supset.eq frak(m)[x]$ be a maximal ideal of $B[x]$ containing it, as a result, $frak(m)' sect B = frak(m)$ (since it's a maximal ideal that cannot contain any unit in $B[x]$, in particular no units from $B$; so, its intersection must be in $frak(m)$, and ontains $frak(m)$ by the extension property).
+
+  \ 
+
+  As a result, this creates an embedding of field $k = B\/frak(m) arrow.hook k'=B[x]\/frak(m')$. Now, consider the element $overline(x) in k'$ (the quotient of $x in B[x]$), notice that $k[overline(x)] = k'$ (as everything is in terms of polynomials in $B$ and $x^n$, where after the quotient the coefficients are in $k$, by the fact that $frak(m)' sect B = frak(m)$). So, $overline(x)$ is algebraic over $k$, hence $k'$ is a finite extension of $k$.
+
+  \ 
+
+  Now, given $g:B-> Omega$ and $ker(g)=frak(m)$, it induces a field embedding $overline(g):k arrow.hook Omega$. Then, since $k'$ is a finite algebraic extension of $k$ by adjoining one element, it extends to some embedding $overline(g)':k' -> Omega$ (where $overline(g)'|_k = overline(g)$). So, composing with the quotient map $pi:B[x]->> k'$, the map $g'= overline(g)' compose pi:B[x]-> Omega$ is an extension of $g$ (since the projection has restriction $pi|_B:B->>k$ by the fact $frak(m)' sect B=frak(m)$). So, the pair $(B,g)<= (B[x],g')$ within $Sigma$. Hence, by maximality of $(B,g)$ we must have $B=B[x]$, showing $x in B$.
+
+  \ 
+
+  (Note: Reversing the proof for the case $frak(m)[x^(-1)] subset.neq B[x^(-1)]$ instead proves $x^(-1) in B$).
+]
+
+\ 
+
+As a corollary, we have the following theorem:
+#theorem[
+  Let $A$ be a subring of a field $K$. Then, the integral closure $overline(A) subset.eq K$ of $A$, is the intersection of all the valuation rings of $K$ that contains $A$.
+][
+  First, since all valuation rings of a field isintegrally closed, then any valuation ring of $K$ containing $A$, say $B supset.eq A$, must have the integral closure $overline(A) subset.eq B$ (as any element that's integral over $A$ is also integral over $B$, hence contained in $B$). So, the intersection of all $K$'s valuation ring that contains $A$, must contain $overline(A)$.
+
+  \ 
+
+  For the converse, let $x in.not overline(A)$, then since it's not integral over $A$, then $x in.not A' = A[x^(-1)]$ (if it is, then $x = a_n x^(-n)+...+a_0$ for some $a_i in A$, then $x^(n+1)=a_n +...+a_0 x^n$, showing $x$ is integral over $A$, a contradiction).
+
+  So, $x^(-1) in A'$ can't be a unit in $A'$, which there exists some maximal ideal $frak(m)' subset A'$ that contains $x^(-1)$. Consider the field $k' = A'\/frak(m)'$, and $Omega$ the algebraic closure of $k'$. Then, the homomorphism $f':A' ->> k' arrow.hook Omega$ is a well-defined ring homomorphism, showing $(A',f') in Sigma$, hence it's bounded by some maximal element $(B,g) in Sigma$, where $B$ is a valuation ring (so, $A' subset.eq B$, and $g|_(A') = f'$).
+
+  However, since $f'(x^(-1)) = 0$ (because it's contained in the maximal ideal), then $g(x^(-1))=0$. This enforces $x in.not B$ (since if $x in B$, $x^(-1)$ is invertible in $B$, then it can't be mapped to $0$).
+
+  So, there exists valuation ring $B$, such that $A subset.eq A' subset.eq B$, and $x in.not B$. So, $x$ is not contained in the desired intersection, showing the intersection must precisely be $overline(A)$.
 ]
