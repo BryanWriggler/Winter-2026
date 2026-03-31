@@ -418,7 +418,34 @@ Damn the results are massive...Anyway, separatedness has another really powerful
 
 \ 
 
-== Properness \& The Valuative Criterion of Properness
+Finally, we have another property relating separated schemes over a field:
+#proposition[
+  Suppose $k$ is a field, and $X$ a $k$-scheme (endow with a morphism $s:X -> Spec(k)$). Then, $X$ is separated $<==>$ $s$ is a separated morphism (in other words, $X$ is separated over $k$).
+][
+
+  $==>:$ 
+  
+  If $X$ is separated (i.e. $X-> Spec(ZZ)$ is separated), then we have the following commutative diagram:
+  #set align(center)
+  #diagram($
+             X  edge("dr",->, script(s), #right) edge("rr",->) && Spec(ZZ)\
+             & Spec(k) edge("ur",->)
+           $)
+  #set align(left)
+  Then, one of the previous characterizations enforces $s$ to be separated.
+
+  \ 
+
+  $<==:$
+
+  If $s$ is separated, since $Spec(k)-> Spec(ZZ)$ is automatically separated, and composition of separated morphism is separated, we have $X -> Spec(ZZ)$ being separated.
+]
+
+\ 
+
+\ 
+
+= Properness
 
 For this, let's review / extend the definition of a morphism being universally closed:
 #definition[Universally Closed Morphism][
@@ -437,6 +464,7 @@ If going back to general topology class (where fibre product is just a subset of
 
 \ 
 
+== Valuative Criterion of Properness
 Similar to the concepts of separatedness, we again have the valuative criterion for properness:
 #theorem("Valuative Criterion for Properness")[
   Let $f:X->Y$ be a morphism of finite type, and $X$ Noetherian. Then, $f$ is proper $<==>$ for every valuation ring $R$ ($T=Spec(R)$) and its field of fraction $K$ ($U=Spec(K)$), with morphism $alpha':U->X$, $alpha:T-> Y$, and inclusion $j:U -> T$, there exists a unique morphism $h:T->X$ such that the following diagram holds:
@@ -454,8 +482,34 @@ Similar to the concepts of separatedness, we again have the valuative criterion 
   Now, consider $alpha:T->Y$ as the base change, we have the following fibre product:
   #set align(center)
   #diagram($
-             X times_Y T edge("d",->, script(f'), #right) edge(->, script(alpha')) & X edge("d",->, script(f), #left)\
+             X times_Y T edge("d",->, script(f'), #right) edge(->, script(alpha'')) & X edge("d",->, script(f), #left)\
              T edge(->, script(alpha), #right) & Y
            $)
   #set align(left)
+  Then, given the valuative criterion diagram, since $alpha compose j= f compose alpha'$, then the fibre product property guarantees a unique $h':U -> X times_Y T$, such that the following holds:
+  #set align(center)
+  #diagram($
+             U edge("drr",->, script(alpha'), bend: #20deg) edge("ddr","hook->", script(j), bend: #(-20deg)) edge("dr","..>", script(exists ! h')) \
+             &X times_Y T edge("d",->, script(f'), #right) edge(->, script(alpha')) & X edge("d",->, script(f), #left)\
+             &T edge(->, script(alpha), #right) & Y
+           $)
+  #set align(left)
+  Let $xi_1 in X_T := X times_Y T$ be the image of $U$, and let $Z = overline({xi_1}) subset X_T$. Because $f$ is proper, it's universally closed, then $f'(Z) subset.eq T$ is closed.  Also, let $t_0,t_1$ denotes the closed / generic points of $T$ respectively, then since $t_1 = f'(xi_1) in f'(Z)$ (by the fact that $j(u_1) = t_1$, where $xi_1 = h'(u_1)$), then we have $T = overline({t_1}) subset.eq f'(Z)$, so $f'(Z)=T$. Then, we can find a point $xi_0 in Z$, such that $f'(xi_0)=t_0$.
+
+  As a result, this gets a local homomorphism $R = cal(O)_(T,t_0) arrow.hook cal(O)_(Z, xi_0)$ based on $f'$ and the reduced induced structure on $Z subset.eq X_T$ (Note: This is injective, because $f'$ is surjective, in particular dominant). Also, since $h':U-> Z$ has $u_1 mapsto xi_1$, then it also generates a local homomorphism $cal(O)_(Z, xi_1)-> K$, and factors to a field embedding $k(xi_1) arrow.hook K$. Then, (even though I don't know the result), but a valuation ring of a field must be maximal with respect to the domainance of local rings, so with $cal(O)_(Z, xi_0) arrow.hook cal(O)_(Z, xi_1)= k(xi_1)$, we have $R arrow.hook cal(O)_(Z,xi_0) arrow.hook k(xi_1) arrow.hook K$, showing that $R tilde.equiv cal(O)_(Z,xi_0)$ by maximality with respect to the dominance of local rings.
+
+  So, with $xi_0 in overline({xi_1})$, $k(xi_1) arrow.hook K$, and $R$ dominates $cal(O)_(Z,xi_0)$ (in particular, they're isomorphic), which generates a morphism $h:T -> Z arrow.hook X_T$, that agrees on the closed / generic points with $h'$. Finally, compose $h$ with $alpha'':X_T -> X$, it generates the morphism $T->X$, that agrees with what we want (as they agree on the only point of $U$).
+
+  \
+
+  \ 
+
+  $<==:$
+
+  Now, suppose the condition of the theorem holds, since it's assumed to be finite type, and satisfies the valuative criterion, then it is automatically separated (by the previous theorem). So, it suffices to prove that it is universally closed. 
+
+  This will be broken down into two steps:
+  1. #text(weight: "bold")[Valuative Criterion is preserved under base change:]
+
+    
 ]
