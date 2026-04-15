@@ -1,20 +1,118 @@
 \documentclass{article}
 \usepackage{../../Self_Style}
 
-\title{Latex Template}
+\title{Freyd Mitchell Embedding Theorem}
 \author{Zih-Yu Hsieh}
 \date{\today}
 
 \begin{document}
 \maketitle
 
-\section*{1}
-\begin{ques}\label{q1}
-\end{ques}
+The goal is to understand the way of embedding any small Abelian Category into the category of $R$-modules over some (not necessarily commutative) ring $R$.
 
+\section{Basics of Abelian Category}
+
+There are multiple ways of defining Abelian Category, here chose the definition used in the book.
+
+First, let $\mathcal{A}$ be a category with a zero object (an object that's both initial and final), denoted as $\bzero$. We first put on the notion of kernel and cokernel:
+\begin{defn}
+    Given $A,B\in\mathbb{A}$ two objects, a \textbf{zero morphism from $A$ to $B$} is the unique morphism obtained by the composition $0:A\rightarrow\bzero\rightarrow B$.
+    
+    \hfil
+
+    Let $\phi:A\rightarrow B$ be a morphism in $\mathcal{A}$, a morphism $\ker(\phi):K\rightarrow A$ is a \textbf{kernel of $\phi$}, if $\phi\circ \ker(\phi)=0$, and for every morphism $f:K'\rightarrow A$ satisfying $\phi\circ f=0$, there exists a unique morphism $f':K'\rightarrow K$, such that $f = \ker(\phi)\circ f'$. Namely, the following diagram commutes:
+    \begin{center}
+    \begin{tikzcd}
+        K \ar[r,"\ker(\phi)"] & A \ar[r,"\phi"] & B\\
+        K' \ar[ru, "f"'] \ar[u, dashed, "\exists ! f' "] \ar[urr, "0"', bend right=20]
+    \end{tikzcd}
+    \end{center}
+    \hfil
+
+    Similarly, a morphism $\coker(\phi):B\rightarrow C$ is a \textbf{cokernel of $\phi$}, if $\coker(\phi)\circ \phi=0$, and for every morphism $g:B\rightarrow C'$ satisfying $g \circ\phi=0$, there exists a unique morphism $g':C\rightarrow C'$, such that $g = g'\circ \coker(\phi)$. Namely, the following diagram commutes:
+    \begin{center}
+    \begin{tikzcd}
+        A \ar[r,"\phi"] \ar[drr,"0"', bend right=20] & B \ar[r,"\coker(\phi)"] \ar[dr,"g"'] & C \ar[d, dashed, "\exists ! g^\prime "]\\
+        && C'
+    \end{tikzcd}
+    \end{center}
+\end{defn}
+Which, the composition of any morphism with the zero morphism is a zero morphism (as the morphism through $\bzero$ from/to any object must be unique). Also, the universality above guarantees kernels and cokernesl to be isomorphic. Notice that kernels and cokernels under this definitions, are monomorphisms and epimorphisms respectively:
+\begin{prop}
+    All kernels are monomorphisms, and all cokernels are epimorphisms.
+\end{prop}
 \begin{proof}
+    Let $\phi:A\rightarrow B$ be a morphism, $k:K\rightarrow A$ denotes its kernel, and $c:B\rightarrow C$ denotes its cokernel. 
+
+    \hfil
+
+    First, for kernel, choose two morphisms $f_0,f_1:K'\rightarrow K$ such that $h=k\circ f_0=k\circ f_1:K'\rightarrow A$. Then, since $\phi\circ h = (\phi\circ k)\circ f_0 = 0\circ f_0= 0$, the universality guarantees a unique morphism $f':K'\rightarrow K$, such that $h = \ker(\phi)\circ f'$. Since $f_0,f_1$ in the position in $f'$ satisfies the given equality, the uniqueness of $f'$ guarantees $f_0=f_1=f'$.
+
+    \hfil
+
+    For cokernel, given $g_0,g_1:C\rightarrow C'$ such that $\ell=g_0\circ c=g_1\circ c:B\rightarrow C'$, as $\ell\circ \phi = g_0\circ (c\circ \phi)=g_0\circ 0=0$, similar argument on universality guarantees $g_0=g_1$. 
 \end{proof}
 
-\newpage
+\hfil
+
+With this property, kernels and cokernels can be viewed as subobject / quotient objects of certain morphisms.
+
+\hfil
+
+Now, here is the definition of Abelian Category:
+
+\begin{defn}
+A category $\mathcal{A}$ is an \textbf{Abelian Category}, if it satisfies the following axioms:
+
+\begin{itemize}
+    \item[A0.] $\mathcal{A}$ has a zero object $\bzero$, which serves as both initial and final object.
+    \item[A1.] Finite product and coproduct exists. (also called ``direct product'' and ``direct sum'').
+    \item[A2.] Every morphism has a kernel and a cokernel.
+    \item[A3.] Every monomorphism is a kernel of some morphism, and every epimorphism is a cokernel of a morphism.  
+\end{itemize}
+\end{defn}
+
+\hfil
+
+Of course, for the most generality, we also have the following properties for any two objects $A,B\in\mathcal{A}$:
+\begin{itemize}
+    \item Finite direct sum and direct product coincides, so $A\oplus B$ satisfies the universality of both product and coproduct of $A$ and $B$ (also called a finite ``biproduct'').
+    \item The homset $\Hom_\mathcal{A}(A,B)$ has a natural abelian group structure, with $0:A\rightarrow B$ serves as the identity.
+\end{itemize}
+In some lieterature (for instance, Aluffi), the second property is assumed, and can be used to prove the first property (in fact, the first property is true for general additive category). 
+
+Conversely, some literature assumes the first property, and use it to show the second property (for instance, the book of the reference). Here, we'll assume this, and show the abelian group structure on the homsets.
+
+\hfil
+
+\textbf{Notation:} We'll use $\iota_A:A\rightarrow A\oplus B$, $\iota_B:B\rightarrow A\oplus B$ to denote the canonical inclusion for coproduct, and $\pi_A:A\oplus B\rightarrow A$, $\pi_B:A\oplus B\rightarrow B$ to denote the canonical projection for product.
+
+Also, given two morphisms $f_A:C\rightarrow A$, $f_B:C\rightarrow B$, denote the product morphism as $\begin{pmatrix}
+    f_A\\f_B
+\end{pmatrix}:C\rightarrow A\oplus B$ (so $\pi_A\circ \begin{pmatrix}
+    f_A\\f_B
+\end{pmatrix}=f_A$, and $\pi_B\circ \begin{pmatrix}
+    f_1\\f_2
+\end{pmatrix}=f_B$). Similarly, given two morphisms $g_A:A\rightarrow D$, $g_B:B\rightarrow D$, denote the coproduct morphism as $(g_A\ g_B):A\oplus B\rightarrow D$ (so $(g_A\ g_B)\circ \iota_A = g_A$, and $(g_A\ g_B)\circ \iota_B = g_B$). 
+
+\hfil
+
+This is similar to the matrix notation. In general, given objects $A,B,C,D\in\mathcal{A}$, with morphisms $f:A\rightarrow C$, $g:A\rightarrow D$, $h:B\rightarrow C$, and $\ell:B\rightarrow D$, we have morphisms $\begin{pmatrix}
+    f\\g
+\end{pmatrix}:A\rightarrow C\oplus D$ and $\begin{pmatrix}
+    h\\ \ell
+\end{pmatrix}:B\rightarrow C\oplus D$. Which, they gathered into a morphism $\begin{pmatrix}
+    \begin{pmatrix}
+        f\\g
+    \end{pmatrix}\ \begin{pmatrix}
+        h\\ \ell
+    \end{pmatrix}
+\end{pmatrix}:A\oplus B\rightarrow C\oplus D$, we'll denote as $\begin{pmatrix}
+     f\ h\\g\ \ell
+\end{pmatrix}$.
+
+\hfil
+
+
 
 \end{document}
