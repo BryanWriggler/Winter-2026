@@ -10,8 +10,9 @@
 
 The goal is to understand the way of embedding any small Abelian Category into the category of $R$-modules over some (not necessarily commutative) ring $R$.
 
-\section{Basics of Abelian Category}
+\section{Abelian Category}
 
+\subsection{Basid Structure of Abelian Category}
 There are multiple ways of defining Abelian Category, here chose the definition used in the book.
 
 First, let $\mathcal{A}$ be a category with a zero object (an object that's both initial and final), denoted as $\bzero$. We first put on the notion of kernel and cokernel:
@@ -72,11 +73,32 @@ A category $\mathcal{A}$ is an \textbf{Abelian Category}, if it satisfies the fo
 \end{itemize}
 \end{defn}
 
+With this definition, we can immediately conclude the following:
+\begin{prop}
+    Let $\phi:A\rightarrow B$ be a morphism. Then:
+    \begin{itemize}
+        \item[1.] If $\phi$ is a monomorphism, then $\bzero\rightarrow A$ is its kernel.
+        \item[2.] Similarly, if $\phi$ is an epimorphism, then $B\rightarrow \bzero$ is its cokernel. 
+    \end{itemize}
+\end{prop}
+\begin{proof}
+
+    \hfil
+
+    \begin{itemize}
+        \item[1.] It's clear that $\bzero\rightarrow A\xrightarrow{\phi}B$ is zero morphism. Now, suppose $f:K'\rightarrow A$ satisfies $\phi\circ f=0:K'\rightarrow B$, then since $0:K\rightarrow A$ satisfies $\phi\circ 0=0:K'\rightarrow A$ also, the monomorphism property guarantees $f=0$. Hence, we have $K\xrightarrow{f}A = K\rightarrow \bzero \rightarrow A$ the zero morphism, showing $f$ uniquely factors through $\bzero\rightarrow Ax$ (as the morphism $K\rightarrow \bzero$ is unique).
+        
+        \hfil
+
+        \item[2.] Again, it's clear that $A\xrightarrow{\phi}B\rightarrow \bzero$ is zero. Now, suppose $g:B\rightarrow C'$ satisfies $g\circ \phi=0:A\rightarrow C'$, again $0:B\rightarrow C'$ satisfies $0\circ \phi=0:A\rightarrow C'$, showing $g=0$ using the epimorphism property. So, $B\xrightarrow{g}C' = B\rightarrow \bzero \rightarrow C'$ is the zero morphism, showing $g$ uniquely factors through $B\rightarrow \bzero$.
+    \end{itemize}
+\end{proof}
+
 \hfil
 
 Of course, for the most generality, we also have the following properties for any two objects $A,B\in\mathcal{A}$:
 \begin{itemize}
-    \item Finite direct sum and direct product coincides, so $A\oplus B$ satisfies the universality of both product and coproduct of $A$ and $B$ (also called a finite ``biproduct'').
+    \item Finite direct sum and direct product coincides, so $A\oplus B$ is a biproduct. Let $\iota$, $\pi$ denote inclusion / projection respectively, then we require $\pi_j\circ \iota_j = 1_j$ for $j=A,B$, and $\pi_i,\iota_j$ be cokernel / kernel (resp.) for each other if $i\neq j$.
     \item The homset $\Hom_\mathcal{A}(A,B)$ has a natural abelian group structure, with $0:A\rightarrow B$ serves as the identity.
 \end{itemize}
 In some lieterature (for instance, Aluffi), the second property is assumed, and can be used to prove the first property (in fact, the first property is true for general additive category). 
@@ -101,18 +123,288 @@ This is similar to the matrix notation. In general, given objects $A,B,C,D\in\ma
     f\\g
 \end{pmatrix}:A\rightarrow C\oplus D$ and $\begin{pmatrix}
     h\\ \ell
-\end{pmatrix}:B\rightarrow C\oplus D$. Which, they gathered into a morphism $\begin{pmatrix}
+\end{pmatrix}:B\rightarrow C\oplus D$. Which, they gathered into a morphism $s=\begin{pmatrix}
     \begin{pmatrix}
         f\\g
     \end{pmatrix}\ \begin{pmatrix}
         h\\ \ell
     \end{pmatrix}
-\end{pmatrix}:A\oplus B\rightarrow C\oplus D$, we'll denote as $\begin{pmatrix}
-     f\ h\\g\ \ell
+\end{pmatrix}:A\oplus B\rightarrow C\oplus D$.
+
+Similarly, we can define morphisms $(f\ h):A\oplus B\rightarrow C$ and $(g\ \ell):A\oplus B\rightarrow D$, which further gathered into a morhpism $s'=\begin{pmatrix}
+    \begin{pmatrix}
+        f\ h
+    \end{pmatrix}\\
+    \begin{pmatrix}
+        g\ \ell
+    \end{pmatrix}
+\end{pmatrix}:A\oplus B\rightarrow C\oplus D$.
+
+Notice that $s=s'$, because we have the following four equalities:
+\begin{align}
+    &\pi_C\circ (s\circ \iota_A) = \pi_C \circ \begin{pmatrix}
+        f\\g
+    \end{pmatrix} = f = (f\ h)\circ \iota_A = (\pi_C\circ s')\circ \iota_A\\
+    &\pi_D\circ (s\circ \iota_A) = \pi_D \circ \begin{pmatrix}
+        f\\g
+    \end{pmatrix} = g = (g\ \ell)\circ \iota_A = (\pi_D\circ s')\circ \iota_A\\
+    &\pi_C\circ (s\circ \iota_B) = \pi_C \circ \begin{pmatrix}
+        h\\\ell
+    \end{pmatrix} = h = (f\ h)\circ \iota_B = (\pi_C\circ s')\circ \iota_B\\
+    &\pi_D\circ (s\circ \iota_B) = \pi_D \circ \begin{pmatrix}
+        h\\\ell
+    \end{pmatrix} = \ell = (g\ \ell)\circ \iota_B = (\pi_D\circ s')\circ \iota_B
+\end{align}
+Which, (1) and (2) state that $s\circ \iota_A = s'\circ \iota_A$ (as their projection onto $C$ and $D$ agrees, so universality of product forces them to be the same); similarly, (3) and (4) state that $s\circ \iota_B=s'\circ \iota_B$ using product property again.
+
+Finally, the two formula regarding the inclusions $\iota_A,\iota_B$ precisely force $s=s'$ using the coproduct property. So, there's no ambiguity about the order. Which, we'll denote $s=s' = \begin{pmatrix}
+    f\ h\\g\ \ell
 \end{pmatrix}$.
 
 \hfil
 
+Now, we'll define the ``addition'' on homsets:
+\begin{defn}
+    Let $f,g\in \Hom_\mathcal{A}(A,B)$, we define the morphism $f+g\in \Hom_\mathcal{A}(A,B)$ to be the following:
+    \begin{center}
+    \begin{tikzcd}
+        A \ar[r,"\begin{psmallmatrix}
+            1_A\\1_A
+        \end{psmallmatrix}"] & A \oplus A \ar[r,"(f\ g)"] & B
+    \end{tikzcd}
+    \end{center}
+    Another definition is the following:
+    \begin{center}
+    \begin{tikzcd}
+        A \ar[r,"\begin{psmallmatrix}
+            f\\g
+        \end{psmallmatrix}"] & B \oplus B \ar[r,"(1_B\ 1_B)"] & B
+    \end{tikzcd}
+    \end{center}
+\end{defn}
+Notice the two actually define the same morphism:
 
+\begin{proof}
+    Consider the morphism $m=\begin{pmatrix}
+        f\ 0\\0\ g
+    \end{pmatrix}:A\oplus A\rightarrow B\oplus B$, then we have the following:
+    \begin{align}
+        (1_B\ 1_B)\circ m= 
+    \end{align}
+\end{proof}
+
+\textbf{Include: Additive structure on homsets, characterization of direct sums, definition of image / coimage, exactness (and some characterization about image=kernel, coimage=cokernel, and other compositions), subobject, intersection and union.}
+
+\hfil
+
+The goal for this section is establishing some utilities needed for embedding.
+
+Let's first define additive functor:
+\begin{defn}
+    Let $\mathcal{A},\mathcal{B}$ be two Abelian Categories. Let $F:\mathcal{A}\rightarrow\mathcal{B}$ be a functor. 
+    
+    $F$ is \textbf{additive}, if for any two objects $A,B\in \mathcal{A}$, the map $\Hom_\mathcal{A}(A,B)\rightarrow \Hom_\mathcal{B}(F(A),F(B))$ is a group homomorphism with respect to the group structure on each homset.
+\end{defn}
+
+For instance, $\Hom_\mathcal{A}(A,\_):\mathcal{A}\rightarrow\Ab$ and $\Hom_\mathcal{A}(\_,A):\mathcal{A}^\text{op}\rightarrow\Ab$ are additive functors, as composition of morphisms respect the additive structure.
+
+\hfil
+
+Here is a characterization of additive functors:
+\begin{thm}
+    A functor betewen abelian categories is additive $\iff$ it maps direct sums to direct sums, i.e. $F(A\oplus B)\cong F(A)\oplus F(B)$, with the agreement on inclusions / projections.
+\end{thm}
+\begin{proof}
+    This requries the characterization of dierct sum: Given $A\oplus B$, then $\pi_j\circ \iota_j = 1_j$ on each $j=A,B$, while $\iota_A\circ \pi_A + \iota_B\circ \pi_B = 1$ on $A\oplus B$.
+
+    \hfil
+
+    \begin{itemize}
+        \item[$\implies$:] Suppose $F$ is additive. Given $F \pi_j\circ F\iota_j=F(\pi_j\circ \iota_j) = 1_{F(j)}$ for $j=A,B$, and $1 = F(1) = F(\iota_A\circ \pi_A+\iota_B\circ \pi_B) = F\iota_A\circ F\pi_A + F\iota_B\circ F\pi_B$, showing $F(A\oplus B)$ with $F\iota_A,F\iota_B,F\pi_A,F\pi_B$ form a direct sum system for $F(A),F(B)$, hence $F(A\oplus B)\cong F(A)\oplus F(B)$.
+        
+        \hfil
+
+        \item[$\impliedby$:] Suppose $F$ maps direct sum to direct sum, then for every $f,g\in \Hom_\mathcal{A}(A,B)$, we have $f+g:A\rightarrow B$ being the following:
+        \begin{align}
+            A\xrightarrow{f+g}B\ =\ A\xrightarrow{
+                \begin{psmallmatrix}
+                    1_A\\1_A
+                \end{psmallmatrix}
+            }A\oplus A\xrightarrow{\begin{psmallmatrix}
+                f\ g
+            \end{psmallmatrix}
+            }B
+        \end{align}
+        Apply the functor, we get:
+        \begin{align}
+            F(A)\xrightarrow{F(f+g)}F(B)\ &=\ F(A)\xrightarrow{F\begin{psmallmatrix}
+                1_A\\1_A
+            \end{psmallmatrix}
+            }F(A\oplus A)\xrightarrow{F\begin{psmallmatrix}
+                f\ g
+            \end{psmallmatrix}
+            }F(B)\\
+            &= F(A)\xrightarrow{
+                \begin{psmallmatrix}
+                    1_{F(A)}\\1_{F(A)}
+                \end{psmallmatrix}
+            }F(A\oplus A)\xrightarrow{\begin{psmallmatrix}
+                Ff\ Fg
+            \end{psmallmatrix}
+            }F(B)\\
+            &= F(A)\xrightarrow{Ff+Fg}F(B)
+        \end{align}
+        Note: Since both projection $F\pi_A:F(A\oplus A)\rightarrow F(A)$ satisfy $F\pi_A\circ F\begin{psmallmatrix}
+            1_A\\1_A
+        \end{psmallmatrix}=F\left(\pi_A\circ\begin{psmallmatrix}
+            1_A\\1_A
+        \end{psmallmatrix}\right) = F 1_A = 1_{F(A)}$,and $F\pi_A$ are the projections of $F(A\oplus A)\cong F(A)\oplus F(A)$ (as $F$ respects direct sum), then $F\begin{psmallmatrix}
+            1_A\\1_A
+        \end{psmallmatrix} = \begin{psmallmatrix}
+            1_{F(A)}\\1_{F(A)}
+        \end{psmallmatrix}$. Apply similar logic to $F(f\ g)$ we get the same.
+
+        So, $F(f+g) = Ff+Fg$, hence $F$ is additive.
+    \end{itemize}
+\end{proof}
+
+As a result, we have the following:
+\begin{cor}
+    A left / right exact functor between Abelian Categories is additive.
+\end{cor}
+\begin{proof}
+    Because the identity relations on inclusion / projections are preserved by any functor, so $F \pi_i\circ F\iota_i = F(\pi_i\circ \iota_i)=F(1_i)=1_{F(i)}$ given $i=A,B$.
+    
+    Also, left / right exact functor preserves either kernel or cokernel. For definiteness, if $F$ is left exact, then for $i\neq j$, we have $F\iota_i$ remains as kernel of $F\pi_j$; then, the identity relations guarantee $F\pi_j$ to be epimorphism, hence a cokernel of $F\iota_i$ (which is a kernel). (For right exact functor, it preserves cokernel instead, so swap the proof to $F\pi_j$ works just fine).
+
+    By the characterization of direct sum, left / right exact functor preserves direct sum system, hence is additive.
+\end{proof}
+
+\newpage
+
+\section{Tools for Embedding}
+
+Now, let's define the concept of embedding:
+\begin{defn}
+    Let $F:\mathcal{A}\rightarrow\mathcal{B}$ be an additive functor. $F$ is \textbf{faithful}, if the homomorphism $\Hom_\mathcal{A}(A,B)\rightarrow\Hom_\mathcal{B}(F(A),F(B))$ is injective. In this case, $F$ is called an \textbf{embedding}.
+\end{defn}
+
+\textbf{Include some properties of embedding if needed}
+
+\hfil
+
+Here comes some iportant notions for embeddings:
+\begin{defn}
+    An object $P\in \mathcal{A}$ is \textbf{projective}, if the functor $\Hom_\mathcal{A}(P,\_):\mathcal{A}\rightarrow \Ab$ is exact.
+
+    \hfil
+
+    Equivalently, given any epimorphism $f:A\twoheadrightarrow B$, the post composition map $\Hom_\mathcal{A}(P,A)\xrightarrow{f\circ \_}\Hom_\mathcal{A}(P,B)$ is surjective. It's equivalent to the following: 
+    
+    Given any morphism $p:P\rightarrow B$, there exists $p':P\rightarrow A$, such that $p = f\circ p'$, or the following diagram commutes:
+    \begin{center}
+        \begin{tikzcd}
+            P \ar[d,dashed,"\exists p^\prime"']\ar[dr,"p"]\\
+            A \ar[r,two heads, "f"'] & B
+        \end{tikzcd}
+    \end{center}
+\end{defn}
+
+Which, it has the following property:
+\begin{prop}
+    Let $\{P_i\}_i$ be a family of projective objects in $\mathcal{A}$, if their direct sum $\bigoplus_i P_i$ exists, then it's also projective.
+\end{prop}
+\begin{proof}
+    Let $f:A\twoheadrightarrow B$ be an epimorphism, and $(p_i)_i:\bigoplus_i P_i\rightarrow B$ a morphism. Then, composing with each inclusion, we have $(p_i)_i \circ iota_j = p_j:P_j\rightarrow B$ for all index $j$. 
+
+    The individual projectiveness guarantees a morphism $p'_j:P_j\rightarrow A$ such that $p_j=f\circ p'_j$, hence the direct sum property gathers them into a morphism $(p'_i)_i:\bigoplus_i P_i\rightarrow A$, such that $(p'_i)_i\circ \iota_j = p'_j$ for all index $j$.
+
+    Finally, notice that $f\circ (p'_i)_i = (p_i)_i$: Precomposing with all inclusions, we get $f\circ (p'_i)_i\circ \iota_j = f\circ p'_j = p_j = (p_i)_i\circ \iota_j$. Hence, the coproduct propety guarantees the two to be the same. This shows the projectiveness of $\bigoplus_i P_i$.
+\end{proof}
+
+\hfil
+
+\begin{defn}
+    An object $G\in\mathcal{A}$is a \textbf{generator}, if the functor $\Hom_\mathcal{A}(G,\_):\mathcal{A}\rightarrow \Ab$ is an embedding.
+\end{defn}
+
+Here are some characterization of generators:
+\begin{prop}
+    TFAE:
+    \begin{enumerate}
+        \item $G$ is a generator.
+        \item For every nonzero $f:A\rightarrow B$, there exists $g:G\rightarrow A$, such that $f\circ g:G\rightarrow A\rightarrow B$ is nonzero.
+        \item Let $\iota:A'\hookrightarrow A$ be a proper subobject, there exists a morphism $g:G\rightarrow A$, such that $\im(g)$ is not a subobject of $A'$ (i.e. there doesn't exist a monomorphism $i:\im(g)\hookrightarrow A'$, such that $\im(g)\hookrightarrow A = \im(g)\xhookrightarrow{i}A'\xhookrightarrow{\iota}A$).
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    
+    \hfil
+
+    \begin{itemize}
+        \item[$1\iff 2$:] Here, $G$ is a generator$\iff$ the map $\Hom_{\mathcal{A}}(A,B)\rightarrow \Hom_{\Ab}(\Hom_{\mathcal{A}}(G,A),\Hom_{\mathcal{A}}(G,B))$ by $f\mapsto (f\circ \_)$ is injective for all object $A,B$. 
+        
+        Hence, given $G$ is a generator, every nonzero $f:A\rightarrow B$ has $f\circ\_:\Hom_{\mathcal{A}}(G,A)\rightarrow \Hom_{\mathcal{A}}(G,B)$ being nonzero, there exists $g \in \Hom_{\mathcal{A}}(G,A)$ where $f\circ g\neq 0$.
+
+        Conversely, if the second condition is true, then the map $\Hom_{\mathcal{A}}(A,B)\rightarrow \Hom_{\Ab}(\Hom_{\mathcal{A}}(G,A),\Hom_{\mathcal{A}}(G,B))$ by $f\mapsto( f\circ \_)$ is injective (as $f\neq 0$ implies $f\circ\_\neq 0$), hence $\Hom_\mathcal{A}(G,\_)$ is an embedding.
+        
+        \hfil
+
+        \item[$2\implies 3$:] Suppose all nonzero $f:A\rightarrow B$ has some $g:G\rightarrow A$, such that $f\circ g:G\rightarrow A\rightarrow B$ is nonzero. Let $\iota:A'\hookrightarrow A$ be a proper subobject, then its cokernel $c:A\twoheadrightarrow C$ is nonzero. Hence, there exists morphism $g:G\rightarrow A$, such that $c\circ g:G\rightarrow A\twoheadrightarrow C$ is nonzero.
+        
+        As $\iota$ is also a kernel of $c$ (since it's monic), with $c\circ g\neq 0$, $g$ doesn't factor through $\iota$, hence its image is not a subobject of $A'$.
+
+        \hfil
+
+        \item[$2\impliedby 3$:] If condition 3 holds, for any nonzero $f:A\rightarrow B$, its kernel $k:K\hookrightarrow A$ is a proper subobject. Hence, there exists $g:G\rightarrow A$, such that its image isn't a subobject of $K'$ (equivalently, $g$ doesn't factor through $k$). As a result, $f\circ g\neq 0$ (as if $f\circ g=0$, then $g$ must factor through $k$, which contradicts).
+    \end{itemize}
+\end{proof}
+
+Here is one of the key tools for the special case of the embedding theorem - the projective generators:
+\begin{lem}
+    If $P$ is projective, then $P$ is a generator $\iff$ $\Hom_\mathcal{A}(P,A)$ is nontrivial for all $A\not\cong \bzero$.
+\end{lem}
+\begin{proof}
+    
+    \hfil
+
+    \begin{itemize}
+        \item[$\implies$:] Suppose $P$ is a generator, then for any $A\not\cong \bzero$, because identity $1_A:A\xrightarrow{\sim}A$ is nonzero, then the map $1_A\circ\_:\Hom_\mathcal{A}(P,A)\rightarrow\Hom_\mathcal{A}(P,A)$ is nonzero. Hence, there exists $g\in \Hom_\mathcal{A}(P,A)$ such that $1_A\circ g = g\neq 0$, showing $\Hom_\mathcal{A}(P,A)\neq \bzero$.
+        
+        \hfil
+
+        \item[$\impliedby$:] Suppose $\Hom_\mathcal{A}(P,A)$ is nontrivial for all $A\not\cong \bzero$. Here, we use the second condition above for generators: Given nonzero $f:A\rightarrow B$, consider the coimage of $f$, say $c:A\twoheadrightarrow C$ (hence, there exists monomorphism $\overline{f}:C\hookrightarrow B$, such that $f = \overline{f}\circ c$). This forces $c\neq 0$, hence $C\not\cong \bzero$, in particular $\Hom_\mathcal{A}(P,C)\neq \bzero$. So, there exists nontrivial $p:P\rightarrow C$. 
+        
+        Now, using the projectiveness of $P$, there exists $p':P\rightarrow A$, such that $p = c\circ p'$ (which, $p'\neq 0$ because $p\neq 0$). Then, we have $f\circ p' = \overline{f}\circ (c\circ p') = \overline{f}\circ p$. Finally, since $\overline{f}$ is a monomorphism, then $p\neq 0$ implies $\overline{f}\circ p\neq 0$, hence $f\circ p'\neq 0$.
+
+        So, the second condition for generator is satisfied, showing $P$ is a generator.
+    \end{itemize}
+\end{proof}
+
+\hfil
+
+With this notion, the category can be more controlled in the following sense:
+\begin{defn}
+    A category is \textbf{well-powered}, if the family of subobjects (i.e. equivalence classes of monomorphisms $A'\hookrightarrow A$, where the equivalence are stated by isomorphisms on $A'$ that commutes with the monomorphisms) forms a set.
+\end{defn}
+
+\hfil
+
+\begin{prop}
+    An Abelian Category that has a generator is well-powered.
+\end{prop}
+\begin{proof}
+    Let $G\in\mathcal{A}$ be a generator, and $A\in \mathcal{A}$ be any object. Then, given a nontrivial subobject $\iota:A'\hookrightarrow A$, the map $\iota\circ \_:\Hom_\mathcal{A}(G,A')\rightarrow \Hom_\mathcal{A}(G,A)$ is injective. 
+
+    \hfil
+
+    Hence, given $A'$ a subobject of $A$, it can be associated to a subgroup of $\Hom_\mathcal{A}(G,A)$ (namely the image of $\Hom_\mathcal{A}(G,A')$ under $\iota\circ\_$). 
+    
+    This is well-defined, as if $\iota_1:A'_1\hookrightarrow A$ and $\iota_2:A'_2\hookrightarrow A$ are two isomorphic subobjects, there exists isomorphism $\phi:A'_1\xrightarrow{\sim}A'_2$ such that $\iota_1 = \iota_2\circ \phi$. Hence, for any $f\in \Hom_\mathcal{A}(G,A'_1)$, $\iota_1\circ f = \iota_2\circ (\phi\circ f)$ (with $\phi\circ f\in \Hom_\mathcal{A}(G,A'_2$)), and conversely all $g\in \Hom_\mathcal{A}(G,A'_2)$ satisfies $\iota_2\circ g = \iota-1\circ (\phi^{-1}\circ g)$ (with$\phi^{-1}\circ g\in\Hom_\mathcal{A}(G,A'_1)$). This shows that $\iota_1\circ\_$ and $\iota_2\circ\_$ have the same set image, hence isomorphic subobject corresponds to the same subgroup in $\Hom_\mathcal{A}(G,A)$.
+
+    \hfil
+
+    Finally, any two non-isomorphic subobject can't have the same subgroup in $\Hom_\mathcal{A}(G,A)$
+\end{proof}
 
 \end{document}
