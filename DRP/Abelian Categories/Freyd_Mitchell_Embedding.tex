@@ -12,7 +12,7 @@ The goal is to understand the way of embedding any small Abelian Category into t
 
 \section{Abelian Category}
 
-\subsection{Basid Structure of Abelian Category}
+\subsection{Basic Structure of Abelian Category}
 There are multiple ways of defining Abelian Category, here chose the definition used in the book.
 
 First, let $\mathcal{A}$ be a category with a zero object (an object that's both initial and final), denoted as $\bzero$. We first put on the notion of kernel and cokernel:
@@ -282,18 +282,86 @@ As a result, we have the following:
 
 \newpage
 
-\section{Tools for Embedding}
+\subsection{Tools for Embedding}
 
 Now, let's define the concept of embedding:
 \begin{defn}
     Let $F:\mathcal{A}\rightarrow\mathcal{B}$ be an additive functor. $F$ is \textbf{faithful}, if the homomorphism $\Hom_\mathcal{A}(A,B)\rightarrow\Hom_\mathcal{B}(F(A),F(B))$ is injective. In this case, $F$ is called an \textbf{embedding}.
+
+    If $F$ is an exact functor, it's called an \textbf{exact embedding}.
 \end{defn}
 
-\textbf{Include some properties of embedding if needed}
+Which, embeddings have a nice notion of ``preserving commutativity'' and ``non-exactness'':
+\begin{prop}
+    Let $F:\mathcal{A}\rightarrow\mathcal{B}$ be an addive functor. Then, TFAE:
+    \begin{itemize}
+        \item[(a)] $F$ is an embedding.
+        \item[(b)] $F$ carries non-commutative diagrams into non-commutative diagrams.
+        \item[(c)] $F$ carries non-exact sequences to non-exact sequences.  
+    \end{itemize}
+\end{prop}
+As a consequence, an exact embedding have commutativity / exactness of diagrams in $\mathcal{A}$ and commutativity / exactness of their images in $\mathbb{B}$ being equivalent.
 
 \hfil
 
-Here comes some iportant notions for embeddings:
+Now, we wish to achieve an embedding of Abelian categories that preserves exactness. Here comes a definition:
+\begin{defn}
+    An abelian category $\mathcal{A}$ is \textbf{very Abelian}, if every small exact subcategory $\mathcal{B}\subset \mathcal{A}$ has an exact embedding $\mathcal{B}\rightarrow \Ab$.
+
+    On the other hand, $\mathcal{A}$ is \textbf{fully Abelian} if every full small exact subcategory $\overline{A}\subset \mathcal{A}$ has a ring $R$ and a full exact embedding of $\overline{A}$ into $\RMod$.
+\end{defn}
+
+The main goal of embedding is applying statements that're true in $\Ab$ to any very Abelian categories. For this to be applicable to arbitrary objects / morphisms in arbitrary Abelian category, we first require any collection of objects / morphisms to be contained in an exact category:
+\begin{prop}
+    Given any set $\{A_i\}_i$ of objects in an Abelian category $\mathcal{A}$, there is a full small exact subcategory $\overline{A}\subset \mathcal{A}$, such that $A_i \in \overline{\mathcal{A}}$ for all $i$.
+\end{prop}
+\begin{proof}
+    Let $\mathcal{A}^0$ be a full small subcategory containing $\{A_i\}_i$. 
+    
+    Let $\mathcal{A}^1$ be a full subcategory that contains all the kernels / cokernels (as fixed objects) of morphisms in $\mathcal{A}^0$, and also finite direct sums of objects in $\mathcal{A}^0$. Since $\mathcal{A}^0$ is small, all of the mentioned objects collect to a set, and hence $\mathcal{A}^1$ is a full small subcategory.
+
+    Inductively, let $\mathcal{A}^{n+1}$ be the full subcategory generated based on the kernels / cokernels / finite direct sums in $\mathcal{A}^n$. Then, based on same reasoning as above, $\mathcal{A}^{n+1}$ is also small.
+
+    Finally, considering $\overline{\mathcal{A}}:=\bigcup_{i>=0}\mathcal{A}^i$, then it's a full subcategory (as the chain $\mathcal{A}^0 \subset \mathcal{A}^1 \subset ...$ has each subcategory being full). It's an Abelian category, because take any isomorphism (for instance, $1_A$ for $A\in\mathcal{A}^0$) it has kernel / cokernel being $0$; all morphism $\phi$ is contained in some $\mathcal{A}^i$, hence has kernels / cokernels in $\mathcal{A}^{i+1}$; and, all finite direct sums exists. So, we obtain a full small subcategory that's Abelian, and contains all $\{A_i\}_i$.
+\end{proof}
+
+With this notion, the category can be more controlled in the following sense:
+\begin{defn}
+    A category is \textbf{well-powered}, if the family of subobjects (i.e. equivalence classes of monomorphisms $A'\hookrightarrow A$, where the equivalence are stated by isomorphisms on $A'$ that commutes with the monomorphisms) forms a set.
+\end{defn}
+
+\hfil
+
+\begin{prop}
+    An Abelian Category that has a generator is well-powered.
+\end{prop}
+\begin{proof}
+    Let $G\in\mathcal{A}$ be a generator, and $A\in \mathcal{A}$ be any object. Then, given a nontrivial subobject $\iota:A'\hookrightarrow A$, the map $\iota\circ \_:\Hom_\mathcal{A}(G,A')\rightarrow \Hom_\mathcal{A}(G,A)$ is injective. 
+
+    \hfil
+
+    Hence, given $A'$ a subobject of $A$, it can be associated to a subgroup of $\Hom_\mathcal{A}(G,A)$ (namely the image of $\Hom_\mathcal{A}(G,A')$ under $\iota\circ\_$). 
+    
+    This is well-defined, as if $\iota_1:A'_1\hookrightarrow A$ and $\iota_2:A'_2\hookrightarrow A$ are two isomorphic subobjects, there exists isomorphism $\phi:A'_1\xrightarrow{\sim}A'_2$ such that $\iota_1 = \iota_2\circ \phi$. Hence, for any $f\in \Hom_\mathcal{A}(G,A'_1)$, $\iota_1\circ f = \iota_2\circ (\phi\circ f)$ (with $\phi\circ f\in \Hom_\mathcal{A}(G,A'_2$)), and conversely all $g\in \Hom_\mathcal{A}(G,A'_2)$ satisfies $\iota_2\circ g = \iota-1\circ (\phi^{-1}\circ g)$ (with$\phi^{-1}\circ g\in\Hom_\mathcal{A}(G,A'_1)$). This shows that $\iota_1\circ\_$ and $\iota_2\circ\_$ have the same set image, hence isomorphic subobject corresponds to the same subgroup in $\Hom_\mathcal{A}(G,A)$.
+
+    \hfil
+
+    Finally, any two non-isomorphic subobject can't have the same subgroup in $\Hom_\mathcal{A}(G,A)$
+\end{proof}
+
+\newpage
+
+\section{Special Case - Mitchell's Embedding Theorem:}
+
+This is a special case of the general embedding theorem. We'll first introduce some notions relevant to the proof.
+
+\hfil
+
+Over $\RMod$ (category of left / right $R$-modules) for some ring $R$, there are definitions of projective modules $P$ over $R$, namely when $\Hom_R(P,\_):\RMod\rightarrow \Ab$is an exact functor. 
+
+(As a side note, take $P:=R$ then it becomes a forgetful functor, as one can prove that $\Hom_R(R,M)\cong M$ as abelian groups; if $R$ is commutative, then the isomorphism is true as $R$-modules). 
+
+Now, here's the generalization to arbitrary Abelian category:
 \begin{defn}
     An object $P\in \mathcal{A}$ is \textbf{projective}, if the functor $\Hom_\mathcal{A}(P,\_):\mathcal{A}\rightarrow \Ab$ is exact.
 
@@ -324,8 +392,10 @@ Which, it has the following property:
 
 \hfil
 
+We also need the notion of generator of a category:
+
 \begin{defn}
-    An object $G\in\mathcal{A}$is a \textbf{generator}, if the functor $\Hom_\mathcal{A}(G,\_):\mathcal{A}\rightarrow \Ab$ is an embedding.
+    An object $G\in\mathcal{A}$ is a \textbf{generator}, if the functor $\Hom_\mathcal{A}(G,\_):\mathcal{A}\rightarrow \Ab$ is an embedding.
 \end{defn}
 
 Here are some characterization of generators:
@@ -381,30 +451,119 @@ Here is one of the key tools for the special case of the embedding theorem - the
     \end{itemize}
 \end{proof}
 
-\hfil
-
-With this notion, the category can be more controlled in the following sense:
-\begin{defn}
-    A category is \textbf{well-powered}, if the family of subobjects (i.e. equivalence classes of monomorphisms $A'\hookrightarrow A$, where the equivalence are stated by isomorphisms on $A'$ that commutes with the monomorphisms) forms a set.
-\end{defn}
-
-\hfil
-
-\begin{prop}
-    An Abelian Category that has a generator is well-powered.
-\end{prop}
+Which, we end up with the following property of projective generators:
+\begin{lem}
+    Suppose $\{P_i\}_i$ are projective, and one of $P_j$ is a generator, then if arbitrary direct sum $\bigoplus_i P_i$ exists, it's also a projective generator.
+\end{lem}
 \begin{proof}
-    Let $G\in\mathcal{A}$ be a generator, and $A\in \mathcal{A}$ be any object. Then, given a nontrivial subobject $\iota:A'\hookrightarrow A$, the map $\iota\circ \_:\Hom_\mathcal{A}(G,A')\rightarrow \Hom_\mathcal{A}(G,A)$ is injective. 
+    From \textbf{Proposition 4}, we know the direct sum is projective; from \textbf{Lemma 1}, we know it's a generator iff all nonzero object has homsets from direct sum being nontrivial.
 
-    \hfil
-
-    Hence, given $A'$ a subobject of $A$, it can be associated to a subgroup of $\Hom_\mathcal{A}(G,A)$ (namely the image of $\Hom_\mathcal{A}(G,A')$ under $\iota\circ\_$). 
-    
-    This is well-defined, as if $\iota_1:A'_1\hookrightarrow A$ and $\iota_2:A'_2\hookrightarrow A$ are two isomorphic subobjects, there exists isomorphism $\phi:A'_1\xrightarrow{\sim}A'_2$ such that $\iota_1 = \iota_2\circ \phi$. Hence, for any $f\in \Hom_\mathcal{A}(G,A'_1)$, $\iota_1\circ f = \iota_2\circ (\phi\circ f)$ (with $\phi\circ f\in \Hom_\mathcal{A}(G,A'_2$)), and conversely all $g\in \Hom_\mathcal{A}(G,A'_2)$ satisfies $\iota_2\circ g = \iota-1\circ (\phi^{-1}\circ g)$ (with$\phi^{-1}\circ g\in\Hom_\mathcal{A}(G,A'_1)$). This shows that $\iota_1\circ\_$ and $\iota_2\circ\_$ have the same set image, hence isomorphic subobject corresponds to the same subgroup in $\Hom_\mathcal{A}(G,A)$.
-
-    \hfil
-
-    Finally, any two non-isomorphic subobject can't have the same subgroup in $\Hom_\mathcal{A}(G,A)$
+    Which, for any nonzero object $A\in\mathcal{A}$, consider the following isomorphism using universality of direct sum:
+    \begin{align}
+        \Hom_\mathcal{A}(\bigoplus_i P_i,A)\cong \bigoplus_i\Hom_\mathcal{A}(P_i,A)
+    \end{align}
+    Because one $P_j$ is a generator, $\Hom_{\mathcal{A}}(P_j,A)$ is nontrivial, then the above homset is also nontrivial, showing $\bigoplus_i P_i$ is a generator.
 \end{proof}
+
+\newpage
+
+Now, let's state the theorem:
+\begin{thm}{(Mitchell)}
+    
+    An Abelian category $\mathcal{A}$ with a projective generator is very Abelian. Moreover, if $\mathcal{A}$ is complete, it's fully Abelian.
+\end{thm}
+
+\begin{proof}
+    Here, the very Abelian part follows from the fact that $\Hom_\mathcal{A}(P,\_)$ is an exact abedding to $\Ab$ by definition. We'll focus on the fully Abelian part. 
+    
+    Let $\mathcal{A}'$ be a full small exact subcategory of $\mathcal{A}$, and $P$ a projective generator for $\mathcal{A}$. For any $A\in\mathcal{A}'$, let $(P,A):=\Hom_{\mathcal{A}}(P,A)$. 
+
+    \hfil
+
+    We'll first construct a projective generator that has an epimorphism to each $A\in\mathcal{A}'$.
+    
+    Use $(P,A)$ to define the following morphism:
+    \begin{align}
+        c_A:P_A :=\bigoplus_{\phi\in (P,A)}P \rightarrow A
+    \end{align} 
+    Where, if $\iota_\psi: P\hookrightarrow P_A$ denotes the inclusion corresponding to the index $\psi\in (P,A)$, then $c_A\circ \iota_\psi = \psi$. 
+    
+    Notice that $P_A$ is a projective generator by \textbf{Lemma 2}; also, notice further that $c_A$ is in fact an epimorphism: Given any morphism $f:A\rightarrow B$ such that $f\circ c_A = 0$, then any $\psi\in (P,A)$ satisfies $f\circ \psi = f\circ c_A\circ \iota_\psi = 0$, showing the morphism $f\circ\_:(P_A,A)\rightarrow(P_A,B) = 0$. If consider its cokernel $1_B\circ\_:(P,B)\xrightarrow{\sim}(P,B)$ (Note: zero morphism has cokernel being identity), using the fact that $(P_A,\_)$ is an exact embedding (by projective generator property), we retrieve that $1_B$ is the cokernel of $f$ in $\mathcal{A}$ (using \textbf{Proposition 3}), hence $f=0$.
+
+    Then, consider the direct sum $\overline{P}:=\bigoplus_{A\in\mathcal{A}'}P_A$, it's still a projective generator by \textbf{Lemma 2} again, while any $B\in\mathcal{A}'$ there is an epimorphism $\overline{c}_B:\overline{P}\twoheadrightarrow B$ defined by direct sum of morphisms $c_B:P_B\twoheadrightarrow B$ and $0:P_B\rightarrow A$ for any $A\neq B$ ($\overline{c}_B$ is an epimorphism, because given $\iota_B:P_B\hookrightarrow \overline{P}$ as inclusion, $\overline{c}_B \circ \iota_B = c_B$ is an epimorphism). Hence,$\overline{P}$ is a projective generator of $\mathcal{A}$, while every $A\in\mathcal{A}'$ it has an epimorphism $\overline{c}_A:\overline{P}\twoheadrightarrow A$.
+
+    \hfil
+
+    Now, let's consider the ring $R := \End_\mathcal{A}(\overline{P})$. Notice for any $A\in\mathcal{A}'$, the homset $(\overline{P},A)$ is a canonical $R$-module by pre-composition (it's a left $R$-module if consider diagramatically; it's a right $R$-module if consider classical notation of composition). In particular, for any $r\in R:=\End_\mathcal{A}(P)$, the action on $\phi\in (P,A)$ is as:
+    \begin{align}
+        \phi\cdot r := \phi\circ r:\overline{P}\xrightarrow{r}\overline{P}\xrightarrow{\phi}A
+    \end{align}
+    The module structure is guaranteed by the additive structure / $\ZZ$-bilinearity of composition.
+    
+    Also, given any morphism $f:A\rightarrow B$, the canonical post-composition morphism $f\circ\_:(P,A)\rightarrow (P,B)$ is an $R$-module homomorphism by associativity of composition:
+    \begin{align}
+        f \circ (\phi\dot r) = f\circ (\phi\circ r)=(f\circ \phi)\circ r = (f\circ \phi)\dot r
+    \end{align}
+    
+    Hence, this defines $(\overline{P},\_):\mathcal{A}'\rightarrow\RMod$ as an exact embedding.
+
+    \hfil
+
+    Finally, to check it's fully Abelian, it remains to verify $(\overline{P},\_)$ is a full functor. Which, given any $A,B\in\mathcal{A}'$ and $\overline{f}:(\overline{P},A)\rightarrow (\overline{P},B)$ in $\RMod$, we wish to find $f:A\rightarrow B$ in $\mathcal{A}'$, satisfying $\overline{f}=f\circ\_:(\overline{P},A)\rightarrow(\overline{P},B)$.
+
+    Here, we use the fact that $\overline{c}_A:\overline{P}\twoheadrightarrow A$ is an epimorphism. Consider $k:K\rightarrow \overline{P}$ as the kernel of $\overline{c}_A$, we have the following exact sequence in $\mathcal{A}'$:
+    \begin{align}
+        0\rightarrow K\xrightarrow{k} \overline{P}\xrightarrow{\overline{c}_A}A\rightarrow 0
+    \end{align}
+    Then, applying the embedding $(\overline{P},\_)$, we get the following commutative diagram (with the two rows being exact):
+    \begin{center}
+        \begin{tikzcd}
+            0 \ar[r] & (\overline{P},K) \ar[r,"k\circ\_  "] & (\overline{P},\overline{P})=R \ar[d,dashed,"\exists g"'] \ar[r,"\overline{c}_A\circ\_"] & (\overline{P},A) \ar[d,"\overline{f}"] \ar[r] & 0\\
+            &&(\overline{P},\overline{P})=R\ar[r,"\overline{c}_B\circ\_"'] & (\overline{P},B)\ar[r] &0
+        \end{tikzcd}
+    \end{center}
+    Recall that $R$ is projective within $\RMod$, hence given epimorphism $\overline{c}_B\circ\_:R\twoheadrightarrow (\overline{P},B)$, and $\overline{f}\circ (\overline{c}_A\circ\_):R\rightarrow (\overline{P},B)$, there exists $g:R\rightarrow R$ for the above commutative diagram to commute.
+
+    Then, since $R$ as an $R$-module has the morphism $g$ solely determined by $g(1)$ (in particular, the map $g$ is defined by $r \mapsto g(1) \cdot r := g(1)\circ r$). Hence, take $h := g(1)\in (\overline{P},\overline{P})=R$, the map $g = h\circ \_:R\rightarrow R$.
+
+    Now, going back to $\mathcal{A}'$, notice we have the following commutative diagram:
+    \begin{center}
+        \begin{tikzcd}
+            0 \ar[r] & K \ar[r,"k"] & \overline{P} \ar[d,"h"'] \ar[r,"\overline{c}_A"] & A \ar[r] & 0\\
+            &&\overline{P}\ar[r,"\overline{c}_B"'] & B\ar[r] &0
+        \end{tikzcd}
+    \end{center}
+    Notice that $(\overline{c}_B\circ h)\circ k = 0$: Using \textbf{Proposition 3}, after applying the embedding we have the following equality on morphisms:
+    \begin{align}
+        ((\overline{c}_B\circ\_)\circ g)\circ (k\circ\_) = \overline{f}\circ ((\overline{c}_A\circ \_)\circ (k\circ\_)) = \overline{f}\circ (\overline{c}_A\circ k\circ \_) = 0
+    \end{align}
+    (Note: Recall that $k$ is the kernel of $\overline{c}_A$).
+
+    Then, since $g=h\circ\_$, the embedded morphism of $(\overline{c}_B\circ h)\circ k$ is precisely $((\overline{c}_B\circ\_)\circ g)\circ (k\circ\_)=0$, then the proposition guarantees the morphism before applying the embedding is also $0$.
+
+    Hence, as $\overline{c}_A$ is an epimorphism, it's also the cokernel of $k$, showing there exists unique $f:A\rightarrow B$, such that $\overline{c}_B\circ h =f\circ \overline{c}_A$:
+    \begin{center}
+        \begin{tikzcd}
+            0 \ar[r] & K \ar[r,"k"] & \overline{P} \ar[d,"h"'] \ar[r,"\overline{c}_A"] & A \ar[d,dashed,"\exists ! f"] \ar[r] & 0\\
+            &&\overline{P}\ar[r,"\overline{c}_B"'] & B\ar[r] &0
+        \end{tikzcd}
+    \end{center}
+    Now, apply the embedding to the square above, we get the following commutative diagram in $\RMod$:
+    \begin{center}
+        \begin{tikzcd}
+            (\overline{P},\overline{P})=R \ar[d,"h\circ\_ = g"'] \ar[r,"\overline{c}_A\circ\_"] & (\overline{P},A) \ar[d,"f\circ\_"]\\
+            (\overline{P},\overline{P})=R\ar[r,"\overline{c}_B\circ\_"'] & (\overline{P},B)
+        \end{tikzcd}
+    \end{center}
+    Notice that in one of the above diagrams, replacing $f\circ\_$ using $\overline{f}$ have the same diagram commute, hence we get the equality:
+    \begin{align}
+        (f\circ \_)\circ (\overline{c}_A\circ\_) = (\overline{c}_B\circ\_)\circ g = \overline{f}\circ (\overline{c}_A\circ\_)
+    \end{align}
+    Hence, with $(\overline{c}_A\circ\_)$ being an epimorphism in $\RMod$ (because $\overline{c}_A$ is epimorphism in $\mathcal{A}'$, and $(\overline{P},\_)$ is exact), this enforces $\overline{f}=f\circ\_$, showing the desired result.
+\end{proof}
+
+\newpage
+
+\section{Functor Category and Grothendieck Category}
 
 \end{document}
