@@ -8,7 +8,7 @@
 \begin{document}
 \maketitle
 
-The goal is to understand the way of embedding any small Abelian Category into the category of $R$-modules over some (not necessarily commutative) ring $R$.
+The goal is to understand the way of embedding any small Abelian Category into the category of abelian groups $\Ab$, or even stronger, into the category of $R$-modules over some (not necessarily commutative) ring $R$.
 
 \section{Abelian Category}
 
@@ -470,7 +470,7 @@ Which, we end up with the following property of projective generators:
 Now, let's state the theorem:
 \begin{thm}{(Mitchell)}
     
-    An Abelian category $\mathcal{A}$ with a projective generator is very Abelian. Moreover, if $\mathcal{A}$ is complete, it's fully Abelian.
+    An Abelian category $\mathcal{A}$ with a projective generator is very Abelian. Moreover, if $\mathcal{A}$ is bicomplete, it's fully Abelian.
 \end{thm}
 
 \begin{proof}
@@ -565,5 +565,75 @@ Now, let's state the theorem:
 \newpage
 
 \section{Functor Category and Grothendieck Category}
+
+After establishing the special case, the next approach will be embedding Abelian categories into a category that's bicomplete and with projective generator (or dually, embedd into bicomplete category with injective cogenerator using contravariant embedding).
+
+\hfil
+
+Here is a candidate:
+\begin{defn}
+    Let $\mathcal{A}$ be a smalll Abelian category, $\Ab$ be the category of Abelian groups. Then, denote $(\mathcal{A},\Ab)$ as the categroy of all additive functors from $\mathcal{A}$ to $\Ab$, with the objects being these functors, and morphisms being natural transformations.
+\end{defn}
+Of course, there are more to verify: Is it an Abelian category? Is it bicomplete? Does it have a projective generator?
+
+\begin{thm}
+    $(\mathcal{A},\Ab)$ is an Abelian category.
+\end{thm}
+\begin{proof}
+
+    We'll construct half of the conditions, and the other half can be proven in similar manner using dual construction.
+
+    \begin{itemize}
+        \item[A0:] Consider the zero functor $\overline{\bzero}$, where $\overline{\bzero}(A)=\bzero$ for all $A\in\mathcal{A}$, and $(f:A\rightarrow B)\mapsto (0:\bzero\rightarrow\bzero)$ for all morphism $f$ in $\mathcal{A}$. Since $\bzero$ serves as a zero object in $\Ab$, then given any 
+        
+        \hfil
+
+        \item[A1:] To verify finite biproduct exists, given $F_1,F_2\in(\mathcal{A},\Ab)$, define $F_1\oplus F_2(A):= F_1(A)\oplus F_2(A)$, and given morphism $f:A\rightarrow B$, a natural choice of morphism is $(F_1\oplus F_2)(f) = \begin{pmatrix}
+            F_1(f) & 0\\0& F_2 (f)
+        \end{pmatrix}:F_1(A)\oplus F_2(A) \rightarrow F_1(B)\oplus F_2(B)$.
+
+        Which, this is a functor, since given $f:A\rightarrow B$, $g:B\rightarrow C$, we have:
+        \begin{align}
+            F_1\oplus F_2(g\circ f) &= \begin{pmatrix}
+                F_1(g\circ f)&0\\0&F_2(g\circ f)
+            \end{pmatrix} = \begin{pmatrix}
+                F_1(g)\circ F_1(f)&0\\0&F_2(g)\circ F_2(f)
+            \end{pmatrix} \\
+            &= \begin{pmatrix}
+                F_1(g)&0\\0&F_2(g)
+            \end{pmatrix}\begin{pmatrix}
+                F_1(f)&0\\0&F_2(f)
+            \end{pmatrix} = F_1\oplus F_2(g)\circ F_1\oplus F_2(f)
+        \end{align}
+        And, since both $F_1,F_2$ preserves direct sum, so:
+        \begin{align}
+            F_1\oplus F_2(A\oplus B)&= F_1(A\oplus B)\oplus F_2(A\oplus B)\\
+            &\cong (F_1(A)\oplus F_1(B))\oplus (F_2(A)\oplus F_2(B))\\
+            &\cong (F_1(A)\oplus F_2(A))\oplus (F_1(B)\oplus F_2(B))\\
+            &\cong (F_1\oplus F_2(A))\oplus (F_1\oplus F_2(B))
+        \end{align}
+        Hence, the functor $F_1\oplus F_2$ preserves direct sum, which is also additive.
+
+        Finally, it serves as a biproduct (which we'll prove only for product, as coproduct applies with the same proof): Take $\pi_1:F_1\oplus F_2\rightarrow F_i$ given by $\pi_{i,A} = (1_{F_1(A)}\ 0):F_1\oplus F_2(A)\rightarrow F_1(A)$ as the projection map of the $F_1(A)\oplus F_2(A)$ (similarly, $\pi_{2,A} = (0\ 1_{F_1(A)}):F_1\oplus F_2(A)\rightarrow F_2(A)$). It forms a natural transformation, because given any morphism $f:A\rightarrow B$, we have the following commutative diagram:
+        \begin{center}
+            \begin{tikzcd}
+                F_1(A)\oplus F_2(A) \ar[d,"F_1\oplus F_2(f)"'] \ar[r,"(1_{F(A)}\ 0)"] & F_1(A) \ar[d,"F_1(f)"]\\
+                F_1(B)\oplus F_2(B) \ar[r,"(1_{F(B)}\ 0)"'] & F_1(B)
+            \end{tikzcd}
+        \end{center}
+        Due to the following computation:
+        \begin{align}
+            \pi_{1,B}\circ (F_1\oplus F_2(f))=(1_B\ 0)\begin{pmatrix}
+                F_1(f) & 0\\
+                0 & F_2(f)
+            \end{pmatrix} = F_1(f) = F_1(f)\circ (1_{F(A)}\ 0) = F_1(f)\circ \pi_{1,A}
+        \end{align}
+
+
+        \hfil
+
+        \item[A2:] Given 
+    \end{itemize}
+\end{proof}
 
 \end{document}
